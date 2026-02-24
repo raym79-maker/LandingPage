@@ -1,5 +1,5 @@
 {
-  "name": "smartplay-landing",
+  "name": "smartplay-web",
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
