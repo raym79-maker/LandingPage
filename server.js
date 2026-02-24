@@ -24,7 +24,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
-            // 1. Tabla de Prospectos (Clientes)
+            // 1. Tabla de Prospectos
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -43,28 +43,25 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 imagen TEXT
             )`);
 
-            // 3. Inicializar tus productos específicos con rutas locales
+            // 3. Inicializar productos con tus rutas de GitHub
             db.get("SELECT COUNT(*) as count FROM productos", (err, row) => {
                 if (row && row.count === 0) {
                     const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
                     
-                    // Rutas apuntando a tu carpeta public/img/ en GitHub
                     stmt.run("M327", "$10.00", 1, "Estabilidad Premium, Canales MX, FHD/4K", "/img/m327.jpg");
                     stmt.run("TU LATINO", "$12.00", 2, "Contenido Latam, Deportes en Vivo, Series", "/img/tu latino.jpg");
                     stmt.run("LEDTV", "$15.00", 3, "Ultra HD, Multi-dispositivo, Sin Cortes", "/img/ledtv.jpg");
                     stmt.run("ALFATV", "$18.00", 3, "Todo Incluido, Eventos Especiales, Soporte VIP", "/img/alfatv.jpg");
                     
                     stmt.finalize();
-                    console.log("Productos IPTV inicializados con éxito.");
+                    console.log("Productos inicializados correctamente.");
                 }
             });
         });
     }
 });
 
-// --- APIS ---
-
-// Obtener productos para la landing
+// APIs
 app.get('/api/productos', (req, res) => {
     db.all("SELECT * FROM productos", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -72,7 +69,6 @@ app.get('/api/productos', (req, res) => {
     });
 });
 
-// Guardar nuevo prospecto
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
     const sql = `INSERT INTO prospectos (nombre, whatsapp, producto_interes) VALUES (?, ?, ?)`;
@@ -82,23 +78,24 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel de Administración Secreto
+// Panel Admin
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
-        if (err) return res.status(500).send("Error de DB");
-        
-        let html = `<html><head><title>Admin IPTV</title><style>
-            body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}
-            table{width:100%;border-collapse:collapse;margin-top:20px;}
-            th,td{padding:12px;border:1px solid #4a5568;text-align:left;}
-            th{background:#2d3748;}
-            .btn-ws{background:#25d366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
-        </style></head><body>
-        <h1>Gestión de Prospectos - IPTV Pro Global</h1>
-        <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
-        
+        if (err) return res.status(500).send("Error");
+        let html = `<html><head><title>Admin IPTV</title><style>body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}table{width:100%;border-collapse:collapse;}th,td{padding:12px;border:1px solid #4a5568;}.btn-ws{background:#25d366;color:black;padding:5px 10px;border-radius:5px;text-decoration:none;font-weight:bold;}</style></head><body><h1>Gestión de Ventas IPTV</h1><table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
         rows.forEach(r => {
             const tel = r.whatsapp.replace(/\D/g,''); 
-            html += `<tr>
-                <td>${r.nombre}</td>
-                <td><strong>${r.producto_interes}</strong></td>
+            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}" class="btn-ws" target="_blank">WhatsApp</a></td></tr>`;
+        });
+        html += `</table></body></html>`;
+        res.send(html);
+    });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor activo en puerto ${PORT}`);
+});
