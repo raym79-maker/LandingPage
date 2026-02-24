@@ -24,6 +24,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
+            // --- LÍNEA TEMPORAL PARA ACTUALIZAR IMÁGENES ---
+            // Borra esta línea después de que las imágenes aparezcan en tu web
+            db.run("DELETE FROM productos"); 
+
             // 1. Tabla de Prospectos
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,7 +49,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
             // 3. Inicializar productos con tus rutas de GitHub
             db.get("SELECT COUNT(*) as count FROM productos", (err, row) => {
-                if (row && row.count === 0) {
+                if (!row || row.count === 0) {
                     const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
                     
                     stmt.run("M327", "$10.00", 1, "Estabilidad Premium, Canales MX, FHD/4K", "/img/m327.jpg");
@@ -54,7 +58,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                     stmt.run("ALFATV", "$18.00", 3, "Todo Incluido, Eventos Especiales, Soporte VIP", "/img/alfatv.jpg");
                     
                     stmt.finalize();
-                    console.log("Productos inicializados correctamente.");
+                    console.log("Productos inicializados con rutas locales.");
                 }
             });
         });
@@ -78,7 +82,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel Admin
+// Panel Admin (Ruta Secreta)
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
