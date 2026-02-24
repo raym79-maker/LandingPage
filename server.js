@@ -32,7 +32,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 producto_interes TEXT,
                 fecha DATETIME DEFAULT CURRENT_TIMESTAMP
             )`);
-
             db.run(`CREATE TABLE IF NOT EXISTS productos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
