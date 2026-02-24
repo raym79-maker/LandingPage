@@ -24,7 +24,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
-            // 1. Tabla de Prospectos (Clientes que se registran)
+            // 1. Tabla de Prospectos (Clientes)
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -33,7 +33,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 fecha DATETIME DEFAULT CURRENT_TIMESTAMP
             )`);
 
-            // 2. Tabla de Productos (Catálogo visual)
+            // 2. Tabla de Productos
             db.run(`CREATE TABLE IF NOT EXISTS productos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -71,7 +71,7 @@ app.get('/api/productos', (req, res) => {
     });
 });
 
-// Guardar nuevo prospecto desde el formulario
+// Guardar nuevo prospecto
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
     const sql = `INSERT INTO prospectos (nombre, whatsapp, producto_interes) VALUES (?, ?, ?)`;
@@ -81,7 +81,42 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel de Administración (Ruta Secreta)
+// Panel de Administración Secreto
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error de base de datos");
+        
+        let html = `<html><head><title>Admin IPTV</title><style>
+            body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}
+            table{width:100%;border-collapse:collapse;margin-top:20px;}
+            th,td{padding:12px;border:1px solid #4a5568;text-align:left;}
+            th{background:#2d3748;}
+            .btn-ws{background:#25d366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
+        </style></head><body>
+        <h1>Panel de Ventas - IPTV Pro Global</h1>
+        <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
+        
+        rows.forEach(r => {
+            const tel = r.whatsapp.replace(/\D/g,''); 
+            html += `<tr>
+                <td>${r.nombre}</td>
+                <td><strong>${r.producto_interes}</strong></td>
+                <td>${r.whatsapp}</td>
+                <td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}" class="btn-ws" target="_blank">Contactar</a></td>
+            </tr>`;
+        });
+        
+        html += `</table></body></html>`;
+        res.send(html);
+    });
+});
+
+// Servir la Landing Page
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Inicio del servidor
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor activo y seguro en puerto ${PORT}`);
+});
