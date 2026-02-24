@@ -1,7 +1,6 @@
 {
-  "name": "iptv-landing-system",
+  "name": "landing-iptv",
   "version": "1.0.0",
-  "description": "Landing y gestión de prospectos IPTV",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
