@@ -5,27 +5,26 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 
 const app = express();
-// Railway inyecta el puerto automáticamente en process.env.PORT
 const PORT = process.env.PORT || 3000;
 
-// Configuración de la Base de Datos con el Volumen
+// 1. Configuración de persistencia (Volumen de Railway)
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
-// Crear la carpeta si no existe (Vital para evitar fallos de inicio)
+// Crear carpeta si no existe para evitar errores al arrancar
 if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
 }
 
-// Middlewares
+// 2. Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Conexión a la DB
+// 3. Conexión a la Base de Datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
-        console.error("Error al abrir base de datos:", err.message);
+        console.error("Error al abrir DB:", err.message);
     } else {
         console.log("Base de datos conectada en: " + dbPath);
         db.run(`CREATE TABLE IF NOT EXISTS prospectos (
@@ -40,27 +39,49 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 // --- RUTAS ---
 
-// 1. Health Check (Esto le dice a Railway que la app está viva)
+// Ruta de salud (la que ves como OK)
 app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
 
-// 2. Guardar Prospectos
+// Ruta para guardar datos del formulario
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, plan } = req.body;
     const sql = `INSERT INTO prospectos (nombre, whatsapp, plan_interes) VALUES (?, ?, ?)`;
     
-    db.run(sql, [nombre, whatsapp, plan || 'Demo'], function(err) {
+    db.run(sql, [nombre, whatsapp, plan || 'Demo Gratis'], function(err) {
         if (err) return res.status(500).json({ error: err.message });
         res.status(200).json({ success: true, id: this.lastID });
     });
 });
 
-// 3. Servir la Landing (Asegura que cargue el index.html)
+/**
+ * 4. RUTA SECRETA PARA VER TUS CLIENTES
+ * Entra a: tu-app.up.railway.app/admin-prospectos
+ */
+app.get('/admin-prospectos', (req, res) => {
+    db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
+        if (err) {
+            return res.status(500).send("Error al leer la base de datos");
+        }
+        
+        // Creamos una tabla HTML simple para que lo veas bonito en el navegador
+        let html = `<h1>Lista de Prospectos IPTV</h1><table border="1"><tr><th>ID</th><th>Nombre</th><th>WhatsApp</th><th>Fecha</th></tr>`;
+        rows.forEach((row) => {
+            html += `<tr><td>${row.id}</td><td>${row.nombre}</td><td>${row.whatsapp}</td><td>${row.fecha}</td></tr>`;
+        });
+        html += `</table>`;
+        
+        res.send(html);
+    });
+});
+
+// Captura cualquier otra ruta y sirve el index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// 5. Encendido del servidor
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor iniciado en puerto ${PORT}`);
+    console.log(`Servidor activo en puerto ${PORT}`);
 });
