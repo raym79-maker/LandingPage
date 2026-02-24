@@ -8,7 +8,6 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Configuración de persistencia en Railway (Volumen 5GB)
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
@@ -19,13 +18,13 @@ if (!fs.existsSync(dataDir)) {
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/downloads', express.static(path.join(__dirname, 'downloads')));
 
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
-            // Tabla de Prospectos
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -34,7 +33,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 fecha DATETIME DEFAULT CURRENT_TIMESTAMP
             )`);
 
-            // Tabla de Productos
             db.run(`CREATE TABLE IF NOT EXISTS productos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -43,11 +41,12 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 caracteristicas TEXT,
                 imagen TEXT
             )`);
+            
+            // Los datos ya persisten en tu volumen de 5GB
         });
     }
 });
 
-// APIs Públicas
 app.get('/api/productos', (req, res) => {
     db.all("SELECT * FROM productos", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -64,9 +63,8 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// --- SEGURIDAD PARA EL PANEL ADMIN ---
 const auth = basicAuth({
-    users: { 'admin': 'smartplay2026' }, // <--- Usuario y Contraseña
+    users: { 'admin': 'smartplay2026' }, 
     challenge: true,
     realm: 'SmartplayAdmin'
 });
@@ -83,15 +81,9 @@ app.get('/admin-prospectos', auth, (req, res) => {
         </style></head><body>
         <h1>Panel de Ventas - Smartplay</h1>
         <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
-        
         rows.forEach(r => {
             const tel = r.whatsapp.replace(/\D/g,''); 
-            html += `<tr>
-                <td>${r.nombre}</td>
-                <td><strong>${r.producto_interes}</strong></td>
-                <td>${r.whatsapp}</td>
-                <td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">Contactar</a></td>
-            </tr>`;
+            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">Contactar</a></td></tr>`;
         });
         html += `</table></body></html>`;
         res.send(html);
@@ -99,7 +91,4 @@ app.get('/admin-prospectos', auth, (req, res) => {
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Smartplay con seguridad activa en puerto ${PORT}`);
-});
+app.listen(PORT, '0.0.0.0', () => console.log(`Smartplay activo en puerto ${PORT}`));
