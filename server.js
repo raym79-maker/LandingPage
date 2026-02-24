@@ -43,12 +43,12 @@ const db = new sqlite3.Database(dbPath, (err) => {
             )`);
 
             // --- ACTUALIZACIÓN DE DATOS ---
-            // Esta línea limpia la tabla para que se graben los nuevos datos de M327
+            // Esta línea limpia la tabla para que se graben los nuevos datos de TU LATINO
             db.run("DELETE FROM productos"); 
 
             const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
             
-            // Configuración M327 solicitada
+            // Configuración M327
             stmt.run(
                 "M327", 
                 "$200 MXN", 
@@ -57,13 +57,21 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 "/img/m327.jpg"
             );
 
-            // Otros planes (puedes editar sus precios o textos aquí mismo)
-            stmt.run("TU LATINO", "$12.00", 2, "Todo Latinoamerica, Deportes en Vivo, Cine Premium, 2 Pantallas", "/img/tu latino.jpg");
+            // Configuración TU LATINO solicitada
+            stmt.run(
+                "TU LATINO", 
+                "$250 MXN", 
+                3, 
+                "Mas de 11000 Canales de TV en vivo, Mas de 55000 Peliculas, Mas de 14000 Series, 3 Dispositivos", 
+                "/img/tu latino.jpg"
+            );
+
+            // Otros planes (puedes editarlos luego si lo necesitas)
             stmt.run("LEDTV", "$15.00", 3, "Resolución 4K, Multi-dispositivo, Sin Contratos, Soporte Técnico", "/img/ledtv.jpg");
             stmt.run("ALFATV", "$18.00", 3, "Contenido VIP, Eventos PPV, Actualizaciones Diarias, Ultra Estabilidad", "/img/alfatv.jpg");
             
             stmt.finalize();
-            console.log("Plan M327 actualizado en Smartplay.");
+            console.log("Catálogo Smartplay actualizado: M327 y TU LATINO listos.");
         });
     }
 });
@@ -81,39 +89,4 @@ app.post('/api/prospectos', (req, res) => {
     const sql = `INSERT INTO prospectos (nombre, whatsapp, producto_interes) VALUES (?, ?, ?)`;
     db.run(sql, [nombre, whatsapp, producto || 'Demo'], function(err) {
         if (err) return res.status(500).json({ error: err.message });
-        res.status(200).json({ success: true, id: this.lastID });
-    });
-});
-
-// Panel Admin
-app.get('/admin-prospectos', (req, res) => {
-    db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
-        if (err) return res.status(500).send("Error");
-        let html = `<html><head><title>Admin Smartplay</title><style>
-            body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}
-            table{width:100%;border-collapse:collapse;margin-top:20px;}
-            th,td{padding:12px;border:1px solid #4a5568;}
-            th{background:#25D366;color:black;}
-            .btn-ws{background:#25D366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
-        </style></head><body>
-        <h1>Panel de Ventas - Smartplay</h1>
-        <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
-        rows.forEach(r => {
-            const tel = r.whatsapp.replace(/\D/g,''); 
-            html += `<tr>
-                <td>${r.nombre}</td>
-                <td><strong>${r.producto_interes}</strong></td>
-                <td>${r.whatsapp}</td>
-                <td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">Contactar</a></td>
-            </tr>`;
-        });
-        html += `</table></body></html>`;
-        res.send(html);
-    });
-});
-
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor Smartplay activo en puerto ${PORT}`);
-});
+        res
