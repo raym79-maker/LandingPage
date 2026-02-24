@@ -3,93 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV Pro Global | Entretenimiento Premium</title>
+    <title>IPTV Pro Global | Productos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #0f172a; scroll-behavior: smooth; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .plan-card:hover { border-color: #3b82f6; transform: translateY(-5px); }
-    </style>
+    <style>body{background-color:#0f172a;scroll-behavior:smooth;}.glass{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);}</style>
 </head>
-<body class="text-white font-sans">
+<body class="text-white">
 
-    <nav class="p-6 flex justify-between items-center border-b border-gray-800 glass sticky top-0 z-50">
-        <h1 class="text-2xl font-bold text-blue-500">IPTV Pro Global</h1>
-        <a href="#registro" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full font-bold transition">Solicitar Demo</a>
-    </nav>
-
-    <header class="py-20 px-6 text-center">
-        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            La mejor TV digital está aquí
-        </h2>
-        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-            Disfruta de más de 20,000 canales, películas y series con estabilidad garantizada y soporte 24/7.
-        </p>
-        <a href="#planes" class="bg-white text-blue-900 font-bold py-4 px-10 rounded-full text-lg hover:bg-blue-50 transition">
-            Ver Planes Disponibles
-        </a>
+    <header class="py-16 px-6 text-center">
+        <h1 class="text-5xl font-extrabold mb-4 text-blue-500 font-serif">IPTV Pro Global</h1>
+        <p class="text-gray-400">Selecciona el producto que deseas activar</p>
     </header>
 
-    <section id="planes" class="py-20 px-6 bg-gray-900/50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-4">Nuestros Planes</h2>
-            <p class="text-center text-gray-500 mb-12">Selecciona el plan que mejor se adapte a tus necesidades</p>
-            
-            <div id="planes-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="col-span-full text-center py-10">
-                    <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mb-4"></div>
-                    <p class="text-gray-400">Cargando ofertas disponibles...</p>
-                </div>
+    <section id="productos" class="py-10 px-6 max-w-6xl mx-auto">
+        <div id="productos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             </div>
-        </div>
     </section>
 
-    <section id="registro" class="py-24 px-6 border-t border-gray-800">
-        <div class="max-w-md mx-auto glass p-10 rounded-3xl border border-gray-700 shadow-2xl">
-            <h3 class="text-3xl font-bold mb-2 text-center">Comienza ahora</h3>
-            <p class="text-gray-400 text-center mb-8">Déjanos tus datos para activar tu servicio</p>
-            
-            <form id="prospectForm" class="space-y-5">
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Tu Nombre</label>
-                    <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800/50 border border-gray-700 focus:border-blue-500 outline-none transition" placeholder="Ej. Juan Rodríguez" required>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">WhatsApp</label>
-                    <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800/50 border border-gray-700 focus:border-blue-500 outline-none transition" placeholder="+52 ..." required>
-                </div>
-                <input type="hidden" id="planSeleccionado" value="Demo Gratis">
-                
-                <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-600/20">
-                    Obtener Demo Gratis
-                </button>
+    <section id="registro" class="py-20 px-6">
+        <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700">
+            <h3 class="text-2xl font-bold mb-6 text-center">Solicita tu acceso</h3>
+            <form id="prospectForm" class="space-y-4">
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500" placeholder="Nombre" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500" placeholder="WhatsApp" required>
+                <input type="hidden" id="prodSel" value="Demo">
+                <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20">Solicitar Demo Gratis</button>
             </form>
-
-            <div id="msgExito" class="hidden mt-8 text-center p-6 bg-green-900/20 border border-green-800 rounded-2xl">
-                <p class="text-green-400 font-bold text-lg mb-1">¡Solicitud Enviada!</p>
-                <p class="text-green-200/70 text-sm">Un asesor te contactará por WhatsApp en unos minutos.</p>
-            </div>
+            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/20 text-green-400 rounded-xl border border-green-800">✅ Solicitud enviada correctamente.</div>
         </div>
     </section>
-
-    <footer class="py-10 text-center text-gray-600 border-t border-gray-800">
-        <p>&copy; 2026 IPTV Pro Global. Todos los derechos reservados.</p>
-    </footer>
 
     <script>
-        // 1. CARGAR PLANES DESDE LA BASE DE DATOS
-        async function fetchPlanes() {
-            const container = document.getElementById('planes-container');
+        async function fetchProductos() {
+            const container = document.getElementById('productos-container');
             try {
-                const response = await fetch('/api/planes');
-                const planes = await response.json();
-                
-                if (!planes || planes.length === 0) {
-                    container.innerHTML = "<p class='col-span-full text-center'>No hay planes configurados.</p>";
-                    return;
-                }
+                const response = await fetch('/api/productos');
+                const productos = await response.json();
+                container.innerHTML = productos.map(p => `
+                    <div class="glass p-6 rounded-3xl border border-gray-800 hover:border-blue-500 transition-all">
+                        <h3 class="text-xl font-bold text-blue-400 mb-2">${p.nombre}</h3>
+                        <div class="text-3xl font-black mb-4">${p.precio}</div>
+                        <ul class="text-xs text-gray-400 space-y-2 mb-6 text-left">
+                            ${p.caracteristicas.split(',').map(c => `<li>✔ ${c.trim()}</li>`).join('')}
+                        </ul>
+                        <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-blue-500 text-blue-500 font-bold hover:bg-blue-600 hover:text-white transition">Elegir</button>
+                    </div>
+                `).join('');
+            } catch (e) { container.innerHTML = "Error al cargar productos."; }
+        }
 
-                container.innerHTML = planes.map(plan => `
-                    <div class="plan-card glass p-8 rounded-3xl border border-gray-800 transition-all duration-300">
-                        <h3 class="text-xl font-bold text-blue-400 mb-2">${plan.nombre}</h3>
-                        <div class="text-4
+        function seleccionarProducto(nombre) {
+            document.getElementById('prodSel').value = nombre;
+            document.getElementById('btnSubmit').innerText = "Adquirir " + nombre;
+            document.getElementById('registro').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('prospectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = { nombre: document.getElementById('nombre').value, whatsapp: document.getElementById('whatsapp').value, producto: document.getElementById('prodSel').value };
+            const res = await fetch('/api/prospectos', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+            if(res.ok) { document.getElementById('prospectForm').classList.add('hidden'); document.getElementById('msgExito').classList.remove('hidden'); }
+        });
+
+        document.addEventListener('DOMContentLoaded', fetchProductos);
+    </script>
+</body>
+</html>
