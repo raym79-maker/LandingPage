@@ -42,44 +42,49 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 imagen TEXT
             )`);
 
-            // --- ACTUALIZACIÓN DE DATOS ---
-            // Esta línea limpia la tabla para que se graben los nuevos datos actualizados
+            // --- ACTUALIZACIÓN FINAL DE DATOS ---
             db.run("DELETE FROM productos"); 
 
             const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
             
-            // Configuración M327
+            // 1. M327
             stmt.run(
                 "M327", 
                 "$200 MXN", 
                 3, 
-                "Mas de 2000 Canales de TV en vivo, Mas de 40000 Peliculas, Mas de 20000 Series, 3 Dispositivos", 
+                "**Mas de 2000 Canales de TV en vivo**, **Mas de 40000 Peliculas**, **Mas de 20000 Series**, **3 Dispositivos**", 
                 "/img/m327.jpg"
             );
 
-            // Configuración TU LATINO
+            // 2. TU LATINO
             stmt.run(
                 "TU LATINO", 
                 "$250 MXN", 
                 3, 
-                "Mas de 11000 Canales de TV en vivo, Mas de 55000 Peliculas, Mas de 14000 Series, 3 Dispositivos", 
+                "**Mas de 11000 Canales de TV en vivo**, **Mas de 55000 Peliculas**, **Mas de 14000 Series**, **3 Dispositivos**", 
                 "/img/tu latino.jpg"
             );
 
-            // Configuración ALFATV solicitada
+            // 3. LEDTV
+            stmt.run(
+                "LEDTV", 
+                "$130 MXN", 
+                3, 
+                "**Mas de 2400 Canales de TV en vivo**, **Mas de 19000 Peliculas**, **Mas de 5000 Series**, **3 Dispositivos**", 
+                "/img/ledtv.jpg"
+            );
+
+            // 4. ALFATV
             stmt.run(
                 "ALFATV", 
                 "$180 MXN", 
                 3, 
-                "Mas de 1500 Canales de TV en vivo, Mas de 25000 Peliculas, Mas de 3000 Series, 3 Dispositivos", 
+                "**Mas de 1500 Canales de TV en vivo**, **Mas de 25000 Peliculas**, **Mas de 3000 Series**, **3 Dispositivos**", 
                 "/img/alfatv.jpg"
             );
-
-            // Configuración LEDTV (Por defecto mientras decides su precio en MXN)
-            stmt.run("LEDTV", "$15.00", 3, "Resolución 4K, Multi-dispositivo, Sin Contratos, Soporte Técnico", "/img/ledtv.jpg");
             
             stmt.finalize();
-            console.log("Catálogo Smartplay: M327, TU LATINO y ALFATV listos.");
+            console.log("Catálogo Smartplay: Todos los planes actualizados en MXN y Negritas.");
         });
     }
 });
@@ -101,7 +106,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel Admin Smartplay
+// Panel Admin
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
@@ -131,5 +136,5 @@ app.get('/admin-prospectos', (req, res) => {
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor Smartplay activo y actualizado.`);
+    console.log(`Smartplay 100% configurado en puerto ${PORT}`);
 });
