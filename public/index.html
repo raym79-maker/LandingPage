@@ -3,52 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV Pro Global | Productos Premium</title>
+    <title>Smartplay | Tu Televisión Inteligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#25D366',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body { background-color: #0f172a; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .card-img { height: 160px; object-fit: cover; width: 100%; }
+        .prod-img { height: 180px; width: 100%; object-fit: cover; background: #1e293b; }
     </style>
 </head>
 <body class="text-white font-sans">
 
-    <header class="py-16 px-6 text-center border-b border-gray-800">
-        <h1 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-            IPTV Pro Global
-        </h1>
-        <p class="text-gray-400 text-lg">Los mejores servidores de televisión digital en un solo lugar</p>
+    <header class="py-16 px-6 text-center">
+        <h1 class="text-6xl font-black mb-4 text-brand tracking-tight">Smartplay</h1>
+        <p class="text-gray-400 text-lg">Disfruta de la mejor televisión digital con estabilidad garantizada.</p>
     </header>
 
     <section class="py-12 px-6 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10">Nuestros Productos</h2>
         <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <p class="text-center col-span-full">Sincronizando productos con el servidor...</p>
+            <p class="text-center col-span-full">Cargando Smartplay...</p>
         </div>
     </section>
 
-    <section id="registro" class="py-20 px-6 bg-gray-900/50">
+    <section id="registro" class="py-20 px-6">
         <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700 shadow-2xl">
-            <h3 class="text-2xl font-bold mb-2 text-center text-blue-400">Solicita tu acceso</h3>
+            <h3 class="text-2xl font-bold mb-2 text-center text-brand">Solicita tu acceso</h3>
             <p class="text-gray-400 text-sm text-center mb-8">Activa tu cuenta hoy mismo</p>
             
             <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500 transition" placeholder="Tu Nombre Completo" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500 transition" placeholder="Tu WhatsApp (Ej: +52...)" required>
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="Tu Nombre Completo" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="WhatsApp (Ej: +52...)" required>
                 <input type="hidden" id="prodSel" value="Demo">
                 
-                <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-600/20 transition-all transform hover:scale-105">
-                    Solicitar Demo Gratis
+                <button type="submit" id="btnSubmit" class="w-full bg-brand hover:bg-green-500 text-black py-4 rounded-xl font-bold text-lg shadow-lg shadow-green-500/20 transition-all transform hover:scale-105">
+                    Obtener Demo Gratis
                 </button>
             </form>
             
-            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-green-400 rounded-xl border border-green-800">
-                ✅ ¡Datos recibidos! Te contactaremos por WhatsApp.
+            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-brand rounded-xl border border-green-800">
+                ✅ ¡Recibido! Te contactaremos por WhatsApp.
             </div>
         </div>
     </section>
 
     <footer class="py-10 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 IPTV Pro Global - Calidad y Estabilidad</p>
+        <p>&copy; 2026 Smartplay - Entretenimiento Digital</p>
     </footer>
 
     <script>
@@ -59,22 +69,22 @@
                 const productos = await response.json();
                 
                 container.innerHTML = productos.map(p => `
-                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-blue-500 transition-all duration-300 group">
-                        <img src="${p.imagen}" alt="${p.nombre}" class="card-img group-hover:scale-110 transition-transform duration-500">
+                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group">
+                        <img src="${p.imagen}" alt="${p.nombre}" class="prod-img group-hover:scale-110 transition-transform duration-500">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-blue-300 mb-1">${p.nombre}</h3>
-                            <div class="text-2xl font-black mb-4 text-white">${p.precio}</div>
+                            <h3 class="text-xl font-bold text-white mb-1">${p.nombre}</h3>
+                            <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
                             <ul class="text-xs text-gray-500 space-y-2 mb-6 text-left">
                                 ${p.caracteristicas.split(',').map(c => `<li>• ${c.trim()}</li>`).join('')}
                             </ul>
-                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-blue-500 text-blue-500 font-bold hover:bg-blue-600 hover:text-white transition">
+                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition">
                                 Elegir ${p.nombre}
                             </button>
                         </div>
                     </div>
                 `).join('');
             } catch (e) {
-                container.innerHTML = "Error al conectar con la base de datos de productos.";
+                container.innerHTML = "Error al conectar con Smartplay.";
             }
         }
 
@@ -92,18 +102,14 @@
                 producto: document.getElementById('prodSel').value
             };
 
-            try {
-                const res = await fetch('/api/prospectos', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
-                });
-                if(res.ok) {
-                    document.getElementById('prospectForm').classList.add('hidden');
-                    document.getElementById('msgExito').classList.remove('hidden');
-                }
-            } catch (err) {
-                alert("Error al enviar. Intenta de nuevo.");
+            const res = await fetch('/api/prospectos', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            if(res.ok) {
+                document.getElementById('prospectForm').classList.add('hidden');
+                document.getElementById('msgExito').classList.remove('hidden');
             }
         });
 
