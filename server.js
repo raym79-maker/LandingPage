@@ -41,8 +41,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 caracteristicas TEXT,
                 imagen TEXT
             )`);
-            
-            // Los datos ya persisten en tu volumen de 5GB
         });
     }
 });
@@ -83,7 +81,7 @@ app.get('/admin-prospectos', auth, (req, res) => {
         <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
         rows.forEach(r => {
             const tel = r.whatsapp.replace(/\D/g,''); 
-            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">Contactar</a></td></tr>`;
+            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">WhatsApp</a></td></tr>`;
         });
         html += `</table></body></html>`;
         res.send(html);
