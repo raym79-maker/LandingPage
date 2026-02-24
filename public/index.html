@@ -9,9 +9,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        brand: '#25D366', // Verde brillante Smartplay
-                    }
+                    colors: { brand: '#25D366' }
                 }
             }
         }
@@ -20,7 +18,6 @@
         body { background-color: #0f172a; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
         .prod-img { height: 180px; width: 100%; object-fit: cover; background: #1e293b; }
-        /* Estilo para asegurar que las negritas resalten en el texto gris */
         strong { color: #ffffff; font-weight: 700; }
     </style>
 </head>
@@ -32,35 +29,28 @@
     </header>
 
     <section class="py-12 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-10 text-white">Nuestros Planes</h2>
+        <h2 class="text-3xl font-bold text-center mb-10">Nuestros Planes</h2>
         <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <p class="text-center col-span-full">Cargando Smartplay...</p>
         </div>
     </section>
 
-    <section id="registro" class="py-20 px-6 bg-slate-900/30">
+    <section id="registro" class="py-20 px-6">
         <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700 shadow-2xl">
             <h3 class="text-2xl font-bold mb-2 text-center text-brand">Solicita tu acceso</h3>
             <p class="text-gray-400 text-sm text-center mb-8">Activa tu cuenta hoy mismo</p>
-            
             <form id="prospectForm" class="space-y-4">
                 <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="Tu Nombre Completo" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="WhatsApp (Ej: +52...)" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="WhatsApp" required>
                 <input type="hidden" id="prodSel" value="Demo">
-                
-                <button type="submit" id="btnSubmit" class="w-full bg-brand hover:bg-green-500 text-black py-4 rounded-xl font-bold text-lg shadow-lg shadow-green-500/20 transition-all transform hover:scale-105">
-                    Obtener Demo Gratis
-                </button>
+                <button type="submit" id="btnSubmit" class="w-full bg-brand hover:bg-green-500 text-black py-4 rounded-xl font-bold text-lg shadow-lg shadow-green-500/20 transition-all transform hover:scale-105">Obtener Demo Gratis</button>
             </form>
-            
-            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-brand rounded-xl border border-green-800">
-                ✅ ¡Recibido! Te contactaremos por WhatsApp a la brevedad.
-            </div>
+            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-brand rounded-xl border border-green-800">✅ ¡Recibido! Te contactaremos por WhatsApp.</div>
         </div>
     </section>
 
     <footer class="py-10 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 Smartplay - Entretenimiento Digital en Casa</p>
+        <p>&copy; 2026 Smartplay - Entretenimiento Digital</p>
     </footer>
 
     <script>
@@ -69,62 +59,34 @@
             try {
                 const response = await fetch('/api/productos');
                 const productos = await response.json();
-                
                 container.innerHTML = productos.map(p => {
-                    // Procesar las características para habilitar negritas (Markdown ** a HTML <strong>)
                     const listaHtml = p.caracteristicas.split(',').map(c => {
                         const boldText = c.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                        return `<li class="flex items-start mb-2">
-                                    <span class="text-brand mr-2">•</span>
-                                    <span>${boldText}</span>
-                                </li>`;
+                        return `<li class="flex items-start mb-2"><span class="text-brand mr-2">•</span><span>${boldText}</span></li>`;
                     }).join('');
-
-                    return `
-                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group flex flex-col">
+                    return `<div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group flex flex-col">
                         <img src="${p.imagen}" alt="${p.nombre}" class="prod-img group-hover:scale-110 transition-transform duration-500">
                         <div class="p-6 flex-grow flex flex-col">
                             <h3 class="text-xl font-bold text-white mb-1">${p.nombre}</h3>
                             <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
-                            <ul class="text-xs text-gray-400 space-y-1 mb-6 text-left flex-grow">
-                                ${listaHtml}
-                            </ul>
-                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition mt-auto">
-                                Elegir ${p.nombre}
-                            </button>
+                            <ul class="text-xs text-gray-400 space-y-1 mb-6 text-left flex-grow">${listaHtml}</ul>
+                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition">Elegir ${p.nombre}</button>
                         </div>
                     </div>`;
                 }).join('');
-            } catch (e) {
-                container.innerHTML = "<p class='text-center col-span-full'>Error al conectar con el catálogo de Smartplay.</p>";
-            }
+            } catch (e) { container.innerHTML = "Error al conectar con Smartplay."; }
         }
-
         function seleccionarProducto(nombre) {
             document.getElementById('prodSel').value = nombre;
             document.getElementById('btnSubmit').innerText = "Adquirir " + nombre;
             document.getElementById('registro').scrollIntoView({ behavior: 'smooth' });
         }
-
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = {
-                nombre: document.getElementById('nombre').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                producto: document.getElementById('prodSel').value
-            };
-
-            const res = await fetch('/api/prospectos', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            });
-            if(res.ok) {
-                document.getElementById('prospectForm').classList.add('hidden');
-                document.getElementById('msgExito').classList.remove('hidden');
-            }
+            const data = { nombre: document.getElementById('nombre').value, whatsapp: document.getElementById('whatsapp').value, producto: document.getElementById('prodSel').value };
+            const res = await fetch('/api/prospectos', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+            if(res.ok) { document.getElementById('prospectForm').classList.add('hidden'); document.getElementById('msgExito').classList.remove('hidden'); }
         });
-
         document.addEventListener('DOMContentLoaded', fetchProductos);
     </script>
 </body>
