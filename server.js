@@ -81,4 +81,15 @@ const auth = basicAuth({
 app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
-        let html = `<html><head><title>Admin
+        let html = `<html><head><title>Admin Smartplay</title><style>
+            body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}
+            table{width:100%;border-collapse:collapse;margin-top:20px;}
+            th,td{padding:12px;border:1px solid #4a5568;}
+            th{background:#25D366;color:black;}
+            .btn-ws{background:#25D366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
+        </style></head><body>
+        <h1>Panel de Ventas - Smartplay</h1>
+        <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
+        rows.forEach(r => {
+            const tel = r.whatsapp.replace(/\D/g,''); 
+            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://
