@@ -11,9 +11,7 @@ const PORT = process.env.PORT || 3000;
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
-// Crear carpeta si no existe para evitar errores al arrancar
 if (!fs.existsSync(dataDir)) {
-    console.log("Creando directorio de datos...");
     fs.mkdirSync(dataDir, { recursive: true });
 }
 
@@ -22,82 +20,98 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 3. Conexión a la Base de Datos SQLite
+// 3. Conexión y Lógica de Base de Datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
-        console.error("Error crítico al abrir DB:", err.message);
+        console.error("Error al abrir DB:", err.message);
     } else {
-        console.log("Base de datos conectada en volumen: " + dbPath);
-        // Tabla para tu MVP de gestión de clientes
-        db.run(`CREATE TABLE IF NOT EXISTS prospectos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT,
-            whatsapp TEXT,
-            plan_interes TEXT,
-            fecha DATETIME DEFAULT CURRENT_TIMESTAMP
-        )`);
+        console.log("Base de datos conectada en: " + dbPath);
+        
+        // Ejecutar inicialización en serie
+        db.serialize(() => {
+            // Tabla de Prospectos (Clientes)
+            db.run(`CREATE TABLE IF NOT EXISTS prospectos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT,
+                whatsapp TEXT,
+                plan_interes TEXT,
+                fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+            )`);
+
+            // Tabla de Planes
+            db.run(`CREATE TABLE IF NOT EXISTS planes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT,
+                precio TEXT,
+                conexiones INTEGER,
+                caracteristicas TEXT
+            )`);
+
+            // Insertar planes iniciales si la tabla está vacía
+            db.get("SELECT COUNT(*) as count FROM planes", (err, row) => {
+                if (row && row.count === 0) {
+                    const stmt = db.prepare("INSERT INTO planes (nombre, precio, conexiones, caracteristicas) VALUES (?, ?, ?, ?)");
+                    stmt.run("Básico", "$9.99", 1, "SD/HD, +5000 Canales, Películas");
+                    stmt.run("Estándar", "$14.99", 2, "FHD/4K, Todos los Canales, Series");
+                    stmt.run("Premium", "$19.99", 3, "4K Ultra, Eventos PPV, Soporte 24/7");
+                    stmt.finalize();
+                    console.log("Planes iniciales creados.");
+                }
+            });
+        });
     }
 });
 
-// --- RUTAS ---
+// --- RUTAS API ---
 
-// Health Check para Railway
-app.get('/health', (req, res) => {
-    res.status(200).send('OK');
+// Salud del servidor
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
+// Obtener los planes para la Landing
+app.get('/api/planes', (req, res) => {
+    db.all("SELECT * FROM planes", [], (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(rows);
+    });
 });
 
-// Guardar prospectos desde la landing
+// Guardar nuevo prospecto
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, plan } = req.body;
     const sql = `INSERT INTO prospectos (nombre, whatsapp, plan_interes) VALUES (?, ?, ?)`;
-    
-    db.run(sql, [nombre, whatsapp, plan || 'Demo Gratis'], function(err) {
+    db.run(sql, [nombre, whatsapp, plan || 'No seleccionado'], function(err) {
         if (err) return res.status(500).json({ error: err.message });
         res.status(200).json({ success: true, id: this.lastID });
     });
 });
 
 /**
- * 4. RUTA SECRETA PARA ADMINISTRACIÓN
- * Entra a: tu-app.up.railway.app/admin-prospectos
+ * 4. PANEL DE ADMINISTRACIÓN (Ruta Secreta)
+ * Aquí verás tanto los clientes como los planes actuales
  */
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
-        if (err) return res.status(500).send("Error al leer la base de datos");
+        if (err) return res.status(500).send("Error");
         
         let html = `
         <html>
         <head>
-            <title>Panel Admin - Prospectos IPTV</title>
+            <title>Admin IPTV</title>
             <style>
                 body { font-family: sans-serif; background: #1a202c; color: white; padding: 20px; }
-                table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #2d3748; }
-                th, td { padding: 12px; border: 1px solid #4a5568; text-align: left; }
-                th { background: #4a5568; }
-                tr:nth-child(even) { background: #2d3748; }
+                table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+                th, td { padding: 10px; border: 1px solid #4a5568; text-align: left; }
+                th { background: #2d3748; }
                 h1 { color: #63b3ed; }
             </style>
         </head>
         <body>
-            <h1>Lista de Prospectos - Gestión IPTV</h1>
+            <h1>Prospectos Registrados</h1>
             <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>WhatsApp</th>
-                    <th>Plan</th>
-                    <th>Fecha</th>
-                </tr>`;
+                <tr><th>ID</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th><th>Fecha</th></tr>`;
         
-        rows.forEach((row) => {
-            html += `
-                <tr>
-                    <td>${row.id}</td>
-                    <td>${row.nombre}</td>
-                    <td>${row.whatsapp}</td>
-                    <td>${row.plan_interes}</td>
-                    <td>${row.fecha}</td>
-                </tr>`;
+        rows.forEach(r => {
+            html += `<tr><td>${r.id}</td><td>${r.nombre}</td><td>${r.whatsapp}</td><td>${r.plan_interes}</td><td>${r.fecha}</td></tr>`;
         });
         
         html += `</table></body></html>`;
@@ -105,12 +119,12 @@ app.get('/admin-prospectos', (req, res) => {
     });
 });
 
-// Servir la landing para cualquier otra ruta
+// Servir la Landing
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 5. Encendido del servidor en 0.0.0.0 para acceso externo
+// 5. Arranque
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor iniciado y escuchando en puerto ${PORT}`);
+    console.log(`Servidor con lógica de planes en puerto ${PORT}`);
 });
