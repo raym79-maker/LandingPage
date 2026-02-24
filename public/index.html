@@ -3,34 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV Pro Global | Productos</title>
+    <title>IPTV Pro Global | Productos Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>body{background-color:#0f172a;scroll-behavior:smooth;}.glass{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);}</style>
+    <style>
+        body { background-color: #0f172a; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
+        .card-img { height: 160px; object-fit: cover; width: 100%; }
+    </style>
 </head>
-<body class="text-white">
+<body class="text-white font-sans">
 
-    <header class="py-16 px-6 text-center">
-        <h1 class="text-5xl font-extrabold mb-4 text-blue-500 font-serif">IPTV Pro Global</h1>
-        <p class="text-gray-400">Selecciona el producto que deseas activar</p>
+    <header class="py-16 px-6 text-center border-b border-gray-800">
+        <h1 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+            IPTV Pro Global
+        </h1>
+        <p class="text-gray-400 text-lg">Los mejores servidores de televisión digital en un solo lugar</p>
     </header>
 
-    <section id="productos" class="py-10 px-6 max-w-6xl mx-auto">
-        <div id="productos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            </div>
-    </section>
-
-    <section id="registro" class="py-20 px-6">
-        <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700">
-            <h3 class="text-2xl font-bold mb-6 text-center">Solicita tu acceso</h3>
-            <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500" placeholder="Nombre" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500" placeholder="WhatsApp" required>
-                <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20">Solicitar Demo Gratis</button>
-            </form>
-            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/20 text-green-400 rounded-xl border border-green-800">✅ Solicitud enviada correctamente.</div>
+    <section class="py-12 px-6 max-w-7xl mx-auto">
+        <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <p class="text-center col-span-full">Sincronizando productos con el servidor...</p>
         </div>
     </section>
+
+    <section id="registro" class="py-20 px-6 bg-gray-900/50">
+        <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700 shadow-2xl">
+            <h3 class="text-2xl font-bold mb-2 text-center text-blue-400">Solicita tu acceso</h3>
+            <p class="text-gray-400 text-sm text-center mb-8">Activa tu cuenta hoy mismo</p>
+            
+            <form id="prospectForm" class="space-y-4">
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500 transition" placeholder="Tu Nombre Completo" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-blue-500 transition" placeholder="Tu WhatsApp (Ej: +52...)" required>
+                <input type="hidden" id="prodSel" value="Demo">
+                
+                <button type="submit" id="btnSubmit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-600/20 transition-all transform hover:scale-105">
+                    Solicitar Demo Gratis
+                </button>
+            </form>
+            
+            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-green-400 rounded-xl border border-green-800">
+                ✅ ¡Datos recibidos! Te contactaremos por WhatsApp.
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-gray-600 text-sm">
+        <p>&copy; 2026 IPTV Pro Global - Calidad y Estabilidad</p>
+    </footer>
 
     <script>
         async function fetchProductos() {
@@ -38,17 +57,25 @@
             try {
                 const response = await fetch('/api/productos');
                 const productos = await response.json();
+                
                 container.innerHTML = productos.map(p => `
-                    <div class="glass p-6 rounded-3xl border border-gray-800 hover:border-blue-500 transition-all">
-                        <h3 class="text-xl font-bold text-blue-400 mb-2">${p.nombre}</h3>
-                        <div class="text-3xl font-black mb-4">${p.precio}</div>
-                        <ul class="text-xs text-gray-400 space-y-2 mb-6 text-left">
-                            ${p.caracteristicas.split(',').map(c => `<li>✔ ${c.trim()}</li>`).join('')}
-                        </ul>
-                        <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-blue-500 text-blue-500 font-bold hover:bg-blue-600 hover:text-white transition">Elegir</button>
+                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-blue-500 transition-all duration-300 group">
+                        <img src="${p.imagen}" alt="${p.nombre}" class="card-img group-hover:scale-110 transition-transform duration-500">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-blue-300 mb-1">${p.nombre}</h3>
+                            <div class="text-2xl font-black mb-4 text-white">${p.precio}</div>
+                            <ul class="text-xs text-gray-500 space-y-2 mb-6 text-left">
+                                ${p.caracteristicas.split(',').map(c => `<li>• ${c.trim()}</li>`).join('')}
+                            </ul>
+                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-blue-500 text-blue-500 font-bold hover:bg-blue-600 hover:text-white transition">
+                                Elegir ${p.nombre}
+                            </button>
+                        </div>
                     </div>
                 `).join('');
-            } catch (e) { container.innerHTML = "Error al cargar productos."; }
+            } catch (e) {
+                container.innerHTML = "Error al conectar con la base de datos de productos.";
+            }
         }
 
         function seleccionarProducto(nombre) {
@@ -59,9 +86,25 @@
 
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = { nombre: document.getElementById('nombre').value, whatsapp: document.getElementById('whatsapp').value, producto: document.getElementById('prodSel').value };
-            const res = await fetch('/api/prospectos', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-            if(res.ok) { document.getElementById('prospectForm').classList.add('hidden'); document.getElementById('msgExito').classList.remove('hidden'); }
+            const data = {
+                nombre: document.getElementById('nombre').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                producto: document.getElementById('prodSel').value
+            };
+
+            try {
+                const res = await fetch('/api/prospectos', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                if(res.ok) {
+                    document.getElementById('prospectForm').classList.add('hidden');
+                    document.getElementById('msgExito').classList.remove('hidden');
+                }
+            } catch (err) {
+                alert("Error al enviar. Intenta de nuevo.");
+            }
         });
 
         document.addEventListener('DOMContentLoaded', fetchProductos);
