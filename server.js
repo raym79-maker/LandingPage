@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const basicAuth = require('express-basic-auth');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,7 +25,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
-            // Tablas base
+            // Tabla de Prospectos
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -33,6 +34,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 fecha DATETIME DEFAULT CURRENT_TIMESTAMP
             )`);
 
+            // Tabla de Productos
             db.run(`CREATE TABLE IF NOT EXISTS productos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -41,55 +43,11 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 caracteristicas TEXT,
                 imagen TEXT
             )`);
-
-            // --- ACTUALIZACIÓN FINAL DE DATOS ---
-            db.run("DELETE FROM productos"); 
-
-            const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
-            
-            // 1. M327
-            stmt.run(
-                "M327", 
-                "$200 MXN", 
-                3, 
-                "**Mas de 2000 Canales de TV en vivo**, **Mas de 40000 Peliculas**, **Mas de 20000 Series**, **3 Dispositivos**", 
-                "/img/m327.jpg"
-            );
-
-            // 2. TU LATINO
-            stmt.run(
-                "TU LATINO", 
-                "$250 MXN", 
-                3, 
-                "**Mas de 11000 Canales de TV en vivo**, **Mas de 55000 Peliculas**, **Mas de 14000 Series**, **3 Dispositivos**", 
-                "/img/tu latino.jpg"
-            );
-
-            // 3. LEDTV
-            stmt.run(
-                "LEDTV", 
-                "$130 MXN", 
-                3, 
-                "**Mas de 2400 Canales de TV en vivo**, **Mas de 19000 Peliculas**, **Mas de 5000 Series**, **3 Dispositivos**", 
-                "/img/ledtv.jpg"
-            );
-
-            // 4. ALFATV
-            stmt.run(
-                "ALFATV", 
-                "$180 MXN", 
-                3, 
-                "**Mas de 1500 Canales de TV en vivo**, **Mas de 25000 Peliculas**, **Mas de 3000 Series**, **3 Dispositivos**", 
-                "/img/alfatv.jpg"
-            );
-            
-            stmt.finalize();
-            console.log("Catálogo Smartplay: Todos los planes actualizados en MXN y Negritas.");
         });
     }
 });
 
-// APIs
+// APIs Públicas
 app.get('/api/productos', (req, res) => {
     db.all("SELECT * FROM productos", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -106,8 +64,14 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel Admin
-app.get('/admin-prospectos', (req, res) => {
+// --- SEGURIDAD PARA EL PANEL ADMIN ---
+const auth = basicAuth({
+    users: { 'admin': 'smartplay2026' }, // <--- Usuario y Contraseña
+    challenge: true,
+    realm: 'SmartplayAdmin'
+});
+
+app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
         let html = `<html><head><title>Admin Smartplay</title><style>
@@ -119,6 +83,7 @@ app.get('/admin-prospectos', (req, res) => {
         </style></head><body>
         <h1>Panel de Ventas - Smartplay</h1>
         <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
+        
         rows.forEach(r => {
             const tel = r.whatsapp.replace(/\D/g,''); 
             html += `<tr>
@@ -136,5 +101,5 @@ app.get('/admin-prospectos', (req, res) => {
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Smartplay 100% configurado en puerto ${PORT}`);
+    console.log(`Smartplay con seguridad activa en puerto ${PORT}`);
 });
