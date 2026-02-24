@@ -3,65 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV Premium | El mejor entretenimiento</title>
+    <title>IPTV Premium | Entretenimiento sin Límites</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="text-white font-sans">
 
-    <nav class="p-6 flex justify-between items-center border-b border-gray-800">
-        <h1 class="text-2xl font-bold text-blue-500">IPTV Pro</h1>
-        <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">Solicitar Demo</a>
-    </nav>
-
-    <header class="py-20 text-center px-4">
-        <h2 class="text-5xl font-extrabold mb-4">Más de 20,000 Canales, Películas y Series</h2>
-        <p class="text-gray-400 text-xl mb-8">Disfruta de la mejor calidad 4K sin bloqueos y con soporte 24/7.</p>
-        <a href="#contacto" class="bg-green-500 hover:bg-green-600 text-black font-bold py-4 px-8 rounded-full text-xl transition transform hover:scale-105 inline-block">
-            Pruébalo Gratis Ahora
-        </a>
+    <header class="py-16 px-6 text-center border-b border-gray-800">
+        <h1 class="text-5xl font-extrabold mb-4 text-blue-500">IPTV Pro Global</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">Disfruta de la mejor televisión digital con estabilidad garantizada y soporte 24/7.</p>
     </header>
 
-    <section id="contacto" class="py-16 bg-gray-800">
-        <div class="max-w-md mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-6 text-center">Obtén tu acceso demo</h3>
+    <section class="py-20 px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Nuestros Planes</h2>
+        <div id="planes-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <p class="text-center col-span-full">Cargando ofertas disponibles...</p>
+        </div>
+    </section>
+
+    <section id="registro" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-md mx-auto px-6 glass p-8 rounded-2xl border border-gray-700">
+            <h3 class="text-2xl font-bold mb-2 text-center text-blue-400">Solicita tu acceso</h3>
+            <p class="text-gray-400 text-sm text-center mb-6">Completa tus datos y activa tu cuenta en minutos.</p>
+            
             <form id="prospectForm" class="space-y-4">
                 <div>
-                    <label class="block mb-1 text-sm">Nombre completo</label>
-                    <input type="text" id="nombre" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 outline-none" placeholder="Ej. Juan Pérez" required>
+                    <label class="block text-xs uppercase text-gray-500 font-bold mb-1">Nombre</label>
+                    <input type="text" id="nombre" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-blue-500 outline-none transition" placeholder="Tu nombre completo" required>
                 </div>
                 <div>
-                    <label class="block mb-1 text-sm">WhatsApp</label>
-                    <input type="tel" id="whatsapp" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 outline-none" placeholder="+52 ..." required>
+                    <label class="block text-xs uppercase text-gray-500 font-bold mb-1">WhatsApp</label>
+                    <input type="tel" id="whatsapp" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-blue-500 outline-none transition" placeholder="+52 ..." required>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded font-bold transition">Enviar solicitud</button>
+                <input type="hidden" id="planSeleccionado" value="Ninguno">
+                
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-900/20 transition transform hover:-translate-y-1">
+                    Activar Demo Gratis
+                </button>
             </form>
-            <p id="msg" class="mt-4 text-center text-green-400 hidden font-semibold">¡Datos recibidos! Te contactaremos en minutos.</p>
+            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-green-400 rounded-lg border border-green-800">
+                ✅ ¡Solicitud recibida! Un asesor te contactará por WhatsApp en breve.
+            </div>
         </div>
     </section>
 
     <script>
+        // 1. CARGAR PLANES DESDE LA BASE DE DATOS EN RAILWAY
+        async function fetchPlanes() {
+            try {
+                const response = await fetch('/api/planes');
+                const planes = await response.json();
+                const container = document.getElementById('planes-container');
+                
+                container.innerHTML = planes.map(plan => `
+                    <div class="glass p-8 rounded-2xl border border-gray-700 hover:border-blue-500 transition-all group">
+                        <h3 class="text-xl font-bold mb-2 text-blue-300">${plan.nombre}</h3>
+                        <p class="text-4xl font-black mb-6">${plan.precio}<span class="text-sm text-gray-500">/mes</span></p>
+                        <ul class="text-gray-400 space-y-3 mb-8 text-sm">
+                            <li class="flex items-center">🚀 ${plan.conexiones} Conexiones simultáneas</li>
+                            ${plan.caracteristicas.split(',').map(char => `<li class="flex items-center">⭐ ${char.trim()}</li>`).join('')}
+                        </ul>
+                        <button onclick="seleccionarPlan('${plan.nombre}')" class="w-full py-3 rounded-lg border border-blue-500 text-blue-500 font-bold group-hover:bg-blue-600 group-hover:text-white transition">
+                            Elegir Plan
+                        </button>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("Error cargando planes:", error);
+            }
+        }
+
+        // 2. LÓGICA DE SELECCIÓN DE PLAN
+        function seleccionarPlan(nombre) {
+            document.getElementById('planSeleccionado').value = nombre;
+            // Desplazar suavemente al formulario
+            document.getElementById('registro').scrollIntoView({ behavior: 'smooth' });
+            // Efecto visual en el botón de registro
+            const btn = document.querySelector('#prospectForm button');
+            btn.innerText = "Adquirir Plan " + nombre;
+        }
+
+        // 3. ENVIAR DATOS AL SERVIDOR (SQLite + Volumen)
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const payload = {
+            const data = {
                 nombre: document.getElementById('nombre').value,
                 whatsapp: document.getElementById('whatsapp').value,
-                plan: 'Demo Gratis'
+                plan: document.getElementById('planSeleccionado').value
             };
 
             try {
-                const res = await fetch('/api/prospectos', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
-                });
-                if(res.ok) {
-                    document.getElementById('prospectForm').classList.add('hidden');
-                    document.getElementById('msg').classList.remove('hidden');
-                }
-            } catch (err) {
-                alert('Error al conectar con el servidor.');
-            }
-        });
-    </script>
-</body>
-</html>
+                const res = await fetch('/api/prospect
