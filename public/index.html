@@ -10,7 +10,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: '#25D366',
+                        brand: '#25D366', // Verde brillante Smartplay
                     }
                 }
             }
@@ -20,6 +20,8 @@
         body { background-color: #0f172a; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
         .prod-img { height: 180px; width: 100%; object-fit: cover; background: #1e293b; }
+        /* Estilo para asegurar que las negritas resalten en el texto gris */
+        strong { color: #ffffff; font-weight: 700; }
     </style>
 </head>
 <body class="text-white font-sans">
@@ -30,13 +32,13 @@
     </header>
 
     <section class="py-12 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-10">Nuestros Productos</h2>
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Nuestros Planes</h2>
         <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <p class="text-center col-span-full">Cargando Smartplay...</p>
         </div>
     </section>
 
-    <section id="registro" class="py-20 px-6">
+    <section id="registro" class="py-20 px-6 bg-slate-900/30">
         <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700 shadow-2xl">
             <h3 class="text-2xl font-bold mb-2 text-center text-brand">Solicita tu acceso</h3>
             <p class="text-gray-400 text-sm text-center mb-8">Activa tu cuenta hoy mismo</p>
@@ -52,13 +54,13 @@
             </form>
             
             <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-brand rounded-xl border border-green-800">
-                ✅ ¡Recibido! Te contactaremos por WhatsApp.
+                ✅ ¡Recibido! Te contactaremos por WhatsApp a la brevedad.
             </div>
         </div>
     </section>
 
     <footer class="py-10 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 Smartplay - Entretenimiento Digital</p>
+        <p>&copy; 2026 Smartplay - Entretenimiento Digital en Casa</p>
     </footer>
 
     <script>
@@ -68,23 +70,33 @@
                 const response = await fetch('/api/productos');
                 const productos = await response.json();
                 
-                container.innerHTML = productos.map(p => `
-                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group">
+                container.innerHTML = productos.map(p => {
+                    // Procesar las características para habilitar negritas (Markdown ** a HTML <strong>)
+                    const listaHtml = p.caracteristicas.split(',').map(c => {
+                        const boldText = c.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        return `<li class="flex items-start mb-2">
+                                    <span class="text-brand mr-2">•</span>
+                                    <span>${boldText}</span>
+                                </li>`;
+                    }).join('');
+
+                    return `
+                    <div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group flex flex-col">
                         <img src="${p.imagen}" alt="${p.nombre}" class="prod-img group-hover:scale-110 transition-transform duration-500">
-                        <div class="p-6">
+                        <div class="p-6 flex-grow flex flex-col">
                             <h3 class="text-xl font-bold text-white mb-1">${p.nombre}</h3>
                             <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
-                            <ul class="text-xs text-gray-500 space-y-2 mb-6 text-left">
-                                ${p.caracteristicas.split(',').map(c => `<li>• ${c.trim()}</li>`).join('')}
+                            <ul class="text-xs text-gray-400 space-y-1 mb-6 text-left flex-grow">
+                                ${listaHtml}
                             </ul>
-                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition">
+                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition mt-auto">
                                 Elegir ${p.nombre}
                             </button>
                         </div>
-                    </div>
-                `).join('');
+                    </div>`;
+                }).join('');
             } catch (e) {
-                container.innerHTML = "Error al conectar con Smartplay.";
+                container.innerHTML = "<p class='text-center col-span-full'>Error al conectar con el catálogo de Smartplay.</p>";
             }
         }
 
