@@ -7,6 +7,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Configuración de persistencia en Railway (Volumen 5GB)
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
@@ -23,6 +24,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
+            // Tablas base
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -40,20 +42,33 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 imagen TEXT
             )`);
 
-            db.get("SELECT COUNT(*) as count FROM productos", (err, row) => {
-                if (row && row.count === 0) {
-                    const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
-                    stmt.run("M327", "$10.00", 1, "Estabilidad Premium, Canales MX, FHD/4K", "/img/m327.jpg");
-                    stmt.run("TU LATINO", "$12.00", 2, "Contenido Latam, Deportes en Vivo, Series", "/img/tu latino.jpg");
-                    stmt.run("LEDTV", "$15.00", 3, "Ultra HD, Multi-dispositivo, Sin Cortes", "/img/ledtv.jpg");
-                    stmt.run("ALFATV", "$18.00", 3, "Todo Incluido, Eventos Especiales, Soporte VIP", "/img/alfatv.jpg");
-                    stmt.finalize();
-                }
-            });
+            // --- ACTUALIZACIÓN DE DATOS ---
+            // Esta línea limpia la tabla para que se graben los nuevos datos de M327
+            db.run("DELETE FROM productos"); 
+
+            const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
+            
+            // Configuración M327 solicitada
+            stmt.run(
+                "M327", 
+                "$200 MXN", 
+                3, 
+                "Mas de 2000 Canales de TV en vivo, Mas de 40000 Peliculas, Mas de 20000 Series, 3 Dispositivos", 
+                "/img/m327.jpg"
+            );
+
+            // Otros planes (puedes editar sus precios o textos aquí mismo)
+            stmt.run("TU LATINO", "$12.00", 2, "Todo Latinoamerica, Deportes en Vivo, Cine Premium, 2 Pantallas", "/img/tu latino.jpg");
+            stmt.run("LEDTV", "$15.00", 3, "Resolución 4K, Multi-dispositivo, Sin Contratos, Soporte Técnico", "/img/ledtv.jpg");
+            stmt.run("ALFATV", "$18.00", 3, "Contenido VIP, Eventos PPV, Actualizaciones Diarias, Ultra Estabilidad", "/img/alfatv.jpg");
+            
+            stmt.finalize();
+            console.log("Plan M327 actualizado en Smartplay.");
         });
     }
 });
 
+// APIs
 app.get('/api/productos', (req, res) => {
     db.all("SELECT * FROM productos", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -70,6 +85,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
+// Panel Admin
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
@@ -97,4 +113,7 @@ app.get('/admin-prospectos', (req, res) => {
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.listen(PORT, '0.0.0.0', () => console.log(`Smartplay activo en puerto ${PORT}`));
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor Smartplay activo en puerto ${PORT}`);
+});
