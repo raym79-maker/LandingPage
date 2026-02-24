@@ -3,84 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smartplay | Tu Televisión Inteligente</title>
+    <title>Smartplay | TV Inteligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: '#25D366' }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { brand: '#25D366' } } } }
     </script>
     <style>
         body { background-color: #0f172a; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .prod-img { height: 180px; width: 100%; object-fit: cover; background: #1e293b; }
+        .prod-img { height: 180px; width: 100%; object-fit: cover; }
         strong { color: #ffffff; font-weight: 700; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
     </style>
 </head>
 <body class="text-white font-sans">
 
     <header class="py-16 px-6 text-center">
-        <h1 class="text-6xl font-black mb-4 text-brand tracking-tight">Smartplay</h1>
-        <p class="text-gray-400 text-lg">Disfruta de la mejor televisión digital con estabilidad garantizada.</p>
+        <h1 class="text-6xl font-black text-brand mb-4">Smartplay</h1>
+        <p class="text-gray-400">Los mejores servidores de televisión digital en un solo lugar.</p>
     </header>
 
-    <section class="py-12 px-6 max-w-7xl mx-auto">
+    <section class="py-10 overflow-hidden bg-slate-900/50">
+        <h2 class="text-center text-2xl font-bold mb-8 text-brand">Nuestros Estrenos Destacados</h2>
+        <div class="relative flex overflow-x-hidden">
+            <div class="py-4 animate-marquee whitespace-nowrap flex gap-6">
+                <img src="/img/estreno1.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno2.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno3.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno4.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno5.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno1.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno2.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno3.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno4.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+                <img src="/img/estreno5.jpg" class="h-64 rounded-2xl shadow-lg border border-gray-800" alt="Estreno">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold text-center mb-10">Nuestros Planes</h2>
-        <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <p class="text-center col-span-full">Cargando Smartplay...</p>
+        <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </section>
+
+    <section id="descargas" class="py-20 px-6 max-w-7xl mx-auto bg-slate-900/30">
+        <h2 class="text-4xl font-black text-center mb-12">DESCARGA DE APPS</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center group">
+                <img src="/img/android-logo.png" class="w-16 h-16 mb-4 object-contain">
+                <h3 class="font-bold mb-4">Android / TV Box</h3>
+                <a href="/downloads/smartplay.apk" class="w-full bg-brand text-black py-2 rounded-lg font-bold">Descargar APK</a>
+            </div>
+            <div class="glass p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center group">
+                <img src="/img/firestick-logo.png" class="w-16 h-16 mb-4 object-contain">
+                <h3 class="font-bold mb-1">Firestick</h3>
+                <div class="text-2xl font-black text-brand">123456</div>
+            </div>
+            <div class="glass p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center group">
+                <img src="/img/smart-tv-logo.png" class="w-16 h-16 mb-4 object-contain">
+                <h3 class="font-bold mb-4">Smart TV</h3>
+                <span class="text-xs text-gray-500">Busca en tu tienda oficial</span>
+            </div>
+            <div class="glass p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center group">
+                <img src="/img/roku-logo.png" class="w-16 h-16 mb-4 object-contain">
+                <h3 class="font-bold mb-4">Roku</h3>
+                <a href="https://wa.me/tu-numero" class="text-brand font-bold underline">Solicitar Enlace</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-6 max-w-4xl mx-auto">
+        <h3 class="text-center text-2xl font-bold mb-8">¿Cómo instalar Smartplay?</h3>
+        <div class="space-y-4">
+            <details class="glass rounded-2xl border border-gray-800">
+                <summary class="p-6 cursor-pointer font-bold text-brand">🔥 Instalación en Firestick</summary>
+                <div class="p-6 text-sm text-gray-300 border-t border-gray-800">1. Instala Downloader. 2. Activa orígenes desconocidos. 3. Usa el código 123456.</div>
+            </details>
         </div>
     </section>
 
     <section id="registro" class="py-20 px-6">
-        <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700 shadow-2xl">
-            <h3 class="text-2xl font-bold mb-2 text-center text-brand">Solicita tu acceso</h3>
-            <p class="text-gray-400 text-sm text-center mb-8">Activa tu cuenta hoy mismo</p>
+        <div class="max-w-md mx-auto glass p-8 rounded-3xl border border-gray-700">
+            <h3 class="text-2xl font-bold mb-8 text-center text-brand">Solicita tu acceso</h3>
             <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="Tu Nombre Completo" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none focus:border-brand transition" placeholder="WhatsApp" required>
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700" placeholder="Nombre" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700" placeholder="WhatsApp" required>
                 <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-brand hover:bg-green-500 text-black py-4 rounded-xl font-bold text-lg shadow-lg shadow-green-500/20 transition-all transform hover:scale-105">Obtener Demo Gratis</button>
+                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-bold">Solicitar Acceso</button>
             </form>
-            <div id="msgExito" class="hidden mt-6 text-center p-4 bg-green-900/30 text-brand rounded-xl border border-green-800">✅ ¡Recibido! Te contactaremos por WhatsApp.</div>
+            <div id="msgExito" class="hidden mt-6 text-center text-brand">✅ ¡Recibido! Te contactaremos.</div>
         </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-600 text-sm">
-        <p>&copy; 2026 Smartplay - Entretenimiento Digital</p>
-    </footer>
-
     <script>
         async function fetchProductos() {
-            const container = document.getElementById('productos-container');
-            try {
-                const response = await fetch('/api/productos');
-                const productos = await response.json();
-                container.innerHTML = productos.map(p => {
-                    const listaHtml = p.caracteristicas.split(',').map(c => {
-                        const boldText = c.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                        return `<li class="flex items-start mb-2"><span class="text-brand mr-2">•</span><span>${boldText}</span></li>`;
-                    }).join('');
-                    return `<div class="glass overflow-hidden rounded-3xl border border-gray-800 hover:border-brand transition-all duration-300 group flex flex-col">
-                        <img src="${p.imagen}" alt="${p.nombre}" class="prod-img group-hover:scale-110 transition-transform duration-500">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-white mb-1">${p.nombre}</h3>
-                            <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
-                            <ul class="text-xs text-gray-400 space-y-1 mb-6 text-left flex-grow">${listaHtml}</ul>
-                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold hover:bg-brand hover:text-black transition">Elegir ${p.nombre}</button>
-                        </div>
-                    </div>`;
-                }).join('');
-            } catch (e) { container.innerHTML = "Error al conectar con Smartplay."; }
+            const res = await fetch('/api/productos');
+            const productos = await res.json();
+            document.getElementById('productos-container').innerHTML = productos.map(p => {
+                const listaHtml = p.caracteristicas.split(',').map(c => `<li>• ${c.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`).join('');
+                return `<div class="glass rounded-3xl border border-gray-800 overflow-hidden flex flex-col">
+                    <img src="${p.imagen}" class="prod-img">
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-1">${p.nombre}</h3>
+                        <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
+                        <ul class="text-xs text-gray-400 space-y-1 mb-6">${listaHtml}</ul>
+                        <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 rounded-lg border border-brand text-brand font-bold mt-auto">Elegir Plan</button>
+                    </div>
+                </div>`;
+            }).join('');
         }
-        function seleccionarProducto(nombre) {
-            document.getElementById('prodSel').value = nombre;
-            document.getElementById('btnSubmit').innerText = "Adquirir " + nombre;
-            document.getElementById('registro').scrollIntoView({ behavior: 'smooth' });
-        }
+        function seleccionarProducto(n) { document.getElementById('prodSel').value = n; document.getElementById('registro').scrollIntoView(); }
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const data = { nombre: document.getElementById('nombre').value, whatsapp: document.getElementById('whatsapp').value, producto: document.getElementById('prodSel').value };
