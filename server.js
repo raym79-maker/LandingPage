@@ -5,9 +5,9 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080; // Ajustado al puerto que Railway muestra en tus logs
 
-// Configuración de persistencia en Railway (Volumen 5GB)
+// Persistencia en Railway (Volumen 5GB)
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
@@ -24,9 +24,8 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.error("Error al abrir DB:", err.message);
     } else {
         db.serialize(() => {
-            // --- LÍNEA TEMPORAL PARA ACTUALIZAR IMÁGENES ---
-            // Borra esta línea después de que las imágenes aparezcan en tu web
-            db.run("DELETE FROM productos"); 
+            // REPARACIÓN: Borramos la tabla vieja para que se cree con la columna 'imagen'
+            db.run("DROP TABLE IF EXISTS productos");
 
             // 1. Tabla de Prospectos
             db.run(`CREATE TABLE IF NOT EXISTS prospectos (
@@ -37,7 +36,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 fecha DATETIME DEFAULT CURRENT_TIMESTAMP
             )`);
 
-            // 2. Tabla de Productos
+            // 2. Tabla de Productos (Ahora con columna imagen garantizada)
             db.run(`CREATE TABLE IF NOT EXISTS productos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre TEXT,
@@ -47,20 +46,15 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 imagen TEXT
             )`);
 
-            // 3. Inicializar productos con tus rutas de GitHub
-            db.get("SELECT COUNT(*) as count FROM productos", (err, row) => {
-                if (!row || row.count === 0) {
-                    const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
-                    
-                    stmt.run("M327", "$10.00", 1, "Estabilidad Premium, Canales MX, FHD/4K", "/img/m327.jpg");
-                    stmt.run("TU LATINO", "$12.00", 2, "Contenido Latam, Deportes en Vivo, Series", "/img/tu latino.jpg");
-                    stmt.run("LEDTV", "$15.00", 3, "Ultra HD, Multi-dispositivo, Sin Cortes", "/img/ledtv.jpg");
-                    stmt.run("ALFATV", "$18.00", 3, "Todo Incluido, Eventos Especiales, Soporte VIP", "/img/alfatv.jpg");
-                    
-                    stmt.finalize();
-                    console.log("Productos inicializados con rutas locales.");
-                }
-            });
+            // 3. Insertar productos con las rutas de tus archivos en GitHub
+            const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
+            stmt.run("M327", "$10.00", 1, "Estabilidad Premium, Canales MX, FHD/4K", "/img/m327.jpg");
+            stmt.run("TU LATINO", "$12.00", 2, "Contenido Latam, Deportes en Vivo, Series", "/img/tu latino.jpg");
+            stmt.run("LEDTV", "$15.00", 3, "Ultra HD, Multi-dispositivo, Sin Cortes", "/img/ledtv.jpg");
+            stmt.run("ALFATV", "$18.00", 3, "Todo Incluido, Eventos Especiales, Soporte VIP", "/img/alfatv.jpg");
+            stmt.finalize();
+            
+            console.log("Base de datos reseteada y productos inicializados con imágenes.");
         });
     }
 });
@@ -82,7 +76,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel Admin (Ruta Secreta)
+// Admin
 app.get('/admin-prospectos', (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
@@ -96,10 +90,6 @@ app.get('/admin-prospectos', (req, res) => {
     });
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor activo en puerto ${PORT}`);
-});
+app.listen(PORT, '0.0.0.0', () => console.log(`Servidor activo en puerto ${PORT}`));
