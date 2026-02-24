@@ -39,7 +39,19 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 conexiones INTEGER,
                 caracteristicas TEXT,
                 imagen TEXT
-            )`);
+            )`, () => {
+                // Función de autorrecuperación de planes
+                db.get("SELECT COUNT(*) as count FROM productos", (err, row) => {
+                    if (row && row.count === 0) {
+                        const stmt = db.prepare("INSERT INTO productos (nombre, precio, conexiones, caracteristicas, imagen) VALUES (?, ?, ?, ?, ?)");
+                        stmt.run("M327", "$200 MXN", 3, "**Mas de 2000 Canales de TV en vivo**, **Mas de 40000 Peliculas**, **Mas de 20000 Series**, **3 Dispositivos**", "/img/m327.jpg");
+                        stmt.run("TU LATINO", "$250 MXN", 3, "**Mas de 11000 Canales de TV en vivo**, **Mas de 55000 Peliculas**, **Mas de 14000 Series**, **3 Dispositivos**", "/img/tu latino.jpg");
+                        stmt.run("LEDTV", "$130 MXN", 3, "**Mas de 2400 Canales de TV en vivo**, **Mas de 19000 Peliculas**, **Mas de 5000 Series**, **3 Dispositivos**", "/img/ledtv.jpg");
+                        stmt.run("ALFATV", "$180 MXN", 3, "**Mas de 1500 Canales de TV en vivo**, **Mas de 25000 Peliculas**, **Mas de 3000 Series**, **3 Dispositivos**", "/img/alfatv.jpg");
+                        stmt.finalize();
+                    }
+                });
+            });
         });
     }
 });
@@ -69,24 +81,4 @@ const auth = basicAuth({
 app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
-        let html = `<html><head><title>Admin Smartplay</title><style>
-            body{font-family:sans-serif;background:#1a202c;color:white;padding:20px;}
-            table{width:100%;border-collapse:collapse;margin-top:20px;}
-            th,td{padding:12px;border:1px solid #4a5568;}
-            th{background:#25D366;color:black;}
-            .btn-ws{background:#25D366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
-        </style></head><body>
-        <h1>Panel de Ventas - Smartplay</h1>
-        <table><tr><th>Nombre</th><th>Producto</th><th>WhatsApp</th><th>Acción</th></tr>`;
-        rows.forEach(r => {
-            const tel = r.whatsapp.replace(/\D/g,''); 
-            html += `<tr><td>${r.nombre}</td><td><strong>${r.producto_interes}</strong></td><td>${r.whatsapp}</td><td><a href="https://wa.me/${tel}?text=Hola%20${r.nombre},%20vi%20tu%20interés%20en%20el%20producto%20${r.producto_interes}%20en%20Smartplay" class="btn-ws" target="_blank">WhatsApp</a></td></tr>`;
-        });
-        html += `</table></body></html>`;
-        res.send(html);
-    });
-});
-
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-
-app.listen(PORT, '0.0.0.0', () => console.log(`Smartplay activo en puerto ${PORT}`));
+        let html = `<html><head><title>Admin
