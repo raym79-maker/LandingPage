@@ -66,12 +66,20 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 "/img/tu latino.jpg"
             );
 
-            // Otros planes (pendientes de actualizar a MXN si lo deseas)
+            // Configuración ALFATV solicitada
+            stmt.run(
+                "ALFATV", 
+                "$180 MXN", 
+                3, 
+                "Mas de 1500 Canales de TV en vivo, Mas de 25000 Peliculas, Mas de 3000 Series, 3 Dispositivos", 
+                "/img/alfatv.jpg"
+            );
+
+            // Configuración LEDTV (Por defecto mientras decides su precio en MXN)
             stmt.run("LEDTV", "$15.00", 3, "Resolución 4K, Multi-dispositivo, Sin Contratos, Soporte Técnico", "/img/ledtv.jpg");
-            stmt.run("ALFATV", "$18.00", 3, "Contenido VIP, Eventos PPV, Actualizaciones Diarias, Ultra Estabilidad", "/img/alfatv.jpg");
             
             stmt.finalize();
-            console.log("Catálogo Smartplay: M327 y TU LATINO actualizados en MXN.");
+            console.log("Catálogo Smartplay: M327, TU LATINO y ALFATV listos.");
         });
     }
 });
@@ -123,5 +131,5 @@ app.get('/admin-prospectos', (req, res) => {
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Smartplay activo y actualizado en puerto ${PORT}`);
+    console.log(`Servidor Smartplay activo y actualizado.`);
 });
