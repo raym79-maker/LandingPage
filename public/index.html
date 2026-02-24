@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Premium | El mejor entretenimiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <nav class="p-6 flex justify-between items-center border-b border-gray-800">
+        <h1 class="text-2xl font-bold text-blue-500">IPTV Pro</h1>
+        <a href="#contacto" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">Solicitar Demo</a>
+    </nav>
+
+    <header class="py-20 text-center px-4">
+        <h2 class="text-5xl font-extrabold mb-4">Más de 20,000 Canales, Películas y Series</h2>
+        <p class="text-gray-400 text-xl mb-8">Disfruta de la mejor calidad 4K sin bloqueos y con soporte 24/7.</p>
+        <a href="#contacto" class="bg-green-500 hover:bg-green-600 text-black font-bold py-4 px-8 rounded-full text-xl transition transform hover:scale-105 inline-block">
+            Pruébalo Gratis Ahora
+        </a>
+    </header>
+
+    <section id="contacto" class="py-16 bg-gray-800">
+        <div class="max-w-md mx-auto px-6">
+            <h3 class="text-3xl font-bold mb-6 text-center">Obtén tu acceso demo</h3>
+            <form id="prospectForm" class="space-y-4">
+                <div>
+                    <label class="block mb-1 text-sm">Nombre completo</label>
+                    <input type="text" id="nombre" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 outline-none" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm">WhatsApp</label>
+                    <input type="tel" id="whatsapp" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 outline-none" placeholder="+52 ..." required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded font-bold transition">Enviar solicitud</button>
+            </form>
+            <p id="msg" class="mt-4 text-center text-green-400 hidden font-semibold">¡Datos recibidos! Te contactaremos en minutos.</p>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('prospectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                nombre: document.getElementById('nombre').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                plan: 'Demo Gratis'
+            };
+
+            try {
+                const res = await fetch('/api/prospectos', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                if(res.ok) {
+                    document.getElementById('prospectForm').classList.add('hidden');
+                    document.getElementById('msg').classList.remove('hidden');
+                }
+            } catch (err) {
+                alert('Error al conectar con el servidor.');
+            }
+        });
+    </script>
+</body>
+</html>
