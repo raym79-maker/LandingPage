@@ -31,7 +31,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Ruta para guardar clientes (Prospectos)
+// Ruta para guardar clientes
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
     if (!nombre || !whatsapp) return res.status(400).json({ error: "Faltan datos" });
@@ -43,7 +43,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel de Administración
+// Panel de Administración (Usuario: admin / Pass: smartplay2026)
 app.get('/admin-prospectos', basicAuth({ 
     users: { 'admin': 'smartplay2026' }, 
     challenge: true 
