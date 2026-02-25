@@ -8,6 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Mantenemos esta ruta fija para evitar pérdida de datos en el futuro
 const dbDir = path.join(__dirname, 'db');
 if (!fs.existsSync(dbDir)) { fs.mkdirSync(dbDir); }
 const dbPath = path.join(dbDir, 'smartplay.db');
@@ -46,10 +47,28 @@ app.get('/admin-prospectos', basicAuth({
         if (err) return res.status(500).send("Error");
         let html = `<body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;">
             <h1>Registros de Demos - Smartplay</h1>
-            <table border="1" style="width:100%;border-collapse:collapse;">
-                <tr style="background:#25D366;color:black;"><th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan Solicitado</th></tr>`;
+            <table border="1" style="width:100%;border-collapse:collapse;text-align:center;">
+                <tr style="background:#25D366;color:black;">
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>WhatsApp</th>
+                    <th>Plan Solicitado</th>
+                    <th>Acción</th>
+                </tr>`;
         rows.forEach(r => {
-            html += `<tr><td>${r.fecha}</td><td>${r.nombre}</td><td>${r.whatsapp}</td><td>${r.producto}</td></tr>`;
+            // Limpiamos el número para el enlace de WhatsApp
+            const cleanPhone = r.whatsapp.replace(/\D/g,'');
+            html += `<tr>
+                <td style="padding:10px;">${r.fecha}</td>
+                <td>${r.nombre}</td>
+                <td>${r.whatsapp}</td>
+                <td>${r.producto}</td>
+                <td>
+                    <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20recibimos%20tu%20solicitud%20de%20Demo%20en%20Smartplay" 
+                       style="background:#25D366; color:black; padding:5px 10px; text-decoration:none; font-weight:bold; border-radius:5px;" 
+                       target="_blank">Contactar WhatsApp</a>
+                </td>
+            </tr>`;
         });
         res.send(html + "</table></body>");
     });
