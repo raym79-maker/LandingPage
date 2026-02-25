@@ -8,7 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Ruta para persistencia en Railway (requiere volumen en /app/data)
+// Configuración de persistencia para Railway (requiere volumen en /app/data)
 const dbDir = '/app/data'; 
 if (!fs.existsSync(dbDir)) { 
     fs.mkdirSync(dbDir, { recursive: true }); 
