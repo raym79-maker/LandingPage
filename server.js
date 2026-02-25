@@ -8,7 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Directorio de datos simple para evitar bloqueos
+// Directorio de datos para Railway
 const dbDir = path.join(__dirname, 'db');
 if (!fs.existsSync(dbDir)) { fs.mkdirSync(dbDir); }
 const dbPath = path.join(dbDir, 'smartplay.db');
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Inicialización de DB
+// Inicialización de la base de datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
@@ -31,27 +31,35 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Ruta de registro (Blindada)
+// Ruta para guardar clientes (Prospectos)
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
-    if (!nombre || !whatsapp) return res.status(400).json({ error: "Datos incompletos" });
+    if (!nombre || !whatsapp) return res.status(400).json({ error: "Faltan datos" });
 
     db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
     [nombre, whatsapp, producto || 'Demo'], (err) => {
-        if (err) return res.status(500).json({ error: "Error de disco" });
+        if (err) return res.status(500).json({ error: "Error de servidor" });
         res.status(200).json({ success: true });
     });
 });
 
-// Panel Admin (Usuario: admin / Pass: smartplay2026)
-app.get('/admin-prospectos', basicAuth({ users: { 'admin': 'smartplay2026' }, challenge: true }), (req, res) => {
+// Panel de Administración
+app.get('/admin-prospectos', basicAuth({ 
+    users: { 'admin': 'smartplay2026' }, 
+    challenge: true 
+}), (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
-        let html = `<body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;"><h1>Ventas Smartplay</h1><table border="1" style="width:100%;border-collapse:collapse;"><tr><th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th></tr>`;
-        rows.forEach(r => html += `<tr><td>${r.fecha}</td><td>${r.nombre}</td><td>${r.whatsapp}</td><td>${r.producto}</td></tr>`);
+        let html = `<body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;">
+            <h1>Ventas Smartplay</h1>
+            <table border="1" style="width:100%;border-collapse:collapse;">
+                <tr style="background:#25D366;color:black;"><th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th></tr>`;
+        rows.forEach(r => {
+            html += `<tr><td>${r.fecha}</td><td>${r.nombre}</td><td>${r.whatsapp}</td><td>${r.producto}</td></tr>`;
+        });
         res.send(html + "</table></body>");
     });
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.listen(PORT, '0.0.0.0', () => console.log(`Online en puerto ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Servidor activo en puerto ${PORT}`));
