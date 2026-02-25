@@ -8,7 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// RUTA CRUCIAL PARA PERSISTENCIA EN RAILWAY
+// RUTA PARA PERSISTENCIA TOTAL EN RAILWAY (Requiere Volumen en /app/data)
 const dbDir = '/app/data'; 
 if (!fs.existsSync(dbDir)) { 
     fs.mkdirSync(dbDir, { recursive: true }); 
@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Inicialización de la base de datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error al conectar DB:", err.message);
     else {
@@ -29,12 +30,14 @@ const db = new sqlite3.Database(dbPath, (err) => {
             producto TEXT, 
             fecha DATETIME DEFAULT CURRENT_TIMESTAMP
         )`);
-        console.log("Base de datos conectada en: " + dbPath);
     }
 });
 
+// Ruta para guardar Registros de Demos
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
+    if (!nombre || !whatsapp) return res.status(400).json({ error: "Faltan datos" });
+
     db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
     [nombre, whatsapp, producto || 'Demo'], (err) => {
         if (err) return res.status(500).json({ error: "Error de servidor" });
@@ -42,6 +45,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
+// Panel de Administración (Usuario: admin / Pass: smartplay2026)
 app.get('/admin-prospectos', basicAuth({ 
     users: { 'admin': 'smartplay2026' }, 
     challenge: true 
@@ -52,7 +56,7 @@ app.get('/admin-prospectos', basicAuth({
             <h1>Registros de Demos - Smartplay</h1>
             <table border="1" style="width:100%;border-collapse:collapse;text-align:center;">
                 <tr style="background:#25D366;color:black;">
-                    <th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th><th>Acción</th>
+                    <th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan Solicitado</th><th>Acción</th>
                 </tr>`;
         rows.forEach(r => {
             const cleanPhone = r.whatsapp.replace(/\D/g,'');
@@ -64,7 +68,7 @@ app.get('/admin-prospectos', basicAuth({
                 <td>
                     <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20recibimos%20tu%20solicitud%20de%20Demo%20en%20Smartplay" 
                        style="background:#25D366; color:black; padding:5px 10px; text-decoration:none; font-weight:bold; border-radius:5px;" 
-                       target="_blank">Contactar</a>
+                       target="_blank">Contactar WhatsApp</a>
                 </td>
             </tr>`;
         });
