@@ -8,7 +8,6 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Directorio de datos para Railway
 const dbDir = path.join(__dirname, 'db');
 if (!fs.existsSync(dbDir)) { fs.mkdirSync(dbDir); }
 const dbPath = path.join(dbDir, 'smartplay.db');
@@ -17,7 +16,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Inicialización de la base de datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
@@ -31,7 +29,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Ruta para guardar clientes
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
     if (!nombre || !whatsapp) return res.status(400).json({ error: "Faltan datos" });
@@ -43,7 +40,6 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Panel de Administración (Usuario: admin / Pass: smartplay2026)
 app.get('/admin-prospectos', basicAuth({ 
     users: { 'admin': 'smartplay2026' }, 
     challenge: true 
@@ -51,9 +47,9 @@ app.get('/admin-prospectos', basicAuth({
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
         let html = `<body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;">
-            <h1>Ventas Smartplay</h1>
+            <h1>Registros de Demos - Smartplay</h1>
             <table border="1" style="width:100%;border-collapse:collapse;">
-                <tr style="background:#25D366;color:black;"><th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th></tr>`;
+                <tr style="background:#25D366;color:black;"><th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan Solicitado</th></tr>`;
         rows.forEach(r => {
             html += `<tr><td>${r.fecha}</td><td>${r.nombre}</td><td>${r.whatsapp}</td><td>${r.producto}</td></tr>`;
         });
