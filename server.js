@@ -31,8 +31,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
-    if (!nombre || !whatsapp) return res.status(400).json({ error: "Faltan datos" });
-
     db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
     [nombre, whatsapp, producto || 'Demo'], (err) => {
         if (err) return res.status(500).json({ error: "Error de servidor" });
@@ -58,4 +56,4 @@ app.get('/admin-prospectos', basicAuth({
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.listen(PORT, '0.0.0.0', () => console.log(`Servidor activo en puerto ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Servidor activo`));
