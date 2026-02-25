@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-
-    <title>Smartplay | TV Digital Premium</title>
-    <meta name="description" content="Servicio de televisión digital de alta fidelidad. Compatible con M327, LEDTV e IPTV Smarters.">
-    
+    <title>Smartplay | TV Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { brand: '#25D366' } } } }
@@ -17,7 +13,6 @@
         body { background-color: #0f172a; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
         .prod-img { height: 200px; width: 100%; object-fit: cover; }
-        strong { color: #ffffff; font-weight: 700; }
     </style>
 </head>
 <body class="text-white font-sans">
@@ -32,64 +27,29 @@
     </nav>
 
     <section id="planes" class="pt-32 pb-16 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-10 uppercase tracking-tighter">Nuestros Planes</h2>
+        <h2 class="text-3xl font-bold text-center mb-10 uppercase tracking-tighter">Planes Mensuales</h2>
         <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
     </section>
 
     <section id="descargas" class="py-20 px-6 max-w-6xl mx-auto">
         <h2 class="text-4xl font-black text-center mb-12 uppercase tracking-tighter">Descarga de APPS</h2>
-        
         <div class="space-y-6">
-            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:row items-center gap-6 hover:border-brand transition">
-                <img src="/img/m327.jpg" class="w-24 h-24 rounded-xl object-cover">
+            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:flex-row items-center gap-6 hover:border-brand transition">
+                <img src="/img/m327.jpg" class="w-24 h-24 rounded-xl object-cover" alt="M327">
                 <div class="flex-grow text-center md:text-left">
                     <h3 class="text-xl font-bold mb-3 uppercase">M327 APP</h3>
                     <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a href="/downloads/m327.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-md">Android</a>
-                        <div class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-black rounded-md border border-brand/20">Downloader: 123456</div>
+                        <a href="/downloads/m327.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-md uppercase">Android / Tv Box</a>
+                        <div class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-black rounded-md border border-brand/20 uppercase tracking-tighter">Downloader: 123456</div>
                     </div>
                 </div>
             </div>
-
-            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:row items-center gap-6 hover:border-brand transition">
-                <img src="/img/tu latino.jpg" class="w-24 h-24 rounded-xl object-cover">
+            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:flex-row items-center gap-6 hover:border-brand transition">
+                <img src="/img/iptvsmarters.jpeg" class="w-24 h-24 rounded-xl object-contain" alt="IPTV Smarters">
                 <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-3 uppercase">TU LATINO APP</h3>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a href="/downloads/tulatino.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-md">Android</a>
-                        <div class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-black rounded-md border border-brand/20">Downloader: 789012</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:row items-center gap-6 hover:border-brand transition">
-                <img src="/img/ledtv.jpg" class="w-24 h-24 rounded-xl object-cover">
-                <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-3 uppercase">LEDTV APP</h3>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a href="/downloads/ledtv.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-md">Android</a>
-                        <div class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-black rounded-md border border-brand/20">Downloader: 345678</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:row items-center gap-6 hover:border-brand transition">
-                <img src="/img/alfatv.jpg" class="w-24 h-24 rounded-xl object-cover">
-                <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-3 uppercase">ALFATV APP</h3>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-2">
-                        <a href="/downloads/alfatv.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-md">Android</a>
-                        <div class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-black rounded-md border border-brand/20">Downloader: 901234</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass p-4 rounded-3xl border border-gray-800 flex flex-col md:row items-center gap-6 hover:border-brand transition">
-                <img src="/img/iptvsmarters.jpeg" class="w-24 h-24 rounded-xl object-contain">
-                <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-bold mb-3 uppercase italic">Smart TV (IPTV Smarters)</h3>
+                    <h3 class="text-xl font-bold mb-3 uppercase italic text-white">Smart TV (IPTV Smarters)</h3>
                     <div class="px-4 py-2 bg-slate-900 text-brand text-[11px] font-black rounded-lg border border-brand/20 inline-block uppercase tracking-widest">
-                        Busca "IPTV SMARTERS" en la tienda de tu smartv
+                        Busca "IPTV SMARTERS" en la tienda de tu TV
                     </div>
                 </div>
             </div>
@@ -100,17 +60,17 @@
         <div class="max-w-md mx-auto glass p-8 rounded-[2.5rem] border border-gray-700 text-center">
             <h3 class="text-2xl font-bold mb-8 text-brand uppercase">Activa tu Acceso</h3>
             <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none text-white text-sm" placeholder="Nombre completo" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 outline-none text-white text-sm" placeholder="WhatsApp" required>
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-white outline-none" placeholder="Nombre" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-white outline-none" placeholder="WhatsApp" required>
                 <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-black text-xs uppercase tracking-widest">Activar Ahora</button>
+                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase">Activar Ahora</button>
             </form>
-            <div id="msgExito" class="hidden mt-6 text-brand font-bold uppercase text-[10px]">✅ ¡Solicitud enviada! Te contactaremos pronto.</div>
+            <div id="msgExito" class="hidden mt-6 text-brand font-bold uppercase">✅ Solicitud enviada con éxito.</div>
         </div>
     </section>
 
     <script>
-        // Carga de productos
+        // Carga dinámica de productos
         async function fetchProductos() {
             try {
                 const res = await fetch('/api/productos');
@@ -124,7 +84,7 @@
                             <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-3 rounded-xl border border-brand text-brand font-black mt-auto uppercase text-[10px]">Elegir Plan</button>
                         </div>
                     </div>`).join('');
-            } catch (err) { console.error(err); }
+            } catch (err) { console.error("Error al cargar productos:", err); }
         }
 
         function seleccionarProducto(n) { 
@@ -132,7 +92,7 @@
             document.getElementById('registro').scrollIntoView({ behavior: 'smooth' }); 
         }
 
-        // Script de registro
+        // Script de envío (CORREGIDO)
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('btnSubmit');
@@ -141,6 +101,7 @@
                 whatsapp: document.getElementById('whatsapp').value, 
                 producto: document.getElementById('prodSel').value 
             };
+            
             btn.disabled = true;
             btn.innerText = "ENVIANDO...";
             
@@ -150,16 +111,22 @@
                     headers: {'Content-Type': 'application/json'}, 
                     body: JSON.stringify(data) 
                 });
+                
                 if(res.ok) { 
                     document.getElementById('prospectForm').classList.add('hidden'); 
                     document.getElementById('msgExito').classList.remove('hidden'); 
+                } else {
+                    alert("Error en el servidor. Intenta de nuevo.");
+                    btn.disabled = false;
+                    btn.innerText = "ACTIVAR AHORA";
                 }
             } catch (err) { 
-                alert("Error al enviar"); 
+                alert("Sin conexión. Revisa los logs de Railway."); 
                 btn.disabled = false; 
                 btn.innerText = "ACTIVAR AHORA";
             }
         });
+
         document.addEventListener('DOMContentLoaded', fetchProductos);
     </script>
 </body>
