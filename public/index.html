@@ -16,7 +16,7 @@
         }
     </script>
     <style>
-        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; padding: 0; }
+        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
         .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s; }
         .btn-whatsapp:hover { transform: scale(1.1); }
@@ -30,27 +30,27 @@
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
         <span class="text-2xl font-black text-brand italic">Smartplay</span>
-        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-white transition">Solicitar Demo</a>
+        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase">Solicitar Demo</a>
     </nav>
 
     <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-none">
-            El Futuro de la <span class="text-brand">TV Digital</span> <br class="hidden md:block"> está aquí.
+            El Futuro de la <span class="text-brand">TV Digital</span> está aquí.
         </h1>
         <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium">
             Disfruta de la mejor estabilidad con <span class="text-white font-bold">M327, TU LATINO, LEDTV y ALFATV</span>.
         </p>
         <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#planes" class="bg-brand text-black px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition">Ver Planes</a>
-            <a href="#descargas" class="glass border border-gray-700 px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition">Descargar Apps</a>
+            <a href="#planes" class="bg-brand text-black px-8 py-4 rounded-2xl font-black uppercase tracking-widest">Ver Planes</a>
+            <a href="#descargas" class="glass border border-gray-700 px-8 py-4 rounded-2xl font-black uppercase tracking-widest">Descargar Apps</a>
         </div>
     </section>
 
     <section id="planes" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12 uppercase tracking-tighter">Nuestros Planes</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <h2 class="text-3xl font-bold text-center mb-12 uppercase">Nuestros Planes</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
             
-            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500 text-center">
+            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col text-center">
                 <img src="/img/m327.jpg" class="h-48 w-full object-cover rounded-3xl mb-4" alt="M327">
                 <h3 class="text-xl font-bold uppercase">M327</h3>
                 <div class="text-brand text-2xl font-black my-2">$200 MXN</div>
@@ -60,10 +60,10 @@
                     <li>• <strong>+20,000 Series</strong></li>
                     <li>• <strong>3 Dispositivos</strong></li>
                 </ul>
-                <button onclick="seleccionar('M327')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
+                <button onclick="seleccionar('M327')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Solicitar Demo</button>
             </div>
 
-            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500 text-center">
+            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col text-center">
                 <img src="/img/tu latino.jpg" class="h-48 w-full object-cover rounded-3xl mb-4" alt="Tu Latino">
                 <h3 class="text-xl font-bold uppercase">TU LATINO</h3>
                 <div class="text-brand text-2xl font-black my-2">$250 MXN</div>
@@ -73,10 +73,10 @@
                     <li>• <strong>+14,000 Series</strong></li>
                     <li>• <strong>3 Dispositivos</strong></li>
                 </ul>
-                <button onclick="seleccionar('TU LATINO')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
+                <button onclick="seleccionar('TU LATINO')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Solicitar Demo</button>
             </div>
 
-            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500 text-center">
+            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col text-center">
                 <img src="/img/ledtv.jpg" class="h-48 w-full object-cover rounded-3xl mb-4" alt="LEDTV">
                 <h3 class="text-xl font-bold uppercase">LEDTV</h3>
                 <div class="text-brand text-2xl font-black my-2">$130 MXN</div>
@@ -86,10 +86,10 @@
                     <li>• <strong>+5,000 Series</strong></li>
                     <li>• <strong>3 Dispositivos</strong></li>
                 </ul>
-                <button onclick="seleccionar('LEDTV')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
+                <button onclick="seleccionar('LEDTV')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Solicitar Demo</button>
             </div>
 
-            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500 text-center">
+            <div class="glass rounded-[2.5rem] border border-gray-800 p-6 flex flex-col text-center">
                 <img src="/img/alfatv.jpg" class="h-48 w-full object-cover rounded-3xl mb-4" alt="ALFATV">
                 <h3 class="text-xl font-bold uppercase">ALFATV</h3>
                 <div class="text-brand text-2xl font-black my-2">$180 MXN</div>
@@ -99,14 +99,13 @@
                     <li>• <strong>+3,000 Series</strong></li>
                     <li>• <strong>3 Dispositivos</strong></li>
                 </ul>
-                <button onclick="seleccionar('ALFATV')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
+                <button onclick="seleccionar('ALFATV')" class="mt-auto py-3 bg-brand/10 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Solicitar Demo</button>
             </div>
-
         </div>
     </section>
 
     <section id="descargas" class="py-20 px-6 max-w-5xl mx-auto">
-        <h2 class="text-4xl font-black text-center mb-12 uppercase">Descarga de APPS</h2>
+        <h2 class="text-4xl font-black text-center mb-12 uppercase tracking-tighter">Descarga de APPS</h2>
         <div class="space-y-4">
             <div class="glass p-5 rounded-[2rem] border border-gray-800 flex items-center gap-6">
                 <img src="/img/m327.jpg" class="w-16 h-16 rounded-2xl object-cover">
@@ -114,8 +113,8 @@
                     <h3 class="font-bold uppercase text-sm">M327 APP</h3>
                     <div class="flex flex-wrap gap-2 mt-2">
                         <a href="https://m327pro.com/xc.apk" class="px-3 py-1 bg-brand text-black text-[10px] font-bold rounded-lg uppercase">Android / TV Box</a>
-                        <span class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-bold rounded-lg border border-brand/20 uppercase">Downloader: 5951699</span>
-                        <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-[10px] font-bold rounded-lg border border-blue-400/20 uppercase">URL: https://allinonestream.fans</span>
+                        <span class="px-3 py-1 bg-slate-900 text-brand text-[10px] font-bold rounded-lg border border-brand/20">Downloader: 5951699</span>
+                        <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-[10px] font-bold rounded-lg border border-blue-400/20">URL: https://allinonestream.fans</span>
                     </div>
                 </div>
             </div>
@@ -137,7 +136,7 @@
                     <input type="tel" id="whatsapp" class="flex-grow p-4 rounded-2xl bg-gray-800 text-white border border-transparent focus:border-brand outline-none" placeholder="WhatsApp" required>
                 </div>
                 <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-green-500 transition shadow-lg shadow-brand/20">Solicitar Demo</button>
+                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-brand/20">Solicitar Demo</button>
             </form>
             <div id="msgExito" class="hidden mt-6 text-brand font-bold uppercase italic text-sm">✅ ¡Solicitud enviada! En breve te contactaremos.</div>
         </div>
