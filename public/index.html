@@ -4,25 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-    <title>Smartplay | TV Digital</title>
+    <title>Smartplay | El Futuro de la TV</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: '#25D366' } } } }</script>
-    <style>body{background-color:#0f172a;scroll-behavior:smooth;}.glass{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);}.prod-img{height:200px;width:100%;object-fit:cover;}</style>
+    <style>
+        body { background-color: #0f172a; scroll-behavior: smooth; color: white; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
+        .prod-img { height: 200px; width: 100%; object-fit: cover; }
+    </style>
 </head>
-<body class="text-white font-sans">
+<body class="font-sans">
+
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
+        <span class="text-2xl font-black text-brand italic">Smartplay</span>
+        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase">Demo Gratis</a>
+    </nav>
+
     <section id="planes" class="pt-32 pb-16 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-10 uppercase text-white">Nuestros Planes</h2>
+        <h2 class="text-3xl font-bold text-center mb-10 uppercase tracking-tighter">Nuestros Planes</h2>
         <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
     </section>
 
     <section id="descargas" class="py-20 px-6 max-w-6xl mx-auto">
         <h2 class="text-4xl font-black text-center mb-12 uppercase">Descarga de APPS</h2>
-        <div class="space-y-6">
+        <div class="space-y-4">
+            <script>
+                const apps = [
+                    { n: 'M327 APP', i: '/img/m327.jpg', d: '123456' },
+                    { n: 'TU LATINO APP', i: '/img/tu latino.jpg', d: '789012' },
+                    { n: 'LEDTV APP', i: '/img/ledtv.jpg', d: '345678' },
+                    { n: 'ALFATV APP', i: '/img/alfatv.jpg', d: '901234' }
+                ];
+                document.write(apps.map(a => `
+                    <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
+                        <img src="${a.i}" class="w-16 h-16 rounded-xl object-cover">
+                        <div class="flex-grow">
+                            <h3 class="font-bold uppercase text-sm">${a.n}</h3>
+                            <div class="flex gap-2 mt-1">
+                                <span class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
+                                <span class="px-2 py-0.5 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 uppercase">Downloader: ${a.d}</span>
+                            </div>
+                        </div>
+                    </div>`).join(''));
+            </script>
             <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
-                <img src="/img/m327.jpg" class="w-20 h-20 rounded-xl object-cover">
+                <img src="/img/iptvsmarters.jpeg" class="w-16 h-16 rounded-xl object-contain">
                 <div class="flex-grow">
-                    <h3 class="font-bold">M327 APP</h3>
-                    <div class="flex gap-2 mt-2"><span class="px-2 py-1 bg-brand text-black text-[10px] font-bold rounded">ANDROID</span></div>
+                    <h3 class="font-bold uppercase italic text-sm">SMART TV (IPTV SMARTERS)</h3>
+                    <div class="px-3 py-1 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 inline-block mt-1">BUSCA EN TU TV STORE</div>
                 </div>
             </div>
         </div>
@@ -45,16 +74,14 @@
         async function fetchProductos() {
             try {
                 const res = await fetch('/api/productos');
-                if(!res.ok) throw new Error("No se pudieron cargar los productos");
                 const productos = await res.json();
                 document.getElementById('productos-container').innerHTML = productos.map(p => `
-                    <div class="glass rounded-[2rem] border border-gray-800 overflow-hidden flex flex-col hover:border-brand transition">
-                        <img src="${p.imagen}" class="prod-img">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold uppercase text-white">${p.nombre}</h3>
-                            <div class="text-2xl font-black text-brand mb-4">${p.precio}</div>
-                            <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 border border-brand text-brand rounded-xl uppercase text-[10px]">Elegir Plan</button>
-                        </div>
+                    <div class="glass rounded-[2rem] border border-gray-800 overflow-hidden flex flex-col p-4">
+                        <img src="${p.imagen}" class="prod-img rounded-xl mb-4">
+                        <h3 class="text-lg font-bold uppercase">${p.nombre}</h3>
+                        <div class="text-xl font-black text-brand mb-2">${p.precio}</div>
+                        <p class="text-[10px] text-gray-400 uppercase mb-4">${p.caracteristicas || 'Canales en Vivo, Películas y Series'}</p>
+                        <button onclick="seleccionarProducto('${p.nombre}')" class="w-full py-2 border border-brand text-brand rounded-lg uppercase text-[9px] font-bold">Elegir Plan</button>
                     </div>`).join('');
             } catch (err) { console.error(err); }
         }
@@ -79,7 +106,7 @@
                     document.getElementById('msgExito').classList.remove('hidden');
                 } else { throw new Error(); }
             } catch (err) {
-                alert("Error en el servidor. Revisa los logs de Railway.");
+                alert("Error al guardar. Revisa que el servidor en Railway esté activo.");
                 btn.innerText = "ACTIVAR AHORA"; btn.disabled = false;
             }
         });
