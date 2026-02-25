@@ -8,7 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Configuración de persistencia en Railway
+// Directorio para base de datos persistente en Railway
 const dataDir = '/app/data';
 const dbPath = path.join(dataDir, 'iptv.db');
 
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/downloads', express.static(path.join(__dirname, 'downloads')));
 
-// Inicialización de Base de Datos
+// Inicialización de la base de datos
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error("Error al abrir DB:", err.message);
@@ -53,7 +53,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// API para obtener productos
 app.get('/api/productos', (req, res) => {
     db.all("SELECT * FROM productos", [], (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -61,23 +60,15 @@ app.get('/api/productos', (req, res) => {
     });
 });
 
-// API para registrar prospectos (CORREGIDA)
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
-    if (!nombre || !whatsapp) {
-        return res.status(400).json({ error: "Nombre y WhatsApp son obligatorios" });
-    }
     const sql = `INSERT INTO prospectos (nombre, whatsapp, producto_interes) VALUES (?, ?, ?)`;
     db.run(sql, [nombre, whatsapp, producto || 'Demo'], function(err) {
-        if (err) {
-            console.error("Error al insertar:", err.message);
-            return res.status(500).json({ error: err.message });
-        }
+        if (err) return res.status(500).json({ error: err.message });
         res.status(200).json({ success: true, id: this.lastID });
     });
 });
 
-// Panel Admin
 const auth = basicAuth({
     users: { 'admin': 'smartplay2026' }, 
     challenge: true,
@@ -90,7 +81,7 @@ app.get('/admin-prospectos', auth, (req, res) => {
         let html = `<html><head><title>Admin Smartplay</title><style>
             body{font-family:sans-serif;background:#0f172a;color:white;padding:20px;}
             table{width:100%;border-collapse:collapse;margin-top:20px;background:#1e293b;}
-            th,td{padding:12px;border:1px solid #334155;text-align:left;}
+            th,td{padding:12px;border:1px solid #334155;}
             th{background:#25D366;color:black;}
             .btn-ws{background:#25D366;color:black;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:bold;}
         </style></head><body>
@@ -106,5 +97,4 @@ app.get('/admin-prospectos', auth, (req, res) => {
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-
-app.listen(PORT, '0.0.0.0', () => console.log(`Servidor activo en puerto ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Servidor en puerto ${PORT}`));
