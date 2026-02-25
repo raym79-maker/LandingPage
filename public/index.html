@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-    <title>Smartplay | TV Digital</title>
+    <title>Smartplay | IPTV Premium México</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: '#25D366' } } } }</script>
-    <style>body{background-color:#0f172a;scroll-behavior:smooth;}.glass{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);}</style>
+    <style>
+        body { background-color: #0f172a; scroll-behavior: smooth; color: white; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body class="text-white font-sans">
+<body>
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
         <span class="text-2xl font-black text-brand italic">Smartplay</span>
@@ -19,32 +22,52 @@
     <section id="planes" class="pt-32 pb-16 px-6 max-w-7xl mx-auto">
         <h2 class="text-3xl font-bold text-center mb-10 uppercase tracking-tighter">Nuestros Planes</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
             <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500">
-                <img src="/img/m327.jpg" class="h-40 w-full object-cover rounded-2xl mb-4">
+                <img src="/img/m327.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="M327">
                 <h3 class="text-xl font-bold uppercase">M327</h3>
                 <div class="text-brand text-2xl font-black my-2">$200 MXN</div>
-                <p class="text-[10px] text-gray-400 uppercase mb-6">2000 Canales, 40000 Películas, 3 Dispositivos</p>
+                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6">
+                    <li>• +2,000 Canales en Vivo</li>
+                    <li>• +40,000 Películas y Series</li>
+                    <li>• <strong>3 Dispositivos</strong></li>
+                </ul>
                 <button onclick="seleccionar('M327')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Elegir Plan</button>
             </div>
+
             <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500">
-                <img src="/img/tu latino.jpg" class="h-40 w-full object-cover rounded-2xl mb-4">
+                <img src="/img/tu latino.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="Tu Latino">
                 <h3 class="text-xl font-bold uppercase">TU LATINO</h3>
                 <div class="text-brand text-2xl font-black my-2">$250 MXN</div>
-                <p class="text-[10px] text-gray-400 uppercase mb-6">11000 Canales, 55000 Películas, 3 Dispositivos</p>
+                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6">
+                    <li>• +11,000 Canales en Vivo</li>
+                    <li>• +55,000 Películas y Series</li>
+                    <li>• <strong>3 Dispositivos</strong></li>
+                </ul>
                 <button onclick="seleccionar('TU LATINO')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Elegir Plan</button>
             </div>
+
             <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500">
-                <img src="/img/ledtv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4">
+                <img src="/img/ledtv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="LEDTV">
                 <h3 class="text-xl font-bold uppercase">LEDTV</h3>
                 <div class="text-brand text-2xl font-black my-2">$130 MXN</div>
-                <p class="text-[10px] text-gray-400 uppercase mb-6">2400 Canales, 19000 Películas, 3 Dispositivos</p>
+                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6">
+                    <li>• +2,400 Canales en Vivo</li>
+                    <li>• +19,000 Películas y Series</li>
+                    <li>• <strong>3 Dispositivos</strong></li>
+                </ul>
                 <button onclick="seleccionar('LEDTV')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Elegir Plan</button>
             </div>
+
             <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col hover:border-brand transition duration-500">
-                <img src="/img/alfatv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4">
+                <img src="/img/alfatv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="ALFATV">
                 <h3 class="text-xl font-bold uppercase">ALFATV</h3>
                 <div class="text-brand text-2xl font-black my-2">$180 MXN</div>
-                <p class="text-[10px] text-gray-400 uppercase mb-6">1500 Canales, 25000 Películas, 3 Dispositivos</p>
+                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6">
+                    <li>• +1,500 Canales en Vivo</li>
+                    <li>• +25,000 Películas y Series</li>
+                    <li>• <strong>3 Dispositivos</strong></li>
+                </ul>
                 <button onclick="seleccionar('ALFATV')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px]">Elegir Plan</button>
             </div>
         </div>
@@ -54,17 +77,47 @@
         <h2 class="text-4xl font-black text-center mb-12 uppercase">Descarga de APPS</h2>
         <div class="space-y-4">
             <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
-                <img src="/img/m327.jpg" class="w-20 h-20 rounded-xl object-cover">
+                <img src="/img/m327.jpg" class="w-16 h-16 rounded-xl object-cover">
                 <div class="flex-grow">
                     <h3 class="font-bold uppercase text-sm">M327 APP</h3>
                     <div class="flex gap-2 mt-1">
-                        <span class="px-2 py-1 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
-                        <span class="px-2 py-1 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20">DOWNLOADER: 123456</span>
+                        <span class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 uppercase">Downloader: 123456</span>
                     </div>
                 </div>
             </div>
             <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
-                <img src="/img/iptvsmarters.jpeg" class="w-20 h-20 rounded-xl object-contain">
+                <img src="/img/tu latino.jpg" class="w-16 h-16 rounded-xl object-cover">
+                <div class="flex-grow">
+                    <h3 class="font-bold uppercase text-sm">TU LATINO APP</h3>
+                    <div class="flex gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 uppercase">Downloader: 789012</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
+                <img src="/img/ledtv.jpg" class="w-16 h-16 rounded-xl object-cover">
+                <div class="flex-grow">
+                    <h3 class="font-bold uppercase text-sm">LEDTV APP</h3>
+                    <div class="flex gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 uppercase">Downloader: 345678</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
+                <img src="/img/alfatv.jpg" class="w-16 h-16 rounded-xl object-cover">
+                <div class="flex-grow">
+                    <h3 class="font-bold uppercase text-sm">ALFATV APP</h3>
+                    <div class="flex gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">ANDROID</span>
+                        <span class="px-2 py-0.5 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 uppercase">Downloader: 901234</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-4 rounded-3xl border border-gray-800 flex items-center gap-6">
+                <img src="/img/iptvsmarters.jpeg" class="w-16 h-16 rounded-xl object-contain">
                 <div class="flex-grow">
                     <h3 class="font-bold uppercase italic text-sm">SMART TV (IPTV SMARTERS)</h3>
                     <div class="px-3 py-1 bg-slate-900 text-brand text-[9px] font-bold rounded border border-brand/20 inline-block mt-1 uppercase">Busca en tu TV Store</div>
@@ -77,10 +130,10 @@
         <div class="max-w-md mx-auto glass p-10 rounded-[2.5rem] border border-gray-700 text-center">
             <h3 class="text-2xl font-bold mb-8 text-brand uppercase">Activa tu Acceso</h3>
             <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none" placeholder="Nombre" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none" placeholder="WhatsApp" required>
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none border border-transparent focus:border-brand" placeholder="Nombre" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none border border-transparent focus:border-brand" placeholder="WhatsApp" required>
                 <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase tracking-widest transition hover:bg-green-500">Activar Ahora</button>
+                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-green-500 transition">Activar Ahora</button>
             </form>
             <div id="msgExito" class="hidden mt-6 text-brand font-bold uppercase italic">✅ Registro exitoso. ¡Te contactaremos!</div>
         </div>
@@ -114,7 +167,7 @@
                     document.getElementById('msgExito').classList.remove('hidden');
                 } else { throw new Error(); }
             } catch (err) {
-                alert("Error al guardar. Revisa la conexión en Railway.");
+                alert("Error al enviar. Intenta de nuevo.");
                 btn.innerText = "ACTIVAR AHORA"; btn.disabled = false;
             }
         });
