@@ -8,7 +8,7 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Configuración de persistencia para Railway (requiere volumen en /app/data)
+// Configuración de persistencia para Railway
 const dbDir = '/app/data'; 
 if (!fs.existsSync(dbDir)) { 
     fs.mkdirSync(dbDir, { recursive: true }); 
@@ -32,6 +32,13 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
+// Autenticación para administración
+const auth = basicAuth({
+    users: { 'admin': 'smartplay2026' },
+    challenge: true
+});
+
+// Ruta para guardar prospectos
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto } = req.body;
     db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
@@ -41,35 +48,73 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-app.get('/admin-prospectos', basicAuth({ 
-    users: { 'admin': 'smartplay2026' }, 
-    challenge: true 
-}), (req, res) => {
+// PANEL DE ADMINISTRACIÓN
+app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
-        let html = `<body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;">
-            <h1>Registros de Demos - Smartplay</h1>
-            <table border="1" style="width:100%;border-collapse:collapse;text-align:center;">
-                <tr style="background:#25D366;color:black;">
-                    <th>Fecha</th><th>Nombre</th><th>WhatsApp</th><th>Plan</th><th>Acción</th>
+        let html = `
+        <body style="font-family:sans-serif;background:#0f172a;color:white;padding:40px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                <h1>Registros de Demos - Smartplay</h1>
+                <a href="/admin-reset-confirm" style="background:#ef4444; color:white; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:8px; font-size:12px;">BORRAR TODOS LOS REGISTROS</a>
+            </div>
+            <table border="1" style="width:100%; border-collapse:collapse; text-align:center; border-color:#1e293b;">
+                <tr style="background:#25D366; color:black;">
+                    <th style="padding:12px;">Fecha</th>
+                    <th>Nombre</th>
+                    <th>WhatsApp</th>
+                    <th>Producto</th>
+                    <th>Acción</th>
                 </tr>`;
+        
         rows.forEach(r => {
             const cleanPhone = r.whatsapp.replace(/\D/g,'');
-            html += `<tr>
-                <td style="padding:10px;">${r.fecha}</td>
-                <td>${r.nombre}</td>
-                <td>${r.whatsapp}</td>
-                <td>${r.producto}</td>
-                <td>
-                    <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20recibimos%20tu%20solicitud%20de%20Demo%20en%20Smartplay" 
-                       style="background:#25D366; color:black; padding:5px 10px; text-decoration:none; font-weight:bold; border-radius:5px;" 
-                       target="_blank">Contactar</a>
-                </td>
-            </tr>`;
+            html += `
+                <tr style="border-bottom:1px solid #1e293b;">
+                    <td style="padding:12px;">${r.fecha}</td>
+                    <td>${r.nombre}</td>
+                    <td>${r.whatsapp}</td>
+                    <td>${r.producto}</td>
+                    <td>
+                        <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20vengo%20de%20Smartplay" 
+                           style="background:#25D366; color:black; padding:5px 12px; text-decoration:none; font-weight:bold; border-radius:5px; font-size:11px;" 
+                           target="_blank">Contactar</a>
+                    </td>
+                </tr>`;
         });
+
+        if (rows.length === 0) {
+            html += `<tr><td colspan="5" style="padding:40px; color:#64748b;">No hay registros nuevos actualmente.</td></tr>`;
+        }
+
         res.send(html + "</table></body>");
     });
 });
 
+// RUTA DE CONFIRMACIÓN DE REINICIO
+app.get('/admin-reset-confirm', auth, (req, res) => {
+    res.send(`
+        <body style="font-family:sans-serif;background:#0f172a;color:white;text-align:center;padding:100px;">
+            <h1 style="color:#ef4444;">⚠ ¿ESTÁS SEGURO?</h1>
+            <p style="margin-bottom:30px;">Esta acción eliminará todos los registros de la base de datos de forma permanente.</p>
+            <div style="display:flex; justify-content:center; gap:20px;">
+                <a href="/admin-prospectos" style="background:#1e293b; color:white; padding:15px 30px; text-decoration:none; border-radius:10px; font-weight:bold;">CANCELAR</a>
+                <a href="/admin-reset-execute" style="background:#ef4444; color:white; padding:15px 30px; text-decoration:none; border-radius:10px; font-weight:bold;">SÍ, BORRAR TODO</a>
+            </div>
+        </body>
+    `);
+});
+
+// EJECUCIÓN DEL REINICIO
+app.get('/admin-reset-execute', auth, (req, res) => {
+    db.run("DELETE FROM prospectos", (err) => {
+        if (err) return res.status(500).send("Error al limpiar base de datos");
+        res.redirect('/admin-prospectos');
+    });
+});
+
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.listen(PORT, '0.0.0.0', () => console.log(`Smartplay Online`));
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor Smartplay corriendo en puerto ${PORT}`);
+});
