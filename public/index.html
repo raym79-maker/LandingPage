@@ -3,299 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-    <meta name="description" content="¿Buscas IPTV estable? Smartplay te ofrece +2000 canales en vivo y contenido exclusivo de todas las plataformas. Precios desde $130 MXN. ¡Activa tu demo por WhatsApp!">
+    <meta name="description" content="¿Buscas IPTV estable? Smartplay te ofrece +2000 canales en vivo y contenido exclusivo de todas las plataformas. Precios desde $130 MXN.">
     <title>Smartplay | IPTV PREMIUM</title>
-    <link rel="icon" type="image/png" href="/img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: '#25D366' }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { brand: '#25D366' } } } }
     </script>
     <style>
         body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s; }
-        .btn-whatsapp:hover { transform: scale(1.1); }
+        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; z-index: 100; transition: transform 0.3s; }
     </style>
 </head>
 <body class="antialiased">
 
-    <a href="https://wa.me/5521314298?text=Hola,%20vengo%20de%20tu%20página%20y%20solicito%20una%20Demo" class="btn-whatsapp" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" height="30" alt="WhatsApp">
+    <a href="https://wa.me/5521314298" class="btn-whatsapp" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="60" alt="WhatsApp">
     </a>
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <img src="/img/logo.png" alt="Smartplay Logo" class="w-10 h-10 rounded-lg object-cover shadow-lg shadow-brand/20">
-            <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
-        </div>
-        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-white transition text-center shadow-md">Solicitar Demo</a>
+        <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
+        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-white transition">Solicitar Demo</a>
     </nav>
 
-    <section class="pt-40 pb-20 px-6 max-w-5xl mx-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-tight text-white">
-            El Futuro de la <span class="text-brand">TV Digital</span> está aquí.
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-            Disfruta de la mejor estabilidad con <span class="text-white font-bold">M327, TU LATINO, LEDTV y ALFATV</span>. 
-            <br class="hidden md:block">
-            Miles de canales en vivo, películas de estreno y series exclusivas de <span class="text-white font-bold italic">todas las plataformas</span> en tus dispositivos.
-        </p>
-        <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#planes" class="bg-brand text-black px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition">Ver Planes</a>
-            <a href="#descargas" class="glass border border-gray-700 px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition">Descargar Apps</a>
-        </div>
-    </section>
-
-    <section id="planes" class="py-16 px-6 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-10 uppercase tracking-tighter text-white">Nuestros Planes</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col text-center">
-                <img src="/img/m327.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="M327">
-                <h3 class="text-xl font-bold uppercase text-white">M327</h3>
-                <div class="text-brand text-2xl font-black my-2">$200 MXN</div>
-                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6 text-left ml-4">
-                    <li>• <strong>+2,000 Canales en Vivo</strong></li>
-                    <li>• <strong>+40,000 Películas</strong></li>
-                    <li>• <strong>+20,000 Series</strong></li>
-                    <li>• <strong>3 Dispositivos</strong></li>
-                </ul>
-                <button onclick="seleccionar('M327')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
-            </div>
-            <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col text-center">
-                <img src="/img/tu latino.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="Tu Latino">
-                <h3 class="text-xl font-bold uppercase text-white">TU LATINO</h3>
-                <div class="text-brand text-2xl font-black my-2">$250 MXN</div>
-                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6 text-left ml-4">
-                    <li>• <strong>+11,000 Canales en Vivo</strong></li>
-                    <li>• <strong>+55,000 Películas</strong></li>
-                    <li>• <strong>+14,000 Series</strong></li>
-                    <li>• <strong>3 Dispositivos</strong></li>
-                </ul>
-                <button onclick="seleccionar('TU LATINO')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
-            </div>
-            <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col text-center">
-                <img src="/img/ledtv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="LEDTV">
-                <h3 class="text-xl font-bold uppercase text-white">LEDTV</h3>
-                <div class="text-brand text-2xl font-black my-2">$130 MXN</div>
-                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6 text-left ml-4">
-                    <li>• <strong>+2,400 Canales en Vivo</strong></li>
-                    <li>• <strong>+19,000 Películas</strong></li>
-                    <li>• <strong>+5,000 Series</strong></li>
-                    <li>• <strong>3 Dispositivos</strong></li>
-                </ul>
-                <button onclick="seleccionar('LEDTV')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
-            </div>
-            <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col text-center">
-                <img src="/img/alfatv.jpg" class="h-40 w-full object-cover rounded-2xl mb-4" alt="ALFATV">
-                <h3 class="text-xl font-bold uppercase text-white">ALFATV</h3>
-                <div class="text-brand text-2xl font-black my-2">$180 MXN</div>
-                <ul class="text-[10px] text-gray-400 uppercase space-y-1 mb-6 text-left ml-4">
-                    <li>• <strong>+1,500 Canales en Vivo</strong></li>
-                    <li>• <strong>+25,000 Películas</strong></li>
-                    <li>• <strong>+3,000 Series</strong></li>
-                    <li>• <strong>3 Dispositivos</strong></li>
-                </ul>
-                <button onclick="seleccionar('ALFATV')" class="mt-auto py-3 border border-brand text-brand rounded-xl font-bold uppercase text-[10px] hover:bg-brand hover:text-black transition">Solicitar Demo</button>
-            </div>
-        </div>
-    </section>
-
-   <section id="descargas" class="py-20 px-6 max-w-7xl mx-auto text-white">
-        <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-tighter italic">Descarga de APPS</h2>
+    <section id="descargas" class="py-32 px-6 max-w-7xl mx-auto text-white">
+        <h2 class="text-4xl font-black text-center mb-16 uppercase italic">Descarga de APPS</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             
             <div class="glass rounded-[2rem] border border-gray-800 p-6 flex flex-col space-y-4">
                 <h3 class="text-xl font-bold uppercase italic text-center mb-4 text-brand">Dispositivos Android</h3>
-                <div class="space-y-4">
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/m327.jpg" class="w-12 h-12 rounded-lg object-cover shadow-md" alt="M327">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">M327 APP</h4>
-                                <div class="flex flex-wrap gap-2 mt-1">
-                                    <a href="https://m327pro.com/xc.apk" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 5951699</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL DEL SERVIDOR:</p>
-                            <p class="text-sm font-mono font-bold text-white break-all">https://allinonestream.fans</p>
-                        </div>
+                <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
+                    <h4 class="font-bold text-xs uppercase mb-2">M327 APP</h4>
+                    <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
+                        <p class="text-[9px] font-black text-blue-300">URL:</p>
+                        <p class="text-lg font-mono font-bold break-all">https://allinonestream.fans</p>
                     </div>
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/tu latino.jpg" class="w-12 h-12 rounded-lg object-cover shadow-md" alt="Tu Latino">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">TU LATINO APP</h4>
-                                <div class="flex flex-wrap gap-2 mt-1">
-                                    <a href="http://aftv.news/973723" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 973723</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL DEL SERVIDOR:</p>
-                            <p class="text-sm font-mono font-bold text-white break-all">http://steeltv.net:8080</p>
-                        </div>
+                </div>
+                <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
+                    <h4 class="font-bold text-xs uppercase mb-2">TU LATINO APP</h4>
+                    <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
+                        <p class="text-[9px] font-black text-blue-300">URL:</p>
+                        <p class="text-lg font-mono font-bold break-all">http://steeltv.net:8080</p>
                     </div>
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/ledtv.jpg" class="w-12 h-12 rounded-lg object-cover shadow-md" alt="LEDTV">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">LEDTV APP</h4>
-                                <div class="flex flex-wrap gap-2 mt-1">
-                                    <a href="http://ceoapps.org/SDMEX_VIP.apk" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 4547596</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL DEL SERVIDOR:</p>
-                            <p class="text-sm font-mono font-bold text-white break-all">http://sptvplus.com:8080</p>
-                        </div>
+                </div>
+                <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
+                    <h4 class="font-bold text-xs uppercase mb-2">LEDTV APP</h4>
+                    <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
+                        <p class="text-[9px] font-black text-blue-300">URL:</p>
+                        <p class="text-lg font-mono font-bold break-all">http://sptvplus.com:8080</p>
                     </div>
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/alfatv.jpg" class="w-12 h-12 rounded-lg object-cover shadow-md" alt="ALFATV">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">ALFATV APP</h4>
-                                <div class="flex flex-wrap gap-2 mt-1">
-                                    <a href="http://aftv.news/4286832" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 4286832</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL DEL SERVIDOR:</p>
-                            <p class="text-sm font-mono font-bold text-white break-all">http://alfastr3am.lat:2082</p>
-                        </div>
+                </div>
+                <div class="bg-slate-900/50 p-4 rounded-2xl border border-gray-700/30">
+                    <h4 class="font-bold text-xs uppercase mb-2">ALFATV APP</h4>
+                    <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
+                        <p class="text-[9px] font-black text-blue-300">URL:</p>
+                        <p class="text-lg font-mono font-bold break-all">http://alfastr3am.lat:2082</p>
                     </div>
                 </div>
             </div>
-<div class="glass rounded-[2rem] border border-gray-800 p-8 text-center flex flex-col items-center justify-between">
-    <div>
-        <h3 class="text-2xl font-black uppercase italic text-white mb-4">SMART TV (IPTV SMARTERS)</h3>
-        <p class="text-gray-400 text-[10px] mb-4">Busca "IPTV Smarters" o Smarters Players lite en tu TV Store.</p>
-        
-        <div class="text-left mb-6 p-4 bg-slate-900/50 rounded-xl border border-gray-700/50">
-            <p class="text-[10px] text-white font-bold mb-3 border-b border-gray-700 pb-2">Instala IPTV Smarters Player desde la Tv Store y accede con tus credenciales usando Xtream Codes API.</p>
-            <ol class="text-[10px] text-gray-300 space-y-3 list-none">
-                
-                <li><span class="text-brand font-bold">1-</span> <span class="font-bold text-white">Instala IPTV Smarters Player:</span> Al iniciar, verás el menú. Selecciona <span class="text-brand font-bold">LOGIN WITH XTREAM CODES API</span>.</li>
-            </ol>
-        </div>
-    </div>
-    
-    <div class="w-full space-y-4">
-        <img src="/img/xtream.png" class="w-full max-w-[400px] mx-auto rounded-xl shadow-lg border border-gray-700/50 object-contain" alt="Xtream">
-        <img src="/img/iptvsmarters.jpeg" class="w-full max-w-[400px] mx-auto rounded-xl shadow-lg border border-gray-700/50 object-contain" alt="Smarters">
-    </div>
 
-    <div class="mt-6 w-full">
-        <span class="block w-full py-3 bg-slate-900 text-brand text-[10px] font-bold rounded-xl border border-brand/20 uppercase tracking-widest">BUSCA EN TU TV STORE</span>
-    </div>
-</div>
-            
+            <div class="glass rounded-[2rem] border border-gray-800 p-8 text-center flex flex-col items-center justify-between">
+                <h3 class="text-2xl font-black uppercase italic text-white mb-4">SMART TV</h3>
+                <div class="text-left mb-6 p-4 bg-slate-900/50 rounded-xl border border-gray-700">
+                    <ol class="text-xs text-gray-300 space-y-2">
+                        <li><b>1-</b> Instala IPTV Smarters Player desde tu TV Store.</li>
+                        <li><b>2-</b> Selecciona <b class="text-brand">LOGIN WITH XTREAM CODES API</b>.</li>
+                    </ol>
+                </div>
+                <div class="w-full space-y-4">
+                    <img src="/img/xtream.png" class="w-full max-w-[320px] mx-auto rounded-xl shadow-lg">
+                    <img src="/img/iptvsmarters.jpeg" class="w-full max-w-[320px] mx-auto rounded-xl shadow-lg">
+                </div>
+            </div>
         </div>
     </section>
+
     <section id="faq" class="py-16 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-10 uppercase italic tracking-tighter text-white">
-            Preguntas <span class="text-brand">Frecuentes</span>
-        </h2>
+        <h2 class="text-3xl font-black text-center mb-10 text-brand italic">Preguntas Frecuentes</h2>
         <div class="space-y-4">
             <div class="glass border border-gray-800 p-6 rounded-2xl">
-                <h3 class="text-lg font-bold text-white mb-2">¿Cómo funciona la Demo Gratis?</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Al registrarte, te enviamos un acceso temporal por WhatsApp para que pruebes la estabilidad y el catálogo de todas las plataformas sin compromiso.
-                </p>
+                <h3 class="font-bold text-white">¿Cómo funciona la Demo?</h3>
+                <p class="text-gray-400 text-sm">Acceso temporal vía WhatsApp.</p>
             </div>
             <div class="glass border border-gray-800 p-6 rounded-2xl">
-                <h3 class="text-lg font-bold text-white mb-2">¿En qué dispositivos es compatible?</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Compatible con Smart TV, TV Box, Firestick, dispositivos Android y Tablets. Necesitas internet estable para una mejor experiencia.
-                </p>
-            </div>
-            <div class="glass border border-gray-800 p-6 rounded-2xl">
-                <h3 class="text-lg font-bold text-white mb-2">¿Qué incluye el servicio premium?</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Más de 2000 canales en vivo, eventos deportivos exclusivos , Esterenos de Cine y Series con actualizaciones diarias en las apps M327,TULATINO,LEDTV y ALFATV.
-                </p>
-            </div>
-               <div class="space-y-4">
-            <div class="glass border border-gray-800 p-6 rounded-2xl">
-                <h3 class="text-lg font-bold text-white mb-2">¿Qué métodos de pago aceptan?</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Para tu comodidad, aceptamos **transferencias bancarias y depósitos en OXXO**. Una vez que elijas tu plan, te proporcionaremos los datos necesarios por WhatsApp para una activación inmediata.
-                </p>
+                <h3 class="font-bold text-white">¿Métodos de pago?</h3>
+                <p class="text-gray-400 text-sm">Transferencias y depósitos OXXO.</p>
             </div>
         </div>
     </section>
-        <section id="registro" class="py-24 px-6">
-        <div class="max-w-md mx-auto glass p-10 rounded-[2.5rem] border border-gray-700 text-center">
-            <h3 class="text-2xl font-bold mb-8 text-brand uppercase italic">Activa tu Demo</h3>
-            <form id="prospectForm" class="space-y-4">
-                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none border border-transparent focus:border-brand" placeholder="Nombre completo" required>
-                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-gray-800 text-white outline-none border border-transparent focus:border-brand" placeholder="WhatsApp" required>
-                <input type="hidden" id="prodSel" value="Demo">
-                <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase tracking-widest hover:bg-green-500 transition shadow-lg shadow-brand/20">Solicitar Demo</button>
-            </form>
-            <div id="msgExito" class="hidden mt-6 text-brand font-bold uppercase italic text-sm text-brand">✅ ¡Solicitud enviada! En breve te contactaremos.</div>
-        </div>
+
+    <section id="registro" class="py-10 px-6 text-center">
+        <form id="prospectForm" class="max-w-md mx-auto glass p-8 rounded-3xl">
+            <input type="text" id="nombre" class="w-full p-4 mb-4 rounded-xl bg-gray-800 text-white" placeholder="Nombre" required>
+            <button type="submit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase">Solicitar Demo</button>
+        </form>
     </section>
 
     <script>
-        function seleccionar(n) { 
-            document.getElementById('prodSel').value = n; 
-            document.getElementById('registro').scrollIntoView({behavior:'smooth'}); 
-        }
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('btnSubmit');
-            btn.innerText = "PROCESANDO..."; btn.disabled = true;
-            const data = { 
-                nombre: document.getElementById('nombre').value, 
-                whatsapp: document.getElementById('whatsapp').value, 
-                producto: document.getElementById('prodSel').value 
-            };
-            try {
-                const res = await fetch('/api/prospectos', { 
-                    method: 'POST', 
-                    headers: {'Content-Type': 'application/json'}, 
-                    body: JSON.stringify(data) 
-                });
-                if(res.ok) {
-                    document.getElementById('prospectForm').classList.add('hidden');
-                    document.getElementById('msgExito').classList.remove('hidden');
-                } else { throw new Error(); }
-            } catch (err) {
-                alert("Error al enviar. Intenta de nuevo.");
-                btn.innerText = "SOLICITAR DEMO"; btn.disabled = false;
-            }
+            alert("¡Solicitud enviada!");
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
