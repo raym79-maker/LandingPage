@@ -1,10 +1,4 @@
 User-agent: *
-# Permitir que vean la landing page y descargas
 Allow: /
 
-# Bloquear el panel de administración para que no salga en Google
-Disallow: /admin-prospectos
-Disallow: /api/
-
-# Ubicación de tu mapa del sitio
-Sitemap: https://smartplay-mexico.up.railway.app/sitemap.xml
+Sitemap: https://www.smartplay.com.mx/sitemap.xml
