@@ -325,7 +325,29 @@
                     <option value="PC/Roku">PC / Roku</option>
                 </select>
 
-                <input type="hidden" id="prodSel" value="Demo">
+                <section id="registro" class="py-24 px-6">
+        <div class="max-w-md mx-auto glass p-12 rounded-[2.5rem] border border-gray-700 text-center shadow-xl">
+            <h3 class="text-3xl font-black mb-10 text-brand uppercase italic tracking-tight">REGÍSTRATE</h3>
+            <form id="prospectForm" class="space-y-5">
+                <input type="text" id="nombre" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Nombre completo" required>
+                <input type="tel" id="whatsapp" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Teléfono WhatsApp (ej. 5512345678)" required>
+                
+                <select id="prodSel" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
+                    <option value="" disabled selected>Selecciona el paquete a probar</option>
+                    <option value="TU LATINO">Plan TU LATINO</option>
+                    <option value="M327">Plan M327</option>
+                    <option value="ALFATV">Plan ALFATV</option>
+                    <option value="LEDTV">Plan LEDTV</option>
+                </select>
+
+                <select id="dispositivo" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
+                    <option value="" disabled selected>Selecciona tu dispositivo</option>
+                    <option value="Smart TV">Smart TV (LG/Samsung)</option>
+                    <option value="Firestick/TV Box">Firestick / TV Box</option>
+                    <option value="Android/IOS">Android / IOS</option>
+                    <option value="PC/Roku">PC / Roku</option>
+                </select>
+
                 <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4.5 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition shadow-lg shadow-brand/20 mt-3 text-sm">Solicitar Demo Gratis</button>
             </form>
             <div id="msgExito" class="hidden mt-8 p-5 bg-green-900/50 rounded-xl border border-brand/20 animate-pulse text-sm text-brand font-bold uppercase italic tracking-wider">
@@ -335,14 +357,11 @@
     </section>
 
     <script>
-        function seleccionar(n) { 
-            document.getElementById('prodSel').value = n; 
-            document.getElementById('registro').scrollIntoView({behavior:'smooth'}); 
-        }
         document.getElementById('prospectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('btnSubmit');
             const dispositivo = document.getElementById('dispositivo').value;
+            const producto = document.getElementById('prodSel').value;
             
             btn.innerText = "PROCESANDO SOLICITUD..."; 
             btn.disabled = true;
@@ -350,12 +369,11 @@
             const data = { 
                 nombre: document.getElementById('nombre').value, 
                 whatsapp: document.getElementById('whatsapp').value, 
-                producto: document.getElementById('prodSel').value,
-                dispositivo: dispositivo // Se añade el campo dispositivo
+                producto: producto,
+                dispositivo: dispositivo
             };
             
             try {
-                // Asegúrate de que tu backend esté configurado para recibir 'dispositivo'
                 const res = await fetch('/api/prospectos', { 
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'}, 
