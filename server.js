@@ -22,13 +22,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
+        // 1. Añadimos 'dispositivo' a la creación inicial
         db.run(`CREATE TABLE IF NOT EXISTS prospectos (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
             nombre TEXT, 
             whatsapp TEXT, 
             producto TEXT, 
+            dispositivo TEXT,
             fecha DATETIME DEFAULT CURRENT_TIMESTAMP
-        )`);
+        )`, (err) => {
+            if (!err) {
+                // 2. Truco de seguridad: Si la tabla ya existe sin la columna, la agregamos
+                db.run(`ALTER TABLE prospectos ADD COLUMN dispositivo TEXT`, (err) => {
+                    if (err) console.log("La columna dispositivo ya está lista.");
+                });
+            }
+        });
     }
 });
 
@@ -38,17 +47,20 @@ const auth = basicAuth({
     challenge: true
 });
 
-// Ruta para guardar prospectos
+// Ruta para guardar prospectos (ACTUALIZADA con dispositivo)
 app.post('/api/prospectos', (req, res) => {
-    const { nombre, whatsapp, producto } = req.body;
-    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
-    [nombre, whatsapp, producto || 'Demo'], (err) => {
-        if (err) return res.status(500).json({ error: "Error de servidor" });
+    const { nombre, whatsapp, producto, dispositivo } = req.body;
+    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`, 
+    [nombre, whatsapp, producto || 'Demo', dispositivo || 'No especificado'], (err) => {
+        if (err) {
+            console.error("Error al insertar:", err.message);
+            return res.status(500).json({ error: "Error de servidor" });
+        }
         res.status(200).json({ success: true });
     });
 });
 
-// PANEL DE ADMINISTRACIÓN
+// PANEL DE ADMINISTRACIÓN (ACTUALIZADO con columna Dispositivo)
 app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
@@ -64,6 +76,7 @@ app.get('/admin-prospectos', auth, (req, res) => {
                     <th>Nombre</th>
                     <th>WhatsApp</th>
                     <th>Producto</th>
+                    <th>Dispositivo</th>
                     <th>Acción</th>
                 </tr>`;
         
@@ -75,8 +88,9 @@ app.get('/admin-prospectos', auth, (req, res) => {
                     <td>${r.nombre}</td>
                     <td>${r.whatsapp}</td>
                     <td>${r.producto}</td>
+                    <td style="color:#25D366; font-weight:bold;">${r.dispositivo || 'N/A'}</td>
                     <td>
-                        <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20vengo%20de%20Smartplay" 
+                        <a href="https://wa.me/${cleanPhone}?text=Hola%20${r.nombre},%20veo%20que%20usas%20${r.dispositivo || 'Smart TV'}.%20Vengo%20de%20Smartplay" 
                            style="background:#25D366; color:black; padding:5px 12px; text-decoration:none; font-weight:bold; border-radius:5px; font-size:11px;" 
                            target="_blank">Contactar</a>
                     </td>
@@ -84,7 +98,7 @@ app.get('/admin-prospectos', auth, (req, res) => {
         });
 
         if (rows.length === 0) {
-            html += `<tr><td colspan="5" style="padding:40px; color:#64748b;">No hay registros nuevos actualmente.</td></tr>`;
+            html += `<tr><td colspan="6" style="padding:40px; color:#64748b;">No hay registros nuevos actualmente.</td></tr>`;
         }
 
         res.send(html + "</table></body>");
