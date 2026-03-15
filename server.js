@@ -23,12 +23,13 @@ const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
         db.run(`CREATE TABLE IF NOT EXISTS prospectos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            nombre TEXT, 
-            whatsapp TEXT, 
-            producto TEXT, 
-            fecha DATETIME DEFAULT CURRENT_TIMESTAMP
-        )`);
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    whatsapp TEXT,
+    producto TEXT,
+    dispositivo TEXT, 
+    fecha DATETIME
+)`);
     }
 });
 
@@ -38,13 +39,21 @@ const auth = basicAuth({
     challenge: true
 });
 
-// Ruta para guardar prospectos
+// Busca la parte donde diga app.post('/api/prospectos' ...
 app.post('/api/prospectos', (req, res) => {
-    const { nombre, whatsapp, producto } = req.body;
-    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
-    [nombre, whatsapp, producto || 'Demo'], (err) => {
-        if (err) return res.status(500).json({ error: "Error de servidor" });
-        res.status(200).json({ success: true });
+    // 1. Añade 'dispositivo' aquí para que el servidor lo reconozca
+    const { nombre, whatsapp, producto, dispositivo } = req.body; 
+
+    // 2. Asegúrate de que el INSERT tenga 5 campos (nombre, whatsapp, producto, dispositivo, fecha)
+    const query = `INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo, fecha) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)`;
+    
+    // 3. Pasa los 4 valores correspondientes
+    db.run(query, [nombre, whatsapp, producto, dispositivo], function(err) {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).send("Error al guardar");
+        }
+        res.status(200).send("Registro exitoso");
     });
 });
 
