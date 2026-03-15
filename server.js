@@ -22,19 +22,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
-       db.run(`CREATE TABLE IF NOT EXISTS prospectos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT,
-    whatsapp TEXT,
-    producto TEXT,
-    dispositivo TEXT, 
-    fecha DATETIME
-)`, (err) => {
-    if (err) {
-        // Si la tabla ya existe y falla al crearla, intentamos añadir solo la columna
-        db.run(`ALTER TABLE prospectos ADD COLUMN dispositivo TEXT`, (err) => {
-            if (err) console.log("La columna dispositivo ya existe o no se pudo añadir.");
-        });
+        db.run(`CREATE TABLE IF NOT EXISTS prospectos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            nombre TEXT, 
+            whatsapp TEXT, 
+            producto TEXT, 
+            fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`);
     }
 });
 
@@ -44,18 +38,13 @@ const auth = basicAuth({
     challenge: true
 });
 
-// Busca la parte donde diga app.post('/api/prospectos' ...
+// Ruta para guardar prospectos
 app.post('/api/prospectos', (req, res) => {
-    const { nombre, whatsapp, producto, dispositivo } = req.body;
-    
-    const query = `INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo, fecha) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)`;
-    
-    db.run(query, [nombre, whatsapp, producto, dispositivo], function(err) {
-        if (err) {
-            console.error(err.message);
-            return res.status(500).json({ error: "Error al guardar en base de datos" });
-        }
-        res.status(200).json({ mensaje: "Registro exitoso", id: this.lastID });
+    const { nombre, whatsapp, producto } = req.body;
+    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto) VALUES (?, ?, ?)`, 
+    [nombre, whatsapp, producto || 'Demo'], (err) => {
+        if (err) return res.status(500).json({ error: "Error de servidor" });
+        res.status(200).json({ success: true });
     });
 });
 
