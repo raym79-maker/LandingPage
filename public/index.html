@@ -44,6 +44,17 @@
             50% { opacity: .5; }
         }
         .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        
+        /* BAJAR LOS PUNTOS DEL CARRUSEL */
+    .swiper-pagination {
+    bottom: -35px !important;
+    }
+
+    /* DAR ESPACIO EXTRA AL CONTENEDOR PARA QUE NO SE CORTEN LOS PUNTOS */
+    .mySwiper {
+    padding-bottom: 50px !important;
+    margin-bottom: 20px !important;
+    }
 
         /* Ajustes para el Carrusel y Compactación de espacios */
         .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
