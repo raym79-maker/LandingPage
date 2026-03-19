@@ -45,29 +45,15 @@
         }
         .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
-        /* Estilos personalizados para que el carrusel combine con tu web */
+        /* Ajustes para el Carrusel y Compactación de espacios */
         .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
         .swiper-pagination-bullet-active { background: #25D366 !important; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
         .swiper-slide { height: auto !important; display: flex !important; }
-    </style>
-</head>
 
-<style>
-        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s; }
-        .btn-whatsapp:hover { transform: scale(1.1); }
-        /* Animación para el badge de "EN VIVO" */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        
-        /* Ajustes para el Carrusel */
-        .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
-        .swiper-pagination-bullet-active { background: #25D366 !important; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
-        .swiper-slide { height: auto !important; display: flex !important; }
+        /* ELIMINAR HUECO ENTRE SECCIONES */
+        .mySwiper { padding-bottom: 20px !important; }
+        #descargas { padding-top: 10px !important; margin-top: -30px !important; }
+        #descargas h2 { margin-bottom: 25px !important; }
     </style>
 </head>
 <body class="antialiased font-sans">
