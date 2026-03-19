@@ -136,7 +136,7 @@
         </h1>
 
         <p class="text-lg md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
-            Miles de canales en vivo, deportes, series y estrenos en <span class="text-white font-bold italic">todos tus dispositivos</span>.
+            Más opciones para disfrutar deportes, series, peliculas, eventos y estrenos  <span class="text-white font-bold italic">en tus dispositivos favoritos</span>.
         </p>
 
         <div class="flex flex-col md:flex-row justify-center gap-4 hero-btns">
@@ -153,21 +153,17 @@
         
         <div class="swiper portadasSwiper !overflow-visible">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/f/ff/The_Batman_poster.jpg" class="portada-img" alt="Batman">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Joker_Folie_%C3%A0_Deux_poster.jpg" class="portada-img" alt="Joker">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpg" class="portada-img" alt="Dune">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Spider-Man_No_Way_Home_poster.jpg" class="portada-img" alt="Spiderman">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg" class="portada-img" alt="Avengers">
-                </div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7WsyChQZ3ZpIfoSTpSJ9vIunQ9q.jpg" class="portada-img" alt="Avengers"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/87m9YpS2WpPZ1o5rGst9JmZzJ6e.jpg" class="portada-img" alt="Dune"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vpnPlPlr7F9L3E56K4b4uR85P8p.jpg" class="portada-img" alt="Batman"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/huC1YpS7BMvUAI9p9uHfjPvetJ.jpg" class="portada-img" alt="Joker"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uS9mY7vU97SqcS97SqcS97SqcS9.jpg" class="portada-img" alt="Spiderman"></div>
+                
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7WsyChQZ3ZpIfoSTpSJ9vIunQ9q.jpg" class="portada-img"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/87m9YpS2WpPZ1o5rGst9JmZzJ6e.jpg" class="portada-img"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vpnPlPlr7F9L3E56K4b4uR85P8p.jpg" class="portada-img"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/huC1YpS7BMvUAI9p9uHfjPvetJ.jpg" class="portada-img"></div>
+                <div class="swiper-slide"><img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uS9mY7vU97SqcS97SqcS97SqcS9.jpg" class="portada-img"></div>
             </div>
         </div>
     </div>
@@ -542,7 +538,10 @@ var swiperPortadas = new Swiper(".portadasSwiper", {
     centeredSlides: true,
     slidesPerView: "auto",
     loop: true,
-    autoplay: { delay: 2500 },
+    autoplay: {
+        delay: 2000, // Se mueve cada 2 segundos
+        disableOnInteraction: false,
+    },
     coverflowEffect: {
         rotate: 30,
         stretch: 0,
