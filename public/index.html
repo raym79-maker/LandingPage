@@ -96,10 +96,10 @@
         <div class="flex flex-col md:flex-row justify-center gap-4 hero-btns">
             <a href="#registro" class="bg-brand text-black px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition text-sm">Solicitar Demo</a>
             <a href="#planes" class="glass border border-gray-700 px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition text-sm">Ver Planes</a>
-        </div>
-    </section>
+       </div>
+</section>
 
-    <section id="planes" class="py-16 px-6 max-w-7xl mx-auto">
+<section id="planes" class="py-16 px-6 max-w-7xl mx-auto">
         <h2 class="text-4xl font-black text-center mb-12 uppercase italic tracking-tighter text-white">Nuestros Planes Premium</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -448,8 +448,8 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-    // INICIALIZACIÓN DEL CARRUSEL DE TESTIMONIOS
-    var swiper = new Swiper(".mySwiper", {
+    // 1. INICIALIZACIÓN DEL CARRUSEL DE TESTIMONIOS (El que ya tenías)
+    var swiperTestimonios = new Swiper(".mySwiper", {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
@@ -461,6 +461,30 @@
         }
     });
 
+    // 2. INICIALIZACIÓN DEL CARRUSEL DE PORTADAS (Efecto Cine 3D)
+    var swiperPortadas = new Swiper(".portadasSwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        speed: 800,
+        autoplay: { 
+            delay: 2500, 
+            disableOnInteraction: false 
+        },
+        coverflowEffect: {
+            rotate: 25,      // Inclinación de las portadas laterales
+            stretch: 0,       // Espacio entre ellas
+            depth: 150,       // Profundidad 3D
+            modifier: 1,      
+            slideShadows: true, // Sombras para realismo
+        },
+    });
+
+    // A continuación debería seguir tu lógica de:
+    // document.getElementById('prospectForm').addEventListener...
+</script>
     // LÓGICA DEL FORMULARIO
     document.getElementById('prospectForm').addEventListener('submit', async (e) => {
         e.preventDefault();
