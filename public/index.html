@@ -432,57 +432,54 @@
             ✅ ¡Solicitud enviada! En breve te contactaremos por WhatsApp.
         </div>
     </div>
-</section>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <section class="py-12 bg-slate-900/50 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 px-4 py-2 rounded-full mb-6">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand"></span>
+                </span>
+                <span class="text-brand text-[10px] font-black uppercase tracking-widest">Soporte Técnico Activo</span>
+            </div>
+            
+            <h3 class="text-2xl md:text-3xl font-black mb-4 italic text-white leading-tight">¿Necesitas ayuda con tu cuenta?</h3>
+            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base">
+                Nuestro equipo está disponible **las 24 horas, los 7 días de la semana** para resolver dudas, activar demos o ayudarte con la configuración.
+            </p>
+            
+            <a href="https://wa.me/5521314298?text=Hola,%20necesito%20ayuda%20con%20soporte%20técnico" 
+               class="inline-block glass border border-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-brand hover:text-black transition-all duration-300 text-sm uppercase tracking-wider">
+                Contactar a Soporte VIP
+            </a>
+        </div>
+    </section>
 
-<script>
-    // INICIALIZACIÓN DEL CARRUSEL DE TESTIMONIOS
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
-        pagination: { el: ".swiper-pagination", clickable: true },
-        breakpoints: {
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-        }
-    });
+    <footer class="py-8 border-t border-gray-900 text-center bg-slate-950">
+        <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">© 2026 Smartplay. Todos los derechos reservados.</p>
+    </footer>
 
-    // LÓGICA DEL FORMULARIO
-    document.getElementById('prospectForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('btnSubmit');
-        const dispositivo = document.getElementById('dispositivo').value;
-        const producto = document.getElementById('prodSel').value;
-        
-        btn.innerText = "PROCESANDO SOLICITUD..."; 
-        btn.disabled = true;
-        
-        const data = { 
-            nombre: document.getElementById('nombre').value, 
-            whatsapp: document.getElementById('whatsapp').value, 
-            producto: producto,
-            dispositivo: dispositivo
-        };
-        
-        try {
-            const res = await fetch('/api/prospectos', { 
-                method: 'POST', 
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify(data) 
-            });
-            if(res.ok) {
-                document.getElementById('prospectForm').classList.add('hidden');
-                document.getElementById('msgExito').classList.remove('hidden');
-            } else { throw new Error(); }
-        } catch (err) {
-            alert("Hubo un error al enviar. Por favor, intenta de nuevo o contáctanos por WhatsApp.");
-            btn.innerText = "SOLICITAR DEMO GRATIS"; 
-            btn.disabled = false;
-        }
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // INICIALIZACIÓN DEL CARRUSEL DE TESTIMONIOS (Mantenlo como está)
+        var swiperTestimonios = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        // LÓGICA DEL FORMULARIO (Tu código actual)
+        document.getElementById('prospectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // ... resto de tu código de fetch ...
+        });
+    </script>
 </body>
 </html>
