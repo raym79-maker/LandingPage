@@ -45,34 +45,30 @@
         }
         .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         
-        /* ESTE ES EL CÓDIGO PARA BAJAR LOS PUNTOS */
-        .mySwiper {
-            padding-bottom: 60px !important; /* Aumentamos el espacio interno abajo */
-            overflow: visible !important;   /* Esto evita que los puntos desaparezcan al bajarlos */
-        }
+        /* AJUSTE FINAL TESTIMONIOS */
+.mySwiper {
+    padding-bottom: 45px !important; /* Espacio justo para los puntos */
+    overflow: visible !important;
+}
 
-        .swiper-pagination {
-            bottom: 0px !important; /* Lo posicionamos al ras del nuevo espacio */
-        }
+.swiper-pagination {
+    bottom: 5px !important; /* Sube un poquito los puntos para que no floten tanto */
+}
 
-        #descargas {
-            margin-top: 20px !important; /* Separamos la siguiente sección para que no choque */
-        }
-    </style>
-</head>
+/* PUNTOS EN COLOR VERDE BRAND */
+.swiper-pagination-bullet {
+    background: rgba(255,255,255,0.3) !important;
+    opacity: 1 !important;
+    width: 10px !important;
+    height: 10px !important;
+}
 
-        /* Ajustes para el Carrusel y Compactación de espacios */
-        .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
-        .swiper-pagination-bullet-active { background: #25D366 !important; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
-        .swiper-slide { height: auto !important; display: flex !important; }
-
-        /* ELIMINAR HUECO ENTRE SECCIONES */
-        .mySwiper { padding-bottom: 20px !important; }
-        #descargas { padding-top: 10px !important; margin-top: -30px !important; }
-        #descargas h2 { margin-bottom: 25px !important; }
-    </style>
-</head>
-<body class="antialiased font-sans">
+.swiper-pagination-bullet-active {
+    background: #25D366 !important; /* Cambiamos el azul por tu verde */
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.8); /* Brillo verde */
+    width: 12px !important;
+    height: 12px !important;
+}
 
     <a href="https://wa.me/5521314298?text=Hola,%20vengo%20de%20tu%20página%20y%20solicito%20una%20Demo" class="btn-whatsapp" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" height="30" alt="WhatsApp">
@@ -268,7 +264,7 @@
     </section>
     </section>
 
-<section id="descargas" class="py-12 px-6 max-w-7xl mx-auto text-white">
+<section id="descargas" class="py-10 px-6 max-w-7xl mx-auto text-white">
     <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-tighter italic">Descarga de <span class="text-brand">APPS</span></h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
