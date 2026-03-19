@@ -71,7 +71,30 @@
             transform: scale(1.05);
         }
         /* ------------------------------------------------ */
+/* FUERZA EL TAMAÑO DE LAS PORTADAS */
+.portadasSwiper {
+    padding: 40px 0 !important;
+}
 
+.portadasSwiper .swiper-slide {
+    width: 180px !important; /* Ancho en móvil */
+    height: 270px !important; /* Proporción de póster */
+}
+
+@media (min-width: 768px) {
+    .portadasSwiper .swiper-slide {
+        width: 260px !important; /* Ancho en PC */
+        height: 390px !important;
+    }
+}
+
+.portada-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Para que la imagen no se deforme */
+    border-radius: 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
     </style>
 </head>
 
@@ -123,30 +146,27 @@
 </section>
 
 <section id="estrenos" class="py-12 overflow-hidden bg-slate-950/20 border-y border-gray-800/50">
-    <div class="max-w-7xl mx-auto px-6">
-        <p class="text-center text-[10px] font-black text-brand mb-8 uppercase tracking-[0.4em] animate-pulse italic">
-            🔥 Estrenos Exclusivos en Smartplay
+    <div class="max-w-7xl mx-auto">
+        <p class="text-center text-[10px] font-black text-brand mb-8 uppercase tracking-[0.4em] animate-pulse">
+            🔥 Estrenos Semanales
         </p>
         
         <div class="swiper portadasSwiper !overflow-visible">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/6v896898d9e79d98e79d98e79d98.jpg" class="portada-img" alt="Avengers">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/ff/The_Batman_poster.jpg" class="portada-img" alt="Batman">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/87m9YpS2WpPZ1o5rGst9JmZzJ6e.jpg" class="portada-img" alt="Dune">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Joker_Folie_%C3%A0_Deux_poster.jpg" class="portada-img" alt="Joker">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/vpnPlPlr7F9L3E56K4b4uR85P8p.jpg" class="portada-img" alt="The Batman">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpg" class="portada-img" alt="Dune">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/7WsyChQZ3ZpIfoSTpSJ9vIunQ9q.jpg" class="portada-img" alt="Spider-Man">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/Spider-Man_No_Way_Home_poster.jpg" class="portada-img" alt="Spiderman">
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/huC1YpS7BMvUAI9p9uHfjPvetJ.jpg" class="portada-img" alt="Joker">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://image.tmdb.org/t/p/w500/pB8BM79vU6tMvPbqBhAcUkgpA9N.jpg" class="portada-img" alt="Deadpool">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg" class="portada-img" alt="Avengers">
                 </div>
             </div>
         </div>
@@ -520,14 +540,13 @@ var swiperPortadas = new Swiper(".portadasSwiper", {
     effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
-    slidesPerView: "auto", // IMPORTANTE: Dejar en auto
+    slidesPerView: "auto",
     loop: true,
-    speed: 800,
-    autoplay: { delay: 2500, disableOnInteraction: false },
+    autoplay: { delay: 2500 },
     coverflowEffect: {
-        rotate: 20,
+        rotate: 30,
         stretch: 0,
-        depth: 200,
+        depth: 100,
         modifier: 1,
         slideShadows: true,
     },
