@@ -45,10 +45,33 @@
         }
         .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
-        /* Estilos personalizados para que el carrusel combine con tu web */
-        .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
-        .swiper-pagination-bullet-active { background: #25D366 !important; box-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
-        .swiper-slide { height: auto !important; display: flex !important; }
+        /* --- AQUÍ PEGAS EL NUEVO CSS PARA LAS PORTADAS --- */
+        .portadasSwiper .swiper-slide {
+            width: 160px !important; 
+            transition: transform 0.5s;
+        }
+
+        @media (min-width: 768px) {
+            .portadasSwiper .swiper-slide {
+                width: 240px !important;
+            }
+        }
+
+        .portada-img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.5s, transform 0.5s;
+        }
+
+        .portada-img:hover {
+            border-color: rgba(37, 211, 102, 0.5);
+            transform: scale(1.05);
+        }
+        /* ------------------------------------------------ */
+
     </style>
 </head>
 
@@ -107,28 +130,28 @@
         
         <div class="swiper portadasSwiper !overflow-visible">
             <div class="swiper-wrapper">
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/6v896898d9e79d98e79d98e79d98.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105 shadow-brand/10" alt="Avengers">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/6v896898d9e79d98e79d98e79d98.jpg" class="portada-img" alt="Avengers">
                 </div>
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/87m9YpS2WpPZ1o5rGst9JmZzJ6e.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105" alt="Dune">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/87m9YpS2WpPZ1o5rGst9JmZzJ6e.jpg" class="portada-img" alt="Dune">
                 </div>
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/vpnPlPlr7F9L3E56K4b4uR85P8p.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105" alt="The Batman">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/vpnPlPlr7F9L3E56K4b4uR85P8p.jpg" class="portada-img" alt="The Batman">
                 </div>
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/7WsyChQZ3ZpIfoSTpSJ9vIunQ9q.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105" alt="Spider-Man">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/7WsyChQZ3ZpIfoSTpSJ9vIunQ9q.jpg" class="portada-img" alt="Spider-Man">
                 </div>
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/huC1YpS7BMvUAI9p9uHfjPvetJ.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105" alt="Joker">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/huC1YpS7BMvUAI9p9uHfjPvetJ.jpg" class="portada-img" alt="Joker">
                 </div>
-                <div class="swiper-slide !w-44 md:!w-60">
-                    <img src="https://image.tmdb.org/t/p/w500/pB8BM79vU6tMvPbqBhAcUkgpA9N.jpg" class="rounded-2xl shadow-2xl border border-white/10 hover:border-brand/50 transition duration-500 transform hover:scale-105" alt="Deadpool">
+                <div class="swiper-slide">
+                    <img src="https://image.tmdb.org/t/p/w500/pB8BM79vU6tMvPbqBhAcUkgpA9N.jpg" class="portada-img" alt="Deadpool">
                 </div>
             </div>
         </div>
     </div>
-</section>	
+</section>
 	
 <section id="planes" class="py-16 px-6 max-w-7xl mx-auto">
         <h2 class="text-4xl font-black text-center mb-12 uppercase italic tracking-tighter text-white">Nuestros Planes Premium</h2>
@@ -492,26 +515,23 @@
         }
     });
 
-    // 2. INICIALIZACIÓN DEL CARRUSEL DE PORTADAS (Efecto Cine 3D)
-    var swiperPortadas = new Swiper(".portadasSwiper", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        loop: true,
-        speed: 800,
-        autoplay: { 
-            delay: 2500, 
-            disableOnInteraction: false 
-        },
-        coverflowEffect: {
-            rotate: 25,      // Inclinación de las portadas laterales
-            stretch: 0,       // Espacio entre ellas
-            depth: 150,       // Profundidad 3D
-            modifier: 1,      
-            slideShadows: true, // Sombras para realismo
-        },
-    });
+    // INICIALIZACIÓN DEL CARRUSEL DE PORTADAS (Efecto Cine)
+var swiperPortadas = new Swiper(".portadasSwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto", // IMPORTANTE: Dejar en auto
+    loop: true,
+    speed: 800,
+    autoplay: { delay: 2500, disableOnInteraction: false },
+    coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 200,
+        modifier: 1,
+        slideShadows: true,
+    },
+});
 
     // A continuación debería seguir tu lógica de:
     // document.getElementById('prospectForm').addEventListener...
