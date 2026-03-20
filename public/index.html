@@ -99,6 +99,55 @@
         </a>
     </div>
 
+<div class="flex flex-col sm:flex-row justify-center gap-5">
+            <a href="#planes" class="...">Explorar Planes</a>
+            <a href="#descargas" class="...">Descargar Apps</a>
+        </div>
+    </section> ```
+
+**2. Pega este nuevo bloque JUSTO DESPUÉS de ese `</section>`:**
+
+```html
+    <section id="mundial-landing" class="py-16 bg-slate-900/30 border-t border-b border-gray-800 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            
+            <img src="/img/Mundial2026.png" 
+                 alt="Smartplay Mundial 2026" 
+                 class="w-full max-w-5xl mx-auto rounded-[2rem] shadow-2xl shadow-brand/10 border-2 border-brand/10 hover:border-brand/30 transition-all duration-500 mb-16">
+
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">
+                    MUNDIAL 2026: <span class="text-brand">LA FIESTA DEL FÚTBOL EN TU PANTALLA</span>
+                </h2>
+                
+                <p class="text-lg text-gray-400 mb-12 leading-relaxed">
+                    Prepárate para vivir la pasión como nunca antes. Con Smartplay, no solo tienes acceso a **+2000 canales**, sino a señales **exclusivas, estables y en HD** para disfrutar cada partido sin cortes ni interrupciones.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left mb-16 max-w-2xl mx-auto bg-black/40 p-8 rounded-3xl border border-gray-800">
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand font-black text-xl">✅</span>
+                        <p class="text-xs text-white uppercase font-bold"><span class="block text-brand font-black">COBERTURA TOTAL</span> Todos los partidos de la Copa 2026.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand font-black text-xl">✅</span>
+                        <p class="text-xs text-white uppercase font-bold"><span class="block text-brand font-black">CALIDAD HD</span> Transmisiones en alta definición.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand font-black text-xl">✅</span>
+                        <p class="text-xs text-white uppercase font-bold"><span class="block text-brand font-black">STREAMS ESTABLES</span> Tecnología optimizada para cero cortes.</p>
+                    </div>
+                </div>
+
+                <a href="#planes" class="inline-block bg-brand text-black px-12 py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-brand/30 text-sm">
+                    ELIGE TU PLAN MUNDIALISTA
+                </a>
+            </div>
+        </div>
+    </section>
+        
     <section id="planes" class="py-20 px-6 max-w-7xl mx-auto">
        
         <h2 class="text-4xl font-black text-center mb-12 uppercase italic tracking-tighter text-white">Nuestros Planes</h2>
