@@ -9,14 +9,8 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-    <meta name="description" content="¿Buscas IPTV estable? Smartplay te ofrece +2000 canales en vivo y contenido exclusivo de todas las plataformas. Precios desde $130 MXN. ¡Activa tu demo por WhatsApp!">
+    <meta name="description" content="¿Buscas IPTV estable? Smartplay ofrece +2000 canales en vivo y contenido exclusivo. Planes desde $130 MXN. ¡Activa tu demo por WhatsApp!">
     
-    <meta property="og:title" content="Smartplay | IPTV PREMIUM">
-    <meta property="og:description" content="¿Buscas IPTV estable? +2000 canales, cine y series. Solicita tu Demo Gratis aquí.">
-    <meta property="og:image" content="https://www.smartplay.com.mx/img/logo-og.png">
-    <meta property="og:url" content="https://www.smartplay.com.mx/">
-    <meta property="og:type" content="website">
-
     <title>Smartplay | IPTV PREMIUM</title>
     <link rel="icon" type="image/png" href="/img/logo.png">
     
@@ -33,459 +27,305 @@
         }
     </script>
     
-<style>
-        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s; }
-        .btn-whatsapp:hover { transform: scale(1.1); }
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0f172a; color: white; margin: 0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .btn-whatsapp { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; border-radius: 50px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 1000; transition: all 0.3s ease; }
+        .btn-whatsapp:hover { transform: scale(1.1) rotate(5deg); }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .animate-pulse-soft { animation: pulse 3s infinite; }
 
-        /* Ajuste Testimonios (Puntos Verdes y Bajos) */
-        .mySwiper {
-            padding-bottom: 50px !important;
-            overflow: visible !important;
-        }
-        .swiper-pagination {
-            bottom: 0px !important;
-        }
-        .swiper-pagination-bullet {
-            background: rgba(255,255,255,0.2) !important;
-            opacity: 1 !important;
-        }
-        .swiper-pagination-bullet-active {
-            background: #25D366 !important;
-            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
-        }
+        .mySwiper { padding-bottom: 70px !important; overflow: visible !important; }
+        .swiper-pagination { bottom: 0px !important; }
+        .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1 !important; width: 10px; height: 10px; transition: all 0.3s; }
+        .swiper-pagination-bullet-active { background: #25D366 !important; width: 25px; border-radius: 5px; box-shadow: 0 0 15px rgba(37, 211, 102, 0.6); }
 
-        /* Compactación Global */
-        #descargas {
-            padding-top: 20px !important;
-            margin-top: 0 !important;
-        }
+        section[id] { scroll-margin-top: 100px; }
+        input, select { transition: all 0.3s ease; }
+        input:focus, select:focus { border-color: #25D366 !important; box-shadow: 0 0 10px rgba(37, 211, 102, 0.2); }
     </style>
+</head>
+
+<body>
 
     <a href="https://wa.me/5521314298?text=Hola,%20vengo%20de%20tu%20página%20y%20solicito%20una%20Demo" class="btn-whatsapp" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" height="30" alt="WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" height="35" alt="WhatsApp">
     </a>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-[100] glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
             <img src="/img/logo.png" alt="Smartplay Logo" class="w-10 h-10 rounded-lg object-cover shadow-lg shadow-brand/20">
             <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
         </div>
-        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-white transition text-center shadow-md">Solicitar Demo</a>
+        <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-300">
+            <a href="#planes" class="hover:text-brand transition">Planes</a>
+            <a href="#descargas" class="hover:text-brand transition">Apps</a>
+            <a href="#faq" class="hover:text-brand transition">Dudas</a>
+        </div>
+        <a href="#registro" class="bg-brand text-black px-5 py-2.5 rounded-xl font-black text-xs uppercase hover:bg-white transition-all shadow-lg shadow-brand/20">Solicitar Demo</a>
     </nav>
 
-    <section class="pt-48 pb-24 px-6 max-w-5xl mx-auto text-center">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-[1.1] text-white">
-            TV Premium <span class="text-brand">sin cortes</span>, sin contratos y lista en <span class="text-brand">minutos</span>.
+    <section class="pt-56 pb-32 px-6 max-w-6xl mx-auto text-center relative">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full -z-10"></div>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 uppercase tracking-tighter italic leading-[0.9] text-white">
+            TV Premium <br><span class="text-brand">sin cortes</span> y lista en <span class="text-brand">minutos</span>.
         </h1>
-
-        <p class="text-lg md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
-            Más opciones para disfrutar deportes, series, peliculas y eventos en tus <span class="text-white font-bold italic">dispositivos favoritos</span>.
+        <p class="text-lg md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+            La mejor estabilidad para disfrutar deportes, cine y series en tus <span class="text-white font-bold italic">dispositivos favoritos</span>.
         </p>
-
-        <div class="flex flex-col md:flex-row justify-center gap-4 hero-btns">
-        <a href="#planes" class="bg-brand text-black px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition text-sm">
-            Ver Planes  
-        </a>
-        <a href="#descargas" class="glass border border-gray-700 px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition text-sm">
-            Descarga de Apps
-        </a>
-    </div>
-
-    <section id="planes" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-black text-center mb-12 uppercase italic tracking-tighter text-white">Nuestros Planes Premium</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-<div class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-12 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">                <img src="/img/tu latino.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="Tu Latino">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">TU LATINO</h3>
-                <div class="text-brand text-4xl font-black my-3">$250 MXN</div>
-                <div class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                        <span class="w-2 h-2 bg-white rounded-full"></span> PREMIUM </span>
-                    </div>
-                    <img src="/img/LATINOlive.png" alt="Tu Latino Premium" class="w-full h-48 md:h-72 object-contain transition duration-500 group-hover:scale-105">
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-8 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 11,000 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +55,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +14,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
-                </ul>
-            </div>
-
-<div class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-12 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="M327 Logo">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">M327</h3>
-                <div class="text-brand text-4xl font-black my-3">$200 MXN</div>
-                <div class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-slate-950">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> EN VIVO
-                        </span>
-                    </div>
-                    <img src="/img/M327live.png" alt="M327 Canales en Vivo" class="w-full h-48 md:h-72 object-contain bg-black transition duration-500 group-hover:scale-105">
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-8 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 2,000 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +40,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +20,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
-                </ul>
-            </div>
-
-<div class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-12 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">                <img src="/img/alfatv.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="ALFATV">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">ALFATV</h3>
-                <div class="text-brand text-4xl font-black my-3">$180 MXN</div>
-                <div class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-green-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                        <span class="w-2 h-2 bg-white rounded-full"></span> 4K </span>
-                    </div>
-                    <img src="/img/ALFATVmovies.png" alt="AlfaTV Películas" class="w-full h-48 md:h-72 object-contain transition duration-500 group-hover:scale-105">
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-8 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 1,500 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +25,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +3,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
-                </ul>
-            </div>
-
-            <div class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-12 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/ledtv.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="LEDTV">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">LEDTV</h3>
-                <div class="text-brand text-4xl font-black my-3">$130 MXN</div>
-                <div class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-yellow-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                        <span class="w-2 h-2 bg-white rounded-full"></span> FAMILIAR </span>
-                    </div>
-                    <img src="/img/LEDTVlive.png" alt="LEDTV Canales" class="w-full h-48 md:h-72 object-contain transition duration-500 group-hover:scale-105">
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-8 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 2,400 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +19,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +5,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="pt-12 pb-6 overflow-hidden">
-            <h2 class="text-3xl font-black text-center mb-12 uppercase italic text-white tracking-tighter italic">
-                Lo que dicen nuestros <span class="text-brand">Clientes</span>
-            </h2>
-           <div class="swiper mySwiper pb-12">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Recomendado al 100% siempre tiene disponibilidad de tiempo y atención al cliente 👌🏾👌🏾👌🏾👌🏾👌🏾."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">R</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Arias R. <span class="text-gray-500 block font-normal lowercase">Xalapa</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Súper confiable!⭐️⭐️⭐️⭐️⭐️."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">L</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Ilse G. <span class="text-gray-500 block font-normal lowercase">Ciudad de Mexico</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Excelente soporte técnico. Me ayudaron a instalarlo en mi Smart TV en minutos."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">J</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Juan P. <span class="text-gray-500 block font-normal lowercase">Guadalajara</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Excelente servicio, y siempre están al pendiente de uno."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">M</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Juan P. <span class="text-gray-500 block font-normal lowercase">Ciudad de Mexico</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"El mejor servicio post-venta. Siempre responden rápido mis dudas."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">A</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Andrés T. <span class="text-gray-500 block font-normal lowercase">Querétaro</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                <div>
-                    <div class="text-brand mb-4 text-xs font-bold">★★★★★</div>
-                    <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Recomendado llevo varios años con el servicio."</p>
-                </div>
-                <div class="flex items-center gap-4 mt-auto">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">S</div>
-                    <span class="font-bold text-white uppercase text-[10px]">Aldo V. <span class="text-gray-500 block font-normal lowercase">Tijuana</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="swiper-pagination"></div>
-</div>
+        <div class="flex flex-col sm:flex-row justify-center gap-5">
+            <a href="#planes" class="bg-brand text-black px-12 py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-brand/30">Explorar Planes</a>
+            <a href="#descargas" class="glass border border-gray-700 px-12 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-gray-800 transition-all">Descargar Apps</a>
         </div>
     </section>
+
+    <section id="planes" class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-black text-center mb-16 uppercase italic tracking-tighter">Nuestros <span class="text-brand">Planes</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass rounded-[2.5rem] p-8 flex flex-col items-center transition-all duration-500 hover:scale-[1.03] hover:border-brand/40 group">
+                <img src="/img/tu latino.jpg" class="h-20 w-auto rounded-xl mb-4 group-hover:rotate-3 transition" alt="Tu Latino">
+                <h3 class="text-2xl font-black italic">TU LATINO</h3>
+                <div class="text-brand text-3xl font-black my-2">$250 MXN</div>
+                <div class="my-4 w-full bg-black rounded-2xl p-2">
+                    <img src="/img/LATINOlive.png" class="w-full h-40 object-contain" alt="Live">
+                </div>
+                <ul class="text-[10px] space-y-2 font-bold uppercase w-full mt-4">
+                    <li class="flex items-center gap-2">✅ 11,000 Canales</li>
+                    <li class="flex items-center gap-2">✅ +55,000 Pelis</li>
+                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
+                </ul>
+            </div>
+
+            <div class="glass rounded-[2.5rem] p-8 flex flex-col items-center transition-all duration-500 hover:scale-[1.03] hover:border-brand/40 group border-brand/20">
+                <img src="/img/m327.jpg" class="h-20 w-auto rounded-xl mb-4 group-hover:rotate-3 transition" alt="M327">
+                <h3 class="text-2xl font-black italic text-brand">M327 PRO</h3>
+                <div class="text-white text-3xl font-black my-2">$200 MXN</div>
+                <div class="my-4 w-full bg-black rounded-2xl p-2">
+                    <img src="/img/M327live.png" class="w-full h-40 object-contain" alt="M327 Live">
+                </div>
+                <ul class="text-[10px] space-y-2 font-bold uppercase w-full mt-4">
+                    <li class="flex items-center gap-2">✅ 2,000 Canales</li>
+                    <li class="flex items-center gap-2">✅ +40,000 Pelis</li>
+                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
+                </ul>
+            </div>
+
+            <div class="glass rounded-[2.5rem] p-8 flex flex-col items-center transition-all duration-500 hover:scale-[1.03] hover:border-brand/40 group">
+                <img src="/img/alfatv.jpg" class="h-20 w-auto rounded-xl mb-4 group-hover:rotate-3 transition" alt="AlfaTV">
+                <h3 class="text-2xl font-black italic">ALFA TV</h3>
+                <div class="text-brand text-3xl font-black my-2">$180 MXN</div>
+                <div class="my-4 w-full bg-black rounded-2xl p-2">
+                    <img src="/img/ALFATVmovies.png" class="w-full h-40 object-contain" alt="Alfa">
+                </div>
+                <ul class="text-[10px] space-y-2 font-bold uppercase w-full mt-4">
+                    <li class="flex items-center gap-2">✅ 1,500 Canales</li>
+                    <li class="flex items-center gap-2">✅ +25,000 Pelis</li>
+                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
+                </ul>
+            </div>
+
+            <div class="glass rounded-[2.5rem] p-8 flex flex-col items-center transition-all duration-500 hover:scale-[1.03] hover:border-brand/40 group">
+                <img src="/img/ledtv.jpg" class="h-20 w-auto rounded-xl mb-4 group-hover:rotate-3 transition" alt="LedTV">
+                <h3 class="text-2xl font-black italic">LED TV</h3>
+                <div class="text-brand text-3xl font-black my-2">$130 MXN</div>
+                <div class="my-4 w-full bg-black rounded-2xl p-2">
+                    <img src="/img/LEDTVlive.png" class="w-full h-40 object-contain" alt="Led">
+                </div>
+                <ul class="text-[10px] space-y-2 font-bold uppercase w-full mt-4">
+                    <li class="flex items-center gap-2">✅ 2,400 Canales</li>
+                    <li class="flex items-center gap-2">✅ +19,000 Pelis</li>
+                    <li class="flex items-center gap-2">✅ 3 Dispositivos</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
-<section id="descargas" class="py-10 px-6 max-w-7xl mx-auto text-white">
-    <h2 class="text-4xl font-black text-center mb-16 uppercase tracking-tighter italic">Descarga de <span class="text-brand">APPS</span></h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-        <div class="glass border border-gray-800 p-6 rounded-[2.5rem] shadow-2xl flex flex-col items-center">
-            <p class="text-center text-sm font-bold text-brand mb-6 uppercase tracking-widest">Tiendas Disponibles</p>
-            <div class="w-full bg-black/20 p-2 rounded-2xl">
-                <img src="/img/logdisp.png" alt="Logos compatibles" class="w-full h-auto rounded-xl">
+    <section id="testimonios" class="py-24 bg-slate-900/40">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-black text-center mb-16 uppercase italic">Opiniones Reales</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="glass p-8 rounded-[2rem] border border-gray-800 h-full">
+                            <div class="text-brand mb-4 text-xs font-bold tracking-widest">★★★★★</div>
+                            <p class="text-gray-300 italic text-sm mb-6 leading-relaxed">"Recomendado al 100% siempre tiene disponibilidad de tiempo y atención al cliente 👌🏾."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div class="w-10 h-10 bg-brand text-black rounded-full flex items-center justify-center font-black">R</div>
+                                <span class="font-bold text-[10px] uppercase">Arias R. <span class="text-gray-500 block lowercase">Xalapa</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="glass p-8 rounded-[2rem] border border-gray-800 h-full">
+                            <div class="text-brand mb-4 text-xs font-bold tracking-widest">★★★★★</div>
+                            <p class="text-gray-300 italic text-sm mb-6 leading-relaxed">"El servicio es muy fluido, casi no se traba y el soporte es excelente. Súper confiable!⭐️."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div class="w-10 h-10 bg-brand text-black rounded-full flex items-center justify-center font-black">I</div>
+                                <span class="font-bold text-[10px] uppercase">Ilse G. <span class="text-gray-500 block lowercase">CDMX</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="glass p-8 rounded-[2rem] border border-gray-800 h-full">
+                            <div class="text-brand mb-4 text-xs font-bold tracking-widest">★★★★★</div>
+                            <p class="text-gray-300 italic text-sm mb-6 leading-relaxed">"Llevo 2 años con ellos y la verdad no los cambio. Muy buena atención."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div class="w-10 h-10 bg-brand text-black rounded-full flex items-center justify-center font-black">S</div>
+                                <span class="font-bold text-[10px] uppercase">Aldo V. <span class="text-gray-500 block lowercase">Tijuana</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
+    </section>
 
-        <div class="glass border border-gray-800 p-6 rounded-[2.5rem] shadow-2xl flex flex-col items-center">
-            <p class="text-center text-sm font-bold text-brand mb-6 uppercase tracking-widest">Interfaz del Servicio</p>
-            <div class="w-full overflow-hidden rounded-2xl">
-                <img src="/img/dispositivos.png" alt="Smartplay Interfaz" class="w-full h-auto block hover:scale-105 transition duration-700">
-            </div>
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+    <section id="descargas" class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-black text-center mb-16 uppercase italic tracking-tighter">Zona de <span class="text-brand">Descargas</span></h2>
         
-        <div class="glass rounded-[2.5rem] border border-gray-800 p-8 flex flex-col space-y-4">
-            <h3 class="text-2xl font-black uppercase italic text-center mb-6 text-brand">Dispositivos Android</h3>
-            
-            <div class="space-y-4">
-                    <div class="bg-slate-900/50 p-5 rounded-2xl border border-gray-700/30 relative">
-                        <span class="absolute -top-3 right-4 bg-brand text-black text-[9px] font-black px-3 py-1 rounded-full uppercase">Recomendada</span>
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/m327.jpg" class="w-12 h-12 rounded-lg object-cover" alt="M327">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">M327 </h4>
-                                <div class="flex gap-2 mt-1">
-                                    <a href="https://m327pro.com/xc.apk" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded italic">DOWNLOADER: 5951699</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL IPTV SMARTERS:</p>
-                            <p class="text-xs font-mono font-bold text-white break-all">https://allinonestream.fans</p>
-                        </div>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="glass p-6 rounded-[2.5rem] flex flex-col items-center">
+                <p class="text-xs font-bold text-brand mb-4 uppercase">Disponibilidad</p>
+                <img src="/img/logdisp.png" class="w-full h-auto rounded-2xl" alt="Tiendas">
+            </div>
+            <div class="glass p-6 rounded-[2.5rem] flex flex-col items-center">
+                <p class="text-xs font-bold text-brand mb-4 uppercase">Interfaz</p>
+                <img src="/img/dispositivos.png" class="w-full h-auto rounded-2xl transition hover:scale-105" alt="Dispositivos">
+            </div>
+        </div>
 
-                    <div class="bg-slate-900/50 p-5 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/tu latino.jpg" class="w-12 h-12 rounded-lg object-cover" alt="Tu Latino">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">TU LATINO </h4>
-                                <div class="flex gap-2 mt-1">
-                                    <a href="http://aftv.news/973723" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 973723</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL IPTV SMARTERS:</p>
-                            <p class="text-xs font-mono font-bold text-white break-all">http://steeltv.net:8080</p>
-                        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div class="glass rounded-[2.5rem] p-8 border border-gray-800">
+                <h3 class="text-xl font-black uppercase italic text-brand mb-6 text-center">Instalación Android / Firestick</h3>
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-5 rounded-2xl border border-gray-700/30">
+                        <h4 class="font-bold text-sm uppercase mb-2">M327 Player</h4>
+                        <p class="text-[10px] text-gray-400 mb-3 italic">Código Downloader: 5951699</p>
+                        <a href="https://m327pro.com/xc.apk" target="_blank" class="inline-block px-4 py-2 bg-brand text-black rounded-lg text-[10px] font-black uppercase transition hover:bg-white">Bajar APK</a>
                     </div>
-
-                    <div class="bg-slate-900/50 p-5 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/ledtv.jpg" class="w-12 h-12 rounded-lg object-cover" alt="LEDTV">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">LEDTV </h4>
-                                <div class="flex gap-2 mt-1">
-                                    <a href="https://dwnapp.lat/SDMEXv5.apk" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 6945532</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL IPTV SMARTERS:</p>
-                            <p class="text-xs font-mono font-bold text-white break-all">http://sptvplus.com:8080</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900/50 p-5 rounded-2xl border border-gray-700/30">
-                        <div class="flex items-center gap-4 mb-3">
-                            <img src="/img/alfatv.jpg" class="w-12 h-12 rounded-lg object-cover" alt="ALFATV">
-                            <div class="flex-grow">
-                                <h4 class="font-bold uppercase text-xs">ALFATV </h4>
-                                <div class="flex gap-2 mt-1">
-                                    <a href="https://go.aftvnews.com/6365890" target="_blank" class="px-2 py-0.5 bg-brand text-black text-[9px] font-bold rounded">APK</a>
-                                    <span class="px-2 py-0.5 bg-slate-800 text-brand text-[9px] font-bold rounded">DOWNLOADER: 4286832</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-blue-900/40 p-3 rounded-lg border border-blue-400/30">
-                            <p class="text-[8px] uppercase font-black text-blue-300 mb-1">URL IPTV SMARTERS:</p>
-                            <p class="text-xs font-mono font-bold text-white break-all">http://alfastr3am.lat:2082</p>
-                        </div>
+                    <div class="bg-slate-900/60 p-5 rounded-2xl border border-gray-700/30">
+                        <h4 class="font-bold text-sm uppercase mb-2">Tu Latino APK</h4>
+                        <p class="text-[10px] text-gray-400 mb-3 italic">Código Downloader: 973723</p>
+                        <a href="http://aftv.news/973723" target="_blank" class="inline-block px-4 py-2 bg-brand text-black rounded-lg text-[10px] font-black uppercase transition hover:bg-white">Bajar APK</a>
                     </div>
                 </div>
             </div>
 
-        <div class="glass rounded-[2.5rem] border border-gray-800 p-8 flex flex-col justify-between">
-            <div>
-                <h3 class="text-2xl font-black uppercase italic text-white text-center mb-6">Smart TV <span class="text-gray-500 text-sm">(Smarters)</span></h3>
-                
-                <div class="bg-slate-900/50 p-6 rounded-2xl border border-gray-700/50 mb-8">
-                    <p class="text-[10px] text-white font-bold mb-4 border-b border-gray-700 pb-3 uppercase tracking-widest">Pasos de Configuración:</p>
+            <div class="glass rounded-[2.5rem] p-8 border border-gray-800 flex flex-col">
+                <h3 class="text-xl font-black uppercase italic text-brand mb-6 text-center">Configurar Smart TV</h3>
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-gray-700/30 h-full">
                     <ol class="text-xs text-gray-300 space-y-4 list-decimal pl-5 marker:text-brand marker:font-black">
-                        <li>Busca <span class="font-bold text-white">IPTV Smarters</span> en tu TV Store.</li>
-                        <li>Inicia y selecciona <span class="text-brand font-bold italic">XTREAM CODES API</span>.</li>
-                        <li>Ingresa tus datos de acceso (Demo) que te daremos por WhatsApp.</li>
+                        <li>Busca la App <span class="font-bold text-white">IPTV Smarters Pro</span> en tu tienda.</li>
+                        <li>Selecciona <span class="text-brand font-bold italic">Log in with Xtream Codes API</span>.</li>
+                        <li>Ingresa el Usuario, Contraseña y URL que te enviamos al activar tu demo.</li>
                     </ol>
+                    <div class="mt-6 flex gap-2">
+                        <img src="/img/xtream.png" class="w-1/2 rounded-lg grayscale hover:grayscale-0 transition" alt="Xtream">
+                        <img src="/img/iptvsmarters.jpeg" class="w-1/2 rounded-lg grayscale hover:grayscale-0 transition" alt="Smarters">
+                    </div>
                 </div>
             </div>
-
-            <div class="space-y-4">
-                <img src="/img/xtream.png" class="w-full rounded-xl shadow-lg border border-gray-700 object-contain" alt="Tutorial Xtream">
-                <img src="/img/iptvsmarters.jpeg" class="w-full rounded-xl shadow-lg border border-gray-700 object-contain" alt="Tutorial Smarters">
-            </div>
-            
-            <div class="mt-8">
-                <span class="block w-full py-3 bg-slate-900 text-brand text-[10px] font-black rounded-xl border border-brand/20 text-center uppercase">Versión Gratuita Disponible en las Tiendas</span>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-   <section id="faq" class="py-16 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-10 italic">Preguntas <span class="text-brand">Frecuentes</span></h2>
-        
+    <section id="faq" class="py-24 px-6 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-black text-center mb-12 uppercase italic tracking-tighter">Dudas <span class="text-brand">Frecuentes</span></h2>
         <div class="space-y-4">
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cuál es el mejor IPTV en México por estabilidad?</h3>
-                <p class="text-gray-400 text-sm">Smartplay es considerado uno de los servicios más estables en México gracias a nuestros servidores dedicados que garantizan una transmisión sin cortes.</p>
+            <div class="glass p-6 rounded-2xl border border-gray-800 hover:border-brand/30 transition">
+                <h3 class="font-bold text-brand mb-2 italic">¿Cuál es el mejor IPTV en México por estabilidad?</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Smartplay utiliza servidores de alto rendimiento optimizados para México, lo que garantiza que no tengas cortes en eventos en vivo ni fútbol.</p>
             </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cómo puedo ver canales en vivo en mi Smart TV?</h3>
-                <p class="text-gray-400 text-sm">Solo necesitas descargar una app compatible (como IPTV Smarters) e ingresar las credenciales que te enviamos al activar tu cuenta.</p>
+            <div class="glass p-6 rounded-2xl border border-gray-800 hover:border-brand/30 transition">
+                <h3 class="font-bold text-brand mb-2 italic">¿Cómo solicito mi prueba gratuita?</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Solo llena el formulario de registro de abajo y nuestro equipo te enviará los accesos por WhatsApp de inmediato.</p>
             </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Qué internet necesito para usar Smartplay sin trabas?</h3>
-                <p class="text-gray-400 text-sm">Recomendamos una velocidad mínima de 20 Mbps para contenido HD y 50 Mbps para contenido en 4K.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Es seguro contratar IPTV por WhatsApp?</h3>
-                <p class="text-gray-400 text-sm">Ofrecemos soporte personalizado por WhatsApp. Puedes solicitar una Demo Gratis antes de realizar cualquier pago.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿En qué dispositivos puedo usar mi cuenta?</h3>
-                <p class="text-gray-400 text-sm">Compatible con Android TV, TV Box, Firestick, Roku, iOS y PC. Soportamos hasta 3 dispositivos simultáneos.</p>
+            <div class="glass p-6 rounded-2xl border border-gray-800 hover:border-brand/30 transition">
+                <h3 class="font-bold text-brand mb-2 italic">¿En cuántos dispositivos puedo usar el servicio?</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Todos nuestros planes premium permiten la conexión de hasta 3 dispositivos de forma simultánea.</p>
             </div>
         </div>
     </section>
 
-    <section id="registro" class="py-24 px-6">
-    <div class="max-w-md mx-auto glass p-12 rounded-[2.5rem] border border-gray-700 text-center shadow-xl">
-        <h3 class="text-3xl font-black mb-10 text-brand uppercase italic tracking-tight">REGÍSTRATE</h3>
-        <form id="prospectForm" class="space-y-5">
-            <input type="text" id="nombre" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Nombre completo" required>
-            <input type="tel" id="whatsapp" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Teléfono WhatsApp (ej. 5512345678)" required>
-            
-            <select id="prodSel" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
-                <option value="" disabled selected>Selecciona el paquete a probar</option>
-                <option value="TU LATINO">Plan TU LATINO</option>
-                <option value="M327">Plan M327</option>
-                <option value="ALFATV">Plan ALFATV</option>
-                <option value="LEDTV">Plan LEDTV</option>
-            </select>
+    <section id="registro" class="py-32 bg-slate-900/60 border-t border-gray-800 relative">
+        <div class="max-w-md mx-auto glass p-10 md:p-14 rounded-[3rem] border border-brand/20 shadow-2xl shadow-brand/5">
+            <h3 class="text-4xl font-black mb-10 text-brand uppercase italic tracking-tight text-center">Activar Demo</h3>
+            <form id="prospectForm" class="space-y-5">
+                <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-slate-950/80 text-white border border-gray-700 outline-none" placeholder="Tu Nombre Completo" required>
+                <input type="tel" id="whatsapp" class="w-full p-4 rounded-xl bg-slate-950/80 text-white border border-gray-700 outline-none" placeholder="WhatsApp (10 dígitos)" required>
+                
+                <select id="prodSel" class="w-full p-4 rounded-xl bg-slate-950/80 text-white border border-gray-700 outline-none appearance-none cursor-pointer" required>
+                    <option value="" disabled selected>Elegir Paquete</option>
+                    <option value="TU LATINO">Plan TU LATINO ($250)</option>
+                    <option value="M327">Plan M327 PRO ($200)</option>
+                    <option value="ALFATV">Plan ALFATV ($180)</option>
+                    <option value="LEDTV">Plan LEDTV ($130)</option>
+                </select>
 
-            <select id="dispositivo" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
-                <option value="" disabled selected>Selecciona tu dispositivo</option>
-                <option value="Smart TV">Smart TV (LG/Samsung)</option>
-                <option value="Firestick/TV Box">Firestick / TV Box</option>
-                <option value="Android/IOS">Android / IOS</option>
-                <option value="PC/Roku">PC / Roku</option>
-            </select>
+                <select id="dispositivo" class="w-full p-4 rounded-xl bg-slate-950/80 text-white border border-gray-700 outline-none appearance-none cursor-pointer" required>
+                    <option value="" disabled selected>Dispositivo</option>
+                    <option value="Smart TV">Smart TV</option>
+                    <option value="Firestick">Firestick / TV Box</option>
+                    <option value="Celular">Android / iOS</option>
+                    <option value="PC">PC / Otros</option>
+                </select>
 
-            <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4.5 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition shadow-lg shadow-brand/20 mt-3 text-sm">Solicitar Demo Gratis</button>
-        </form>
-        <div id="msgExito" class="hidden mt-8 p-5 bg-green-900/50 rounded-xl border border-brand/20 animate-pulse text-sm text-brand font-bold uppercase italic tracking-wider">
-            ✅ ¡Solicitud enviada! En breve te contactaremos por WhatsApp.
-        </div>
-    </div>
-    </section>
-
-    <section class="py-12 bg-slate-900/50 border-t border-gray-800">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 px-4 py-2 rounded-full mb-6">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand"></span>
-                </span>
-                <span class="text-brand text-[10px] font-black uppercase tracking-widest">Soporte Técnico Activo</span>
+                <button type="submit" class="w-full bg-brand text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-brand/20 mt-4">Enviar mi Solicitud</button>
+            </form>
+            <div id="msgExito" class="hidden mt-8 p-6 bg-green-900/40 rounded-2xl border border-brand/20 text-brand text-xs font-black uppercase italic animate-pulse">
+                ✅ Solicitud enviada. Revisa tu WhatsApp en breve.
             </div>
-            
-            <h3 class="text-2xl md:text-3xl font-black mb-4 italic text-white leading-tight">¿Necesitas ayuda con tu cuenta?</h3>
-            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base">
-                Nuestro equipo está disponible **las 24 horas, los 7 días de la semana** para resolver dudas o ayudarte con la configuración.
-            </p>
-            
-            <a href="https://wa.me/5521314298?text=Hola,%20necesito%20ayuda%20con%20soporte%20técnico" 
-               class="inline-block glass border border-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-brand hover:text-black transition-all duration-300 text-sm uppercase tracking-wider">
-                Contactar a Soporte
-            </a>
         </div>
     </section>
 
-    <footer class="py-8 border-t border-gray-900 text-center bg-slate-950">
-        <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">© 2026 Smartplay. Todos los derechos reservados.</p>
+    <section class="py-24 text-center">
+        <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 px-5 py-2 rounded-full mb-8">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute h-full w-full rounded-full bg-brand opacity-75"></span>
+                <span class="relative h-3 w-3 bg-brand rounded-full"></span>
+            </span>
+            <span class="text-brand text-[10px] font-black uppercase tracking-widest italic">Soporte Técnico 24/7 Activo</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-black mb-10 italic">¿Dificultades Técnicas?</h3>
+        <a href="https://wa.me/5521314298" class="inline-block glass border border-gray-700 px-12 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-brand hover:text-black transition-all">Hablar con un Experto</a>
+    </section>
+
+    <footer class="py-12 border-t border-gray-900 text-center bg-black">
+        <p class="text-gray-600 text-[10px] uppercase tracking-[0.4em] mb-4">© 2026 Smartplay México. Calidad y Estabilidad.</p>
+        <p class="text-gray-800 text-[8px] max-w-xl mx-auto px-6 italic">Las marcas y logos mostrados son propiedad de sus respectivos dueños y se usan solo con fines de referencia de compatibilidad técnica.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiperTestimonios = new Swiper(".mySwiper", {
+        const swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 30,
             loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
+            autoplay: { delay: 5000 },
             pagination: { el: ".swiper-pagination", clickable: true },
             breakpoints: {
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 }
             }
         });
-        
-        // Aquí va tu lógica del formulario...
+
+        document.getElementById('prospectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulación de envío
+            const btn = e.target.querySelector('button');
+            const msg = document.getElementById('msgExito');
+            btn.disabled = true;
+            btn.innerText = "PROCESANDO...";
+            
+            setTimeout(() => {
+                e.target.reset();
+                btn.classList.add('hidden');
+                msg.classList.remove('hidden');
+            }, 1500);
+        });
     </script>
+</body>
+</html>
