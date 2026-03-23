@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargas | Smartplay IPTV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#00ff41', // Tu verde Smartplay
+                        dark: '#0a0a0a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0a0a0a; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <a href="/" class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-black font-black">S</div>
+            <span class="text-xl font-black tracking-tighter uppercase italic">Smartplay</span>
+        </a>
+        <a href="/" class="text-gray-400 hover:text-white font-bold text-sm uppercase italic">← Volver al Inicio</a>
+    </nav>
+
+    <header class="py-12 px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">
+            Centro de <span class="text-brand">Descargas</span>
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto font-medium">
+            Instala nuestras aplicaciones oficiales en cualquier dispositivo y comienza a disfrutar del mejor contenido en HD.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="glass rounded-[2rem] p-8 border border-gray-800 hover:border-brand/30 transition-all group">
+                <div class="w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fab fa-android text-brand text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black uppercase italic mb-4">Android / TV Box</h3>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                    Nuestra App oficial optimizada para Firestick, Mi Box y celulares Android.
+                </p>
+                <div class="space-y-3">
+                    <a href="#" class="block w-full bg-brand text-black font-black py-4 rounded-xl text-center uppercase italic hover:bg-white transition-colors">Descargar APK</a>
+                    <a href="#" class="block w-full border border-gray-700 text-white font-bold py-4 rounded-xl text-center uppercase italic hover:bg-gray-800 transition-colors">App Alternativa</a>
+                </div>
+            </div>
+
+            <div class="glass rounded-[2rem] p-8 border border-gray-800 hover:border-brand/30 transition-all group">
+                <div class="w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-tv text-brand text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black uppercase italic mb-4">Smart TV</h3>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                    Disponible en las tiendas oficiales de Samsung (Tizen) y LG (WebOS).
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3 text-sm font-bold uppercase text-gray-300">
+                        <span class="text-brand">1.</span> Busca "IPTV Smarters" o "GSE IPTV" en la tienda de tu tele.
+                    </div>
+                    <div class="flex items-start gap-3 text-sm font-bold uppercase text-gray-300">
+                        <span class="text-brand">2.</span> Ingresa tu usuario y contraseña de Smartplay.
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass rounded-[2rem] p-8 border border-gray-800 hover:border-brand/30 transition-all group">
+                <div class="w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fab fa-apple text-brand text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-black uppercase italic mb-4">iPhone / iPad</h3>
+                <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+                    Usa las mejores aplicaciones de la App Store compatibles con nuestro servicio.
+                </p>
+                <a href="https://apps.apple.com/app/iptv-smarters-lite/id1440997040" target="_blank" class="block w-full bg-white text-black font-black py-4 rounded-xl text-center uppercase italic hover:bg-brand transition-colors">
+                    Ver en App Store
+                </a>
+            </div>
+
+        </div>
+
+        <div class="mt-20 p-10 glass rounded-[3rem] border border-gray-800 text-center">
+            <h4 class="text-2xl font-black uppercase italic mb-4 italic text-brand">¿Necesitas ayuda con la instalación?</h4>
+            <p class="text-gray-400 mb-8 max-w-xl mx-auto font-bold uppercase text-sm">Contamos con soporte técnico personalizado para guiarte paso a paso.</p>
+            <a href="https://wa.me/TUNUMERO" class="inline-flex items-center gap-3 bg-[#25D366] text-white font-black px-10 py-5 rounded-full uppercase italic hover:scale-105 transition-transform">
+                <i class="fab fa-whatsapp text-2xl"></i> Hablar con Soporte
+            </a>
+        </div>
+    </main>
+
+    <footer class="py-10 text-center text-gray-600 text-[10px] uppercase font-bold tracking-widest">
+        &copy; 2026 Smartplay Mexico - Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
