@@ -25,12 +25,24 @@
 </head>
 <body class="antialiased">
 
-    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <a href="/" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-black font-black">S</div>
-            <span class="text-xl font-black tracking-tighter uppercase italic">Smartplay</span>
-        </a>
-        <a href="/" class="text-gray-400 hover:text-white font-bold text-sm uppercase italic">← Volver al Inicio</a>
+    <nav class="p-6 max-w-7xl mx-auto">
+        <div class="glass rounded-full px-8 py-4 flex justify-between items-center border border-gray-800 shadow-xl shadow-black/30">
+            
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand rounded-2xl flex items-center justify-center shadow-lg shadow-brand/20 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-play text-black text-xl ml-1"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tighter uppercase italic text-white group-hover:text-brand transition-colors">Smartplay</span>
+                    <span class="text-[9px] text-gray-400 font-bold uppercase tracking-widest -mt-1 ml-1">Premium IPTV</span>
+                </div>
+            </a>
+
+            <a href="/" class="flex items-center gap-2 text-gray-400 hover:text-white font-bold text-xs uppercase italic transition-colors bg-white/5 px-5 py-3 rounded-full border border-white/5 hover:bg-white/10">
+                <i class="fas fa-arrow-left text-xs"></i>
+                Volver al Inicio
+            </a>
+        </div>
     </nav>
 
     <section id="descargas" class="py-10 px-6 max-w-7xl mx-auto text-white">
