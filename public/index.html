@@ -432,3 +432,38 @@
         </a>
     </div>
 </section>
+        <footer class="py-10 text-center text-gray-600 text-[10px] uppercase font-bold tracking-widest border-t border-gray-900">
+        &copy; 2026 Smartplay Mexico - Todos los derechos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // ESTO ACTIVA EL MOVIMIENTO DE LOS TESTIMONIOS
+        var swiperTestimonios = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        // ESTO ENVÍA LOS DATOS DEL REGISTRO A TU WHATSAPP
+        document.getElementById('prospectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const tel = document.getElementById('whatsapp_form').value;
+            const plan = document.getElementById('prodSel').value;
+            const disp = document.getElementById('dispositivo').value;
+            
+            const mensaje = `Hola Smartplay! Mi nombre es ${nombre}. Vengo de la página web y me interesa probar el PLAN ${plan} en mi dispositivo ${disp}. Mi WhatsApp es ${tel}.`;
+            const link = `https://wa.me/525521314298?text=${encodeURIComponent(mensaje)}`;
+            
+            window.open(link, '_blank');
+        });
+    </script>
+</body>
+</html>
