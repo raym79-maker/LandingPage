@@ -352,117 +352,84 @@
             </div>
         </div>
     </div>
-    </div><div class="swiper-pagination"></div>
-        </div></section>
+    <div class="swiper-pagination"></div>
+    </div>
+</section>
 
-    </main> <footer class="py-10 text-center text-gray-600 text-[10px] uppercase font-bold tracking-widest border-t border-gray-900">
-        &copy; 2026 Smartplay Mexico - Todos los derechos reservados.
-    </footer>
+<section id="faq" class="py-16 px-6 max-w-4xl mx-auto">
+    <h2 class="text-3xl font-black text-center mb-10 italic uppercase">Preguntas <span class="text-brand">Frecuentes</span></h2>
+    <div class="grid gap-4">
+        <div class="glass p-6 rounded-2xl border border-gray-800">
+            <h3 class="font-bold text-brand mb-2 italic">¿Cuál es el mejor IPTV en México por estabilidad?</h3>
+            <p class="text-gray-400 text-sm italic">Smartplay es considerado uno de los servicios más estables para <span class="text-white font-bold text-[10px]">M327 y TU LATINO</span> garantizando el Mundial 2026 sin cortes.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl border border-gray-800">
+            <h3 class="font-bold text-brand mb-2 italic">¿En qué dispositivos puedo usar mi cuenta?</h3>
+            <p class="text-gray-400 text-sm italic">Compatible con Android TV, TV Box, Firestick, Roku, iOS y PC. Soportamos hasta 3 dispositivos simultáneos.</p>
+        </div>
+    </div>
+</section>
+
+<section id="registro" class="py-24 px-6 bg-slate-900/20 border-t border-gray-800">
+    <div class="max-w-md mx-auto glass p-10 rounded-[2.5rem] border border-gray-700 text-center shadow-xl">
+        <h3 class="text-3xl font-black mb-8 text-brand uppercase italic">REGÍSTRATE</h3>
+        <form id="prospectForm" class="space-y-4">
+            <input type="text" id="nombre" class="w-full p-4 rounded-xl bg-gray-800/80 text-white border border-transparent focus:border-brand transition outline-none" placeholder="Nombre completo" required>
+            <input type="tel" id="whatsapp_form" class="w-full p-4 rounded-xl bg-gray-800/80 text-white border border-transparent focus:border-brand transition outline-none" placeholder="Tu WhatsApp (10 dígitos)" required>
+            <select id="prodSel" class="w-full p-4 rounded-xl bg-gray-800/80 text-white border border-transparent focus:border-brand outline-none cursor-pointer" required>
+                <option value="" disabled selected>Selecciona tu plan</option>
+                <option value="TU LATINO">Tu Latino</option>
+                <option value="M327">M327</option>
+                <option value="ALFATV">Alfa TV</option>
+                <option value="LEDTV">LedTV</option>
+            </select>
+            <select id="dispositivo" class="w-full p-4 rounded-xl bg-gray-800/80 text-white border border-transparent focus:border-brand outline-none cursor-pointer" required>
+                <option value="" disabled selected>Tu dispositivo</option>
+                <option value="Smart TV">Smart TV</option>
+                <option value="Firestick/TV Box">Firestick / TV Box</option>
+                <option value="Celular/Tablet">Android / iOS</option>
+            </ol>
+            <button type="submit" class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase hover:scale-105 transition shadow-lg shadow-brand/20">Solicitar Demo Gratis</button>
+        </form>
+    </div>
+</section>
+
+<section class="py-12 bg-slate-950 border-t border-gray-900 text-center">
+    <h3 class="text-2xl font-black mb-4 italic text-white">¿Necesitas ayuda con tu cuenta?</h3>
+    <a href="https://wa.me/525521314298?text=Hola,%20necesito%20soporte%20técnico" class="inline-block glass border border-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-brand hover:text-black transition text-sm uppercase">Contactar a Soporte</a>
+</section>
+
+<footer class="py-8 text-center bg-black border-t border-white/5">
+    <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em] font-bold italic">&copy; 2026 Smartplay Mexico - Todos los derechos reservados.</p>
+</footer>
+
+</main> <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Inicializar Testimonios
+    var swiperTestimonios = new Swiper(".mySwiper", {
+        slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 4000 },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+    });
+
+    // PUNTO 3: LÓGICA DEL FORMULARIO A WHATSAPP
+    document.getElementById('prospectForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nombre = document.getElementById('nombre').value;
+        const tel = document.getElementById('whatsapp_form').value;
+        const plan = document.getElementById('prodSel').value;
+        const disp = document.getElementById('dispositivo').value;
+        
+        // MENSAJE PERSONALIZADO
+        const mensaje = `Hola Smartplay! Mi nombre es ${nombre}. Vengo de la página web y me interesa probar el PLAN ${plan} en mi dispositivo ${disp}. Mi WhatsApp de contacto es ${tel}.`;
+        
+        // TU NÚMERO (FORMATO INTERNACIONAL 52 PARA MÉXICO)
+        const link = `https://wa.me/525521314298?text=${encodeURIComponent(mensaje)}`;
+        
+        window.open(link, '_blank');
+    });
+</script>
 
 </body>
 </html>
-
-   <section id="faq" class="py-16 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-10 italic">Preguntas <span class="text-brand">Frecuentes</span></h2>
-        
-        <div class="space-y-4">
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cuál es el mejor IPTV en México por estabilidad?</h3>
-                <p class="text-gray-400 text-sm">Smartplay es considerado uno de los servicios más estables en México gracias a nuestros servidores dedicados que garantizan una transmisión sin cortes.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cómo puedo ver canales en vivo en mi Smart TV?</h3>
-                <p class="text-gray-400 text-sm">Solo necesitas descargar una app compatible (como IPTV Smarters) e ingresar las credenciales que te enviamos al activar tu cuenta.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Qué internet necesito para usar Smartplay sin trabas?</h3>
-                <p class="text-gray-400 text-sm">Recomendamos una velocidad mínima de 20 Mbps para contenido HD y 50 Mbps para contenido en 4K.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Es seguro contratar IPTV por WhatsApp?</h3>
-                <p class="text-gray-400 text-sm">Ofrecemos soporte personalizado por WhatsApp. Puedes solicitar una Demo Gratis antes de realizar cualquier pago.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿En qué dispositivos puedo usar mi cuenta?</h3>
-                <p class="text-gray-400 text-sm">Compatible con Android TV, TV Box, Firestick, Roku, iOS y PC. Soportamos hasta 3 dispositivos simultáneos.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="registro" class="py-24 px-6">
-    <div class="max-w-md mx-auto glass p-12 rounded-[2.5rem] border border-gray-700 text-center shadow-xl">
-        <h3 class="text-3xl font-black mb-10 text-brand uppercase italic tracking-tight">REGÍSTRATE</h3>
-        <form id="prospectForm" class="space-y-5">
-            <input type="text" id="nombre" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Nombre completo" required>
-            <input type="tel" id="whatsapp" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition" placeholder="Teléfono WhatsApp (ej. 5512345678)" required>
-            
-            <select id="prodSel" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
-                <option value="" disabled selected>Selecciona el paquete a probar</option>
-                <option value="TU LATINO">Plan TU LATINO</option>
-                <option value="M327">Plan M327</option>
-                <option value="ALFATV">Plan ALFATV</option>
-                <option value="LEDTV">Plan LEDTV</option>
-            </select>
-
-            <select id="dispositivo" class="w-full p-4.5 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer" required>
-                <option value="" disabled selected>Selecciona tu dispositivo</option>
-                <option value="Smart TV">Smart TV (LG/Samsung)</option>
-                <option value="Firestick/TV Box">Firestick / TV Box</option>
-                <option value="Android/IOS">Android / IOS</option>
-                <option value="PC/Roku">PC / Roku</option>
-            </select>
-
-            <button type="submit" id="btnSubmit" class="w-full bg-brand text-black py-4.5 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition shadow-lg shadow-brand/20 mt-3 text-sm">Solicitar Demo Gratis</button>
-        </form>
-        <div id="msgExito" class="hidden mt-8 p-5 bg-green-900/50 rounded-xl border border-brand/20 animate-pulse text-sm text-brand font-bold uppercase italic tracking-wider">
-            ✅ ¡Solicitud enviada! En breve te contactaremos por WhatsApp.
-        </div>
-    </div>
-    </section>
-
-    <section class="py-12 bg-slate-900/50 border-t border-gray-800">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 px-4 py-2 rounded-full mb-6">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand"></span>
-                </span>
-                <span class="text-brand text-[10px] font-black uppercase tracking-widest">Soporte Técnico Activo</span>
-            </div>
-            
-            <h3 class="text-2xl md:text-3xl font-black mb-4 italic text-white leading-tight">¿Necesitas ayuda con tu cuenta?</h3>
-            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm md:text-base">
-                Nuestro equipo está disponible **las 24 horas, los 7 días de la semana** para resolver dudas o ayudarte con la configuración.
-            </p>
-            
-            <a href="https://wa.me/5521314298?text=Hola,%20necesito%20ayuda%20con%20soporte%20técnico" 
-               class="inline-block glass border border-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-brand hover:text-black transition-all duration-300 text-sm uppercase tracking-wider">
-                Contactar a Soporte
-            </a>
-        </div>
-    </section>
-
-    <footer class="py-8 border-t border-gray-900 text-center bg-slate-950">
-        <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">© 2026 Smartplay. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        var swiperTestimonios = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-            }
-        });
-        
-        // Aquí va tu lógica del formulario...
-    </script>
