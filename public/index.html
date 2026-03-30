@@ -415,19 +415,28 @@
         <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">© 2026 Smartplay. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    
     <script>
-        var swiperTestimonios = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
+        // 2. Esperamos a que la página cargue completamente para iniciar el carrusel
+        window.addEventListener('load', function() {
+            if (typeof Swiper !== 'undefined') {
+                var swiperTestimonios = new Swiper(".mySwiper", {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: { delay: 4000, disableOnInteraction: false },
+                    pagination: { el: ".swiper-pagination", clickable: true },
+                    breakpoints: {
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 }
+                    }
+                });
             }
+            
+            // Aquí va tu lógica del formulario...
+            // Ejemplo: const form = document.getElementById('prospectForm');
         });
-        
-        // Aquí va tu lógica del formulario...
     </script>
+</body>
+</html>
