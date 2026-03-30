@@ -11,15 +11,15 @@
     </script>
 
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-    
     <title>Smartplay | IPTV Premium: M327, Tu Latino, Ledtv y Mundial 2026</title>
     <meta name="description" content="Contrata M327, Tu Latino, Ledtv y Alfa Tv. El mejor IPTV en México para dispositivos Android y Smart TV. ¡Vive el Mundial 2026 en HD sin cortes!">
     <link rel="icon" type="image/png" href="/img/logo.png">
 
+    <link rel="preload" as="image" href="/img/Mundial2026.webp" type="image/webp">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.smartplay.com.mx/">
     <meta property="og:title" content="Smartplay | M327, Tu Latino y Mundial 2026 en HD">
-    <meta property="og:description" content="TV Premium estable para M327, Ledtv y Alfa Tv. ¡Pide tu DEMO gratis para el Mundial!">
     <meta property="og:image" content="https://www.smartplay.com.mx/img/Mundial2026.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,79 +27,49 @@
     
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: '#25D366' }
-                }
-            }
+            theme: { extend: { colors: { brand: '#25D366' } } }
         }
     </script>
     
-<style>
+    <style>
+        /* 2. EVITA QUE SE VEA ENORME AL CARGAR */
+        html { visibility: hidden; }
+        html.tailwind-ready { visibility: visible; }
+
         body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
-        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s; }
-        .btn-whatsapp:hover { transform: scale(1.1); }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-
-        /* Ajuste Testimonios (Puntos Verdes y Bajos) */
-        .mySwiper {
-            padding-bottom: 50px !important;
-            overflow: visible !important;
-        }
-        .swiper-pagination {
-            bottom: 0px !important;
-        }
-        .swiper-pagination-bullet {
-            background: rgba(255,255,255,0.2) !important;
-            opacity: 1 !important;
-        }
-        .swiper-pagination-bullet-active {
-            background: #25D366 !important;
-            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
-        }
-
-        /* Compactación Global */
-        #descargas {
-            padding-top: 20px !important;
-            margin-top: 0 !important;
-        }
+        .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; z-index: 100; }
     </style>
 
-    <a href="https://wa.me/5521314298?text=Hola,%20vengo%20de%20tu%20página%20y%20solicito%20una%20Demo" class="btn-whatsapp" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" height="30" alt="WhatsApp">
-    </a>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.classList.add('tailwind-ready');
+        });
+    </script>
+</head>
+<body class="antialiased">
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <img src="/img/logo.png" alt="Smartplay Logo" class="w-10 h-10 rounded-lg object-cover shadow-lg shadow-brand/20">
+            <img src="/img/logo.png" alt="Smartplay Logo" class="w-10 h-10 rounded-lg">
             <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
         </div>
-        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-white transition text-center shadow-md">Solicitar Demo</a>
+        <a href="#registro" class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase transition shadow-md">Solicitar Demo</a>
     </nav>
 
     <section class="pt-48 pb-24 px-6 max-w-5xl mx-auto text-center">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-[1.1] text-white">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-[1.1]">
             TV Premium <span class="text-brand">sin cortes</span>, sin contratos y lista en <span class="text-brand">minutos</span>.
         </h1>
-
-        <p class="text-lg md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
-            Más opciones para disfrutar deportes, series, peliculas y eventos en tus <span class="text-white font-bold italic">dispositivos favoritos</span>.
-        </p>
-
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-    <a href="#planes" class="bg-brand text-black font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white transition-all w-full sm:w-auto text-center shadow-lg shadow-brand/20">
-        Ver Planes
-    </a>
-    <a href="/descargas.html" class="bg-white/10 border border-white/20 text-white font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white/20 transition-all w-full sm:w-auto text-center">
-    Descarga de Apps
-</a>
-</div>
+            <a href="#planes" class="bg-brand text-black font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white transition-all w-full sm:w-auto text-center shadow-lg shadow-brand/20">
+                Ver Planes
+            </a>
+            <a href="/descargas.html" class="bg-white/10 border border-white/20 text-white font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white/20 transition-all w-full sm:w-auto text-center">
+                Descarga de Apps
+            </a>
+        </div>
+    </section>
 
     <section id="mundial-landing" class="py-16 bg-slate-900/30 border-t border-b border-gray-800 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft"></div>
