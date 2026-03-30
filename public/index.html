@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://upload.wikimedia.org">
+
     <script>
       if (window.location.hostname === "smartplay.com.mx") {
         window.location.replace("https://www.smartplay.com.mx" + window.location.pathname + window.location.search);
@@ -11,34 +15,43 @@
     </script>
 
     <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
+    
     <title>Smartplay | IPTV Premium: M327, Tu Latino, Ledtv y Mundial 2026</title>
     <meta name="description" content="Contrata M327, Tu Latino, Ledtv y Alfa Tv. El mejor IPTV en México para dispositivos Android y Smart TV. ¡Vive el Mundial 2026 en HD sin cortes!">
     <link rel="icon" type="image/png" href="/img/logo.png">
 
-    <link rel="preload" as="image" href="/img/Mundial2026.webp" type="image/webp">
+    <link rel="preload" as="image" href="/img/Mundial2026.webp" type="image/webp" fetchpriority="high">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.smartplay.com.mx/">
     <meta property="og:title" content="Smartplay | M327, Tu Latino y Mundial 2026 en HD">
-    <meta property="og:image" content="https://www.smartplay.com.mx/img/Mundial2026.png">
+    <meta property="og:image" content="https://www.smartplay.com.mx/img/Mundial2026.webp">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { brand: '#25D366' } } }
+            theme: {
+                extend: {
+                    colors: { brand: '#25D366' }
+                }
+            }
         }
     </script>
     
     <style>
-        /* 2. EVITA QUE SE VEA ENORME AL CARGAR */
-        html { visibility: hidden; }
+        /* Evita que la página se vea enorme o en blanco en el celular */
+        html { visibility: hidden; background-color: #0f172a; }
         html.tailwind-ready { visibility: visible; }
 
-        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); }
+        body { background-color: #0f172a; scroll-behavior: smooth; color: white; margin: 0; font-family: sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
         .btn-whatsapp { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px; z-index: 100; }
+        
+        /* Optimizamos animaciones para que no consuman CPU en móvil */
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .animate-pulse-soft { animation: pulse 3s ease-in-out infinite; }
     </style>
 
     <script>
@@ -48,6 +61,7 @@
     </script>
 </head>
 <body class="antialiased">
+    ```
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
         <div class="flex items-center gap-3">
