@@ -1,11 +1,11 @@
 User-agent: *
 Allow: /
 
-# Bloquear el rastreo de puertos técnicos y URLs de configuración
+# Bloqueo de puertos técnicos para limpiar Search Console
 Disallow: *:2082
 Disallow: *:8080
 Disallow: *:80
 Disallow: *:8880
 
-# Tu Sitemap
+# Ruta al sitemap
 Sitemap: https://www.smartplay.com.mx/sitemap.xml
