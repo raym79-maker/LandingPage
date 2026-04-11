@@ -1,11 +1,5 @@
 User-agent: *
 Allow: /
 
-# Bloqueo de puertos técnicos para limpiar Search Console
-Disallow: *:2082
-Disallow: *:8080
-Disallow: *:80
-Disallow: *:8880
-
 # Ruta al sitemap
 Sitemap: https://www.smartplay.com.mx/sitemap.xml
