@@ -788,5 +788,51 @@
         }
     });
 
-    // Aquí va tu lógica del formulario...
+    // Lógica del formulario de registro
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('prospectForm');
+        const msgExito = document.getElementById('msgExito');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const nombre = document.getElementById('nombre').value;
+                const whatsapp = document.getElementById('whatsapp').value;
+                const producto = document.getElementById('prodSel').value;
+                const dispositivo = document.getElementById('dispositivo').value;
+
+                const originalText = btnSubmit.innerText;
+                btnSubmit.disabled = true;
+                btnSubmit.innerText = 'ENVIANDO...';
+
+                try {
+                    const response = await fetch('/api/prospectos', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ nombre, whatsapp, producto, dispositivo })
+                    });
+
+                    if (response.ok) {
+                        form.reset();
+                        msgExito.classList.remove('hidden');
+                        setTimeout(() => {
+                            msgExito.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        alert('Error al enviar solicitud. Intenta nuevamente.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error de conexión. Intenta más tarde.');
+                } finally {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerText = originalText;
+                }
+            });
+        }
+    });
 </script>
