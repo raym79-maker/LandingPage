@@ -318,25 +318,6 @@
             background-color: #fff;
             transform: scale(1.02);
         }
-        .plan-cta-secondary {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: rgba(37,211,102,0.08);
-            border: 1px solid rgba(37,211,102,0.25);
-            color: #25D366;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            padding: 10px 20px;
-            border-radius: 10px;
-            transition: all 0.2s;
-            margin-top: 8px;
-            text-decoration: none;
-        }
-        .plan-cta-secondary:hover {
-            background: rgba(37,211,102,0.15);
-        }
     </style>
 
     <script>
@@ -360,7 +341,7 @@
             <img src="/img/logo.png" alt="Smartplay IPTV México Logo" class="w-10 h-10 rounded-lg">
             <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
         </div>
-        <a href="#registro"
+        <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20gratis%20de%20IPTV%20en%20México" target="_blank"
             class="bg-brand text-black px-4 py-2 rounded-lg font-bold text-xs uppercase transition shadow-md">Solicitar
             Demo</a>
     </nav>
@@ -410,7 +391,7 @@
         </div>
 
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <a href="#registro" class="block group relative">
+            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank" class="block group relative">
                 <img src="/img/Mundial2026.webp" width="1200" height="675" fetchpriority="high"
                     alt="Ver el Mundial 2026 por IPTV en México con Smartplay en HD"
                     class="w-full max-w-5xl mx-auto rounded-[2rem] shadow-2xl shadow-brand/10 border-2 border-brand/10 group-hover:border-brand/50 transition-all duration-500 mb-16">
@@ -452,7 +433,7 @@
                     </div>
                 </div>
 
-                <a href="#registro"
+                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank"
                     class="inline-block bg-brand text-black font-black py-4 px-10 rounded-xl uppercase italic hover:bg-white transition-all shadow-lg shadow-brand/20">
                     Quiero ver el Mundial 2026 — Demo Gratis
                 </a>
@@ -511,7 +492,6 @@
                     target="_blank" class="plan-cta">
                     📲 Solicitar Demo Gratis — Tu Latino
                 </a>
-                <a href="#registro" class="plan-cta-secondary">Registrar solicitud</a>
             </div>
 
             <!-- SKY SOCCER PLUS -->
@@ -538,17 +518,16 @@
                     </p>
                 </div>
                 <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 1,000 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +3,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +2,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 1 Dispositivo</li>
+                    <li class="flex items-center gap-2">✅ 11,000 Canales en Vivo</li>
+                    <li class="flex items-center gap-2">✅ +55,000 Películas</li>
+                    <li class="flex items-center gap-2">✅ +14,000 Series</li>
+                    <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
                     <li class="flex items-center gap-2">✅ Mundial 2026 completo en HD</li>
                 </ul>
                 <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20SKY%20SOCCER%20PLUS%20IPTV%20en%20México"
                     target="_blank" class="plan-cta">
                     📲 Solicitar Demo Gratis — Sky Soccer Plus
                 </a>
-                <a href="#registro" class="plan-cta-secondary">Registrar solicitud</a>
             </div>
 
             <!-- M327 -->
@@ -586,7 +565,6 @@
                     target="_blank" class="plan-cta">
                     📲 Solicitar Demo Gratis — M327
                 </a>
-                <a href="#registro" class="plan-cta-secondary">Registrar solicitud</a>
             </div>
 
             <!-- ALFATV -->
@@ -623,7 +601,6 @@
                     target="_blank" class="plan-cta">
                     📲 Solicitar Demo Gratis — AlfaTV
                 </a>
-                <a href="#registro" class="plan-cta-secondary">Registrar solicitud</a>
             </div>
 
             <!-- LEDTV -->
@@ -660,7 +637,6 @@
                     target="_blank" class="plan-cta">
                     📲 Solicitar Demo Gratis — LEDTV
                 </a>
-                <a href="#registro" class="plan-cta-secondary">Registrar solicitud</a>
             </div>
 
         </div>
@@ -867,52 +843,6 @@
         </div>
     </section>
 
-    <!-- FORMULARIO DE REGISTRO -->
-    <section id="registro" class="py-24 px-6">
-        <div class="max-w-md mx-auto glass p-10 rounded-[2.5rem] border border-gray-700 text-center shadow-xl">
-            <h3 class="text-3xl font-black mb-2 text-brand uppercase italic tracking-tight">Demo Gratis</h3>
-            <p class="text-gray-400 text-sm mb-8">Prueba el servicio antes de pagar. Te contactamos por WhatsApp en minutos.</p>
-            <form id="prospectForm" class="space-y-5">
-                <input type="text" id="nombre"
-                    class="w-full p-4 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition"
-                    placeholder="Nombre completo" required>
-                <input type="tel" id="whatsapp"
-                    class="w-full p-4 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition"
-                    placeholder="WhatsApp (ej. 5512345678)" required>
-
-                <select id="prodSel"
-                    class="w-full p-4 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer"
-                    required>
-                    <option value="" disabled selected>Selecciona el plan a probar</option>
-                    <option value="TU LATINO">Plan TU LATINO — $250 MXN/mes</option>
-                    <option value="SKY SOCCER PLUS">Plan SKY SOCCER PLUS — $210 MXN/mes</option>
-                    <option value="M327">Plan M327 — $200 MXN/mes</option>
-                    <option value="ALFATV">Plan ALFATV — $180 MXN/mes</option>
-                    <option value="LEDTV">Plan LEDTV — $130 MXN/mes</option>
-                </select>
-
-                <select id="dispositivo"
-                    class="w-full p-4 rounded-xl bg-gray-800/80 text-white outline-none border border-transparent focus:border-brand transition text-sm appearance-none cursor-pointer"
-                    required>
-                    <option value="" disabled selected>Selecciona tu dispositivo</option>
-                    <option value="Smart TV">Smart TV (LG/Samsung/Android TV)</option>
-                    <option value="Firestick/TV Box">Firestick / TV Box</option>
-                    <option value="Android/IOS">Android / iOS</option>
-                    <option value="PC/Roku">PC / Roku</option>
-                </select>
-
-                <button type="submit" id="btnSubmit"
-                    class="w-full bg-brand text-black py-4 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition shadow-lg shadow-brand/20 mt-3 text-sm">
-                    Solicitar Demo Gratis por WhatsApp
-                </button>
-            </form>
-            <div id="msgExito"
-                class="hidden mt-8 p-5 bg-green-900/50 rounded-xl border border-brand/20 animate-pulse text-sm text-brand font-bold uppercase italic tracking-wider">
-                ✅ ¡Solicitud enviada! En breve te contactaremos por WhatsApp.
-            </div>
-            <p class="text-gray-600 text-[10px] mt-6 uppercase">Sin permanencia · Sin riesgo · Activación inmediata</p>
-        </div>
-    </section>
 
     <!-- SOPORTE 24/7 -->
     <section class="py-12 bg-slate-900/50 border-t border-gray-800">
@@ -956,48 +886,7 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('prospectForm');
-            const msgExito = document.getElementById('msgExito');
-            const btnSubmit = document.getElementById('btnSubmit');
 
-            if (form) {
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-
-                    const nombre = document.getElementById('nombre').value;
-                    const whatsapp = document.getElementById('whatsapp').value;
-                    const producto = document.getElementById('prodSel').value;
-                    const dispositivo = document.getElementById('dispositivo').value;
-
-                    const originalText = btnSubmit.innerText;
-                    btnSubmit.disabled = true;
-                    btnSubmit.innerText = 'ENVIANDO...';
-
-                    try {
-                        const response = await fetch('/api/prospectos', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ nombre, whatsapp, producto, dispositivo })
-                        });
-
-                        if (response.ok) {
-                            form.reset();
-                            msgExito.classList.remove('hidden');
-                            setTimeout(() => { msgExito.classList.add('hidden'); }, 5000);
-                        } else {
-                            alert('Error al enviar solicitud. Intenta nuevamente.');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('Error de conexión. Intenta más tarde.');
-                    } finally {
-                        btnSubmit.disabled = false;
-                        btnSubmit.innerText = originalText;
-                    }
-                });
-            }
-        });
     </script>
 
 </body>
