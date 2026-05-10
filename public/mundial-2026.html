@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ver Mundial 2026 por Internet en HD | Partidos en Vivo, Grupos y Resultados | Smartplay IPTV México</title>
+    <link rel="canonical" href="https://www.smartplay.com.mx/mundial-2026.html" />
+    <meta name="description" content="Ver el Mundial 2026 en vivo por internet en México. Partidos en tiempo real, tabla de grupos y resultados. Los 104 partidos en HD con Smartplay IPTV desde $130 MXN. Demo gratis.">
+    <meta name="keywords" content="ver Mundial 2026 por internet, Mundial 2026 en vivo Mexico, partidos Mundial 2026 hoy, resultados Mundial 2026, grupos Mundial 2026, IPTV Mundial 2026, ver Mundial sin cable Mexico, Mundial Canada Mexico USA 2026">
+    <link rel="icon" type="image/png" href="/img/logo.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.smartplay.com.mx/mundial-2026.html">
+    <meta property="og:title" content="Ver Mundial 2026 en Vivo por Internet | Smartplay IPTV México">
+    <meta property="og:description" content="Los 104 partidos del Mundial 2026 en HD por internet. Resultados en tiempo real y tabla de grupos. Demo gratis por WhatsApp.">
+    <meta property="og:image" content="https://www.smartplay.com.mx/img/Mundial2026.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "FIFA World Cup 2026 — Ver en Vivo por IPTV en México",
+      "description": "Ver todos los partidos del Mundial 2026 en vivo por internet en México con Smartplay IPTV. Los 104 partidos en HD desde $130 MXN al mes.",
+      "startDate": "2026-06-11",
+      "endDate": "2026-07-19",
+      "location": {
+        "@type": "Place",
+        "name": "Estados Unidos, Canadá y México",
+        "address": { "@type": "PostalAddress", "addressCountry": "US" }
+      },
+      "organizer": { "@type": "Organization", "name": "FIFA" },
+      "url": "https://www.smartplay.com.mx/mundial-2026.html"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#25D366',
+                        gold: '#FFD700',
+                        fifa: '#1a6b3c',
+                    },
+                    fontFamily: {
+                        bebas: ['Bebas Neue', 'sans-serif'],
+                        barlow: ['Barlow', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #030d06;
+            color: white;
+            font-family: 'Barlow', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* HERO background */
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37,211,102,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,215,0,0.06) 0%, transparent 60%),
+                #030d06;
+        }
+
+        /* Grass texture overlay */
+        .grass-line {
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(37,211,102,0.03) 0px,
+                rgba(37,211,102,0.03) 1px,
+                transparent 1px,
+                transparent 40px
+            );
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .glass-green {
+            background: rgba(37,211,102,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(37,211,102,0.15);
+        }
+
+        /* LIVE pulse */
+        .live-dot {
+            width: 8px; height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: livepulse 1.2s ease-in-out infinite;
+        }
+        @keyframes livepulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* Score card */
+        .match-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        .match-card:hover {
+            background: rgba(37,211,102,0.06);
+            border-color: rgba(37,211,102,0.2);
+            transform: translateY(-2px);
+        }
+        .match-card.live {
+            background: rgba(239,68,68,0.06);
+            border-color: rgba(239,68,68,0.3);
+            animation: liveborder 2s ease-in-out infinite;
+        }
+        @keyframes liveborder {
+            0%, 100% { border-color: rgba(239,68,68,0.3); }
+            50% { border-color: rgba(239,68,68,0.7); }
+        }
+
+        /* Flag emoji size */
+        .flag { font-size: 2rem; line-height: 1; }
+
+        /* Tab active */
+        .tab-btn.active {
+            background: #25D366;
+            color: #000;
+        }
+
+        /* Countdown */
+        .countdown-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(37,211,102,0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            text-align: center;
+            min-width: 64px;
+        }
+
+        /* WhatsApp fixed */
+        .wa-fixed {
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            background: #25D366; color: black;
+            border-radius: 50px; padding: 14px 20px;
+            display: flex; align-items: center; gap: 8px;
+            font-weight: 900; font-size: 12px; text-decoration: none;
+            box-shadow: 0 4px 30px rgba(37,211,102,0.4);
+            text-transform: uppercase;
+            transition: transform 0.2s;
+        }
+        .wa-fixed:hover { transform: scale(1.05); }
+
+        /* Skeleton loader */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Group table */
+        .group-table th { color: rgba(255,255,255,0.4); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 6px; }
+        .group-table td { padding: 10px 6px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .group-table tr:last-child td { border-bottom: none; }
+        .group-table tr.qualify td { color: #25D366; }
+
+        /* Section fade-in */
+        @keyframes fadeup {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeup 0.5s ease forwards; }
+    </style>
+</head>
+
+<body>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank" class="wa-fixed">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Ver Mundial 2026
+</a>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5" style="background:rgba(3,13,6,0.9);backdrop-filter:blur(20px);">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-3">
+            <img src="/img/logo.png" alt="Smartplay IPTV México" class="w-9 h-9 rounded-lg">
+            <span class="font-bebas text-2xl text-brand tracking-wider">Smartplay</span>
+        </a>
+        <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV,%20me%20dan%20información" target="_blank"
+            class="flex items-center gap-2 bg-brand text-black font-black text-xs uppercase px-4 py-2 rounded-full hover:bg-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="black" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Demo Gratis
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg grass-line pt-32 pb-16 px-6 relative">
+    <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Countdown -->
+        <div class="mb-8" id="countdownSection">
+            <p class="text-brand font-barlow font-700 text-xs uppercase tracking-widest mb-4">⚽ FIFA World Cup 2026 · 11 Jun – 19 Jul</p>
+            <div id="tournamentStatus" class="flex justify-center items-center gap-3 mb-2">
+                <div class="flex items-center gap-2 glass-green px-4 py-2 rounded-full text-xs font-bold uppercase">
+                    <div class="live-dot"></div>
+                    <span id="statusLabel">Calculando...</span>
+                </div>
+            </div>
+            <div id="countdown" class="flex justify-center gap-3 mt-4"></div>
+        </div>
+
+        <h1 class="font-bebas text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-2 tracking-wide">
+            MUNDIAL <span class="text-brand">2026</span>
+        </h1>
+        <p class="font-barlow font-900 italic text-xl md:text-2xl text-white/60 mb-8 uppercase tracking-wide">
+            Ver en vivo por internet en México · <span class="text-brand">104 partidos en HD</span>
+        </p>
+
+        <!-- Stats bar -->
+        <div class="flex flex-wrap justify-center gap-6 mb-10 text-xs font-bold uppercase tracking-widest text-white/40">
+            <span>🌎 48 Selecciones</span>
+            <span>🏟️ 16 Estadios</span>
+            <span>⚽ 104 Partidos</span>
+            <span>📅 39 Días</span>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="glass-green rounded-2xl p-6 max-w-xl mx-auto mb-6">
+            <p class="font-barlow font-900 italic text-white text-lg mb-1">Ver el Mundial 2026 completo desde <span class="text-brand">$130 MXN/mes</span></p>
+            <p class="text-white/50 text-xs mb-4">Sin cortes · Sin contratos · Demo gratis por WhatsApp</p>
+            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México" target="_blank"
+                class="block w-full bg-brand text-black font-black uppercase py-3 rounded-xl hover:bg-white transition text-sm tracking-wide">
+                📲 Solicitar Demo Gratis — Ver el Mundial
+            </a>
+        </div>
+
+        <a href="/" class="text-white/30 text-xs uppercase hover:text-white/60 transition">← Ver todos los planes IPTV</a>
+    </div>
+</section>
+
+<!-- TABS -->
+<div class="sticky top-16 z-40 border-b border-white/5" style="background:rgba(3,13,6,0.95);backdrop-filter:blur(20px);">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex gap-1 py-3 overflow-x-auto scrollbar-hide">
+            <button onclick="showTab('live')" class="tab-btn active font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap" data-tab="live">
+                🔴 En Vivo
+            </button>
+            <button onclick="showTab('today')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="today">
+                📅 Hoy
+            </button>
+            <button onclick="showTab('upcoming')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="upcoming">
+                🗓️ Próximos
+            </button>
+            <button onclick="showTab('results')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="results">
+                ✅ Resultados
+            </button>
+            <button onclick="showTab('groups')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="groups">
+                📊 Grupos
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<main class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- LIVE TAB -->
+    <div id="tab-live" class="tab-content fade-up">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="live-dot"></div>
+            <h2 class="font-bebas text-2xl tracking-wider text-white">PARTIDOS EN VIVO</h2>
+            <span class="text-white/30 text-xs" id="liveUpdated"></span>
+        </div>
+        <div id="liveMatches" class="space-y-3">
+            <div class="skeleton h-24 w-full"></div>
+            <div class="skeleton h-24 w-full"></div>
+        </div>
+        <div id="noLive" class="hidden text-center py-16">
+            <p class="text-4xl mb-4">⚽</p>
+            <p class="font-bebas text-3xl text-white/40 tracking-wider">NO HAY PARTIDOS EN VIVO</p>
+            <p class="text-white/30 text-sm mt-2">Revisa los próximos partidos en la pestaña "Próximos"</p>
+        </div>
+    </div>
+
+    <!-- TODAY TAB -->
+    <div id="tab-today" class="tab-content hidden fade-up">
+        <h2 class="font-bebas text-2xl tracking-wider text-white mb-6">PARTIDOS DE HOY</h2>
+        <div id="todayMatches" class="space-y-3">
+            <div class="skeleton h-24 w-full"></div>
+            <div class="skeleton h-24 w-full"></div>
+        </div>
+        <div id="noToday" class="hidden text-center py-16">
+            <p class="text-4xl mb-4">📅</p>
+            <p class="font-bebas text-3xl text-white/40 tracking-wider">NO HAY PARTIDOS HOY</p>
+            <p class="text-white/30 text-sm mt-2">Consulta los próximos partidos</p>
+        </div>
+    </div>
+
+    <!-- UPCOMING TAB -->
+    <div id="tab-upcoming" class="tab-content hidden fade-up">
+        <h2 class="font-bebas text-2xl tracking-wider text-white mb-6">PRÓXIMOS PARTIDOS</h2>
+        <div id="upcomingMatches" class="space-y-3"></div>
+    </div>
+
+    <!-- RESULTS TAB -->
+    <div id="tab-results" class="tab-content hidden fade-up">
+        <h2 class="font-bebas text-2xl tracking-wider text-white mb-6">RESULTADOS RECIENTES</h2>
+        <div id="resultsMatches" class="space-y-3"></div>
+        <div id="noResults" class="hidden text-center py-16">
+            <p class="text-4xl mb-4">🏆</p>
+            <p class="font-bebas text-3xl text-white/40 tracking-wider">AÚN NO HAY RESULTADOS</p>
+            <p class="text-white/30 text-sm mt-2">El torneo comienza el 11 de junio de 2026</p>
+        </div>
+    </div>
+
+    <!-- GROUPS TAB -->
+    <div id="tab-groups" class="tab-content hidden fade-up">
+        <h2 class="font-bebas text-2xl tracking-wider text-white mb-6">TABLA DE GRUPOS</h2>
+        <div id="groupsContent" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+            <div class="skeleton h-48 w-full rounded-2xl"></div>
+        </div>
+    </div>
+
+</main>
+
+<!-- CTA BANNER INFERIOR -->
+<section class="py-16 px-6 border-t border-white/5 mt-8">
+    <div class="max-w-2xl mx-auto text-center">
+        <p class="font-bebas text-5xl md:text-6xl text-white mb-2 tracking-wide">VER EL MUNDIAL <span class="text-brand">SIN CABLE</span></p>
+        <p class="text-white/50 text-sm mb-8 max-w-lg mx-auto">Todos los partidos del Mundial 2026 en HD por internet. Sin antena, sin instalación. Funciona en tu Smart TV, celular y Firestick desde $130 MXN al mes.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank"
+                class="bg-brand text-black font-black uppercase py-4 px-8 rounded-xl hover:bg-white transition shadow-lg shadow-brand/20 text-sm">
+                📲 Demo Gratis por WhatsApp
+            </a>
+            <a href="/#planes"
+                class="glass text-white font-black uppercase py-4 px-8 rounded-xl hover:bg-white/10 transition text-sm">
+                Ver todos los planes →
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="py-8 border-t border-white/5 text-center">
+    <p class="text-white/20 text-xs uppercase tracking-widest">© 2026 Smartplay IPTV México · Datos en tiempo real: WC2026 API</p>
+    <p class="text-white/10 text-xs mt-1">Ver Mundial 2026 por internet · IPTV México · Partidos en vivo</p>
+</footer>
+
+<script>
+// ============================================================
+// CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
+// ============================================================
+const API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt'; // ← Solicítala gratis en wc2026api.com
+const API_BASE = 'https://api.wc2026api.com';
+
+// Banderas por nombre de país
+const FLAGS = {
+    'Mexico': '🇲🇽','USA': '🇺🇸','Canada': '🇨🇦','Brazil': '🇧🇷','Argentina': '🇦🇷',
+    'France': '🇫🇷','Germany': '🇩🇪','England': '🏴󠁧󠁢󠁥󠁮󠁧󠁿','Spain': '🇪🇸','Portugal': '🇵🇹',
+    'Netherlands': '🇳🇱','Belgium': '🇧🇪','Italy': '🇮🇹','Japan': '🇯🇵','South Korea': '🇰🇷',
+    'Australia': '🇦🇺','Morocco': '🇲🇦','Senegal': '🇸🇳','Ghana': '🇬🇭','Nigeria': '🇳🇬',
+    'Cameroon': '🇨🇲','Uruguay': '🇺🇾','Colombia': '🇨🇴','Chile': '🇨🇱','Ecuador': '🇪🇨',
+    'Peru': '🇵🇪','Paraguay': '🇵🇾','Venezuela': '🇻🇪','Bolivia': '🇧🇴','Costa Rica': '🇨🇷',
+    'Honduras': '🇭🇳','Panama': '🇵🇦','Jamaica': '🇯🇲','Saudi Arabia': '🇸🇦','Iran': '🇮🇷',
+    'Qatar': '🇶🇦','South Africa': '🇿🇦','Serbia': '🇷🇸','Croatia': '🇭🇷','Denmark': '🇩🇰',
+    'Switzerland': '🇨🇭','Poland': '🇵🇱','Ukraine': '🇺🇦','Hungary': '🇭🇺','Romania': '🇷🇴',
+    'Slovakia': '🇸🇰','Czech Republic': '🇨🇿','Czechia': '🇨🇿','Turkey': '🇹🇷','Sweden': '🇸🇪',
+    'Norway': '🇳🇴','Finland': '🇫🇮','Scotland': '🏴󠁧󠁢󠁳󠁣󠁴󠁿','Wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿','Ireland': '🇮🇪',
+    'Austria': '🇦🇹','Bosnia-Herzegovina': '🇧🇦','Algeria': '🇩🇿','Egypt': '🇪🇬','Tunisia': '🇹🇳',
+    'Iraq': '🇮🇶','New Zealand': '🇳🇿','Uzbekistan': '🇺🇿','Indonesia': '🇮🇩','Congo DR': '🇨🇩',
+    'Default': '🏳️'
+};
+
+function getFlag(name) {
+    return FLAGS[name] || FLAGS['Default'];
+}
+
+// Formateador de hora en México (UTC-6)
+function fmtMX(utcStr) {
+    if (!utcStr) return '--:--';
+    const d = new Date(utcStr);
+    return d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City' });
+}
+function fmtDateMX(utcStr) {
+    if (!utcStr) return '';
+    const d = new Date(utcStr);
+    return d.toLocaleDateString('es-MX', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'America/Mexico_City' });
+}
+function isToday(utcStr) {
+    const d = new Date(utcStr);
+    const now = new Date();
+    return d.toDateString() === now.toDateString();
+}
+
+// ============================================================
+// FETCH helpers
+// ============================================================
+async function fetchAPI(endpoint) {
+    try {
+        const res = await fetch(`${API_BASE}${endpoint}`, {
+            headers: { 'Authorization': `Bearer ${API_KEY}` }
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+    } catch (e) {
+        console.error('API Error:', e);
+        return null;
+    }
+}
+
+// ============================================================
+// RENDER MATCH CARD
+// ============================================================
+function renderMatch(m) {
+    const isLive = m.status === 'live' || m.status === 'in_progress';
+    const isFinished = m.status === 'finished' || m.status === 'completed';
+    const homeFlag = getFlag(m.home_team);
+    const awayFlag = getFlag(m.away_team);
+    const kickoffMX = fmtMX(m.kickoff_utc);
+    const dateMX = fmtDateMX(m.kickoff_utc);
+
+    const scoreBlock = isLive || isFinished
+        ? `<div class="flex items-center gap-3 text-3xl font-bebas tracking-wider">
+                <span>${m.home_score ?? 0}</span>
+                <span class="text-white/30">–</span>
+                <span>${m.away_score ?? 0}</span>
+           </div>`
+        : `<div class="text-center">
+                <p class="font-bebas text-xl text-brand tracking-wider">${kickoffMX}</p>
+                <p class="text-white/30 text-xs">${dateMX}</p>
+           </div>`;
+
+    const badge = isLive
+        ? `<span class="flex items-center gap-1.5 text-red-400 text-[10px] font-bold uppercase"><span class="live-dot"></span>EN VIVO${m.minute ? ' · ' + m.minute + "'" : ''}</span>`
+        : isFinished
+            ? `<span class="text-white/30 text-[10px] font-bold uppercase">Final</span>`
+            : `<span class="text-brand text-[10px] font-bold uppercase">${m.round === 'group' ? 'Grupo ' + m.group_name : m.round}</span>`;
+
+    return `
+        <div class="match-card p-4 ${isLive ? 'live' : ''}">
+            <div class="flex items-center justify-between gap-4">
+                <!-- Home -->
+                <div class="flex-1 flex flex-col items-center gap-1 min-w-0">
+                    <span class="flag">${homeFlag}</span>
+                    <span class="font-barlow font-700 text-xs text-center leading-tight">${m.home_team || '?'}</span>
+                </div>
+                <!-- Score / Time -->
+                <div class="flex flex-col items-center gap-1 px-4">
+                    ${scoreBlock}
+                    ${badge}
+                </div>
+                <!-- Away -->
+                <div class="flex-1 flex flex-col items-center gap-1 min-w-0">
+                    <span class="flag">${awayFlag}</span>
+                    <span class="font-barlow font-700 text-xs text-center leading-tight">${m.away_team || '?'}</span>
+                </div>
+            </div>
+            ${m.stadium ? `<p class="text-center text-white/20 text-[10px] mt-2 uppercase tracking-wider">🏟️ ${m.stadium}</p>` : ''}
+        </div>`;
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('text-white/60');
+    });
+    document.getElementById('tab-' + name).classList.remove('hidden');
+    const activeBtn = document.querySelector(`[data-tab="${name}"]`);
+    activeBtn.classList.add('active');
+    activeBtn.classList.remove('text-white/60');
+}
+
+// ============================================================
+// LOAD DATA
+// ============================================================
+let allMatches = [];
+
+async function loadMatches() {
+    const data = await fetchAPI('/matches');
+    if (!data) {
+        showFallbackData();
+        return;
+    }
+    allMatches = Array.isArray(data) ? data : (data.matches || data.data || []);
+    renderAllTabs();
+    document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
+}
+
+async function loadGroups() {
+    const data = await fetchAPI('/standings');
+    if (!data) return;
+    renderGroups(Array.isArray(data) ? data : (data.standings || data.groups || data.data || []));
+}
+
+function renderAllTabs() {
+    const live = allMatches.filter(m => m.status === 'live' || m.status === 'in_progress');
+    const today = allMatches.filter(m => m.kickoff_utc && isToday(m.kickoff_utc));
+    const upcoming = allMatches.filter(m => m.status === 'scheduled' && !isToday(m.kickoff_utc)).slice(0, 20);
+    const results = allMatches.filter(m => m.status === 'finished' || m.status === 'completed').reverse().slice(0, 20);
+
+    // LIVE
+    const liveEl = document.getElementById('liveMatches');
+    const noLiveEl = document.getElementById('noLive');
+    if (live.length) {
+        liveEl.innerHTML = live.map(renderMatch).join('');
+        noLiveEl.classList.add('hidden');
+    } else {
+        liveEl.innerHTML = '';
+        noLiveEl.classList.remove('hidden');
+    }
+
+    // TODAY
+    const todayEl = document.getElementById('todayMatches');
+    const noTodayEl = document.getElementById('noToday');
+    if (today.length) {
+        todayEl.innerHTML = today.map(renderMatch).join('');
+        noTodayEl.classList.add('hidden');
+    } else {
+        todayEl.innerHTML = '';
+        noTodayEl.classList.remove('hidden');
+    }
+
+    // UPCOMING
+    document.getElementById('upcomingMatches').innerHTML = upcoming.length
+        ? upcoming.map(renderMatch).join('')
+        : '<p class="text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">PRÓXIMAMENTE LOS FIXTURE</p>';
+
+    // RESULTS
+    const resultsEl = document.getElementById('resultsMatches');
+    const noResultsEl = document.getElementById('noResults');
+    if (results.length) {
+        resultsEl.innerHTML = results.map(renderMatch).join('');
+        noResultsEl.classList.add('hidden');
+    } else {
+        resultsEl.innerHTML = '';
+        noResultsEl.classList.remove('hidden');
+    }
+}
+
+function renderGroups(groups) {
+    const container = document.getElementById('groupsContent');
+    if (!groups || !groups.length) {
+        container.innerHTML = '<p class="col-span-3 text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">GRUPOS PRÓXIMAMENTE</p>';
+        return;
+    }
+
+    container.innerHTML = groups.map(group => {
+        const teams = group.teams || group.standings || [];
+        const rows = teams.map((t, i) => `
+            <tr class="${i < 2 ? 'qualify' : ''}">
+                <td class="text-left font-bold">${getFlag(t.team || t.name)} ${t.team || t.name}</td>
+                <td>${t.played ?? t.p ?? 0}</td>
+                <td>${t.won ?? t.w ?? 0}</td>
+                <td>${t.drawn ?? t.d ?? 0}</td>
+                <td>${t.lost ?? t.l ?? 0}</td>
+                <td class="font-bold text-brand">${t.points ?? t.pts ?? 0}</td>
+            </tr>`).join('');
+
+        return `
+            <div class="glass rounded-2xl p-5">
+                <p class="font-bebas text-lg text-brand tracking-widest mb-4">GRUPO ${group.group || group.name || '?'}</p>
+                <table class="group-table w-full">
+                    <thead><tr>
+                        <th class="text-left">Selección</th>
+                        <th>J</th><th>G</th><th>E</th><th>P</th>
+                        <th class="text-brand">Pts</th>
+                    </tr></thead>
+                    <tbody>${rows}</tbody>
+                </table>
+                <p class="text-[10px] text-brand/50 mt-3 uppercase font-bold">Verde = Clasifican</p>
+            </div>`;
+    }).join('');
+}
+
+// ============================================================
+// FALLBACK si no tiene API key todavía
+// ============================================================
+function showFallbackData() {
+    const msg = `
+        <div class="glass-green rounded-2xl p-8 text-center">
+            <p class="text-4xl mb-3">🔑</p>
+            <p class="font-bebas text-2xl text-brand tracking-wider mb-2">CONFIGURA TU API KEY</p>
+            <p class="text-white/50 text-sm mb-4">Para ver datos en tiempo real, solicita tu clave gratuita en <strong class="text-white">wc2026api.com</strong> y reemplaza <code class="text-brand bg-black/30 px-2 py-0.5 rounded">TU_API_KEY_AQUI</code> en el código.</p>
+            <a href="https://tally.so/r/zxqlJE" target="_blank" class="inline-block bg-brand text-black font-black uppercase px-6 py-3 rounded-xl text-xs hover:bg-white transition">
+                Solicitar API Key Gratis →
+            </a>
+        </div>`;
+    document.getElementById('liveMatches').innerHTML = msg;
+    document.getElementById('todayMatches').innerHTML = msg;
+    document.getElementById('upcomingMatches').innerHTML = msg;
+    document.getElementById('resultsMatches').innerHTML = msg;
+    document.getElementById('groupsContent').innerHTML = `<div class="col-span-3">${msg}</div>`;
+}
+
+// ============================================================
+// COUNTDOWN al Mundial
+// ============================================================
+function updateCountdown() {
+    const start = new Date('2026-06-11T19:00:00Z'); // Partido inaugural UTC
+    const end = new Date('2026-07-19T20:00:00Z');
+    const now = new Date();
+    const countdownEl = document.getElementById('countdown');
+    const statusLabel = document.getElementById('statusLabel');
+
+    if (now >= end) {
+        statusLabel.textContent = 'El Mundial ha concluido';
+        countdownEl.innerHTML = '';
+        return;
+    }
+
+    if (now >= start) {
+        statusLabel.textContent = '🔴 Torneo en curso';
+        countdownEl.innerHTML = '';
+        return;
+    }
+
+    statusLabel.textContent = 'Faltan para el inicio';
+    const diff = start - now;
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    countdownEl.innerHTML = [
+        { val: days, label: 'días' },
+        { val: hours, label: 'horas' },
+        { val: mins, label: 'min' },
+        { val: secs, label: 'seg' }
+    ].map(i => `
+        <div class="countdown-box">
+            <p class="font-bebas text-3xl text-brand leading-none">${String(i.val).padStart(2,'0')}</p>
+            <p class="text-white/30 text-[10px] uppercase font-bold mt-1">${i.label}</p>
+        </div>`).join('');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Si no tiene API key aún, muestra fallback inmediato
+    if (API_KEY === 'TU_API_KEY_AQUI') {
+        showFallbackData();
+    } else {
+        loadMatches();
+        loadGroups();
+        // Refresca datos en vivo cada 60 segundos
+        setInterval(loadMatches, 60000);
+    }
+});
+</script>
+
+</body>
+</html>
