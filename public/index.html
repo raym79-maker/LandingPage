@@ -383,6 +383,49 @@
             <span>✅ Soporte 24/7</span>
             <span>✅ Activación inmediata</span>
         </div>
+
+        <!-- ⚽ BANNER MUNDIAL 2026 -->
+        <a href="/mundial-2026.html"
+            class="group relative mt-14 mx-auto max-w-3xl flex items-center justify-between gap-4 rounded-2xl overflow-hidden px-6 py-5 cursor-pointer block"
+            style="background: linear-gradient(135deg, #0a2e1a 0%, #0f3d22 40%, #1a6b3c 100%); border: 1px solid rgba(37,211,102,0.35); box-shadow: 0 0 40px rgba(37,211,102,0.12), inset 0 1px 0 rgba(255,255,255,0.05);">
+
+            <!-- Glow animado de fondo -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style="background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(255,215,0,0.06) 100%);"></div>
+
+            <!-- Balón animado fondo decorativo -->
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[90px] opacity-5 select-none pointer-events-none"
+                style="animation: spin 12s linear infinite;">⚽</div>
+
+            <!-- Izquierda: badge LIVE + título -->
+            <div class="relative flex flex-col items-start gap-1.5 z-10">
+                <div class="flex items-center gap-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                    </span>
+                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">En vivo · Tiempo real</span>
+                </div>
+                <p class="text-white font-black text-xl md:text-2xl uppercase italic leading-tight tracking-tight">
+                    ⚽ Mundial 2026 — <span class="text-brand">Calendario &amp; Resultados</span>
+                </p>
+                <p class="text-white/40 text-xs uppercase tracking-wider font-bold">
+                    Partidos · Grupos · Scores en vivo · 104 juegos
+                </p>
+            </div>
+
+            <!-- Derecha: CTA flecha -->
+            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-brand text-black font-black text-xs uppercase px-5 py-3 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-brand/30">
+                Ver ahora
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+            </div>
+        </a>
+
+        <style>
+            @keyframes spin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
+        </style>
     </section>
 
     <!-- MUNDIAL 2026 -->
