@@ -138,6 +138,10 @@ app.get('/robots.txt', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
 });
 
+app.get('/mundial-2026.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
+});
+
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, '0.0.0.0', () => {
