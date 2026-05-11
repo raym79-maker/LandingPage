@@ -375,7 +375,7 @@
 // ============================================================
 // CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
 // ============================================================
-// API via proxy local
+// Proxy local — la key está en server.js
 const API_BASE = '/api/wc';
 
 // Banderas por nombre de país
@@ -504,10 +504,7 @@ let allMatches = [];
 
 async function loadMatches() {
     const data = await fetchAPI('/matches');
-    if (!data) {
-        renderAllTabs();
-        return;
-    }
+    if (!data) { renderAllTabs(); return; }
     allMatches = Array.isArray(data) ? data : (data.matches || data.data || []);
     renderAllTabs();
     document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
@@ -661,8 +658,6 @@ function renderGroups(groups) {
     }).join('');
 }
 
-// ============================================================
-
 
 // ============================================================
 // COUNTDOWN al Mundial
@@ -712,7 +707,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Si no tiene API key aún, muestra fallback inmediato
     loadMatches();
     loadGroups();
     setInterval(loadMatches, 60000);
