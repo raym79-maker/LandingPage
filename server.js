@@ -142,6 +142,25 @@ app.get('/mundial-2026.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
 });
 
+// ✅ Proxy para WC2026 API — evita bloqueos CORS del navegador
+const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
+const WC_API_BASE = 'https://api.wc2026api.com';
+
+app.get('/api/wc/:endpoint', async (req, res) => {
+    try {
+        const url = `${WC_API_BASE}/${req.params.endpoint}`;
+        const response = await fetch(url, {
+            headers: { 'Authorization': `Bearer ${WC_API_KEY}` }
+        });
+        if (!response.ok) throw new Error(`WC API error: ${response.status}`);
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.error('WC API proxy error:', err.message);
+        res.status(500).json({ error: 'Error al consultar datos del Mundial' });
+    }
+});
+
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 app.listen(PORT, '0.0.0.0', () => {
