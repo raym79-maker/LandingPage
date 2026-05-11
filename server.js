@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
+        // 1. Añadimos 'dispositivo' a la creación inicial
         db.run(`CREATE TABLE IF NOT EXISTS prospectos (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
             nombre TEXT, 
@@ -32,6 +33,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
             fecha DATETIME DEFAULT CURRENT_TIMESTAMP
         )`, (err) => {
             if (!err) {
+                // 2. Truco de seguridad: Si la tabla ya existe sin la columna, la agregamos
                 db.run(`ALTER TABLE prospectos ADD COLUMN dispositivo TEXT`, (err) => {
                     if (err) console.log("La columna dispositivo ya está lista.");
                 });
@@ -40,18 +42,68 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// ✅ PROXY CORREGIDO: Trae todos los partidos del Mundial (Límite 150)
+// Endpoint para guardar prospectos
+app.post('/api/prospectos', (req, res) => {
+    const { nombre, whatsapp, producto, dispositivo } = req.body;
+    
+    if (!nombre || !whatsapp) {
+        return res.status(400).json({ error: "Nombre y WhatsApp son requeridos" });
+    }
+
+    const query = `INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`;
+    db.run(query, [nombre, whatsapp, producto, dispositivo], function(err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ id: this.lastID, message: "Prospecto guardado con éxito" });
+    });
+});
+
+// Endpoint para ver registros con seguridad básica
+const auth = basicAuth({
+    users: { 'admin': 'smartplay2026' },
+    challenge: true
+});
+
+app.get('/api/prospectos', auth, (req, res) => {
+    db.all(`SELECT * FROM prospectos ORDER BY fecha DESC`, [], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
+    });
+});
+
+// Servir archivos estáticos y sitemap
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/sitemap.xml', (req, res) => {
+    res.setHeader('Content-Type', 'text/xml');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+
+app.get('/robots.txt', (req, res) => {
+    res.setHeader('Content-Type', 'text/plain');
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
+
+app.get('/mundial-2026.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
+});
+
+// ✅ Proxy WC2026 API CORREGIDO PARA TRAER TODOS LOS PARTIDOS (LIMIT 150)
 const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
 const WC_API_BASE = 'api.wc2026api.com';
 
 app.get('/api/wc/:endpoint', (req, res) => {
     const options = {
         hostname: WC_API_BASE,
-        path: '/' + req.params.endpoint + '?limit=150',
+        path: '/' + req.params.endpoint + '?limit=150', // Agregado el límite aquí
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + WC_API_KEY }
     };
-
     const request = https.request(options, (response) => {
         let data = '';
         response.on('data', chunk => data += chunk);
@@ -71,36 +123,6 @@ app.get('/api/wc/:endpoint', (req, res) => {
     request.end();
 });
 
-app.post('/api/prospectos', (req, res) => {
-    const { nombre, whatsapp, producto, dispositivo } = req.body;
-    const query = `INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`;
-    db.run(query, [nombre, whatsapp, producto, dispositivo], function(err) {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ id: this.lastID, message: "Prospecto guardado" });
-    });
+app.listen(PORT, () => {
+    console.log(`Servidor Smartplay corriendo en puerto ${PORT}`);
 });
-
-const auth = basicAuth({
-    users: { 'admin': 'smartplay2026' },
-    challenge: true
-});
-
-app.get('/api/prospectos', auth, (req, res) => {
-    db.all(`SELECT * FROM prospectos ORDER BY fecha DESC`, [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(rows);
-    });
-});
-
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html')));
-app.get('/sitemap.xml', (req, res) => {
-    res.setHeader('Content-Type', 'text/xml');
-    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
-});
-app.get('/robots.txt', (req, res) => {
-    res.setHeader('Content-Type', 'text/plain');
-    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
-});
-
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
