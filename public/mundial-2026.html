@@ -379,15 +379,21 @@ function getFlag(name) {
     return FLAGS[name] || FLAGS['Default'];
 }
 
-// Zona horaria México (UTC-6)
+// Convertir hora del partido a Date correcta según su zona UTC
 function toMX(dateStr, timeStr) {
     if (!dateStr) return null;
-    // timeStr puede ser "13:00 UTC-6" o "13:00"
-    const clean = timeStr ? timeStr.replace(/\s*UTC[+-]\d+/, '').trim() : '12:00';
+    if (!timeStr) return new Date(dateStr + 'T00:00:00Z');
+    // Extraer offset: "13:00 UTC-6" → offset = -6
+    const offsetMatch = timeStr.match(/UTC([+-]\d+)/);
+    const offset = offsetMatch ? parseInt(offsetMatch[1]) : -6;
+    const clean = timeStr.replace(/\s*UTC[+-]\d+/, '').trim();
     const [h, m] = clean.split(':').map(Number);
-    // Convertir a UTC: si time viene en UTC-6, sumar 6 horas para UTC
-    const d = new Date(`${dateStr}T${String(h).padStart(2,'0')}:${String(m||0).padStart(2,'0')}:00-06:00`);
-    return d;
+    // Usar aritmética de minutos para manejar rollover de fecha
+    // ej: 20:00 UTC-6 → 20*60 - (-6*60) = 1200+360 = 1560 min UTC = 26h → día siguiente 02:00
+    const base = new Date(dateStr + 'T00:00:00Z');
+    const utcMinutes = (h * 60 + (m || 0)) - (offset * 60);
+    base.setMinutes(base.getMinutes() + utcMinutes);
+    return base;
 }
 
 function fmtHora(d) {
@@ -510,7 +516,6 @@ function renderAll() {
 
     const live    = allMatches.filter(m => m.live);
     const today   = allMatches.filter(m => m._date && isToday(m._date));
-    const upcoming = allMatches.filter(m => m._date && m._date > now && !m.score?.ft).slice(0, 30);
     const results  = allMatches.filter(m => m.score?.ft).reverse().slice(0, 30);
 
     // EN VIVO
@@ -525,11 +530,36 @@ function renderAll() {
     if (today.length) { todayEl.innerHTML = today.map(renderCard).join(''); noTodayEl.classList.add('hidden'); }
     else { todayEl.innerHTML = ''; noTodayEl.classList.remove('hidden'); }
 
-    // PRÓXIMOS
+    // PRÓXIMOS — TODOS los partidos, ordenados por fecha real, agrupados por día
     const upEl = document.getElementById('upcomingMatches');
-    upEl.innerHTML = upcoming.length
-        ? upcoming.map(renderCard).join('')
-        : '<p class="text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">PRÓXIMAMENTE</p>';
+    const upcoming = allMatches
+        .filter(m => m._date && !m.score?.ft)
+        .sort((a, b) => a._date - b._date);
+
+    if (upcoming.length) {
+        const byDay = {};
+        upcoming.forEach(m => {
+            // Usar fecha local México como key
+            const dayKey = m._date.toLocaleDateString('es-MX', {
+                weekday: 'long', day: 'numeric', month: 'long',
+                timeZone: 'America/Mexico_City'
+            }).toUpperCase();
+            if (!byDay[dayKey]) byDay[dayKey] = [];
+            byDay[dayKey].push(m);
+        });
+
+        upEl.innerHTML = Object.entries(byDay).map(([day, matches]) => `
+            <div class="mb-1">
+                <div class="flex items-center gap-3 mb-3 mt-8 first:mt-0">
+                    <div class="h-px flex-1 bg-brand/30"></div>
+                    <span class="text-brand font-bebas tracking-widest text-base px-4 bg-brand/10 border border-brand/20 rounded-full py-1">${day}</span>
+                    <div class="h-px flex-1 bg-brand/30"></div>
+                </div>
+                <div class="space-y-3">${matches.map(renderCard).join('')}</div>
+            </div>`).join('');
+    } else {
+        upEl.innerHTML = '<p class="text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">PRÓXIMAMENTE</p>';
+    }
 
     // RESULTADOS
     const resEl = document.getElementById('resultsMatches');
