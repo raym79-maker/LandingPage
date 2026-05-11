@@ -375,7 +375,7 @@
 // ============================================================
 // CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
 // ============================================================
-const API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt'; // ← Solicítala gratis en wc2026api.com
+const API_KEY = 'TU_API_KEY_AQUI'; // ← Solicítala gratis en wc2026api.com
 const API_BASE = 'https://api.wc2026api.com';
 
 // Banderas por nombre de país
@@ -452,7 +452,7 @@ function renderMatch(m) {
            </div>`
         : `<div class="text-center">
                 <p class="font-bebas text-xl text-brand tracking-wider">${kickoffMX}</p>
-                <p class="text-white/30 text-xs">${dateMX}</p>
+                <p class="text-white font-bold text-xs">${dateMX}</p>
            </div>`;
 
     const badge = isLive
@@ -480,7 +480,7 @@ function renderMatch(m) {
                     <span class="font-barlow font-700 text-xs text-center leading-tight">${m.away_team || '?'}</span>
                 </div>
             </div>
-            ${m.stadium ? `<p class="text-center text-white/20 text-[10px] mt-2 uppercase tracking-wider">🏟️ ${m.stadium}</p>` : ''}
+            ${m.stadium ? `<p class="text-center text-white font-bold text-[11px] mt-2 uppercase tracking-wider">🏟️ ${m.stadium}</p>` : ''}
         </div>`;
 }
 
@@ -517,8 +517,68 @@ async function loadMatches() {
 
 async function loadGroups() {
     const data = await fetchAPI('/standings');
-    if (!data) return;
-    renderGroups(Array.isArray(data) ? data : (data.standings || data.groups || data.data || []));
+    const standings = Array.isArray(data) ? data : (data?.standings || data?.groups || data?.data || []);
+
+    if (standings && standings.length > 0) {
+        renderGroups(standings);
+        return;
+    }
+
+    // Fallback: construir grupos desde los partidos ya cargados
+    if (allMatches.length > 0) {
+        buildGroupsFromMatches(allMatches);
+    } else {
+        // Si aún no hay partidos cargados, esperar y reintentar
+        setTimeout(async () => {
+            const matches = await fetchAPI('/matches');
+            const list = Array.isArray(matches) ? matches : (matches?.matches || matches?.data || []);
+            buildGroupsFromMatches(list);
+        }, 2000);
+    }
+}
+
+function buildGroupsFromMatches(matches) {
+    const groupMap = {};
+
+    matches.forEach(m => {
+        if (!m.group_name || m.round !== 'group') return;
+        const g = m.group_name;
+        if (!groupMap[g]) groupMap[g] = {};
+
+        const addTeam = (name) => {
+            if (!name || groupMap[g][name]) return;
+            groupMap[g][name] = { team: name, played: 0, won: 0, drawn: 0, lost: 0, gf: 0, ga: 0, points: 0 };
+        };
+        addTeam(m.home_team);
+        addTeam(m.away_team);
+
+        // Si hay resultado, actualizar stats
+        const finished = m.status === 'finished' || m.status === 'completed';
+        if (finished && m.home_team && m.away_team) {
+            const h = groupMap[g][m.home_team];
+            const a = groupMap[g][m.away_team];
+            const hs = m.home_score ?? 0;
+            const as_ = m.away_score ?? 0;
+            h.played++; a.played++;
+            h.gf += hs; h.ga += as_;
+            a.gf += as_; a.ga += hs;
+            if (hs > as_)      { h.won++; h.points += 3; a.lost++; }
+            else if (hs < as_) { a.won++; a.points += 3; h.lost++; }
+            else               { h.drawn++; h.points++; a.drawn++; a.points++; }
+        }
+    });
+
+    const groups = Object.keys(groupMap).sort().map(g => ({
+        group: g,
+        teams: Object.values(groupMap[g]).sort((a, b) => b.points - a.points || (b.gf - b.ga) - (a.gf - a.ga))
+    }));
+
+    if (groups.length === 0) {
+        document.getElementById('groupsContent').innerHTML =
+            '<p class="col-span-3 text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">GRUPOS DISPONIBLES EL 11 DE JUNIO</p>';
+        return;
+    }
+    renderGroups(groups);
 }
 
 function renderAllTabs() {
@@ -582,6 +642,7 @@ function renderGroups(groups) {
                 <td>${t.won ?? t.w ?? 0}</td>
                 <td>${t.drawn ?? t.d ?? 0}</td>
                 <td>${t.lost ?? t.l ?? 0}</td>
+                <td>${(t.gf ?? 0)}:${(t.ga ?? 0)}</td>
                 <td class="font-bold text-brand">${t.points ?? t.pts ?? 0}</td>
             </tr>`).join('');
 
@@ -592,6 +653,7 @@ function renderGroups(groups) {
                     <thead><tr>
                         <th class="text-left">Selección</th>
                         <th>J</th><th>G</th><th>E</th><th>P</th>
+                        <th>GF:GC</th>
                         <th class="text-brand">Pts</th>
                     </tr></thead>
                     <tbody>${rows}</tbody>
