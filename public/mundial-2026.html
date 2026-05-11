@@ -343,7 +343,7 @@
 
 <script>
 // ============================================================
-// CONFIGURACIÓN8 — reemplaza con tu API key de wc2026api.com
+// CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
 // ============================================================
 const API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt'; // ← Solicítala gratis en wc2026api.com
 const API_BASE = 'https://api.wc2026api.com';
@@ -477,7 +477,7 @@ let allMatches = [];
 async function loadMatches() {
     const data = await fetchAPI('/matches');
     if (!data) {
-        showFallbackData();
+        renderAllTabs();
         return;
     }
     allMatches = Array.isArray(data) ? data : (data.matches || data.data || []);
@@ -634,26 +634,6 @@ function renderGroups(groups) {
 }
 
 // ============================================================
-// FALLBACK si no tiene API key todavía
-// ============================================================
-function showFallbackData() {
-    const msg = `
-        <div class="glass-green rounded-2xl p-8 text-center">
-            <p class="text-4xl mb-3">🔑</p>
-            <p class="font-bebas text-2xl text-brand tracking-wider mb-2">CONFIGURA TU API KEY</p>
-            <p class="text-white/50 text-sm mb-4">Para ver datos en tiempo real, solicita tu clave gratuita en <strong class="text-white">wc2026api.com</strong> y reemplaza <code class="text-brand bg-black/30 px-2 py-0.5 rounded">TU_API_KEY_AQUI</code> en el código.</p>
-            <a href="https://tally.so/r/zxqlJE" target="_blank" class="inline-block bg-brand text-black font-black uppercase px-6 py-3 rounded-xl text-xs hover:bg-white transition">
-                Solicitar API Key Gratis →
-            </a>
-        </div>`;
-    document.getElementById('liveMatches').innerHTML = msg;
-    document.getElementById('todayMatches').innerHTML = msg;
-    document.getElementById('upcomingMatches').innerHTML = msg;
-    document.getElementById('resultsMatches').innerHTML = msg;
-    document.getElementById('groupsContent').innerHTML = `<div class="col-span-3">${msg}</div>`;
-}
-
-// ============================================================
 // COUNTDOWN al Mundial
 // ============================================================
 function updateCountdown() {
@@ -700,16 +680,9 @@ function updateCountdown() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Si no tiene API key aún, muestra fallback inmediato
-    if (API_KEY === 'TU_API_KEY_AQUI') {
-        showFallbackData();
-    } else {
-        loadMatches();
-        loadGroups();
-        // Refresca datos en vivo cada 60 segundos
-        setInterval(loadMatches, 60000);
-    }
+    loadMatches();
+    loadGroups();
+    setInterval(loadMatches, 60000);
 });
 </script>
 
