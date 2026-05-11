@@ -40,12 +40,11 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// ✅ Proxy WC2026 API - INTEGRADO CON LÍMITE DE 150 PARTIDOS
+// ✅ PROXY CORREGIDO: Trae todos los partidos del Mundial (Límite 150)
 const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
 const WC_API_BASE = 'api.wc2026api.com';
 
 app.get('/api/wc/:endpoint', (req, res) => {
-    // Agregamos ?limit=150 para que la fase de grupos salga completa
     const options = {
         hostname: WC_API_BASE,
         path: '/' + req.params.endpoint + '?limit=150',
@@ -72,7 +71,6 @@ app.get('/api/wc/:endpoint', (req, res) => {
     request.end();
 });
 
-// Rutas de Prospectos (Tu lógica original)
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto, dispositivo } = req.body;
     const query = `INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`;
@@ -82,7 +80,6 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// Autenticación para ver registros
 const auth = basicAuth({
     users: { 'admin': 'smartplay2026' },
     challenge: true
@@ -95,25 +92,15 @@ app.get('/api/prospectos', auth, (req, res) => {
     });
 });
 
-// Servir archivos HTML
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html')));
 app.get('/sitemap.xml', (req, res) => {
     res.setHeader('Content-Type', 'text/xml');
     res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
 });
-
 app.get('/robots.txt', (req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
 });
 
-app.get('/mundial-2026.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
-});
-
-app.listen(PORT, () => {
-    console.log(`Servidor Smartplay corriendo en http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
