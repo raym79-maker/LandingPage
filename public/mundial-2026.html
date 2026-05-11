@@ -343,10 +343,9 @@
 
 <script>
 // ============================================================
-// CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
+// CONFIGURACIÓN — proxy local (evita bloqueos CORS)
 // ============================================================
-const API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt'; // ← Solicítala gratis en wc2026api.com
-const API_BASE = 'https://api.wc2026api.com';
+const API_BASE = '/api/wc';
 
 // Banderas por nombre de país
 const FLAGS = {
@@ -392,9 +391,7 @@ function isToday(utcStr) {
 // ============================================================
 async function fetchAPI(endpoint) {
     try {
-        const res = await fetch(`${API_BASE}${endpoint}`, {
-            headers: { 'Authorization': `Bearer ${API_KEY}` }
-        });
+        const res = await fetch(`${API_BASE}${endpoint}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return await res.json();
     } catch (e) {
