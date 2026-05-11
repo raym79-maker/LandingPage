@@ -478,6 +478,7 @@ async function loadMatches() {
         return;
     }
     allMatches = Array.isArray(data) ? data : (data.matches || data.data || []);
+    console.log('✅ Partidos cargados:', allMatches.length, '| Ejemplo:', allMatches[0]);
     renderAllTabs();
     document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
 }
@@ -491,16 +492,19 @@ async function loadGroups() {
         return;
     }
 
-    // Fallback: construir grupos desde los partidos ya cargados
+    // Fallback: construir desde los partidos
     if (allMatches.length > 0) {
         buildGroupsFromMatches(allMatches);
     } else {
-        // Si aún no hay partidos cargados, esperar y reintentar
-        setTimeout(async () => {
-            const matches = await fetchAPI('/matches');
-            const list = Array.isArray(matches) ? matches : (matches?.matches || matches?.data || []);
+        // Pedir los partidos directamente si aún no están cargados
+        const matchData = await fetchAPI('/matches');
+        const list = Array.isArray(matchData) ? matchData : (matchData?.matches || matchData?.data || []);
+        if (list.length > 0) {
             buildGroupsFromMatches(list);
-        }, 2000);
+        } else {
+            document.getElementById('groupsContent').innerHTML =
+                '<p class="col-span-3 text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">GRUPOS DISPONIBLES EL 11 DE JUNIO</p>';
+        }
     }
 }
 
@@ -508,8 +512,17 @@ function buildGroupsFromMatches(matches) {
     const groupMap = {};
 
     matches.forEach(m => {
-        if (!m.group_name || m.round !== 'group') return;
-        const g = m.group_name;
+        // Acepta cualquier variante del campo round que indique fase de grupos
+        const isGroupStage = m.group_name || 
+            (m.round && (
+                m.round === 'group' || 
+                m.round === 'Group Stage' || 
+                m.round === 'group_stage' ||
+                String(m.round).toLowerCase().includes('group')
+            ));
+        if (!isGroupStage) return;
+
+        const g = m.group_name || m.group || '?';
         if (!groupMap[g]) groupMap[g] = {};
 
         const addTeam = (name) => {
