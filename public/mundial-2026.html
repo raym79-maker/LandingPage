@@ -213,18 +213,48 @@
     </div>
 </nav>
 
-<!-- HERO MINIMAL -->
-<section class="hero-bg grass-line pt-24 pb-4 px-6 relative">
+<!-- HERO -->
+<section class="hero-bg grass-line pt-32 pb-16 px-6 relative">
     <div class="max-w-4xl mx-auto text-center">
-        <p class="text-brand font-barlow font-700 text-xs uppercase tracking-widest mb-2">⚽ FIFA World Cup 2026 · 11 Jun – 19 Jul</p>
-        <h1 class="font-bebas text-5xl md:text-7xl text-white leading-none mb-3 tracking-wide">
+
+        <!-- Countdown -->
+        <div class="mb-8" id="countdownSection">
+            <p class="text-brand font-barlow font-700 text-xs uppercase tracking-widest mb-4">⚽ FIFA World Cup 2026 · 11 Jun – 19 Jul</p>
+            <div id="tournamentStatus" class="flex justify-center items-center gap-3 mb-2">
+                <div class="flex items-center gap-2 glass-green px-4 py-2 rounded-full text-xs font-bold uppercase">
+                    <div class="live-dot"></div>
+                    <span id="statusLabel">Calculando...</span>
+                </div>
+            </div>
+            <div id="countdown" class="flex justify-center gap-3 mt-4"></div>
+        </div>
+
+        <h1 class="font-bebas text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-2 tracking-wide">
             MUNDIAL <span class="text-brand">2026</span>
         </h1>
-        <div class="flex items-center justify-center gap-2 glass-green px-4 py-2 rounded-full text-xs font-bold uppercase mb-3" style="display:inline-flex;">
-            <div class="live-dot"></div>
-            <span id="statusLabel">Calculando...</span>
+        <p class="font-barlow font-900 italic text-xl md:text-2xl text-white/60 mb-8 uppercase tracking-wide">
+            Ver en vivo por internet en México · <span class="text-brand">104 partidos en HD</span>
+        </p>
+
+        <!-- Stats bar -->
+        <div class="flex flex-wrap justify-center gap-6 mb-10 text-xs font-bold uppercase tracking-widest text-white/40">
+            <span>🌎 48 Selecciones</span>
+            <span>🏟️ 16 Estadios</span>
+            <span>⚽ 104 Partidos</span>
+            <span>📅 39 Días</span>
         </div>
-        <div id="countdown" class="flex justify-center gap-3 mt-3 mb-1"></div>
+
+        <!-- CTA Banner -->
+        <div class="glass-green rounded-2xl p-6 max-w-xl mx-auto mb-6">
+            <p class="font-barlow font-900 italic text-white text-lg mb-1">Ver el Mundial 2026 completo desde <span class="text-brand">$130 MXN/mes</span></p>
+            <p class="text-white/50 text-xs mb-4">Sin cortes · Sin contratos · Demo gratis por WhatsApp</p>
+            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México" target="_blank"
+                class="block w-full bg-brand text-black font-black uppercase py-3 rounded-xl hover:bg-white transition text-sm tracking-wide">
+                📲 Solicitar Demo Gratis — Ver el Mundial
+            </a>
+        </div>
+
+        <a href="/" class="text-white/30 text-xs uppercase hover:text-white/60 transition">← Ver todos los planes IPTV</a>
     </div>
 </section>
 
@@ -343,9 +373,10 @@
 
 <script>
 // ============================================================
-// CONFIGURACIÓN — proxy local (evita bloqueos CORS)
+// CONFIGURACIÓN — reemplaza con tu API key de wc2026api.com
 // ============================================================
-const API_BASE = '/api/wc';
+const API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt'; // ← Solicítala gratis en wc2026api.com
+const API_BASE = 'https://api.wc2026api.com';
 
 // Banderas por nombre de país
 const FLAGS = {
@@ -391,7 +422,9 @@ function isToday(utcStr) {
 // ============================================================
 async function fetchAPI(endpoint) {
     try {
-        const res = await fetch(`${API_BASE}${endpoint}`);
+        const res = await fetch(`${API_BASE}${endpoint}`, {
+            headers: { 'Authorization': `Bearer ${API_KEY}` }
+        });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return await res.json();
     } catch (e) {
@@ -474,11 +507,10 @@ let allMatches = [];
 async function loadMatches() {
     const data = await fetchAPI('/matches');
     if (!data) {
-        renderAllTabs();
+        showFallbackData();
         return;
     }
     allMatches = Array.isArray(data) ? data : (data.matches || data.data || []);
-    console.log('✅ Partidos cargados:', allMatches.length, '| Ejemplo:', allMatches[0]);
     renderAllTabs();
     document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
 }
@@ -492,19 +524,16 @@ async function loadGroups() {
         return;
     }
 
-    // Fallback: construir desde los partidos
+    // Fallback: construir grupos desde los partidos ya cargados
     if (allMatches.length > 0) {
         buildGroupsFromMatches(allMatches);
     } else {
-        // Pedir los partidos directamente si aún no están cargados
-        const matchData = await fetchAPI('/matches');
-        const list = Array.isArray(matchData) ? matchData : (matchData?.matches || matchData?.data || []);
-        if (list.length > 0) {
+        // Si aún no hay partidos cargados, esperar y reintentar
+        setTimeout(async () => {
+            const matches = await fetchAPI('/matches');
+            const list = Array.isArray(matches) ? matches : (matches?.matches || matches?.data || []);
             buildGroupsFromMatches(list);
-        } else {
-            document.getElementById('groupsContent').innerHTML =
-                '<p class="col-span-3 text-center text-white/30 py-16 font-bebas text-2xl tracking-wider">GRUPOS DISPONIBLES EL 11 DE JUNIO</p>';
-        }
+        }, 2000);
     }
 }
 
@@ -512,17 +541,8 @@ function buildGroupsFromMatches(matches) {
     const groupMap = {};
 
     matches.forEach(m => {
-        // Acepta cualquier variante del campo round que indique fase de grupos
-        const isGroupStage = m.group_name || 
-            (m.round && (
-                m.round === 'group' || 
-                m.round === 'Group Stage' || 
-                m.round === 'group_stage' ||
-                String(m.round).toLowerCase().includes('group')
-            ));
-        if (!isGroupStage) return;
-
-        const g = m.group_name || m.group || '?';
+        if (!m.group_name || m.round !== 'group') return;
+        const g = m.group_name;
         if (!groupMap[g]) groupMap[g] = {};
 
         const addTeam = (name) => {
@@ -644,6 +664,26 @@ function renderGroups(groups) {
 }
 
 // ============================================================
+// FALLBACK si no tiene API key todavía
+// ============================================================
+function showFallbackData() {
+    const msg = `
+        <div class="glass-green rounded-2xl p-8 text-center">
+            <p class="text-4xl mb-3">🔑</p>
+            <p class="font-bebas text-2xl text-brand tracking-wider mb-2">CONFIGURA TU API KEY</p>
+            <p class="text-white/50 text-sm mb-4">Para ver datos en tiempo real, solicita tu clave gratuita en <strong class="text-white">wc2026api.com</strong> y reemplaza <code class="text-brand bg-black/30 px-2 py-0.5 rounded">TU_API_KEY_AQUI</code> en el código.</p>
+            <a href="https://tally.so/r/zxqlJE" target="_blank" class="inline-block bg-brand text-black font-black uppercase px-6 py-3 rounded-xl text-xs hover:bg-white transition">
+                Solicitar API Key Gratis →
+            </a>
+        </div>`;
+    document.getElementById('liveMatches').innerHTML = msg;
+    document.getElementById('todayMatches').innerHTML = msg;
+    document.getElementById('upcomingMatches').innerHTML = msg;
+    document.getElementById('resultsMatches').innerHTML = msg;
+    document.getElementById('groupsContent').innerHTML = `<div class="col-span-3">${msg}</div>`;
+}
+
+// ============================================================
 // COUNTDOWN al Mundial
 // ============================================================
 function updateCountdown() {
@@ -690,9 +730,16 @@ function updateCountdown() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
-    loadMatches();
-    loadGroups();
-    setInterval(loadMatches, 60000);
+
+    // Si no tiene API key aún, muestra fallback inmediato
+    if (API_KEY === 'TU_API_KEY_AQUI') {
+        showFallbackData();
+    } else {
+        loadMatches();
+        loadGroups();
+        // Refresca datos en vivo cada 60 segundos
+        setInterval(loadMatches, 60000);
+    }
 });
 </script>
 
