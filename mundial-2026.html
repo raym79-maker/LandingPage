@@ -379,14 +379,18 @@ function getFlag(name) {
     return FLAGS[name] || FLAGS['Default'];
 }
 
-// Zona horaria México (UTC-6)
+// Convertir hora del partido a Date correcta según su zona UTC
 function toMX(dateStr, timeStr) {
     if (!dateStr) return null;
-    // timeStr puede ser "13:00 UTC-6" o "13:00"
-    const clean = timeStr ? timeStr.replace(/\s*UTC[+-]\d+/, '').trim() : '12:00';
+    if (!timeStr) return new Date(dateStr + 'T12:00:00Z');
+    // Extraer offset: "13:00 UTC-6" → offset = -6
+    const offsetMatch = timeStr.match(/UTC([+-]\d+)/);
+    const offset = offsetMatch ? parseInt(offsetMatch[1]) : -6;
+    const clean = timeStr.replace(/\s*UTC[+-]\d+/, '').trim();
     const [h, m] = clean.split(':').map(Number);
-    // Convertir a UTC: si time viene en UTC-6, sumar 6 horas para UTC
-    const d = new Date(`${dateStr}T${String(h).padStart(2,'0')}:${String(m||0).padStart(2,'0')}:00-06:00`);
+    // Crear fecha en UTC: hora local + offset inverso = UTC
+    const utcH = h - offset; // ej: 13:00 UTC-6 → 13-(-6)=19:00 UTC
+    const d = new Date(`${dateStr}T${String(Math.floor(utcH) % 24).padStart(2,'0')}:${String(m||0).padStart(2,'0')}:00Z`);
     return d;
 }
 
@@ -524,27 +528,30 @@ function renderAll() {
     if (today.length) { todayEl.innerHTML = today.map(renderCard).join(''); noTodayEl.classList.add('hidden'); }
     else { todayEl.innerHTML = ''; noTodayEl.classList.remove('hidden'); }
 
-    // PRÓXIMOS — todos, ordenados por fecha, agrupados por día
+    // PRÓXIMOS — TODOS los partidos, ordenados por fecha real, agrupados por día
     const upEl = document.getElementById('upcomingMatches');
     const upcoming = allMatches
-        .filter(m => m._date && m._date > now && !m.score?.ft)
+        .filter(m => m._date && !m.score?.ft)
         .sort((a, b) => a._date - b._date);
 
     if (upcoming.length) {
-        // Agrupar por día
         const byDay = {};
         upcoming.forEach(m => {
-            const key = fmtFecha(m._date);
-            if (!byDay[key]) byDay[key] = [];
-            byDay[key].push(m);
+            // Usar fecha local México como key
+            const dayKey = m._date.toLocaleDateString('es-MX', {
+                weekday: 'long', day: 'numeric', month: 'long',
+                timeZone: 'America/Mexico_City'
+            }).toUpperCase();
+            if (!byDay[dayKey]) byDay[dayKey] = [];
+            byDay[dayKey].push(m);
         });
 
         upEl.innerHTML = Object.entries(byDay).map(([day, matches]) => `
-            <div class="mb-2">
-                <div class="flex items-center gap-3 mb-3 mt-6">
-                    <div class="h-px flex-1 bg-white/10"></div>
-                    <span class="text-brand font-bebas tracking-widest text-sm uppercase px-3">${day}</span>
-                    <div class="h-px flex-1 bg-white/10"></div>
+            <div class="mb-1">
+                <div class="flex items-center gap-3 mb-3 mt-8 first:mt-0">
+                    <div class="h-px flex-1 bg-brand/30"></div>
+                    <span class="text-brand font-bebas tracking-widest text-base px-4 bg-brand/10 border border-brand/20 rounded-full py-1">${day}</span>
+                    <div class="h-px flex-1 bg-brand/30"></div>
                 </div>
                 <div class="space-y-3">${matches.map(renderCard).join('')}</div>
             </div>`).join('');
