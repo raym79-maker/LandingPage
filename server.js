@@ -1,4 +1,5 @@
 const express = require('express');
+const https = require('https');
 const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
@@ -142,23 +143,35 @@ app.get('/mundial-2026.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
 });
 
-// ✅ Proxy para WC2026 API — evita bloqueos CORS del navegador
-const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
-const WC_API_BASE = 'https://api.wc2026api.com';
 
-app.get('/api/wc/:endpoint', async (req, res) => {
-    try {
-        const url = `${WC_API_BASE}/${req.params.endpoint}`;
-        const response = await fetch(url, {
-            headers: { 'Authorization': `Bearer ${WC_API_KEY}` }
+// ✅ Proxy WC2026 API — usando https nativo para máxima compatibilidad
+const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
+const WC_API_BASE = 'api.wc2026api.com';
+
+app.get('/api/wc/:endpoint', (req, res) => {
+    const options = {
+        hostname: WC_API_BASE,
+        path: '/' + req.params.endpoint,
+        method: 'GET',
+        headers: { 'Authorization': 'Bearer ' + WC_API_KEY }
+    };
+    const request = https.request(options, (response) => {
+        let data = '';
+        response.on('data', chunk => data += chunk);
+        response.on('end', () => {
+            try {
+                res.setHeader('Content-Type', 'application/json');
+                res.send(data);
+            } catch (e) {
+                res.status(500).json({ error: 'Parse error' });
+            }
         });
-        if (!response.ok) throw new Error(`WC API error: ${response.status}`);
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.error('WC API proxy error:', err.message);
+    });
+    request.on('error', (err) => {
+        console.error('WC proxy error:', err.message);
         res.status(500).json({ error: 'Error al consultar datos del Mundial' });
-    }
+    });
+    request.end();
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
