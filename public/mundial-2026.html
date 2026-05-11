@@ -244,17 +244,7 @@
             <span>📅 39 Días</span>
         </div>
 
-        <!-- CTA Banner -->
-        <div class="glass-green rounded-2xl p-6 max-w-xl mx-auto mb-6">
-            <p class="font-barlow font-900 italic text-white text-lg mb-1">Ver el Mundial 2026 completo desde <span class="text-brand">$130 MXN/mes</span></p>
-            <p class="text-white/50 text-xs mb-4">Sin cortes · Sin contratos · Demo gratis por WhatsApp</p>
-            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México" target="_blank"
-                class="block w-full bg-brand text-black font-black uppercase py-3 rounded-xl hover:bg-white transition text-sm tracking-wide">
-                📲 Solicitar Demo Gratis — Ver el Mundial
-            </a>
-        </div>
 
-        <a href="/" class="text-white/30 text-xs uppercase hover:text-white/60 transition">← Ver todos los planes IPTV</a>
     </div>
 </section>
 
@@ -262,17 +252,8 @@
 <div class="sticky top-16 z-40 border-b border-white/5" style="background:rgba(3,13,6,0.95);backdrop-filter:blur(20px);">
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex gap-1 py-3 overflow-x-auto scrollbar-hide">
-            <button onclick="showTab('live')" class="tab-btn active font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap" data-tab="live">
-                🔴 En Vivo
-            </button>
-            <button onclick="showTab('today')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="today">
-                📅 Hoy
-            </button>
-            <button onclick="showTab('upcoming')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="upcoming">
-                🗓️ Próximos
-            </button>
-            <button onclick="showTab('results')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="results">
-                ✅ Resultados
+            <button onclick="showTab('upcoming')" class="tab-btn active font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap" data-tab="upcoming">
+                🗓️ Próximos Partidos
             </button>
             <button onclick="showTab('groups')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="groups">
                 📊 Grupos
@@ -285,7 +266,7 @@
 <main class="max-w-7xl mx-auto px-4 py-8">
 
     <!-- LIVE TAB -->
-    <div id="tab-live" class="tab-content fade-up">
+    <div id="tab-live" class="tab-content hidden fade-up">
         <div class="flex items-center gap-3 mb-6">
             <div class="live-dot"></div>
             <h2 class="font-bebas text-2xl tracking-wider text-white">PARTIDOS EN VIVO</h2>
@@ -317,7 +298,7 @@
     </div>
 
     <!-- UPCOMING TAB -->
-    <div id="tab-upcoming" class="tab-content hidden fade-up">
+    <div id="tab-upcoming" class="tab-content fade-up">
         <h2 class="font-bebas text-2xl tracking-wider text-white mb-6">PRÓXIMOS PARTIDOS</h2>
         <div id="upcomingMatches" class="space-y-3"></div>
     </div>
