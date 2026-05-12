@@ -384,14 +384,61 @@
             <span>✅ Activación inmediata</span>
         </div>
 
-        <!-- ⚽ BANNER MUNDIAL 2026 - URGENCIA -->
+        <!-- ⏱️ COUNTDOWN MUNDIAL -->
+        <div class="mt-10 mx-auto max-w-2xl">
+            <p class="text-xs text-red-400 font-black uppercase tracking-widest mb-3 text-center" style="animation: pulse 2s ease-in-out infinite;">
+                🔴 El Mundial 2026 empieza en...
+            </p>
+            <div class="grid grid-cols-4 gap-3">
+                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
+                    <span id="cd-days" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">31</span>
+                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Días</span>
+                </div>
+                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
+                    <span id="cd-hours" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
+                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Horas</span>
+                </div>
+                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
+                    <span id="cd-mins" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
+                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Minutos</span>
+                </div>
+                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
+                    <span id="cd-secs" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
+                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Segundos</span>
+                </div>
+            </div>
+            <p class="text-gray-600 text-[10px] uppercase tracking-widest text-center mt-3">
+                ⚽ Partido inaugural: 11 junio 2026 · Ciudad de México
+            </p>
+        </div>
+        <script>
+            (function() {
+                var target = new Date('2026-06-11T19:00:00-06:00').getTime();
+                function tick() {
+                    var diff = target - Date.now();
+                    if (diff <= 0) { return; }
+                    var d = Math.floor(diff / 86400000);
+                    var h = Math.floor((diff % 86400000) / 3600000);
+                    var m = Math.floor((diff % 3600000) / 60000);
+                    var s = Math.floor((diff % 60000) / 1000);
+                    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+                    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+                    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+                    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+                }
+                tick();
+                setInterval(tick, 1000);
+            })();
+        </script>
+
+        <!-- ⚽ BANNER MUNDIAL 2026 -->
         <a href="/mundial-2026.html"
             class="group relative mt-14 mx-auto max-w-3xl flex items-center justify-between gap-4 rounded-2xl overflow-hidden px-6 py-5 cursor-pointer block"
-            style="background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 40%, #DC2626 100%); border: 2px solid #FCA5A5; box-shadow: 0 0 50px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.08);">
+            style="background: linear-gradient(135deg, #0a2e1a 0%, #0f3d22 40%, #1a6b3c 100%); border: 1px solid rgba(37,211,102,0.35); box-shadow: 0 0 40px rgba(37,211,102,0.12), inset 0 1px 0 rgba(255,255,255,0.05);">
 
-            <!-- Glow animado rojo -->
+            <!-- Glow animado de fondo -->
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style="background: linear-gradient(135deg, rgba(220,38,38,0.15) 0%, rgba(255,140,0,0.1) 100%);"></div>
+                style="background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(255,215,0,0.06) 100%);"></div>
 
             <!-- Balón animado fondo decorativo -->
             <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[90px] opacity-5 select-none pointer-events-none"
@@ -407,16 +454,16 @@
                     <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">En vivo · Tiempo real</span>
                 </div>
                 <p class="text-white font-black text-xl md:text-2xl uppercase italic leading-tight tracking-tight">
-                    ⚽ MUNDIAL 2026 — <span class="text-yellow-300">CALENDARIO EN VIVO</span>
+                    ⚽ Mundial 2026 — <span class="text-brand">Calendario &amp; Resultados</span>
                 </p>
-                <p class="text-white/70 text-xs uppercase tracking-wider font-bold">
-                    ✅ 104 PARTIDOS EN HD · GRUPOS EN VIVO · RESULTADOS EN TIEMPO REAL
+                <p class="text-white/40 text-xs uppercase tracking-wider font-bold">
+                    Partidos · Grupos · Scores en vivo · 104 juegos
                 </p>
             </div>
 
             <!-- Derecha: CTA flecha -->
-            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-yellow-300 text-red-900 font-black text-xs uppercase px-6 py-3 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-red-500/40 animate-pulse">
-                VER AHORA →
+            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-brand text-black font-black text-xs uppercase px-5 py-3 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-brand/30">
+                Ver ahora
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -575,40 +622,52 @@
                 </a>
             </div>
 
-            <!-- M327 -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="M327 IPTV México">
+            <!-- M327 — MÁS POPULAR -->
+            <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
+
+                <!-- Badge flotante "Más Popular" -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
+                        🏆 El más elegido
+                    </span>
+                </div>
+
+                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5 mt-4" alt="M327 IPTV México">
                 <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">M327</h3>
-                <p class="text-gray-500 text-xs uppercase font-bold mb-1">IPTV Estable y Catálogo Amplio</p>
+                <p class="text-brand/70 text-xs uppercase font-bold mb-1">IPTV Estable · Catálogo Gigante</p>
                 <div class="text-brand text-4xl font-black my-3">$200 <span class="text-lg">MXN/mes</span></div>
-                <div
-                    class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-slate-950">
+
+                <div class="my-6 relative group border border-brand/20 rounded-2xl overflow-hidden shadow-2xl w-full bg-slate-950">
                     <div class="absolute top-3 left-3 z-10">
-                        <span
-                            class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
+                        <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
                             <span class="w-2 h-2 bg-white rounded-full"></span> EN VIVO
                         </span>
                     </div>
                     <img src="/img/M327live.png" alt="M327 IPTV — canales en vivo México"
                         class="w-full h-48 md:h-64 object-contain bg-black transition duration-500 group-hover:scale-105">
                 </div>
+
                 <div class="text-center mb-5">
-                    <p
-                        class="inline-block bg-brand/10 border border-brand/20 text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full animate-pulse-soft shadow-lg shadow-brand/10">
-                        ⭐ Recomendado: Estabilidad y mejor catálogo
+                    <p class="inline-block text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg"
+                        style="background:rgba(37,211,102,0.12); border:1px solid rgba(37,211,102,0.3);">
+                        ⚡ Mejor relación precio-catálogo
                     </p>
                 </div>
+
                 <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
                     <li class="flex items-center gap-2">✅ 2,000 Canales en Vivo</li>
                     <li class="flex items-center gap-2">✅ +40,000 Películas</li>
                     <li class="flex items-center gap-2">✅ +20,000 Series</li>
                     <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
-                    <li class="flex items-center gap-2">✅ Mundial 2026 incluido</li>
+                    <li class="flex items-center gap-2 text-brand">⚽ Mundial 2026 incluido</li>
                 </ul>
+
                 <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20M327%20IPTV%20en%20México"
-                    target="_blank" class="plan-cta">
-                    📲 Solicitar Demo Gratis — M327
+                    target="_blank"
+                    class="block w-full text-center font-black italic uppercase text-sm py-4 px-6 rounded-xl transition-all duration-200 shadow-lg"
+                    style="background:#25D366; color:#000; box-shadow: 0 4px 24px rgba(37,211,102,0.4); letter-spacing:0.05em;">
+                    📲 Quiero este plan — Demo Gratis
                 </a>
             </div>
 
