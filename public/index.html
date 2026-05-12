@@ -313,6 +313,92 @@
     }
     </script>
 
+    <!-- ✅ Google Analytics 4 — G-FVFP8FFMQS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVFP8FFMQS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FVFP8FFMQS', {
+            page_title: 'Home — Smartplay IPTV México',
+            page_location: 'https://www.smartplay.com.mx/'
+        });
+
+        // ✅ Eventos de conversión — se activan al hacer clic en cualquier CTA
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Evento 1: Clic en botón WhatsApp por plan
+            document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var href = this.getAttribute('href') || '';
+                    var texto = this.textContent.trim();
+                    var plan = 'General';
+                    if (href.includes('TU%20LATINO') || texto.includes('Tu Latino'))       plan = 'Tu Latino';
+                    else if (href.includes('SKY%20SOCCER') || texto.includes('Sky Soccer')) plan = 'Sky Soccer Plus';
+                    else if (href.includes('M327') || texto.includes('M327'))               plan = 'M327';
+                    else if (href.includes('ALFATV') || texto.includes('AlfaTV'))           plan = 'AlfaTV';
+                    else if (href.includes('LEDTV') || texto.includes('LEDTV'))             plan = 'LEDTV';
+                    else if (href.includes('Mundial') || href.includes('mundial'))          plan = 'Mundial CTA';
+
+                    gtag('event', 'clic_whatsapp', {
+                        event_category: 'Conversion',
+                        event_label: plan,
+                        plan_nombre: plan,
+                        value: 1
+                    });
+                });
+            });
+
+            // Evento 2: Clic en banner del Mundial
+            var bannerMundial = document.querySelector('a[href="/mundial-2026.html"]');
+            if (bannerMundial) {
+                bannerMundial.addEventListener('click', function() {
+                    gtag('event', 'clic_banner_mundial', {
+                        event_category: 'Engagement',
+                        event_label: 'Banner Mundial 2026',
+                        value: 1
+                    });
+                });
+            }
+
+            // Evento 3: Scroll hasta sección de planes
+            var planesSection = document.getElementById('planes');
+            if (planesSection) {
+                var observerPlanes = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            gtag('event', 'scroll_planes', {
+                                event_category: 'Engagement',
+                                event_label: 'Vio sección de planes',
+                                value: 1
+                            });
+                            observerPlanes.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observerPlanes.observe(planesSection);
+            }
+
+            // Evento 4: Scroll hasta FAQ
+            var faqSection = document.getElementById('faq');
+            if (faqSection) {
+                var observerFaq = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            gtag('event', 'scroll_faq', {
+                                event_category: 'Engagement',
+                                event_label: 'Vio sección FAQ',
+                                value: 1
+                            });
+                            observerFaq.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observerFaq.observe(faqSection);
+            }
+        });
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
