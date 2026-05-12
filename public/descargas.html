@@ -68,6 +68,58 @@
     }
     </script>
 
+    <!-- ✅ Google Analytics 4 — G-FVFP8FFMQS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVFP8FFMQS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FVFP8FFMQS', {
+            page_title: 'Descargas — Smartplay IPTV México',
+            page_location: 'https://www.smartplay.com.mx/descargas.html'
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Evento 1: Clic en cualquier botón WhatsApp de descargas
+            document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var texto = this.textContent.trim();
+                    var href  = this.getAttribute('href') || '';
+                    var dispositivo = 'General';
+                    if (href.includes('Smart%20TV') || texto.toLowerCase().includes('smart tv'))       dispositivo = 'Smart TV';
+                    else if (href.includes('Firestick') || texto.toLowerCase().includes('firestick')) dispositivo = 'Firestick';
+                    else if (href.includes('Android') || texto.toLowerCase().includes('android'))     dispositivo = 'Android';
+
+                    gtag('event', 'clic_whatsapp_descargas', {
+                        event_category: 'Conversion',
+                        event_label: dispositivo,
+                        dispositivo: dispositivo,
+                        value: 1
+                    });
+                });
+            });
+
+            // Evento 2: Scroll hasta sección de guías de instalación
+            var guias = document.querySelector('[id*="install"], [id*="guia"], section');
+            if (guias) {
+                var obs = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (e.isIntersecting) {
+                            gtag('event', 'scroll_guias_instalacion', {
+                                event_category: 'Engagement',
+                                event_label: 'Vio guías de instalación',
+                                value: 1
+                            });
+                            obs.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                obs.observe(guias);
+            }
+        });
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>

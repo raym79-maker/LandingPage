@@ -37,6 +37,81 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <!-- ✅ Google Analytics 4 — G-FVFP8FFMQS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVFP8FFMQS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FVFP8FFMQS', {
+            page_title: 'Mundial 2026 — Calendario y Resultados | Smartplay',
+            page_location: 'https://www.smartplay.com.mx/mundial-2026.html'
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Evento 1: Clic en WhatsApp desde página del Mundial
+            document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    gtag('event', 'clic_whatsapp_mundial', {
+                        event_category: 'Conversion',
+                        event_label: 'WhatsApp desde Mundial 2026',
+                        value: 1
+                    });
+                });
+            });
+
+            // Evento 2: Cambio de tab (Próximos / Grupos / En Vivo / Resultados)
+            document.querySelectorAll('[id^="tab-"], [data-tab], .tab-btn, [onclick*="tab"]').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var tabNombre = this.textContent.trim() || this.getAttribute('data-tab') || 'Tab';
+                    gtag('event', 'clic_tab_mundial', {
+                        event_category: 'Engagement',
+                        event_label: tabNombre,
+                        tab_nombre: tabNombre,
+                        value: 1
+                    });
+                });
+            });
+
+            // Evento 3: Scroll hasta tabla de grupos
+            var grupos = document.getElementById('tab-groups');
+            if (grupos) {
+                var obsGrupos = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (e.isIntersecting) {
+                            gtag('event', 'scroll_tabla_grupos', {
+                                event_category: 'Engagement',
+                                event_label: 'Vio tabla de grupos Mundial',
+                                value: 1
+                            });
+                            obsGrupos.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+                obsGrupos.observe(grupos);
+            }
+
+            // Evento 4: Scroll hasta el countdown
+            var countdown = document.getElementById('countdownSection');
+            if (countdown) {
+                var obsCD = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (e.isIntersecting) {
+                            gtag('event', 'scroll_countdown_mundial', {
+                                event_category: 'Engagement',
+                                event_label: 'Vio countdown del Mundial',
+                                value: 1
+                            });
+                            obsCD.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                obsCD.observe(countdown);
+            }
+        });
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -136,8 +211,8 @@
 
         /* Tab active */
         .tab-btn.active {
-            background: #DC2626;
-            color: #fff;
+            background: #25D366;
+            color: #000;
         }
 
         /* Countdown */
@@ -252,7 +327,7 @@
 <div class="sticky top-16 z-40 border-b border-white/5" style="background:rgba(3,13,6,0.95);backdrop-filter:blur(20px);">
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex gap-1 py-3 overflow-x-auto scrollbar-hide">
-            <button onclick="showTab('upcoming')" class="tab-btn active font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap" style="background: #DC2626; color: white;" data-tab="upcoming">
+            <button onclick="showTab('upcoming')" class="tab-btn active font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap" data-tab="upcoming">
                 🗓️ Próximos Partidos
             </button>
             <button onclick="showTab('groups')" class="tab-btn font-barlow font-700 text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition whitespace-nowrap text-white/60 hover:text-white" data-tab="groups">
