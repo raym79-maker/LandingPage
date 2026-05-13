@@ -29,16 +29,42 @@
     {
       "@context": "https://schema.org",
       "@type": "SportsEvent",
-      "name": "FIFA World Cup 2026 — Ver en Vivo por IPTV en México",
-      "description": "Ver todos los partidos del Mundial 2026 en vivo por internet en México con Smartplay IPTV. Los 104 partidos en HD desde $130 MXN al mes.",
-      "startDate": "2026-06-11",
-      "endDate": "2026-07-19",
+      "name": "FIFA World Cup 2026 — 104 Partidos en Vivo | Smartplay IPTV",
+      "description": "Ver todos los 104 partidos del Mundial 2026 en vivo por internet en México con Smartplay IPTV. HD, sin cortes, desde $130 MXN al mes.",
+      "image": "https://www.smartplay.com.mx/img/Mundial2026.webp",
+      "startDate": "2026-06-11T19:00:00-06:00",
+      "endDate": "2026-07-19T22:00:00-06:00",
+      "eventStatus": "https://schema.org/EventScheduled",
       "location": {
         "@type": "Place",
-        "name": "Estados Unidos, Canadá y México",
-        "address": { "@type": "PostalAddress", "addressCountry": "US" }
+        "name": "Estadios del Mundial 2026 — Estados Unidos, Canadá y México",
+        "address": { "@type": "PostalAddress", "addressCountry": "MX" }
       },
-      "organizer": { "@type": "Organization", "name": "FIFA" },
+      "organizer": { 
+        "@type": "Organization", 
+        "name": "FIFA",
+        "url": "https://www.fifa.com",
+        "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/FIFA_Logo_%282010%29.svg/1200px-FIFA_Logo_%282010%29.svg.png"
+      },
+      "performer": [
+        {
+          "@type": "SportsTeam",
+          "name": "Todas las selecciones participantes"
+        }
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Ver Mundial 2026 sin cortes — IPTV HD",
+          "description": "Acceso a los 104 partidos del Mundial 2026 en HD por internet",
+          "price": "130",
+          "priceCurrency": "MXN",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.smartplay.com.mx/#planes",
+          "priceValidUntil": "2026-07-19",
+          "eligibleRegion": { "@type": "Country", "name": "Mexico" }
+        }
+      ],
       "url": "https://www.smartplay.com.mx/mundial-2026.html"
     }
     </script>
