@@ -289,26 +289,38 @@
       "startDate": "2026-06-11T19:00:00-06:00",
       "endDate": "2026-07-19T18:00:00-06:00",
       "location": {
-        "@type": "Country",
-        "name": "Estados Unidos, Canadá y México"
+        "@type": "Place",
+        "name": "Estadios del Mundial 2026",
+        "address": { "@type": "PostalAddress", "addressCountry": "MX" }
       },
       "description": "Ver los 104 partidos del Mundial 2026 en HD por internet con Smartplay IPTV en México. Sin cortes, sin interrupciones, desde $130 MXN al mes.",
       "url": "https://www.smartplay.com.mx/mundial-2026.html",
       "image": "https://www.smartplay.com.mx/img/Mundial2026.webp",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-      "offers": {
-        "@type": "Offer",
-        "price": "130",
-        "priceCurrency": "MXN",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.smartplay.com.mx/#planes",
-        "validFrom": "2026-05-01"
-      },
+      "performer": [
+        {
+          "@type": "SportsTeam",
+          "name": "Todas las selecciones participantes del Mundial 2026"
+        }
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Ver Mundial 2026 sin cortes — Smartplay IPTV",
+          "price": "130",
+          "priceCurrency": "MXN",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.smartplay.com.mx/#planes",
+          "validFrom": "2026-05-01",
+          "validThrough": "2026-07-19",
+          "eligibleRegion": { "@type": "Country", "name": "Mexico" }
+        }
+      ],
       "organizer": {
         "@type": "Organization",
-        "name": "Smartplay IPTV México",
-        "url": "https://www.smartplay.com.mx/"
+        "name": "FIFA",
+        "url": "https://www.fifa.com"
       }
     }
     </script>
