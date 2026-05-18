@@ -153,14 +153,12 @@ app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => {
 });
 
 app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_2_como-instalar.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_2_como_instalar.html'));
 });
 
 app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_3_mejor-iptv.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_3_mejor_iptv.html'));
 });
-
-
 
 // ✅ Proxy WC2026 API — usando https nativo para máxima compatibilidad
 const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
