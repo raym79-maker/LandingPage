@@ -1,1198 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://upload.wikimedia.org">
-
-    <script>
-        if (window.location.hostname === "smartplay.com.mx") {
-            window.location.replace("https://www.smartplay.com.mx" + window.location.pathname + window.location.search);
-        }
-    </script>
-
-    <meta name="google-site-verification" content="MOSf5_86W8TCvNqbh99TBoea4uuXxUjhhiZeZ_wp-rk" />
-
-    <!-- ✅ SEO: Title optimizado <60 chars, keyword principal primero -->
-    <title>IPTV México — Ver TV por Internet desde $130 MXN | Smartplay</title>
-    <link rel="canonical" href="https://www.smartplay.com.mx/" />
-    <!-- ✅ SEO: Meta description 150 chars, CTA + keyword + precio + urgencia Mundial -->
-    <meta name="description" content="Ver TV por internet en México desde $130 MXN/mes. 11,000 canales en vivo, películas 4K y los 104 partidos del Mundial 2026 en HD. Sin contrato. Demo gratis por WhatsApp hoy.">
-    <meta name="keywords" content="IPTV Mexico, ver TV por internet Mexico, canales en vivo Mexico, IPTV barato Mexico, M327 IPTV, Tu Latino IPTV, Sky Soccer Plus IPTV, LEDTV IPTV, AlfaTV IPTV, Mundial 2026 IPTV, smartplay IPTV, ver Mundial 2026 por internet, IPTV Smart TV Mexico, canales latinos por internet">
-    <link rel="icon" type="image/png" href="/img/logo.png">
-
-    <link rel="preload" as="image" href="/img/Mundial2026.webp" type="image/webp" fetchpriority="high">
-
-    <!-- Open Graph -->
+    <title>Blog Smartplay IPTV — Guías, Tips y Noticias sobre IPTV en México</title>
+    <meta name="description" content="Blog oficial de Smartplay IPTV. Guías de instalación, tips para ver sin cortes, comparativas y noticias sobre IPTV en México.">
+    <meta name="keywords" content="blog IPTV, guía IPTV México, tips IPTV, cómo instalar IPTV, ver fútbol sin cable">
+    <link rel="canonical" href="https://www.smartplay.com.mx/blog/" />
+    
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_MX">
-    <meta property="og:url" content="https://www.smartplay.com.mx/">
-    <meta property="og:title" content="IPTV México — Ver TV por Internet desde $130 MXN | Smartplay">
-    <meta property="og:description" content="11,000 canales en vivo, películas 4K y los 104 partidos del Mundial 2026 en HD. Sin contrato. Demo gratis por WhatsApp.">
-    <meta property="og:image" content="https://www.smartplay.com.mx/img/Mundial2026.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="675">
-    <meta property="og:image:alt" content="Smartplay IPTV México — Ver el Mundial 2026 por internet en HD">
-    <meta property="og:site_name" content="Smartplay IPTV México">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IPTV México — Ver TV por Internet desde $130 MXN | Smartplay">
-    <meta name="twitter:description" content="11,000 canales en vivo y los 104 partidos del Mundial 2026 en HD. Desde $130 MXN/mes. Sin contrato. Demo gratis.">
-    <meta name="twitter:image" content="https://www.smartplay.com.mx/img/Mundial2026.webp">
-    <meta name="twitter:image:alt" content="Smartplay IPTV México — Ver el Mundial 2026 por internet">
-
-    <!-- ✅ JSON-LD Schema mejorado con precios y disponibilidad -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Smartplay IPTV México",
-      "url": "https://www.smartplay.com.mx/",
-      "description": "El mejor servicio IPTV en México. Ver TV por internet con más de 11,000 canales en vivo, películas 4K y el Mundial 2026 completo. Planes M327, Tu Latino, Sky Soccer Plus, AlfaTV y LEDTV desde $130 MXN.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.smartplay.com.mx/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Smartplay IPTV México",
-      "url": "https://www.smartplay.com.mx/",
-      "logo": "https://www.smartplay.com.mx/img/logo.png",
-      "sameAs": [],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+52-55-2131-4298",
-        "contactType": "customer support",
-        "availableLanguage": "Spanish",
-        "areaServed": "MX",
-        "contactOption": "TollFree",
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Planes IPTV Smartplay México — Ver TV por Internet",
-      "description": "Planes para ver TV por internet en México: canales en vivo, películas, series y el Mundial 2026. Desde $130 MXN al mes.",
-      "numberOfItems": 5,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": "Tu Latino IPTV — Ver canales latinos por internet",
-            "image": "https://www.smartplay.com.mx/img/tu%20latino.jpg",
-            "description": "Ver más de 11,000 canales latinos en vivo, +55,000 películas y +14,000 series por internet en México. Incluye todos los partidos del Mundial 2026 en HD. Compatible con Smart TV, Android, Firestick y iOS.",
-            "brand": { "@type": "Brand", "name": "Smartplay" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "142", "bestRating": "5" },
-            "offers": {
-              "@type": "Offer",
-              "price": "250",
-              "priceCurrency": "MXN",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.smartplay.com.mx/#planes",
-              "priceValidUntil": "2026-12-31",
-              "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "MXN" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MX" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } } },
-              "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "MX", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "Sky Soccer Plus IPTV — Ver fútbol y deportes por internet",
-            "image": "https://www.smartplay.com.mx/img/skysoccer.png",
-            "description": "Ver fútbol, deportes y más de 11,000 canales por internet en México. Sky Soccer Plus incluye +55,000 películas, +14,000 series y cobertura total del Mundial 2026 en HD.",
-            "brand": { "@type": "Brand", "name": "Smartplay" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "98", "bestRating": "5" },
-            "offers": {
-              "@type": "Offer",
-              "price": "210",
-              "priceCurrency": "MXN",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.smartplay.com.mx/#planes",
-              "priceValidUntil": "2026-12-31",
-              "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "MXN" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MX" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } } },
-              "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "MX", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": "M327 IPTV — IPTV estable con películas y series",
-            "image": "https://www.smartplay.com.mx/img/m327.jpg",
-            "description": "M327 IPTV: ver 2,000 canales en vivo, +40,000 películas y +20,000 series en México. Servicio IPTV estable y confiable para 3 dispositivos simultáneos.",
-            "brand": { "@type": "Brand", "name": "Smartplay" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "115", "bestRating": "5" },
-            "offers": {
-              "@type": "Offer",
-              "price": "200",
-              "priceCurrency": "MXN",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.smartplay.com.mx/#planes",
-              "priceValidUntil": "2026-12-31",
-              "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "MXN" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MX" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } } },
-              "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "MX", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "Product",
-            "name": "AlfaTV IPTV — Ver películas en 4K por internet",
-            "image": "https://www.smartplay.com.mx/img/alfatv.jpg",
-            "description": "AlfaTV IPTV: ver 1,500 canales en vivo y más de 25,000 películas en 4K por internet en México. Ideal para alta definición con +3,000 series disponibles.",
-            "brand": { "@type": "Brand", "name": "Smartplay" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "167", "bestRating": "5" },
-            "offers": {
-              "@type": "Offer",
-              "price": "180",
-              "priceCurrency": "MXN",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.smartplay.com.mx/#planes",
-              "priceValidUntil": "2026-12-31",
-              "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "MXN" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MX" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } } },
-              "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "MX", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "Product",
-            "name": "LEDTV IPTV — TV por internet económico para toda la familia",
-            "image": "https://www.smartplay.com.mx/img/ledtv.jpg",
-            "description": "LEDTV IPTV: ver 2,400 canales en vivo, +19,000 películas y +5,000 series por internet en México desde $130 MXN al mes. La opción más económica para toda la familia.",
-            "brand": { "@type": "Brand", "name": "Smartplay" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "reviewCount": "89", "bestRating": "5" },
-            "offers": {
-              "@type": "Offer",
-              "price": "130",
-              "priceCurrency": "MXN",
-              "availability": "https://schema.org/InStock",
-              "url": "https://www.smartplay.com.mx/#planes",
-              "priceValidUntil": "2026-12-31",
-              "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "MXN" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MX" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } } },
-              "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "applicableCountry": "MX", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
-            }
-          }
-        }
-      ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Qué es IPTV y cómo funciona en México?",
-          "acceptedAnswer": { "@type": "Answer", "text": "IPTV (Internet Protocol Television) te permite ver canales de televisión en vivo, películas y series directamente por internet en México, sin necesidad de antena ni cable. Solo necesitas conexión a internet y una app como IPTV Smarters. Con Smartplay puedes ver más de 11,000 canales desde tu Smart TV, celular, Firestick o tablet." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuál es el mejor IPTV en México por estabilidad?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Smartplay es considerado uno de los servicios IPTV más estables en México gracias a servidores dedicados que garantizan transmisión sin cortes. Ofrecemos planes M327, Tu Latino, Sky Soccer Plus, LEDTV y AlfaTV con soporte 24/7." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Puedo ver el Mundial 2026 con IPTV en México?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sí. Con cualquier plan de Smartplay puedes ver los 104 partidos del Mundial 2026 en HD por internet, sin contratar servicios adicionales y sin cortes ni interrupciones." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo puedo ver canales en vivo en mi Smart TV?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas descargar IPTV Smarters desde la tienda de tu Smart TV e ingresar las credenciales que te enviamos al activar tu cuenta Smartplay. Funciona con LG, Samsung, Android TV y más." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Qué internet necesito para ver IPTV sin trabas?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Recomendamos mínimo 20 Mbps para canales en HD y 50 Mbps para contenido 4K con AlfaTV." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿En qué dispositivos puedo ver IPTV con Smartplay?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Compatible con Android TV, TV Box, Firestick, Roku, iOS y PC. Soportamos hasta 3 dispositivos simultáneos con los planes M327, Tu Latino, Sky Soccer Plus, LEDTV y AlfaTV." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuánto cuesta el IPTV en México?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Los planes de Smartplay en México van desde $130 MXN al mes (LEDTV) hasta $250 MXN al mes (Tu Latino Premium). Todos incluyen canales en vivo, películas, series y el Mundial 2026 completo." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Es seguro contratar IPTV por WhatsApp?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sí. Smartplay ofrece soporte personalizado por WhatsApp y puedes solicitar una Demo Gratis antes de realizar cualquier pago. Prueba el servicio primero y paga solo si quedas satisfecho. Sin contratos de permanencia ni compromisos." }
-        },
-        {
-          "@type": "Question",
-          "name": "¿En qué dispositivos funciona el IPTV de Smartplay?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Compatible con Android TV, TV Box, Amazon Firestick, Roku, Smart TV Samsung y LG, iOS iPhone y iPad, y PC o Mac. Soportamos hasta 3 dispositivos simultáneos con todos los planes." }
-        }
-      ]
-    }
-    </script>
-
-    <!-- ✅ SEO: LocalBusiness schema para búsquedas locales "IPTV México" -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Smartplay IPTV México",
-      "url": "https://www.smartplay.com.mx/",
-      "logo": "https://www.smartplay.com.mx/img/logo.png",
-      "image": "https://www.smartplay.com.mx/img/Mundial2026.webp",
-      "description": "Servicio IPTV en México. Ver TV por internet con más de 11,000 canales en vivo, películas 4K y el Mundial 2026 completo. Planes desde $130 MXN al mes.",
-      "telephone": "+52-55-2131-4298",
-      "areaServed": {
-        "@type": "Country",
-        "name": "México"
-      },
-      "priceRange": "$130 - $250 MXN",
-      "openingHours": "Mo-Su 00:00-23:59",
-      "sameAs": []
-    }
-    </script>
-
-    <!-- ✅ SEO: SportsEvent schema optimizado para aparecer en búsquedas "ver Mundial 2026" -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SportsEvent",
-      "name": "FIFA World Cup 2026 — Ver en vivo por IPTV con Smartplay",
-      "description": "Ver los 104 partidos del Mundial 2026 en HD por internet con Smartplay IPTV en México. Calendario completo, grupos en vivo, resultados en tiempo real. Sin cortes, sin interrupciones, desde $130 MXN al mes.",
-      "startDate": "2026-06-11T17:00:00-06:00",
-      "endDate": "2026-07-19T20:00:00-06:00",
-      "url": "https://www.smartplay.com.mx/mundial-2026.html",
-      "image": "https://www.smartplay.com.mx/img/Mundial2026.webp",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "México",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "MX",
-          "addressRegion": "México"
-        }
-      },
-      "organizer": {
-        "@type": "Organization",
-        "name": "FIFA",
-        "url": "https://www.fifa.com",
-        "logo": "https://www.fifa.com/favicon.ico"
-      },
-      "performer": {
-        "@type": "SportsTeam",
-        "name": "Todas las selecciones participantes del Mundial 2026"
-      },
-      "offers": {
-        "@type": "Offer",
-        "name": "Ver Mundial 2026 sin cortes — Smartplay IPTV",
-        "description": "Acceso completo a los 104 partidos del Mundial 2026 en HD desde $130 MXN/mes",
-        "price": "130",
-        "priceCurrency": "MXN",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.smartplay.com.mx/#planes",
-        "validFrom": "2026-05-11",
-        "validThrough": "2026-07-19",
-        "eligibleRegion": { "@type": "Country", "name": "Mexico" }
-      }
-    }
-    </script>
-
-    <!-- ✅ Google Analytics 4 — G-FVFP8FFMQS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVFP8FFMQS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-FVFP8FFMQS', {
-            page_title: 'Home — Smartplay IPTV México',
-            page_location: 'https://www.smartplay.com.mx/'
-        });
-
-        // ✅ Eventos de conversión — se activan al hacer clic en cualquier CTA
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // Evento 1: Clic en botón WhatsApp por plan
-            document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var href = this.getAttribute('href') || '';
-                    var texto = this.textContent.trim();
-                    var plan = 'General';
-                    if (href.includes('TU%20LATINO') || texto.includes('Tu Latino'))       plan = 'Tu Latino';
-                    else if (href.includes('SKY%20SOCCER') || texto.includes('Sky Soccer')) plan = 'Sky Soccer Plus';
-                    else if (href.includes('M327') || texto.includes('M327'))               plan = 'M327';
-                    else if (href.includes('ALFATV') || texto.includes('AlfaTV'))           plan = 'AlfaTV';
-                    else if (href.includes('LEDTV') || texto.includes('LEDTV'))             plan = 'LEDTV';
-                    else if (href.includes('Mundial') || href.includes('mundial'))          plan = 'Mundial CTA';
-
-                    gtag('event', 'clic_whatsapp', {
-                        event_category: 'Conversion',
-                        event_label: plan,
-                        plan_nombre: plan,
-                        value: 1
-                    });
-                });
-            });
-
-            // Evento 2: Clic en banner del Mundial
-            var bannerMundial = document.querySelector('a[href="/mundial-2026.html"]');
-            if (bannerMundial) {
-                bannerMundial.addEventListener('click', function() {
-                    gtag('event', 'clic_banner_mundial', {
-                        event_category: 'Engagement',
-                        event_label: 'Banner Mundial 2026',
-                        value: 1
-                    });
-                });
-            }
-
-            // Evento 3: Scroll hasta sección de planes
-            var planesSection = document.getElementById('planes');
-            if (planesSection) {
-                var observerPlanes = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            gtag('event', 'scroll_planes', {
-                                event_category: 'Engagement',
-                                event_label: 'Vio sección de planes',
-                                value: 1
-                            });
-                            observerPlanes.disconnect();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                observerPlanes.observe(planesSection);
-            }
-
-            // Evento 4: Scroll hasta FAQ
-            var faqSection = document.getElementById('faq');
-            if (faqSection) {
-                var observerFaq = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            gtag('event', 'scroll_faq', {
-                                event_category: 'Engagement',
-                                event_label: 'Vio sección FAQ',
-                                value: 1
-                            });
-                            observerFaq.disconnect();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                observerFaq.observe(faqSection);
-            }
-        });
-    </script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: '#25D366' }
-                }
-            }
-        }
-    </script>
+    <meta property="og:url" content="https://www.smartplay.com.mx/blog/">
+    <meta property="og:title" content="Blog Smartplay IPTV — Guías y Tips">
+    <meta property="og:description" content="Guías de instalación, tips para evitar cortes y comparativas de IPTV en México.">
+    <meta property="og:image" content="https://www.smartplay.com.mx/img/logo.png">
 
     <style>
-        html {
-            visibility: hidden;
-            background-color: #0f172a;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Barlow', Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            min-height: 100vh;
         }
-        html.tailwind-ready {
-            visibility: visible;
-        }
-        body {
-            background-color: #0f172a;
-            scroll-behavior: smooth;
-            color: white;
-            margin: 0;
-            font-family: sans-serif;
-        }
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .btn-whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            padding: 15px;
-            z-index: 100;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-        .animate-pulse-soft {
-            animation: pulse 3s ease-in-out infinite;
-        }
-        /* CTA buttons on plan cards */
-        .plan-cta {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: #25D366;
-            color: #000;
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.8rem;
-            padding: 14px 20px;
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center; 
+            margin-bottom: 40px; 
             border-radius: 12px;
-            transition: all 0.2s;
-            margin-top: auto;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+        }
+        header h1 { font-size: 42px; margin-bottom: 10px; font-weight: 900; }
+        header p { font-size: 18px; opacity: 0.95; }
+        .breadcrumb { margin-bottom: 20px; font-size: 14px; color: #666; }
+        .breadcrumb a { color: #25D366; text-decoration: none; font-weight: bold; }
+        
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .blog-card { 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.15);
+        }
+        .blog-card-image { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+        }
+        .blog-card-image.post2 { 
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        .blog-card-image.post3 { 
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .blog-card-content { 
+            padding: 25px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card h3 { 
+            color: #030d06; 
+            margin-bottom: 10px; 
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .blog-card .date { 
+            color: #25D366; 
+            font-size: 13px; 
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .blog-card .date.post2 { color: #2563eb; }
+        .blog-card .date.post3 { color: #f59e0b; }
+        .blog-card p { 
+            color: #666; 
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        .blog-card a { 
+            color: #25D366; 
+            text-decoration: none; 
+            font-weight: bold;
+            transition: color 0.3s;
+            align-self: flex-start;
+        }
+        .blog-card a.post2 { color: #2563eb; }
+        .blog-card a.post3 { color: #f59e0b; }
+        .blog-card a:hover { opacity: 0.8; }
+        
+        .sidebar { margin-top: 40px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .sidebar h3 { color: #25D366; margin-bottom: 15px; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { color: #25D366; text-decoration: none; font-weight: bold; }
+        .sidebar a:hover { text-decoration: underline; }
+        
+        .cta-section { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .cta-section h2 { color: white; margin-bottom: 10px; }
+        .cta-section p { margin-bottom: 20px; font-size: 16px; }
+        .cta-section a { 
+            display: inline-block;
+            background: white;
+            color: #25D366;
+            padding: 12px 30px;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s;
         }
-        .plan-cta:hover {
-            background-color: #fff;
-            transform: scale(1.02);
+        .cta-section a:hover { transform: scale(1.05); }
+        
+        footer { 
+            text-align: center; 
+            padding: 30px 20px; 
+            color: #666; 
+            font-size: 14px;
+            margin-top: 40px;
         }
+        footer a { color: #25D366; text-decoration: none; }
     </style>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            document.documentElement.classList.add('tailwind-ready');
-        });
-    </script>
 </head>
+<body>
 
-<body class="antialiased">
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Smartplay</a> → Blog
+    </div>
 
-    <!-- WhatsApp flotante -->
-    <a href="https://wa.me/5521314298?text=Hola,%20quiero%20información%20sobre%20los%20planes%20IPTV" target="_blank"
-        class="btn-whatsapp flex items-center gap-2 shadow-xl shadow-green-900/40" aria-label="Contactar por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span class="font-black text-xs uppercase hidden sm:block">Demo Gratis</span>
-    </a>
+    <header>
+        <h1>📝 Blog Smartplay IPTV</h1>
+        <p>Guías, tips y comparativas sobre IPTV en México</p>
+    </header>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-800 py-4 px-6 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <img src="/img/logo.png" alt="Smartplay IPTV México Logo" class="w-10 h-10 rounded-lg">
-            <span class="text-2xl font-black text-brand italic tracking-tighter">Smartplay</span>
+    <section class="blog-grid">
+        
+        <!-- POST 1 -->
+        <div class="blog-card">
+            <div class="blog-card-image">🎯</div>
+            <div class="blog-card-content">
+                <h3>Cómo Ver IPTV sin Cortes en el Mundial 2026</h3>
+                <div class="date">📅 14 de Mayo, 2026</div>
+                <p>Guía técnica completa para evitar buffering en los 104 partidos. Incluye tips de configuración, requisitos mínimos y cómo elegir buen proveedor.</p>
+                <a href="/blog/iptv-sin-cortes-mundial-2026/">Leer más →</a>
+            </div>
         </div>
-        <a href="/blog/" class="flex items-center gap-2 bg-gray-900 border border-brand px-4 py-2 rounded-lg text-brand font-black text-sm uppercase hover:bg-brand hover:text-black transition-all duration-300">
-            📝 Blog
+
+        <!-- POST 2 -->
+        <div class="blog-card">
+            <div class="blog-card-image post2">📱</div>
+            <div class="blog-card-content">
+                <h3>Cómo Instalar IPTV en tu Smart TV (Guía paso a paso)</h3>
+                <div class="date post2">📅 15 de Mayo, 2026</div>
+                <p>Tutorial visual para instalar Smartplay en LG, Samsung, Sony y otros Smart TV. Funciona en menos de 5 minutos. Sin cables extras, sin complicaciones.</p>
+                <a href="/blog/como-instalar-iptv-smart-tv/" class="post2">Leer más →</a>
+            </div>
+        </div>
+
+        <!-- POST 3 -->
+        <div class="blog-card">
+            <div class="blog-card-image post3">⚖️</div>
+            <div class="blog-card-content">
+                <h3>Mejor IPTV en México 2026: Comparativa Completa</h3>
+                <div class="date post3">📅 16 de Mayo, 2026</div>
+                <p>Comparamos precio, canales, soporte y velocidad de los principales proveedores IPTV. ¿Cuál vale la pena? Análisis honesto sin sesgos.</p>
+                <a href="/blog/mejor-iptv-mexico-2026/" class="post3">Leer más →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="sidebar">
+        <h3>📚 Índice de Artículos</h3>
+        <ul>
+            <li><a href="/blog/iptv-sin-cortes-mundial-2026/">→ Cómo ver IPTV sin cortes en el Mundial</a></li>
+            <li><a href="/blog/como-instalar-iptv-smart-tv/">→ Instalación en Smart TV paso a paso</a></li>
+            <li><a href="/blog/mejor-iptv-mexico-2026/">→ Comparativa completa de IPTV</a></li>
+        </ul>
+    </div>
+
+    <div class="cta-section">
+        <h2>🚀 ¿Listo para cambiar a IPTV?</h2>
+        <p>Prueba Smartplay gratis durante 48 horas. Sin tarjeta de crédito, sin compromisos.</p>
+        <a href="https://wa.me/5521314298?text=Hola%2C%20quiero%20probar%20demo%20gratis%20de%20Smartplay%20IPTV" target="_blank">
+            💬 Solicitar Demo Gratis
         </a>
-    </nav>
+    </div>
 
-    <!-- ✅ HERO: H1 con keyword principal "IPTV México" -->
-    <section class="pt-48 pb-24 px-6 max-w-5xl mx-auto text-center">
-        <p class="text-brand font-bold text-xs uppercase tracking-widest mb-4">🇲🇽 El mejor IPTV en México</p>
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-[1.1]">
-            Ver TV por Internet <span class="text-brand">sin cortes</span>, sin contratos y listo en <span
-                class="text-brand">minutos</span>.
-        </h1>
+</div>
 
-        <!-- ✅ Párrafo rico en keywords: "canales en vivo", "películas 4K", "IPTV México" -->
-        <p class="text-lg md:text-2xl text-gray-400 mb-4 max-w-3xl mx-auto font-medium leading-relaxed">
-            Más de <span class="text-white font-bold italic">11,000 canales en vivo</span>, películas 4K, series y
-            <span class="text-white font-bold italic">el Mundial 2026 completo</span> en tu Smart TV, celular o tablet.
-        </p>
-        <p class="text-sm text-gray-500 mb-10 max-w-2xl mx-auto">
-            Planes IPTV en México desde <strong class="text-white">$130 MXN/mes</strong> · Compatible con Android TV, Firestick, Roku, iOS y PC · 3 dispositivos simultáneos
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-            <a href="#planes"
-                class="bg-brand text-black font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white transition-all w-full sm:w-auto text-center shadow-lg shadow-brand/20">
-                Ver Planes y Precios
-            </a>
-            <a href="/descargas.html"
-                class="bg-white/10 border border-white/20 text-white font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white/20 transition-all w-full sm:w-auto text-center">
-                Descarga de Apps
-            </a>
-        </div>
-
-        <!-- Trust badges -->
-        <div class="flex flex-wrap justify-center gap-6 mt-12 text-xs text-gray-500 uppercase font-bold">
-            <span>✅ Sin contrato de permanencia</span>
-            <span>✅ Demo gratis por WhatsApp</span>
-            <span>✅ Soporte 24/7</span>
-            <span>✅ Activación inmediata</span>
-        </div>
-
-        <!-- ⏱️ COUNTDOWN MUNDIAL -->
-        <div class="mt-10 mx-auto max-w-2xl">
-            <p class="text-xs text-red-400 font-black uppercase tracking-widest mb-3 text-center" style="animation: pulse 2s ease-in-out infinite;">
-                🔴 El Mundial 2026 empieza en...
-            </p>
-            <div class="grid grid-cols-4 gap-3">
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-days" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">31</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Días</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-hours" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Horas</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-mins" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Minutos</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-secs" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Segundos</span>
-                </div>
-            </div>
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest text-center mt-3">
-                ⚽ Partido inaugural: 11 junio 2026 · Ciudad de México
-            </p>
-        </div>
-        <script>
-            (function() {
-                var target = new Date('2026-06-11T19:00:00-06:00').getTime();
-                function tick() {
-                    var diff = target - Date.now();
-                    if (diff <= 0) { return; }
-                    var d = Math.floor(diff / 86400000);
-                    var h = Math.floor((diff % 86400000) / 3600000);
-                    var m = Math.floor((diff % 3600000) / 60000);
-                    var s = Math.floor((diff % 60000) / 1000);
-                    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
-                    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-                    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
-                    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
-                }
-                tick();
-                setInterval(tick, 1000);
-            })();
-        </script>
-
-        <!-- ⚽ BANNER MUNDIAL 2026 -->
-        <a href="/mundial-2026.html"
-            class="group relative mt-14 mx-auto max-w-3xl flex items-center justify-between gap-4 rounded-2xl overflow-hidden px-6 py-5 cursor-pointer block"
-            style="background: linear-gradient(135deg, #0a2e1a 0%, #0f3d22 40%, #1a6b3c 100%); border: 1px solid rgba(37,211,102,0.35); box-shadow: 0 0 40px rgba(37,211,102,0.12), inset 0 1px 0 rgba(255,255,255,0.05);">
-
-            <!-- Glow animado de fondo -->
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style="background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(255,215,0,0.06) 100%);"></div>
-
-            <!-- Balón animado fondo decorativo -->
-            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[90px] opacity-5 select-none pointer-events-none"
-                style="animation: spin 12s linear infinite;">⚽</div>
-
-            <!-- Izquierda: badge LIVE + título -->
-            <div class="relative flex flex-col items-start gap-1.5 z-10">
-                <div class="flex items-center gap-2">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
-                    </span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">En vivo · Tiempo real</span>
-                </div>
-                <p class="text-white font-black text-xl md:text-2xl uppercase italic leading-tight tracking-tight">
-                    ⚽ Mundial 2026 — <span class="text-brand">Calendario &amp; Resultados</span>
-                </p>
-                <p class="text-white/40 text-xs uppercase tracking-wider font-bold">
-                    Partidos · Grupos · Scores en vivo · 104 juegos
-                </p>
-            </div>
-
-            <!-- Derecha: CTA flecha -->
-            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-brand text-black font-black text-xs uppercase px-5 py-3 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-brand/30">
-                Ver ahora
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-            </div>
-        </a>
-
-        <style>
-            @keyframes spin { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
-        </style>
-    </section>
-
-    <!-- MUNDIAL 2026 -->
-    <section id="mundial-landing"
-        class="py-16 bg-slate-900/30 border-t border-b border-gray-800 relative overflow-hidden">
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft">
-        </div>
-
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank" class="block group relative">
-                <img src="/img/Mundial2026.webp" width="1200" height="675" fetchpriority="high"
-                    alt="Ver el Mundial 2026 por IPTV en México con Smartplay en HD"
-                    class="w-full max-w-5xl mx-auto rounded-[2rem] shadow-2xl shadow-brand/10 border-2 border-brand/10 group-hover:border-brand/50 transition-all duration-500 mb-16">
-                <div
-                    class="absolute inset-0 max-w-5xl mx-auto rounded-[2rem] bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                </div>
-            </a>
-            <div class="max-w-3xl mx-auto">
-                <!-- ✅ H2 con keyword "ver Mundial 2026 por internet" -->
-                <h2 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">
-                    VER EL MUNDIAL 2026 POR INTERNET: <span class="text-brand">LOS 104 PARTIDOS EN HD</span>
-                </h2>
-
-                <p class="text-lg text-gray-400 mb-12 leading-relaxed text-center">
-                    Con cualquier plan de Smartplay IPTV en México disfruta los 104 partidos del Mundial incluidos,
-                    <span class="text-white font-black italic uppercase">SIN CONTRATAR SERVICIOS ADICIONALES</span>.
-                    Canales en vivo sin cortes ni interrupciones.
-                </p>
-
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left mb-16 max-w-2xl mx-auto bg-black/40 p-8 rounded-3xl border border-gray-800">
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">COBERTURA TOTAL</span> Los 104 partidos del
-                            Mundial 2026 en vivo.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">CALIDAD HD</span> Transmisiones en alta definición
-                            por internet.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">STREAMS ESTABLES</span> Tecnología optimizada para
-                            cero cortes.</p>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank"
-                    class="inline-block bg-brand text-black font-black py-4 px-10 rounded-xl uppercase italic hover:bg-white transition-all shadow-lg shadow-brand/20">
-                    Quiero ver el Mundial 2026 — Demo Gratis
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ✅ PLANES: Cada card tiene su propio botón de CTA con WhatsApp -->
-    <section id="planes" class="py-20 px-6 max-w-7xl mx-auto">
-
-        <!-- ✅ H2 con keyword "planes IPTV México" -->
-        <h2 class="text-4xl font-black text-center mb-4 uppercase italic tracking-tighter text-white">
-            Planes IPTV en México
-        </h2>
-        <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto text-sm">
-            Elige el plan que mejor se adapte a ti. Todos incluyen canales en vivo, películas, series y el Mundial 2026.
-            Sin permanencia. Actívalo hoy mismo.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-            <!-- TU LATINO -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/tu latino.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="Tu Latino IPTV México">
-                <!-- ✅ H3 con nombre del producto que la gente busca -->
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">TU LATINO</h3>
-                <p class="text-gray-500 text-xs uppercase font-bold mb-1">Plan IPTV Premium</p>
-                <div class="text-brand text-4xl font-black my-3">$250 <span class="text-lg">MXN/mes</span></div>
-                <div
-                    class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span
-                            class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> PREMIUM </span>
-                    </div>
-                    <img src="/img/LATINOlive.png" alt="Tu Latino IPTV — canales latinos en vivo México"
-                        class="w-full h-48 md:h-64 object-contain transition duration-500 group-hover:scale-105" loading="lazy" width="600" height="256">
-                </div>
-                <div class="text-center mb-5">
-                    <p
-                        class="inline-block bg-brand/10 border border-brand/20 text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full animate-pulse-soft shadow-lg shadow-brand/10">
-                        Mayor calidad y experiencia completa
-                    </p>
-                </div>
-                <!-- ✅ Features con texto SEO-friendly -->
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 11,000 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +55,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +14,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
-                    <li class="flex items-center gap-2">✅ Mundial 2026 completo en HD</li>
-                </ul>
-                <!-- ✅ CTA directo en la card -->
-                <p class="text-gray-600 text-[10px] uppercase tracking-wider text-center mb-3 font-bold">Para el que quiere TODO sin límites</p>
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20TU%20LATINO%20IPTV%20en%20México"
-                    target="_blank" class="plan-cta">
-                    📲 Quiero Tu Latino — Demo Gratis
-                </a>
-            </div>
-
-            <!-- SKY SOCCER PLUS -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/skysoccer.png" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="Sky Soccer Plus IPTV México">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">SKY SOCCER PLUS</h3>
-                <p class="text-gray-500 text-xs uppercase font-bold mb-1">IPTV Deportes &amp; Canales Premium</p>
-                <div class="text-brand text-4xl font-black my-3">$210 <span class="text-lg">MXN/mes</span></div>
-                <div
-                    class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span
-                            class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> PREMIUM </span>
-                    </div>
-                    <img src="/img/skysoccerlive.jpeg" alt="Sky Soccer Plus IPTV — fútbol y deportes en vivo México"
-                        class="w-full h-48 md:h-64 object-contain transition duration-500 group-hover:scale-105" loading="lazy" width="600" height="256">
-                </div>
-                <div class="text-center mb-5">
-                    <p
-                        class="inline-block bg-brand/10 border border-brand/20 text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full animate-pulse-soft shadow-lg shadow-brand/10">
-                        Exclusividad en Eventos Deportivos
-                    </p>
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 700 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +3,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +2,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 1 Dispositivo</li>
-                    <li class="flex items-center gap-2">✅ Mundial 2026 completo en HD</li>
-                </ul>
-                <p class="text-gray-600 text-[10px] uppercase tracking-wider text-center mb-3 font-bold">Para el fanático del fútbol y deportes</p>
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20SKY%20SOCCER%20PLUS%20IPTV%20en%20México"
-                    target="_blank" class="plan-cta">
-                    📲 Quiero ver el fútbol — Demo Gratis
-                </a>
-            </div>
-
-            <!-- M327 — MÁS POPULAR -->
-            <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
-
-                <!-- Badge flotante "Más Popular" -->
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                    <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
-                        🏆 El más elegido
-                    </span>
-                </div>
-
-                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5 mt-4" alt="M327 IPTV México">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">M327</h3>
-                <p class="text-brand/70 text-xs uppercase font-bold mb-1">IPTV Estable · Catálogo Gigante</p>
-                <div class="text-brand text-4xl font-black my-3">$200 <span class="text-lg">MXN/mes</span></div>
-
-                <div class="my-6 relative group border border-brand/20 rounded-2xl overflow-hidden shadow-2xl w-full bg-slate-950">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> EN VIVO
-                        </span>
-                    </div>
-                    <img src="/img/M327live.png" alt="M327 IPTV — canales en vivo México"
-                        class="w-full h-48 md:h-64 object-contain bg-black transition duration-500 group-hover:scale-105" loading="lazy" width="600" height="256">
-                </div>
-
-                <div class="text-center mb-5">
-                    <p class="inline-block text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg"
-                        style="background:rgba(37,211,102,0.12); border:1px solid rgba(37,211,102,0.3);">
-                        ⚡ Mejor relación precio-catálogo
-                    </p>
-                </div>
-
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 2,000 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +40,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +20,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
-                    <li class="flex items-center gap-2 text-brand">⚽ Mundial 2026 incluido</li>
-                </ul>
-
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20M327%20IPTV%20en%20México"
-                    target="_blank"
-                    class="block w-full text-center font-black italic uppercase text-sm py-4 px-6 rounded-xl transition-all duration-200 shadow-lg"
-                    style="background:#25D366; color:#000; box-shadow: 0 4px 24px rgba(37,211,102,0.4); letter-spacing:0.05em;">
-                    📲 Quiero este plan — Demo Gratis
-                </a>
-            </div>
-
-            <!-- ALFATV -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/alfatv.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="AlfaTV IPTV México">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">ALFATV</h3>
-                <p class="text-gray-500 text-xs uppercase font-bold mb-1">IPTV Películas en 4K</p>
-                <div class="text-brand text-4xl font-black my-3">$180 <span class="text-lg">MXN/mes</span></div>
-                <div
-                    class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span
-                            class="bg-green-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> 4K </span>
-                    </div>
-                    <img src="/img/ALFATVmovies.png" alt="AlfaTV IPTV — películas 4K por internet México"
-                        class="w-full h-48 md:h-64 object-contain transition duration-500 group-hover:scale-105" loading="lazy" width="600" height="256">
-                </div>
-                <div class="text-center mb-5">
-                    <p
-                        class="inline-block bg-brand/10 border border-brand/20 text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full animate-pulse-soft shadow-lg shadow-brand/10">
-                        🎬 Excelente definición · Catálogo variado
-                    </p>
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 1,500 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +25,000 Películas en 4K</li>
-                    <li class="flex items-center gap-2">✅ +3,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
-                    <li class="flex items-center gap-2">✅ Mundial 2026 incluido</li>
-                </ul>
-                <p class="text-gray-600 text-[10px] uppercase tracking-wider text-center mb-3 font-bold">Para el que exige imagen perfecta en 4K</p>
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20ALFATV%20IPTV%20en%20México"
-                    target="_blank" class="plan-cta">
-                    📲 Quiero calidad 4K — Demo Gratis
-                </a>
-            </div>
-
-            <!-- LEDTV -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/ledtv.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="LEDTV IPTV México">
-                <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">LEDTV</h3>
-                <p class="text-gray-500 text-xs uppercase font-bold mb-1">IPTV Económico Familiar</p>
-                <div class="text-brand text-4xl font-black my-3">$130 <span class="text-lg">MXN/mes</span></div>
-                <div
-                    class="my-6 relative group border border-gray-800 rounded-2xl overflow-hidden shadow-2xl w-full bg-black">
-                    <div class="absolute top-3 left-3 z-10">
-                        <span
-                            class="bg-yellow-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
-                            <span class="w-2 h-2 bg-white rounded-full"></span> FAMILIAR </span>
-                    </div>
-                    <img src="/img/LEDTVlive.png" alt="LEDTV IPTV — canales en vivo económico México"
-                        class="w-full h-48 md:h-64 object-contain transition duration-500 group-hover:scale-105" loading="lazy" width="600" height="256">
-                </div>
-                <div class="text-center mb-5">
-                    <p
-                        class="inline-block bg-brand/10 border border-brand/20 text-brand text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full animate-pulse-soft shadow-lg shadow-brand/10">
-                        💰 Económico: Ideal para toda la familia
-                    </p>
-                </div>
-                <ul class="text-[11px] text-white uppercase space-y-2 mb-6 w-full max-w-md text-left ml-4 font-bold">
-                    <li class="flex items-center gap-2">✅ 2,400 Canales en Vivo</li>
-                    <li class="flex items-center gap-2">✅ +19,000 Películas</li>
-                    <li class="flex items-center gap-2">✅ +5,000 Series</li>
-                    <li class="flex items-center gap-2">✅ 3 Dispositivos Simultáneos</li>
-                    <li class="flex items-center gap-2">✅ Mundial 2026 incluido</li>
-                </ul>
-                <p class="text-gray-600 text-[10px] uppercase tracking-wider text-center mb-3 font-bold">Para toda la familia, al mejor precio</p>
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20una%20demo%20del%20plan%20LEDTV%20IPTV%20en%20México"
-                    target="_blank" class="plan-cta">
-                    📲 Quiero LEDTV — Demo Gratis
-                </a>
-            </div>
-
-        </div>
-
-        <!-- TABLA COMPARATIVA -->
-        <div class="mt-16 glass rounded-3xl border border-gray-800 overflow-hidden">
-            <h3 class="text-xl font-black uppercase italic text-center py-6 text-white border-b border-gray-800">
-                Comparativa de Planes IPTV en México
-            </h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-xs text-center">
-                    <thead>
-                        <tr class="border-b border-gray-800 text-gray-400 uppercase font-bold">
-                            <th class="py-4 px-4 text-left">Plan</th>
-                            <th class="py-4 px-3">Precio/mes</th>
-                            <th class="py-4 px-3">Canales en Vivo</th>
-                            <th class="py-4 px-3">Películas</th>
-                            <th class="py-4 px-3">Series</th>
-                            <th class="py-4 px-3">4K</th>
-                            <th class="py-4 px-3">Mundial 2026</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-white font-bold">
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
-                            <td class="py-4 px-4 text-left text-brand italic">Tu Latino</td>
-                            <td class="py-4 px-3">$250 MXN</td>
-                            <td class="py-4 px-3">11,000</td>
-                            <td class="py-4 px-3">+55,000</td>
-                            <td class="py-4 px-3">+14,000</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                        </tr>
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
-                            <td class="py-4 px-4 text-left text-brand italic">Sky Soccer Plus</td>
-                            <td class="py-4 px-3">$210 MXN</td>
-                            <td class="py-4 px-3">11,000</td>
-                            <td class="py-4 px-3">+55,000</td>
-                            <td class="py-4 px-3">+14,000</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                        </tr>
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
-                            <td class="py-4 px-4 text-left text-brand italic">M327</td>
-                            <td class="py-4 px-3">$200 MXN</td>
-                            <td class="py-4 px-3">2,000</td>
-                            <td class="py-4 px-3">+40,000</td>
-                            <td class="py-4 px-3">+20,000</td>
-                            <td class="py-4 px-3 text-gray-600">—</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                        </tr>
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
-                            <td class="py-4 px-4 text-left text-brand italic">AlfaTV</td>
-                            <td class="py-4 px-3">$180 MXN</td>
-                            <td class="py-4 px-3">1,500</td>
-                            <td class="py-4 px-3">+25,000</td>
-                            <td class="py-4 px-3">+3,000</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                        </tr>
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="py-4 px-4 text-left text-brand italic">LEDTV</td>
-                            <td class="py-4 px-3">$130 MXN</td>
-                            <td class="py-4 px-3">2,400</td>
-                            <td class="py-4 px-3">+19,000</td>
-                            <td class="py-4 px-3">+5,000</td>
-                            <td class="py-4 px-3 text-gray-600">—</td>
-                            <td class="py-4 px-3 text-brand">✅</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- TESTIMONIOS -->
-        <div class="pt-16 pb-6 overflow-hidden">
-            <h2 class="text-3xl font-black text-center mb-12 uppercase italic text-white tracking-tighter">
-                Lo que dicen nuestros <span class="text-brand">Clientes</span>
-            </h2>
-            <div class="swiper mySwiper pb-12">
-                <div class="swiper-wrapper">
-
-                    <!-- Testimonio 1: Problema cortes → solución estabilidad -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan M327</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Antes pagaba cable y cada partido de la Liga MX se cortaba en los momentos importantes. Con M327 llevo 14 meses y ni un solo corte durante los partidos. Ya no me imagino volviendo al cable."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">R</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Roberto A. <span class="text-gray-500 block font-normal lowercase">Xalapa · Cliente desde 2025</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonio 2: Problema precio cable → solución económica -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan Tu Latino</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Pagaba $800 al mes de cable y no tenía ni la mitad de canales. Ahora con Tu Latino pago $250, tengo más de 11,000 canales y veo mis telenovelas, deportes y el fútbol americano sin problema. No tiene comparación."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">I</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Ilse G. <span class="text-gray-500 block font-normal lowercase">Ciudad de México · Cliente desde 2024</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonio 3: Problema instalación difícil → solución soporte -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan LEDTV</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"No soy muy bueno con la tecnología y me daba miedo que fuera complicado. Me ayudaron por WhatsApp paso a paso y en menos de 10 minutos ya estaba viendo en mi Smart TV Samsung. Súper fácil con su ayuda."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">J</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Juan P. <span class="text-gray-500 block font-normal lowercase">Guadalajara · Cliente desde 2025</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonio 4: Familia + dispositivos -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan M327</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"En mi casa somos 4 y cada quien ve lo suyo: mi señora sus novelas, yo el fútbol, los niños caricaturas. Con los 3 dispositivos simultáneos nadie pelea por el control. Y todo por menos de lo que pagábamos de cable."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">M</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Mario L. <span class="text-gray-500 block font-normal lowercase">Ciudad de México · Cliente desde 2024</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonio 5: Mundial + calidad -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan Sky Soccer Plus</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Contraté justo antes del último partido de México y la calidad de imagen fue increíble. Nada que ver con lo que transmiten en cable abierto. Ya tengo listo el plan para ver el Mundial 2026 completo sin pagar extra."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">A</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Andrés T. <span class="text-gray-500 block font-normal lowercase">Querétaro · Cliente desde 2025</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonio 6: Confianza largo plazo -->
-                    <div class="swiper-slide">
-                        <div class="glass p-8 rounded-[2rem] border border-gray-800 flex flex-col justify-between h-full w-full hover:border-brand/30 transition duration-500">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-brand text-xs font-bold">★★★★★</span>
-                                    <span class="text-[10px] font-black uppercase px-3 py-1 rounded-full" style="background:rgba(37,211,102,0.1);color:#25D366;">Plan AlfaTV</span>
-                                </div>
-                                <p class="text-gray-300 italic text-sm leading-relaxed mb-6">"Llevo más de 2 años con AlfaTV y las películas en 4K son una pasada. Probé otros servicios antes que a los 3 meses ya fallaban. Aquí nunca ha pasado eso y el soporte responde el mismo día. No cambio."</p>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto">
-                                <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-black text-brand">A</div>
-                                <span class="font-bold text-white uppercase text-[10px]">Aldo V. <span class="text-gray-500 block font-normal lowercase">Tijuana · Cliente desde 2023</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-
-    <!-- ✅ FAQ con keywords de búsqueda reales -->
-    <section id="faq" class="py-16 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-black text-center mb-4 italic uppercase tracking-tighter">Preguntas <span class="text-brand">Frecuentes</span></h2>
-        <p class="text-center text-gray-500 text-sm mb-10">Todo lo que necesitas saber sobre IPTV en México</p>
-
-        <div class="space-y-4">
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Qué es IPTV y cómo funciona en México?</h3>
-                <p class="text-gray-400 text-sm">IPTV (Internet Protocol Television) te permite ver televisión por internet en México: canales en vivo, películas y series, sin necesidad de cable ni antena. Solo necesitas internet y una app como IPTV Smarters en tu Smart TV, celular o Firestick.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cuál es el mejor IPTV en México por estabilidad?</h3>
-                <p class="text-gray-400 text-sm">Smartplay es considerado uno de los servicios IPTV más estables en México gracias a servidores dedicados que garantizan transmisión sin cortes. Ofrecemos planes M327, Tu Latino, Sky Soccer Plus, LEDTV y AlfaTV con soporte técnico 24/7.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cuánto cuesta el IPTV en México?</h3>
-                <p class="text-gray-400 text-sm">Los planes de Smartplay van desde $130 MXN/mes (LEDTV, ideal para familias) hasta $250 MXN/mes (Tu Latino Premium con 11,000 canales). Todos incluyen el Mundial 2026 completo sin costo adicional y sin contrato de permanencia.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Puedo ver el Mundial 2026 con IPTV en México?</h3>
-                <p class="text-gray-400 text-sm">Sí. Con cualquier plan de Smartplay puedes ver los 104 partidos del Mundial 2026 en HD por internet, sin contratar servicios adicionales y sin cortes ni interrupciones.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Cómo puedo ver canales en vivo en mi Smart TV?</h3>
-                <p class="text-gray-400 text-sm">Solo necesitas descargar IPTV Smarters desde la tienda de tu Smart TV (LG, Samsung, Android TV) e ingresar las credenciales que te enviamos por WhatsApp al activar tu cuenta Smartplay. El proceso toma menos de 5 minutos.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Qué velocidad de internet necesito para usar IPTV?</h3>
-                <p class="text-gray-400 text-sm">Recomendamos mínimo 20 Mbps para canales en HD y 50 Mbps para contenido 4K (plan AlfaTV). La mayoría de los hogares en México con internet básico pueden ver IPTV sin problema.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿Es seguro contratar IPTV por WhatsApp?</h3>
-                <p class="text-gray-400 text-sm">Ofrecemos soporte personalizado por WhatsApp y puedes solicitar una Demo Gratis antes de realizar cualquier pago. Sin riesgo: prueba primero y paga solo si quedas satisfecho.</p>
-            </div>
-
-            <div class="glass p-6 rounded-2xl border border-gray-800">
-                <h3 class="font-bold text-brand mb-2">¿En qué dispositivos funciona el IPTV de Smartplay?</h3>
-                <p class="text-gray-400 text-sm">Compatible con Android TV, TV Box, Amazon Firestick, Roku, Smart TV Samsung/LG, iOS (iPhone/iPad) y PC/Mac. Soportamos hasta 3 dispositivos simultáneos con todos los planes.</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- SOPORTE 24/7 -->
-    <section class="py-12 bg-slate-900/50 border-t border-gray-800">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 px-4 py-2 rounded-full mb-6">
-                <span class="relative flex h-3 w-3">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-brand"></span>
-                </span>
-                <span class="text-brand text-[10px] font-black uppercase tracking-widest">Soporte Técnico Activo 24/7</span>
-            </div>
-
-            <h3 class="text-2xl md:text-3xl font-black mb-4 italic text-white leading-tight">¿Necesitas ayuda con tu IPTV?</h3>
-            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm">
-                Nuestro equipo de soporte está disponible las 24 horas, los 7 días de la semana para resolver dudas o ayudarte con la configuración en tu Smart TV, celular o Firestick.
-            </p>
-
-            <a href="https://wa.me/5521314298?text=Hola,%20necesito%20ayuda%20con%20soporte%20técnico%20de%20IPTV"
-                class="inline-block glass border border-gray-700 px-8 py-4 rounded-xl font-bold hover:bg-brand hover:text-black transition-all duration-300 text-sm uppercase tracking-wider">
-                Contactar a Soporte por WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <footer class="py-8 border-t border-gray-900 text-center bg-slate-950">
-        <p class="text-gray-600 text-[10px] uppercase tracking-[0.3em]">© 2026 Smartplay IPTV México. Todos los derechos reservados.</p>
-        <p class="text-gray-700 text-[9px] mt-2">Ver TV por internet · Canales en vivo · Películas 4K · Series · IPTV México</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        var swiperTestimonios = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-            }
-        });
-
-
-    </script>
+<footer>
+    <p>&copy; 2026 Smartplay IPTV México. Todos los derechos reservados.</p>
+    <p><a href="/">Home</a> | <a href="/mundial-2026.html">Calendario Mundial</a> | <a href="/descargas.html">Descargas</a></p>
+</footer>
 
 </body>
 </html>
