@@ -159,6 +159,15 @@ app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => {
 app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_3_mejor_iptv.html'));
 });
+
+app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_4_iptv_cable.html'));
+});
+
+app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_5_android_box.html'));
+});
+
 // ✅ ENGLISH BLOG POSTS (USA)
 app.get('/blog/how-to-install-iptv-usa/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_usa_1_how_to_install.html'));
@@ -176,7 +185,6 @@ app.get('/blog/best-iptv-usa/', (req, res) => {
 app.get('/en/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'en', 'index.html'));
 });
-
 
 // ✅ Proxy WC2026 API — usando https nativo para máxima compatibilidad
 const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
