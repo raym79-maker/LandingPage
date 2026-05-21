@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Smartplay IPTV — Guías en Español e Inglés</title>
+    <meta name="description" content="Blog oficial de Smartplay IPTV. Guías de instalación, comparativas y tips en Español e Inglés. Aprende a instalar IPTV en tu Smart TV.">
+    <meta name="keywords" content="blog IPTV, IPTV México, IPTV USA, guía IPTV, cómo instalar IPTV">
+    <link rel="canonical" href="https://www.smartplay.com.mx/blog/" />
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.smartplay.com.mx/blog/">
+    <meta property="og:title" content="Blog Smartplay IPTV — Guías y Tips">
+    <meta property="og:description" content="Aprende a instalar IPTV, compara servicios y descubre tips para ver TV sin cable. En Español e Inglés.">
+    <meta property="og:image" content="https://www.smartplay.com.mx/img/logo.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Barlow', Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center; 
+            margin-bottom: 40px; 
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+        }
+        header h1 { font-size: 42px; margin-bottom: 10px; font-weight: 900; }
+        header p { font-size: 18px; opacity: 0.95; }
+        .breadcrumb { margin-bottom: 20px; font-size: 14px; color: #666; }
+        .breadcrumb a { color: #25D366; text-decoration: none; font-weight: bold; }
+        
+        /* TABS */
+        .tabs { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 40px; 
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        .tab-btn { 
+            padding: 15px 30px; 
+            border: none; 
+            background: transparent; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: bold;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .tab-btn:hover { color: #25D366; }
+        .tab-btn.active { 
+            color: #25D366; 
+            border-bottom-color: #25D366;
+        }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* BLOG GRID */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .blog-card { 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.15);
+        }
+        .blog-card-image { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+        }
+        .blog-card-image.es1 { background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%); }
+        .blog-card-image.es2 { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
+        .blog-card-image.es3 { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .blog-card-image.es4 { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
+        .blog-card-image.es5 { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); }
+        .blog-card-image.en1 { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        .blog-card-image.en2 { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .blog-card-image.en3 { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        
+        .blog-card-content { 
+            padding: 25px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card h3 { 
+            color: #030d06; 
+            margin-bottom: 10px; 
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .blog-card .date { 
+            color: #25D366; 
+            font-size: 13px; 
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .blog-card .date.en { color: #06b6d4; }
+        .blog-card p { 
+            color: #666; 
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        .blog-card a { 
+            color: #25D366; 
+            text-decoration: none; 
+            font-weight: bold;
+            transition: color 0.3s;
+            align-self: flex-start;
+        }
+        .blog-card a.en { color: #06b6d4; }
+        .blog-card a:hover { opacity: 0.8; }
+        
+        .sidebar { margin-top: 40px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .sidebar h3 { color: #25D366; margin-bottom: 15px; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { color: #25D366; text-decoration: none; font-weight: bold; }
+        .sidebar a:hover { text-decoration: underline; }
+        
+        .cta-section { 
+            background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .cta-section h2 { color: white; margin-bottom: 10px; }
+        .cta-section p { margin-bottom: 20px; font-size: 16px; }
+        .cta-section a { 
+            display: inline-block;
+            background: white;
+            color: #25D366;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .cta-section a:hover { transform: scale(1.05); }
+        
+        footer { 
+            text-align: center; 
+            padding: 30px 20px; 
+            color: #666; 
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        footer a { color: #25D366; text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header h1 { font-size: 28px; }
+            .tabs { gap: 5px; }
+            .tab-btn { padding: 12px 15px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Smartplay</a> → Blog
+    </div>
+
+    <header>
+        <h1>📚 Blog Smartplay IPTV</h1>
+        <p>Guías, tips y comparativas en Español e Inglés</p>
+    </header>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('es')">🇲🇽 Español</button>
+        <button class="tab-btn" onclick="switchTab('en')">🇺🇸 English</button>
+    </div>
+
+    <!-- SPANISH CONTENT -->
+    <div id="es" class="tab-content active">
+        <section class="blog-grid">
+            
+            <!-- POST 1 ES -->
+            <div class="blog-card">
+                <div class="blog-card-image es1">🎯</div>
+                <div class="blog-card-content">
+                    <h3>Cómo Ver IPTV sin Cortes en el Mundial 2026</h3>
+                    <div class="date">📅 14 de Mayo, 2026</div>
+                    <p>Guía técnica completa para evitar buffering en los 104 partidos. Incluye tips de configuración, requisitos mínimos y cómo elegir buen proveedor.</p>
+                    <a href="/blog/iptv-sin-cortes-mundial-2026/">Leer más →</a>
+                </div>
+            </div>
+
+            <!-- POST 2 ES -->
+            <div class="blog-card">
+                <div class="blog-card-image es2">📱</div>
+                <div class="blog-card-content">
+                    <h3>Cómo Instalar IPTV en tu Smart TV (Guía paso a paso)</h3>
+                    <div class="date">📅 15 de Mayo, 2026</div>
+                    <p>Tutorial visual para instalar Smartplay en LG, Samsung, Sony y otros Smart TV. Funciona en menos de 5 minutos. Sin cables extras, sin complicaciones.</p>
+                    <a href="/blog/como-instalar-iptv-smart-tv/">Leer más →</a>
+                </div>
+            </div>
+
+            <!-- POST 3 ES -->
+            <div class="blog-card">
+                <div class="blog-card-image es3">⚖️</div>
+                <div class="blog-card-content">
+                    <h3>Mejor IPTV en México 2026: Comparativa Completa</h3>
+                    <div class="date">📅 16 de Mayo, 2026</div>
+                    <p>Comparamos precio, canales, soporte y velocidad de los principales proveedores IPTV. ¿Cuál vale la pena? Análisis honesto sin sesgos.</p>
+                    <a href="/blog/mejor-iptv-mexico-2026/">Leer más →</a>
+                </div>
+            </div>
+
+            <!-- POST 4 ES -->
+            <div class="blog-card">
+                <div class="blog-card-image es4">📺</div>
+                <div class="blog-card-content">
+                    <h3>IPTV vs Cable en México 2026: ¿Cuál es mejor?</h3>
+                    <div class="date">📅 17 de Mayo, 2026</div>
+                    <p>Comparativa honesta entre IPTV y cable. Precio, canales, confiabilidad. ¿Por qué cada vez más mexicanos eligen IPTV?</p>
+                    <a href="/blog/iptv-vs-cable-mexico-2026/">Leer más →</a>
+                </div>
+            </div>
+
+            <!-- POST 5 ES -->
+            <div class="blog-card">
+                <div class="blog-card-image es5">📦</div>
+                <div class="blog-card-content">
+                    <h3>Mejor Android Box para IPTV en México 2026</h3>
+                    <div class="date">📅 18 de Mayo, 2026</div>
+                    <p>Guía completa: qué Android Box comprar, dónde, y a qué precio. Comparativa de marcas, rendimiento, y recomendaciones.</p>
+                    <a href="/blog/mejor-android-box-iptv-mexico/">Leer más →</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- ENGLISH CONTENT -->
+    <div id="en" class="tab-content">
+        <section class="blog-grid">
+            
+            <!-- POST 1 EN -->
+            <div class="blog-card">
+                <div class="blog-card-image en1">📺</div>
+                <div class="blog-card-content">
+                    <h3>How to Install IPTV on Smart TV in USA</h3>
+                    <div class="date en">📅 May 20, 2026</div>
+                    <p>Step-by-step tutorial for installing IPTV on any Smart TV. Works on LG, Samsung, Sony, and more. Setup in 5 minutes without cables.</p>
+                    <a href="/blog/how-to-install-iptv-usa/" class="en">Read more →</a>
+                </div>
+            </div>
+
+            <!-- POST 2 EN -->
+            <div class="blog-card">
+                <div class="blog-card-image en2">📊</div>
+                <div class="blog-card-content">
+                    <h3>IPTV vs Cable in USA 2026: Which is Better?</h3>
+                    <div class="date en">📅 May 21, 2026</div>
+                    <p>Complete comparison: IPTV vs traditional cable. Price, channels, reliability, flexibility. Which is better for Americans?</p>
+                    <a href="/blog/iptv-vs-cable-usa/" class="en">Read more →</a>
+                </div>
+            </div>
+
+            <!-- POST 3 EN -->
+            <div class="blog-card">
+                <div class="blog-card-image en3">🏆</div>
+                <div class="blog-card-content">
+                    <h3>Best IPTV Services in USA 2026</h3>
+                    <div class="date en">📅 May 22, 2026</div>
+                    <p>Compare top IPTV providers: price, channels, reliability, support. Which provider should you choose?</p>
+                    <a href="/blog/best-iptv-usa/" class="en">Read more →</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <div class="sidebar">
+        <h3 id="sidebar-title">📚 Índice de Artículos</h3>
+        <ul id="sidebar-content">
+            <li><a href="/blog/iptv-sin-cortes-mundial-2026/">→ Cómo ver IPTV sin cortes en el Mundial</a></li>
+            <li><a href="/blog/como-instalar-iptv-smart-tv/">→ Instalación en Smart TV paso a paso</a></li>
+            <li><a href="/blog/mejor-iptv-mexico-2026/">→ Comparativa completa de IPTV</a></li>
+            <li><a href="/blog/iptv-vs-cable-mexico-2026/">→ IPTV vs Cable en México</a></li>
+            <li><a href="/blog/mejor-android-box-iptv-mexico/">→ Mejor Android Box para IPTV</a></li>
+        </ul>
+    </div>
+
+    <div class="cta-section">
+        <h2>🚀 ¿Listo para cambiar a IPTV?</h2>
+        <p>Prueba gratis durante 48 horas. Sin tarjeta de crédito, sin compromisos.</p>
+        <a href="https://wa.me/5521314298?text=Hola%2C%20quiero%20probar%20demo%20gratis%20de%20Smartplay%20IPTV" target="_blank">
+            💬 Solicitar Demo Gratis
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Smartplay IPTV México. Todos los derechos reservados.</p>
+    <p><a href="/">Home</a> | <a href="/mundial-2026.html">Calendario Mundial</a> | <a href="/descargas.html">Descargas</a></p>
+</footer>
+
+<script>
+function switchTab(tab) {
+    // Hide all tabs
+    document.getElementById('es').classList.remove('active');
+    document.getElementById('en').classList.remove('active');
+    
+    // Remove active from all buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+    
+    // Update sidebar
+    if (tab === 'es') {
+        document.getElementById('sidebar-title').textContent = '📚 Índice de Artículos';
+        document.getElementById('sidebar-content').innerHTML = `
+            <li><a href="/blog/iptv-sin-cortes-mundial-2026/">→ Cómo ver IPTV sin cortes en el Mundial</a></li>
+            <li><a href="/blog/como-instalar-iptv-smart-tv/">→ Instalación en Smart TV paso a paso</a></li>
+            <li><a href="/blog/mejor-iptv-mexico-2026/">→ Comparativa completa de IPTV</a></li>
+            <li><a href="/blog/iptv-vs-cable-mexico-2026/">→ IPTV vs Cable en México</a></li>
+            <li><a href="/blog/mejor-android-box-iptv-mexico/">→ Mejor Android Box para IPTV</a></li>
+        `;
+    } else {
+        document.getElementById('sidebar-title').textContent = '📚 Article Index';
+        document.getElementById('sidebar-content').innerHTML = `
+            <li><a href="/blog/how-to-install-iptv-usa/">→ How to Install IPTV on Smart TV</a></li>
+            <li><a href="/blog/iptv-vs-cable-usa/">→ IPTV vs Cable USA 2026</a></li>
+            <li><a href="/blog/best-iptv-usa/">→ Best IPTV Services USA</a></li>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
