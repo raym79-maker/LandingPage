@@ -54,6 +54,7 @@
         .plan-card { transition: all 0.3s ease; }
         .plan-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(37, 211, 102, 0.2); }
         .floating-whatsapp { position: fixed; bottom: 24px; right: 24px; z-index: 999; }
+        .plan-image { width: 100%; height: 180px; object-fit: cover; }
     </style>
 </head>
 <body class="bg-dark text-white">
@@ -67,9 +68,6 @@
         <div class="flex items-center gap-2 sm:gap-4">
             <a href="/blog/" class="hidden sm:flex bg-gray-900 border border-brand px-4 py-2 rounded-lg text-brand font-black text-sm uppercase hover:bg-brand hover:text-black transition-all duration-300 items-center gap-2">
                 📝 Blog
-            </a>
-            <a href="/" class="hidden sm:flex text-gray-400 text-xs font-bold uppercase hover:text-brand transition px-3 py-2">
-                🇲🇽 Español
             </a>
         </div>
         <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20a%20free%20demo%20of%20Smartplay%20IPTV" target="_blank"
@@ -143,99 +141,109 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <!-- PLAN 1 -->
-                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-                    <div class="text-4xl mb-3">🌎</div>
-                    <h3 class="text-xl font-black text-brand mb-1">Tu Latino</h3>
-                    <div class="text-3xl font-black text-white mb-1">$12<span class="text-lg text-gray-400">/mo</span></div>
-                    <p class="text-gray-400 text-xs mb-4">≈ $130 MXN/month</p>
-                    <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
-                        <li>✅ 3,000+ Latino channels</li>
-                        <li>✅ Univision, Telemundo, ESPN</li>
-                        <li>✅ Movies & Series in Spanish</li>
-                        <li>✅ World Cup 2026 included</li>
-                        <li>✅ 3 simultaneous devices</li>
-                    </ul>
-                    <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20Tu%20Latino%20plan%20for%20my%20Smart%20TV" target="_blank"
-                        class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
-                        💬 Get Free Demo
-                    </a>
+                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl overflow-hidden flex flex-col">
+                    <img src="/img/plans-1.webp" alt="Tu Latino Plan" class="plan-image" onerror="this.src='/img/logo.png'">
+                    <div class="p-6 flex flex-col">
+                        <h3 class="text-xl font-black text-brand mb-1">Tu Latino</h3>
+                        <div class="text-3xl font-black text-white mb-1">$12<span class="text-lg text-gray-400">/mo</span></div>
+                        <p class="text-gray-400 text-xs mb-4">Perfect for Latino content</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
+                            <li>✅ 3,000+ Latin American channels</li>
+                            <li>✅ Complete sports coverage</li>
+                            <li>✅ Movies & Series library</li>
+                            <li>✅ World Cup 2026 included</li>
+                            <li>✅ 3 simultaneous devices</li>
+                        </ul>
+                        <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20Tu%20Latino%20plan%20for%20my%20Smart%20TV" target="_blank"
+                            class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
+                            💬 Get Free Demo
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PLAN 2 (POPULAR) -->
-                <div class="plan-card bg-gray-900 border-2 border-brand rounded-2xl p-6 flex flex-col relative">
+                <div class="plan-card bg-gray-900 border-2 border-brand rounded-2xl overflow-hidden flex flex-col relative">
                     <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-black text-xs font-black px-4 py-1 rounded-full uppercase">Most Popular</div>
-                    <div class="text-4xl mb-3">⚽</div>
-                    <h3 class="text-xl font-black text-brand mb-1">Sky Soccer Plus</h3>
-                    <div class="text-3xl font-black text-white mb-1">$10<span class="text-lg text-gray-400">/mo</span></div>
-                    <p class="text-gray-400 text-xs mb-4">≈ $210 MXN/month</p>
-                    <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
-                        <li>✅ All soccer channels</li>
-                        <li>✅ ESPN, Fox Sports, TUDN</li>
-                        <li>✅ NFL, NBA, MLB, NHL</li>
-                        <li>✅ World Cup 2026 in HD</li>
-                        <li>✅ 3 simultaneous devices</li>
-                    </ul>
-                    <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20Sky%20Soccer%20Plus%20plan%20for%20my%20Smart%20TV" target="_blank"
-                        class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
-                        💬 Get Free Demo
-                    </a>
+                    <img src="/img/plans-2.webp" alt="Sky Soccer Plus Plan" class="plan-image" onerror="this.src='/img/logo.png'">
+                    <div class="p-6 flex flex-col">
+                        <h3 class="text-xl font-black text-brand mb-1">Sky Soccer Plus</h3>
+                        <div class="text-3xl font-black text-white mb-1">$10<span class="text-lg text-gray-400">/mo</span></div>
+                        <p class="text-gray-400 text-xs mb-4">For all sports lovers</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
+                            <li>✅ All major soccer leagues</li>
+                            <li>✅ Complete sports channels</li>
+                            <li>✅ NFL, NBA, MLB, NHL</li>
+                            <li>✅ World Cup 2026 in HD</li>
+                            <li>✅ 3 simultaneous devices</li>
+                        </ul>
+                        <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20Sky%20Soccer%20Plus%20plan%20for%20my%20Smart%20TV" target="_blank"
+                            class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
+                            💬 Get Free Demo
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PLAN 3 -->
-                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-                    <div class="text-4xl mb-3">📺</div>
-                    <h3 class="text-xl font-black text-brand mb-1">M327 Full</h3>
-                    <div class="text-3xl font-black text-white mb-1">$9<span class="text-lg text-gray-400">/mo</span></div>
-                    <p class="text-gray-400 text-xs mb-4">≈ $200 MXN/month</p>
-                    <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
-                        <li>✅ 11,000+ live channels</li>
-                        <li>✅ HBO, Netflix, Disney+</li>
-                        <li>✅ 5,000+ 4K movies</li>
-                        <li>✅ World Cup 2026 included</li>
-                        <li>✅ 3 simultaneous devices</li>
-                    </ul>
-                    <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20M327%20Full%20plan%20for%20my%20Smart%20TV" target="_blank"
-                        class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
-                        💬 Get Free Demo
-                    </a>
+                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl overflow-hidden flex flex-col">
+                    <img src="/img/plans-3.webp" alt="M327 Full Plan" class="plan-image" onerror="this.src='/img/logo.png'">
+                    <div class="p-6 flex flex-col">
+                        <h3 class="text-xl font-black text-brand mb-1">M327 Full</h3>
+                        <div class="text-3xl font-black text-white mb-1">$9<span class="text-lg text-gray-400">/mo</span></div>
+                        <p class="text-gray-400 text-xs mb-4">Complete entertainment package</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
+                            <li>✅ 11,000+ live channels</li>
+                            <li>✅ Premium entertainment content</li>
+                            <li>✅ 5,000+ 4K movies</li>
+                            <li>✅ World Cup 2026 included</li>
+                            <li>✅ 3 simultaneous devices</li>
+                        </ul>
+                        <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20M327%20Full%20plan%20for%20my%20Smart%20TV" target="_blank"
+                            class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
+                            💬 Get Free Demo
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PLAN 4 -->
-                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-                    <div class="text-4xl mb-3">🎬</div>
-                    <h3 class="text-xl font-black text-brand mb-1">AlfaTV</h3>
-                    <div class="text-3xl font-black text-white mb-1">$8<span class="text-lg text-gray-400">/mo</span></div>
-                    <p class="text-gray-400 text-xs mb-4">≈ $180 MXN/month</p>
-                    <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
-                        <li>✅ 5,000+ channels</li>
-                        <li>✅ Movies & Series on demand</li>
-                        <li>✅ Kids channels included</li>
-                        <li>✅ World Cup 2026 included</li>
-                        <li>✅ 3 simultaneous devices</li>
-                    </ul>
-                    <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20AlfaTV%20plan%20for%20my%20Smart%20TV" target="_blank"
-                        class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
-                        💬 Get Free Demo
-                    </a>
+                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl overflow-hidden flex flex-col">
+                    <img src="/img/plans-4.webp" alt="AlfaTV Plan" class="plan-image" onerror="this.src='/img/logo.png'">
+                    <div class="p-6 flex flex-col">
+                        <h3 class="text-xl font-black text-brand mb-1">AlfaTV</h3>
+                        <div class="text-3xl font-black text-white mb-1">$8<span class="text-lg text-gray-400">/mo</span></div>
+                        <p class="text-gray-400 text-xs mb-4">Best value for families</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
+                            <li>✅ 5,000+ channels</li>
+                            <li>✅ Movies & Series on demand</li>
+                            <li>✅ Family-friendly content</li>
+                            <li>✅ World Cup 2026 included</li>
+                            <li>✅ 3 simultaneous devices</li>
+                        </ul>
+                        <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20AlfaTV%20plan%20for%20my%20Smart%20TV" target="_blank"
+                            class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
+                            💬 Get Free Demo
+                        </a>
+                    </div>
                 </div>
 
                 <!-- PLAN 5 -->
-                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl p-6 flex flex-col">
-                    <div class="text-4xl mb-3">⚡</div>
-                    <h3 class="text-xl font-black text-brand mb-1">LEDTV Basic</h3>
-                    <div class="text-3xl font-black text-white mb-1">$6<span class="text-lg text-gray-400">/mo</span></div>
-                    <p class="text-gray-400 text-xs mb-4">≈ $130 MXN/month</p>
-                    <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
-                        <li>✅ 2,000+ channels</li>
-                        <li>✅ Basic channels package</li>
-                        <li>✅ Local & regional channels</li>
-                        <li>✅ World Cup 2026 included</li>
-                        <li>✅ 3 simultaneous devices</li>
-                    </ul>
-                    <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20LEDTV%20Basic%20plan%20for%20my%20Smart%20TV" target="_blank"
-                        class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
-                        💬 Get Free Demo
-                    </a>
+                <div class="plan-card bg-gray-900 border border-gray-700 rounded-2xl overflow-hidden flex flex-col">
+                    <img src="/img/plans-5.webp" alt="LEDTV Basic Plan" class="plan-image" onerror="this.src='/img/logo.png'">
+                    <div class="p-6 flex flex-col">
+                        <h3 class="text-xl font-black text-brand mb-1">LEDTV Basic</h3>
+                        <div class="text-3xl font-black text-white mb-1">$6<span class="text-lg text-gray-400">/mo</span></div>
+                        <p class="text-gray-400 text-xs mb-4">Budget-friendly option</p>
+                        <ul class="text-gray-300 text-sm space-y-2 mb-6 flex-grow">
+                            <li>✅ 2,000+ channels</li>
+                            <li>✅ Local & regional content</li>
+                            <li>✅ Basic entertainment package</li>
+                            <li>✅ World Cup 2026 included</li>
+                            <li>✅ 3 simultaneous devices</li>
+                        </ul>
+                        <a href="https://wa.me/5521314298?text=Hello%2C%20I%20want%20LEDTV%20Basic%20plan%20for%20my%20Smart%20TV" target="_blank"
+                            class="bg-brand text-black py-3 px-6 rounded-full font-black text-sm uppercase text-center hover:bg-green-400 transition w-full block">
+                            💬 Get Free Demo
+                        </a>
+                    </div>
                 </div>
 
                 <!-- FREE TRIAL CARD -->
@@ -261,7 +269,7 @@
                 <div class="text-center">
                     <div class="text-5xl mb-4">💰</div>
                     <h3 class="font-black text-brand mb-2">Save $1,500/year</h3>
-                    <p class="text-gray-400 text-sm">vs traditional cable. Same channels, 80% less cost.</p>
+                    <p class="text-gray-400 text-sm">vs traditional cable. Same entertainment, 80% less cost.</p>
                 </div>
                 <div class="text-center">
                     <div class="text-5xl mb-4">⚡</div>
@@ -332,7 +340,6 @@
     <footer class="py-10 px-4 border-t border-gray-800 text-center text-gray-500 text-sm">
         <p class="mb-2">&copy; 2026 Smartplay IPTV. All rights reserved.</p>
         <p>
-            <a href="/" class="hover:text-brand transition">🇲🇽 Español</a> | 
             <a href="/blog/" class="hover:text-brand transition">Blog</a> | 
             <a href="/mundial-2026.html" class="hover:text-brand transition">World Cup Schedule</a> | 
             <a href="/descargas.html" class="hover:text-brand transition">Downloads</a>
