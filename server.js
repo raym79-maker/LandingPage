@@ -172,6 +172,11 @@ app.get('/blog/best-iptv-usa/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_usa_3_best_iptv.html'));
 });
 
+// ✅ LANDING EN INGLÉS (USA)
+app.get('/en/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'en', 'index.html'));
+});
+
 
 // ✅ Proxy WC2026 API — usando https nativo para máxima compatibilidad
 const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
