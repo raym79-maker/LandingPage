@@ -532,7 +532,7 @@
 <!-- CTA BANNER INFERIOR -->
 <section class="py-16 px-6 border-t border-white/5 mt-8" style="background:linear-gradient(135deg,rgba(220,38,38,0.08) 0%,rgba(3,13,6,1) 60%);">
     <div class="max-w-2xl mx-auto text-center">
-        <p class="text-red-400 text-xs font-black uppercase tracking-widest mb-3 animate-pulse">🔴 Quedan 30 días para el Mundial</p>
+        <p class="text-red-400 text-xs font-black uppercase tracking-widest mb-3 animate-pulse" id="ctaBannerLabel">⚽ El Mundial 2026 empieza en 9 días</p>
         <p class="font-bebas text-5xl md:text-6xl text-white mb-2 tracking-wide">VER EL MUNDIAL <span class="text-brand">SIN CABLE</span></p>
         <p class="text-white/50 text-sm mb-8 max-w-lg mx-auto">Todos los 104 partidos en HD por internet. Sin antena, sin instalación. Activa hoy y pruébalo gratis antes de pagar.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -548,6 +548,26 @@
         <p class="text-white/20 text-xs mt-6 uppercase tracking-widest">Sin contrato · Sin tarjeta · Solo WhatsApp</p>
     </div>
 </section>
+<script>
+    // Actualizar texto del CTA según estado del Mundial
+    (function() {
+        const now = new Date();
+        const start = new Date('2026-06-11T19:00:00Z');
+        const end = new Date('2026-07-19T23:59:00Z');
+        const label = document.getElementById('ctaBannerLabel');
+        if (!label) return;
+        if (now >= end) {
+            label.textContent = '🏆 El Mundial 2026 ha concluido';
+        } else if (now >= start) {
+            label.textContent = '🔴 MUNDIAL EN CURSO — VER AHORA';
+            label.style.color = '#ef4444';
+            label.style.fontSize = '14px';
+        } else {
+            const days = Math.floor((start - now) / 86400000);
+            label.textContent = `⚽ El Mundial 2026 empieza en ${days} días`;
+        }
+    })();
+</script>
 
 <footer class="py-8 border-t border-white/5 text-center">
     <p class="text-white/20 text-xs uppercase tracking-widest">© 2026 Smartplay IPTV México · Datos en tiempo real: WC2026 API</p>
@@ -703,6 +723,7 @@ async function loadData() {
         });
 
         renderAll();
+        autoSelectTab();
         document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
     } catch(e) {
         console.error('Error cargando datos:', e);
@@ -865,8 +886,51 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     loadData();
-    setInterval(loadData, 120000); // Refrescar cada 2 min
+    setInterval(loadData, 60000); // Refrescar cada 1 min durante el Mundial
 });
+
+// ============================================================
+// AUTO-TAB INTELIGENTE — Activa la pestaña correcta según el momento
+// ============================================================
+function autoSelectTab() {
+    const now = new Date();
+    const mundialStart = new Date('2026-06-11T19:00:00Z');
+    const mundialEnd   = new Date('2026-07-19T23:59:00Z');
+
+    // Antes del Mundial → mostrar Próximos
+    if (now < mundialStart) {
+        showTab('upcoming');
+        return;
+    }
+
+    // Después del Mundial → mostrar Resultados
+    if (now > mundialEnd) {
+        showTab('results');
+        return;
+    }
+
+    // Durante el Mundial: prioridad EN VIVO → HOY → PRÓXIMOS
+    const live = allMatches.filter(m => m.live);
+    if (live.length > 0) {
+        showTab('live');
+        return;
+    }
+
+    const today = allMatches.filter(m => m._date && isToday(m._date));
+    if (today.length > 0) {
+        // Si hay partidos hoy pero ya terminaron todos → mostrar Resultados
+        const pendingToday = today.filter(m => !m.score?.ft);
+        if (pendingToday.length === 0) {
+            showTab('results');
+        } else {
+            showTab('today');
+        }
+        return;
+    }
+
+    // No hay partidos hoy → mostrar Próximos
+    showTab('upcoming');
+}
 </script>
 
 <!-- Floating banner planes — aparece a los 45 segundos -->
