@@ -576,7 +576,7 @@
     // Actualizar texto del CTA según estado del Mundial
     (function() {
         const now = new Date();
-        const start = new Date('2026-06-11T19:00:00Z');
+        const start = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX
         const end = new Date('2026-07-19T23:59:00Z');
         const label = document.getElementById('ctaBannerLabel');
         if (!label) return;
@@ -877,7 +877,7 @@ function buildGroups() {
 // COUNTDOWN
 // ============================================================
 function updateCountdown() {
-    const start = new Date('2026-06-11T19:00:00Z');
+    const start = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX = 23:00 UTC
     const end   = new Date('2026-07-19T20:00:00Z');
     const now   = new Date();
     const statusLabel = document.getElementById('statusLabel');
@@ -918,7 +918,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================================
 function autoSelectTab() {
     const now = new Date();
-    const mundialStart = new Date('2026-06-11T19:00:00Z');
+    const mundialStart = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX
     const mundialEnd   = new Date('2026-07-19T23:59:00Z');
 
     // Antes del Mundial → mostrar Próximos
