@@ -576,7 +576,7 @@
     // Actualizar texto del CTA según estado del Mundial
     (function() {
         const now = new Date();
-        const start = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX
+        const start = new Date('2026-06-11T19:00:00Z'); // 13:00 CDMX
         const end = new Date('2026-07-19T23:59:00Z');
         const label = document.getElementById('ctaBannerLabel');
         if (!label) return;
@@ -877,18 +877,32 @@ function buildGroups() {
 // COUNTDOWN
 // ============================================================
 function updateCountdown() {
-    const start = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX = 23:00 UTC
-    const end   = new Date('2026-07-19T20:00:00Z');
+    // Horarios exactos del Mundial 2026
+    const start = new Date('2026-06-11T19:00:00Z'); // Partido inaugural: 13:00 CDMX
+    const end   = new Date('2026-07-19T20:00:00Z');  // Final: 14:00 CDMX
     const now   = new Date();
+    
     const statusLabel = document.getElementById('statusLabel');
     const countdownEl = document.getElementById('countdown');
     if (!statusLabel) return;
 
-    if (now >= end)   { statusLabel.textContent = 'El Mundial ha concluido'; countdownEl.innerHTML = ''; return; }
-    if (now >= start) { statusLabel.textContent = '🔴 Torneo en curso'; countdownEl.innerHTML = ''; return; }
+    // Si ya pasó la hora del partido inaugural → TORNEO EN CURSO
+    if (now.getTime() >= start.getTime()) {
+        statusLabel.textContent = '🔴 TORNEO EN CURSO';
+        countdownEl.innerHTML = '';
+        return;
+    }
 
+    // Si es después de la final → TORNEO TERMINADO
+    if (now.getTime() >= end.getTime()) {
+        statusLabel.textContent = 'El Mundial ha concluido';
+        countdownEl.innerHTML = '';
+        return;
+    }
+
+    // Mostrar countdown
     statusLabel.textContent = 'Faltan para el inicio';
-    const diff = start - now;
+    const diff = start.getTime() - now.getTime();
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins  = Math.floor((diff % 3600000) / 60000);
@@ -918,7 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================================
 function autoSelectTab() {
     const now = new Date();
-    const mundialStart = new Date('2026-06-11T23:00:00Z'); // 17:00 CDMX
+    const mundialStart = new Date('2026-06-11T19:00:00Z'); // 13:00 CDMX
     const mundialEnd   = new Date('2026-07-19T23:59:00Z');
 
     // Antes del Mundial → mostrar Próximos
