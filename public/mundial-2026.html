@@ -433,30 +433,19 @@
     <div class="max-w-4xl mx-auto text-center">
 
         <!-- Countdown -->
-        <div class="mb-8" id="countdownSection">
-            <p class="text-brand font-barlow font-700 text-xs uppercase tracking-widest mb-4">⚽ FIFA World Cup 2026 · 11 Jun – 19 Jul</p>
-            <div id="tournamentStatus" class="flex justify-center items-center gap-3 mb-2">
-                <div class="flex items-center gap-2 glass-green px-4 py-2 rounded-full text-xs font-bold uppercase">
-                    <div class="live-dot"></div>
-                    <span id="statusLabel">Calculando...</span>
-                </div>
-            </div>
-            <div id="countdown" class="flex justify-center gap-3 mt-4"></div>
-        </div>
-
-        <h1 class="font-bebas text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-2 tracking-wide">
+        <h1 class="font-bebas text-7xl md:text-9xl lg:text-[10rem] text-white leading-none mb-4 tracking-wide">
             MUNDIAL <span class="text-brand">2026</span>
         </h1>
-        <p class="font-barlow font-900 italic text-xl md:text-2xl text-white/60 mb-8 uppercase tracking-wide">
+        <p class="font-barlow font-900 italic text-2xl md:text-3xl text-white/60 mb-12 uppercase tracking-wide">
             Ver en vivo por internet en México · <span class="text-brand">104 partidos en HD</span>
         </p>
 
-        <!-- Stats bar -->
-        <div class="flex flex-wrap justify-center gap-6 mb-10 text-xs font-bold uppercase tracking-widest text-white/40">
-            <span>🌎 48 Selecciones</span>
-            <span>🏟️ 16 Estadios</span>
-            <span>⚽ 104 Partidos</span>
-            <span>📅 39 Días</span>
+        <!-- Stats bar —agrandado— -->
+        <div class="flex flex-wrap justify-center gap-8 mb-16 text-sm font-bold uppercase tracking-widest text-white/50">
+            <span class="flex items-center gap-2">🌎 <span class="text-white">48 Selecciones</span></span>
+            <span class="flex items-center gap-2">🏟️ <span class="text-white">16 Estadios</span></span>
+            <span class="flex items-center gap-2">⚽ <span class="text-white">104 Partidos</span></span>
+            <span class="flex items-center gap-2">📅 <span class="text-white">39 Días</span></span>
         </div>
 
 
@@ -602,7 +591,12 @@
 // ============================================================
 // DATOS: openfootball/worldcup.json — sin API key, sin CORS
 // ============================================================
-const DATA_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+// APIs para datos del Mundial (en orden de preferencia)
+const DATA_URLs = [
+    'https://api.worldcup2026.dev/matches',  // ✅ NUEVA: API gratuita y en tiempo real
+    'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json'  // Fallback
+];
+let DATA_URL = DATA_URLs[0];  // Usar la primera por defecto
 
 const FLAGS = {
     'Mexico': '🇲🇽','South Africa': '🇿🇦','South Korea': '🇰🇷','Czechia': '🇨🇿',
@@ -734,28 +728,54 @@ function renderCard(m) {
 let allMatches = [];
 
 async function loadData() {
-    try {
-        const res = await fetch(DATA_URL);
-        if (!res.ok) throw new Error('No se pudo cargar el fixture');
-        const json = await res.json();
-        const raw = json.matches || json;
+    for (const url of DATA_URLs) {
+        try {
+            console.log('Intentando cargar desde:', url);
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+            
+            // Mapear datos según formato de la API
+            let raw = json.matches || json;
+            
+            // Si viene de worldcup2026, transformar al formato esperado
+            if (url.includes('worldcup2026')) {
+                raw = raw.map(m => ({
+                    date: m.date,
+                    time: m.time || '12:00',
+                    team1: m.team1 || m.home_team,
+                    team2: m.team2 || m.away_team,
+                    group: m.group || m.stage,
+                    score: m.score ? { team1: m.score.home || m.score[0], team2: m.score.away || m.score[1] } : null,
+                    live: m.status === 'LIVE' || m.status === 'IN_PROGRESS'
+                }));
+                console.log('✅ Datos transformados desde worldcup2026');
+            }
 
-        // Enriquecer con fecha parseada y grupo
-        allMatches = raw.map(m => {
-            const d = toMX(m.date, m.time);
-            return { ...m, _date: d };
-        });
+            // Enriquecer con fecha parseada
+            allMatches = raw.map(m => {
+                const d = toMX(m.date, m.time);
+                return { ...m, _date: d };
+            });
 
-        renderAll();
-        autoSelectTab();
-        document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
-    } catch(e) {
-        console.error('Error cargando datos:', e);
-        ['liveMatches','todayMatches','upcomingMatches','resultsMatches'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.innerHTML = '<p class="text-center text-white/30 py-8 font-bebas text-xl tracking-wider">ERROR AL CARGAR DATOS — INTENTA RECARGAR</p>';
-        });
+            console.log(`✅ ${allMatches.length} partidos cargados desde ${url}`);
+            renderAll();
+            autoSelectTab();
+            document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
+            return;  // ← Salir si se cargó correctamente
+            
+        } catch(e) {
+            console.error(`❌ Error con ${url}:`, e.message);
+            continue;  // ← Intentar siguiente URL
+        }
     }
+    
+    // Si llegamos aquí, todas las URLs fallaron
+    console.error('❌ No se pudo cargar desde ninguna fuente');
+    ['liveMatches','todayMatches','upcomingMatches','resultsMatches'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = '<p class="text-center text-white/30 py-8 font-bebas text-xl tracking-wider">ERROR AL CARGAR DATOS — INTENTA RECARGAR</p>';
+    });
 }
 
 function renderAll() {
@@ -933,8 +953,8 @@ function updateCountdown() {
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // updateCountdown(); // ← Countdown removido
+    // setInterval(updateCountdown, 1000); // ← Countdown removido
     loadData();
     setInterval(loadData, 60000); // Refrescar cada 1 min durante el Mundial
 });
