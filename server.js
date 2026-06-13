@@ -23,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error("Error DB:", err.message);
     else {
-        // 1. Añadimos 'dispositivo' a la creación inicial
         db.run(`CREATE TABLE IF NOT EXISTS prospectos (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
             nombre TEXT, 
@@ -33,7 +32,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
             fecha DATETIME DEFAULT CURRENT_TIMESTAMP
         )`, (err) => {
             if (!err) {
-                // 2. Truco de seguridad: Si la tabla ya existe sin la columna, la agregamos
                 db.run(`ALTER TABLE prospectos ADD COLUMN dispositivo TEXT`, (err) => {
                     if (err) console.log("La columna dispositivo ya está lista.");
                 });
@@ -48,7 +46,7 @@ const auth = basicAuth({
     challenge: true
 });
 
-// Ruta para guardar prospectos (ACTUALIZADA con dispositivo)
+// Ruta para guardar prospectos
 app.post('/api/prospectos', (req, res) => {
     const { nombre, whatsapp, producto, dispositivo } = req.body;
     db.run(`INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`, 
@@ -61,7 +59,7 @@ app.post('/api/prospectos', (req, res) => {
     });
 });
 
-// PANEL DE ADMINISTRACIÓN (ACTUALIZADO con columna Dispositivo)
+// PANEL DE ADMINISTRACIÓN
 app.get('/admin-prospectos', auth, (req, res) => {
     db.all("SELECT * FROM prospectos ORDER BY fecha DESC", [], (err, rows) => {
         if (err) return res.status(500).send("Error");
@@ -128,7 +126,7 @@ app.get('/admin-reset-execute', auth, (req, res) => {
     });
 });
 
-// ✅ Rutas explícitas para archivos XML y TXT (deben ir ANTES del catch-all)
+// Rutas explícitas para archivos XML y TXT
 app.get('/sitemap.xml', (req, res) => {
     res.setHeader('Content-Type', 'application/xml');
     res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
@@ -143,77 +141,126 @@ app.get('/mundial-2026.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'mundial-2026.html'));
 });
 
-// ✅ RUTAS DEL BLOG
+// RUTAS DEL BLOG
 app.get('/blog/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_index.html'));
 });
-
 app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_1_iptv-sin-cortes.html'));
 });
-
 app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_2_como_instalar.html'));
 });
-
 app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_3_mejor_iptv.html'));
 });
-
 app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_4_iptv_cable.html'));
 });
-
 app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_5_android_box.html'));
 });
 
-// ✅ ENGLISH BLOG POSTS (USA)
+// ENGLISH BLOG POSTS (USA)
 app.get('/blog/how-to-install-iptv-usa/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_usa_1_how_to_install.html'));
 });
-
 app.get('/blog/iptv-vs-cable-usa/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_usa_2_iptv_vs_cable.html'));
 });
-
 app.get('/blog/best-iptv-usa/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog', 'blog_post_usa_3_best_iptv.html'));
 });
 
-// ✅ LANDING EN INGLÉS (USA)
+// LANDING EN INGLÉS (USA)
 app.get('/en/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'en', 'index.html'));
 });
 
-// ✅ Proxy WC2026 API — usando https nativo para máxima compatibilidad
-const WC_API_KEY = 'wc26_7ZUpLM34e6iELPUF5w4Mtt';
-const WC_API_BASE = 'api.wc2026api.com';
+// ============================================================
+// PROXY LIVESCORE-API — Mundial 2026 (competition_id = 362)
+// Key y secret OCULTOS en el servidor + sistema de caché
+// para no exceder el límite de requests del plan.
+// ============================================================
+const LS_KEY    = process.env.LS_KEY    || '3JytHawX7epwFT4N';
+const LS_SECRET = process.env.LS_SECRET || 'dkeD4a3HtuGgSatVU2pCcVzkaYRPSWD5';
+const WC_COMP_ID = '362';
 
-app.get('/api/wc/:endpoint', (req, res) => {
+// Caché en memoria
+const cache = {
+    live:      { data: null, ts: 0 },
+    fixtures:  { data: null, ts: 0 },
+    standings: { data: null, ts: 0 }
+};
+
+// Tiempos de caché (milisegundos)
+const CACHE_TTL = {
+    live:      90 * 1000,           // En vivo: 90 seg
+    fixtures:  6 * 60 * 60 * 1000,  // Fixtures: 6 horas
+    standings: 5 * 60 * 1000        // Tabla: 5 min
+};
+
+// Endpoints reales de livescore-api
+const LS_ENDPOINTS = {
+    live:      'matches/live.json',
+    fixtures:  'fixtures/list.json',
+    standings: 'leagues/table.json'
+};
+
+// Llamada a livescore-api
+function fetchLiveScore(endpointPath, callback) {
+    const sep = endpointPath.includes('?') ? '&' : '?';
+    const fullPath = `/api-client/${endpointPath}${sep}key=${LS_KEY}&secret=${LS_SECRET}&competition_id=${WC_COMP_ID}`;
+
     const options = {
-        hostname: WC_API_BASE,
-        path: '/' + req.params.endpoint,
-        method: 'GET',
-        headers: { 'Authorization': 'Bearer ' + WC_API_KEY }
+        hostname: 'livescore-api.com',
+        path: fullPath,
+        method: 'GET'
     };
+
     const request = https.request(options, (response) => {
         let data = '';
         response.on('data', chunk => data += chunk);
-        response.on('end', () => {
-            try {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(data);
-            } catch (e) {
-                res.status(500).json({ error: 'Parse error' });
-            }
-        });
+        response.on('end', () => callback(null, data));
     });
-    request.on('error', (err) => {
-        console.error('WC proxy error:', err.message);
-        res.status(500).json({ error: 'Error al consultar datos del Mundial' });
-    });
+    request.on('error', (err) => callback(err, null));
     request.end();
+}
+
+// Endpoint con caché: /api/mundial/live, /api/mundial/fixtures, /api/mundial/standings
+app.get('/api/mundial/:tipo', (req, res) => {
+    const tipo = req.params.tipo;
+
+    if (!LS_ENDPOINTS[tipo]) {
+        return res.status(400).json({ error: 'Tipo no válido. Usa: live, fixtures o standings' });
+    }
+
+    const now = Date.now();
+    const cached = cache[tipo];
+
+    // ¿Caché válido?
+    if (cached.data && (now - cached.ts) < CACHE_TTL[tipo]) {
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('X-Cache', 'HIT');
+        return res.send(cached.data);
+    }
+
+    // Llamar a la API
+    fetchLiveScore(LS_ENDPOINTS[tipo], (err, data) => {
+        if (err) {
+            console.error(`Error livescore (${tipo}):`, err.message);
+            if (cached.data) {
+                res.setHeader('Content-Type', 'application/json');
+                res.setHeader('X-Cache', 'STALE');
+                return res.send(cached.data);
+            }
+            return res.status(500).json({ error: 'Error al consultar datos del Mundial' });
+        }
+        cache[tipo] = { data: data, ts: now };
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('X-Cache', 'MISS');
+        res.send(data);
+    });
 });
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
