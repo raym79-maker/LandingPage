@@ -232,22 +232,6 @@
                 obsGrupos.observe(grupos);
             }
 
-            // Evento 4: Scroll hasta el countdown
-            var countdown = document.getElementById('countdownSection');
-            if (countdown) {
-                var obsCD = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(e) {
-                        if (e.isIntersecting) {
-                            gtag('event', 'scroll_countdown_mundial', {
-                                event_category: 'Engagement',
-                                event_label: 'Vio countdown del Mundial',
-                                value: 1
-                            });
-                            obsCD.disconnect();
-                        }
-                    });
-                }, { threshold: 0.5 });
-                obsCD.observe(countdown);
             }
         });
     </script>
@@ -306,19 +290,10 @@
             border: 1px solid rgba(255,255,255,0.08);
         }
 
-        .glass-green {
-            background: rgba(37,211,102,0.06);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(37,211,102,0.15);
-        }
+        
 
         /* LIVE pulse */
-        .live-dot {
-            width: 8px; height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            animation: livepulse 1.2s ease-in-out infinite;
-        }
+        
         @keyframes livepulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.7); }
@@ -355,15 +330,8 @@
             color: #000;
         }
 
-        /* Countdown */
-        .countdown-box {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(37,211,102,0.2);
-            border-radius: 12px;
-            padding: 12px 16px;
-            text-align: center;
-            min-width: 64px;
-        }
+<!-- REMOVIDO:         /* Countdown */... -->
+        
 
         /* WhatsApp fixed */
         .wa-fixed {
@@ -432,7 +400,7 @@
 <section class="hero-bg grass-line pt-32 pb-16 px-6 relative">
     <div class="max-w-4xl mx-auto text-center">
 
-        <!-- Countdown -->
+<!-- REMOVIDO:         <!-- Countdown -->... -->
         <h1 class="font-bebas text-7xl md:text-9xl lg:text-[10rem] text-white leading-none mb-4 tracking-wide">
             MUNDIAL <span class="text-brand">2026</span>
         </h1>
@@ -481,7 +449,7 @@
     <!-- LIVE TAB -->
     <div id="tab-live" class="tab-content hidden fade-up">
         <div class="flex items-center gap-3 mb-6">
-            <div class="live-dot"></div>
+            <div class=""></div>
             <h2 class="font-bebas text-2xl tracking-wider text-white">PARTIDOS EN VIVO</h2>
             <span class="text-white/30 text-xs" id="liveUpdated"></span>
         </div>
@@ -694,7 +662,7 @@ function renderCard(m) {
                </div>`;
 
     const badge = isLive
-        ? `<span class="flex items-center gap-1.5 text-red-400 text-[10px] font-bold uppercase"><span class="live-dot"></span>EN VIVO</span>`
+        ? `<span class="flex items-center gap-1.5 text-red-400 text-[10px] font-bold uppercase"><span class=""></span>EN VIVO</span>`
         : isFinished
             ? `<span class="text-white/30 text-[10px] font-bold uppercase">Final</span>`
             : `<span class="text-brand text-[10px] font-bold uppercase">${m.group || m.round || ''}</span>`;
@@ -894,67 +862,16 @@ function buildGroups() {
 }
 
 // ============================================================
-// COUNTDOWN
+<!-- REMOVIDO: // COUNTDOWN... -->
 // ============================================================
-function updateCountdown() {
-    // Horarios EXACTOS del Mundial 2026
-    // Partido inaugural: 11 junio 2026, 13:00 CDMX (19:00 UTC)
-    // Final: 19 julio 2026, 14:00 CDMX (20:00 UTC)
-    
-    const start = new Date('2026-06-11T13:00:00'); // 13:00 CDMX (hora local)
-    const end   = new Date('2026-07-19T14:00:00');  // 14:00 CDMX (hora local)
-    const now   = new Date();
-    
-    const statusLabel = document.getElementById('statusLabel');
-    const countdownEl = document.getElementById('countdown');
-    if (!statusLabel) return;
-
-    // DEBUG: mostrar hora actual
-    console.log('Ahora:', now.toLocaleString('es-MX'));
-    console.log('Inicio:', start.toLocaleString('es-MX'));
-    console.log('¿Torneo activo?', now >= start && now < end);
-
-    // Si ahora es DESPUÉS del inicio y ANTES del final → TORNEO EN CURSO
-    if (now >= start && now < end) {
-        statusLabel.textContent = '🔴 TORNEO EN CURSO';
-        countdownEl.innerHTML = '';
-        console.log('Estado: TORNEO EN CURSO');
-        return;
-    }
-
-    // Si es después de la final → TORNEO TERMINADO
-    if (now >= end) {
-        statusLabel.textContent = 'El Mundial ha concluido';
-        countdownEl.innerHTML = '';
-        console.log('Estado: TORNEO TERMINADO');
-        return;
-    }
-
-    // Si es antes del inicio → mostrar countdown
-    statusLabel.textContent = 'Faltan para el inicio';
-    const diff = start.getTime() - now.getTime();
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000) / 60000);
-    const secs  = Math.floor((diff % 60000) / 1000);
-
-    console.log(`Contador: ${days} días, ${hours} horas, ${mins} min, ${secs} seg`);
-
-    countdownEl.innerHTML = [
-        {val: days, label: 'días'}, {val: hours, label: 'horas'},
-        {val: mins, label: 'min'},  {val: secs, label: 'seg'}
-    ].map(i => `<div class="countdown-box">
-        <p class="font-bebas text-3xl text-brand leading-none">${String(i.val).padStart(2,'0')}</p>
-        <p class="text-white/30 text-[10px] uppercase font-bold mt-1">${i.label}</p>
-    </div>`).join('');
-}
+<!-- REMOVIDO: // FUNCIÓN ELIMINADA: updateCountdown... -->
 
 // ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-    // updateCountdown(); // ← Countdown removido
-    // setInterval(updateCountdown, 1000); // ← Countdown removido
+<!-- REMOVIDO:     // // updateCountdown(); // ← Countdown removido... -->
+<!-- REMOVIDO:     // // setInterval(updateCountdown, 1000); // ← Countdown... -->
     loadData();
     setInterval(loadData, 60000); // Refrescar cada 1 min durante el Mundial
 });
