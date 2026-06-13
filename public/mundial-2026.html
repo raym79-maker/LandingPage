@@ -557,14 +557,11 @@
 
 <script>
 // ============================================================
-// DATOS: openfootball/worldcup.json — sin API key, sin CORS
+// DATOS: livescore-api vía proxy /api/mundial (key oculta + caché)
 // ============================================================
-// APIs para datos del Mundial (en orden de preferencia)
-const DATA_URLs = [
-    'https://api.worldcup2026.dev/matches',  // ✅ NUEVA: API gratuita y en tiempo real
-    'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json'  // Fallback
-];
-let DATA_URL = DATA_URLs[0];  // Usar la primera por defecto
+// Proxy en nuestro servidor (livescore-api con key oculta + caché)
+const API_FIXTURES = '/api/mundial/fixtures';  // Calendario completo
+const API_LIVE     = '/api/mundial/live';      // Partidos en vivo
 
 const FLAGS = {
     'Mexico': '🇲🇽','South Africa': '🇿🇦','South Korea': '🇰🇷','Czechia': '🇨🇿',
@@ -695,55 +692,111 @@ function renderCard(m) {
 // ============================================================
 let allMatches = [];
 
+// Parsear "2 - 0" → [2, 0]
+function parseScore(scoreStr) {
+    if (!scoreStr || typeof scoreStr !== 'string') return null;
+    const parts = scoreStr.split('-').map(s => parseInt(s.trim()));
+    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) return parts;
+    return null;
+}
+
+// ¿El status indica partido en vivo?
+function isLiveStatus(status) {
+    if (!status) return false;
+    const s = status.toUpperCase();
+    return s === 'IN PLAY' || s === 'HALF TIME BREAK' || s === 'ADDED TIME' ||
+           s === 'LIVE' || s.includes('PLAY');
+}
+
+// ¿El status indica partido terminado?
+function isFinishedStatus(status) {
+    if (!status) return false;
+    const s = status.toUpperCase();
+    return s === 'FINISHED' || s === 'FT' || s === 'AET' || s === 'AFTER PENALTIES';
+}
+
+// Mapear un partido del formato livescore-api a nuestro formato
+function mapMatch(m) {
+    const score = parseScore(m.scores?.score || m.score);
+    const live = isLiveStatus(m.status);
+    const finished = isFinishedStatus(m.status);
+    return {
+        team1: m.home?.name || m.home_name || '?',
+        team2: m.away?.name || m.away_name || '?',
+        date: m.date || (m.scheduled ? m.scheduled.split(' ')[0] : null),
+        time: m.time || m.scheduled || m.scheduled_time || '',
+        group: m.group_name || (m.competition?.name) || '',
+        ground: m.location || m.home?.stadium || '',
+        status: m.status,
+        live: live,
+        score: finished && score ? { ft: score } : (live && score ? { et: score } : null),
+        _date: parseMatchDate(m)
+    };
+}
+
+// Parsear fecha del partido a Date México
+function parseMatchDate(m) {
+    const dateStr = m.date || (m.scheduled ? m.scheduled.split(' ')[0] : null);
+    const timeStr = m.time || m.scheduled_time || (m.scheduled ? m.scheduled.split(' ')[1] : '12:00');
+    if (!dateStr) return null;
+    // livescore-api da hora en UTC, convertir a México (UTC-6)
+    try {
+        const iso = `${dateStr}T${(timeStr || '12:00').slice(0,5)}:00Z`;
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return null;
+        return d;
+    } catch(e) { return null; }
+}
+
 async function loadData() {
-    for (const url of DATA_URLs) {
-        try {
-            console.log('Intentando cargar desde:', url);
-            const res = await fetch(url);
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const json = await res.json();
-            
-            // Mapear datos según formato de la API
-            let raw = json.matches || json;
-            
-            // Si viene de worldcup2026, transformar al formato esperado
-            if (url.includes('worldcup2026')) {
-                raw = raw.map(m => ({
-                    date: m.date,
-                    time: m.time || '12:00',
-                    team1: m.team1 || m.home_team,
-                    team2: m.team2 || m.away_team,
-                    group: m.group || m.stage,
-                    score: m.score ? { team1: m.score.home || m.score[0], team2: m.score.away || m.score[1] } : null,
-                    live: m.status === 'LIVE' || m.status === 'IN_PROGRESS'
-                }));
-                console.log('✅ Datos transformados desde worldcup2026');
-            }
+    try {
+        // 1. Cargar calendario completo (fixtures) + partidos en vivo en paralelo
+        const [fixturesRes, liveRes] = await Promise.all([
+            fetch(API_FIXTURES).then(r => r.json()).catch(() => null),
+            fetch(API_LIVE).then(r => r.json()).catch(() => null)
+        ]);
 
-            // Enriquecer con fecha parseada
-            allMatches = raw.map(m => {
-                const d = toMX(m.date, m.time);
-                return { ...m, _date: d };
-            });
+        let fixtures = [];
+        let liveMatches = [];
 
-            console.log(`✅ ${allMatches.length} partidos cargados desde ${url}`);
-            renderAll();
-            autoSelectTab();
-            document.getElementById('liveUpdated').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
-            return;  // ← Salir si se cargó correctamente
-            
-        } catch(e) {
-            console.error(`❌ Error con ${url}:`, e.message);
-            continue;  // ← Intentar siguiente URL
+        // Procesar fixtures (calendario)
+        if (fixturesRes?.success && fixturesRes.data) {
+            const raw = fixturesRes.data.fixtures || fixturesRes.data.match || [];
+            fixtures = raw.map(mapMatch);
+            console.log(`✅ ${fixtures.length} partidos del calendario cargados`);
+        } else {
+            console.warn('⚠️ No se pudieron cargar fixtures:', fixturesRes);
         }
+
+        // Procesar partidos en vivo
+        if (liveRes?.success && liveRes.data) {
+            const raw = liveRes.data.match || [];
+            liveMatches = raw.map(mapMatch);
+            console.log(`🔴 ${liveMatches.length} partidos EN VIVO`);
+        }
+
+        // 2. Combinar: los partidos en vivo sobrescriben a los del calendario
+        const liveKeys = new Set(liveMatches.map(m => `${m.team1}_${m.team2}`));
+        const merged = [
+            ...liveMatches,
+            ...fixtures.filter(m => !liveKeys.has(`${m.team1}_${m.team2}`))
+        ];
+
+        allMatches = merged;
+        console.log(`✅ Total: ${allMatches.length} partidos`);
+
+        renderAll();
+        autoSelectTab();
+        const upd = document.getElementById('liveUpdated');
+        if (upd) upd.textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-MX');
+
+    } catch(e) {
+        console.error('❌ Error cargando datos del Mundial:', e.message);
+        ['liveMatches','todayMatches','upcomingMatches','resultsMatches'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = '<p class="text-center text-white/30 py-8 font-bebas text-xl tracking-wider">ERROR AL CARGAR DATOS — INTENTA RECARGAR</p>';
+        });
     }
-    
-    // Si llegamos aquí, todas las URLs fallaron
-    console.error('❌ No se pudo cargar desde ninguna fuente');
-    ['liveMatches','todayMatches','upcomingMatches','resultsMatches'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = '<p class="text-center text-white/30 py-8 font-bebas text-xl tracking-wider">ERROR AL CARGAR DATOS — INTENTA RECARGAR</p>';
-    });
 }
 
 function renderAll() {
@@ -873,7 +926,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- REMOVIDO:     // // updateCountdown(); // ← Countdown removido... -->
 <!-- REMOVIDO:     // // setInterval(updateCountdown, 1000); // ← Countdown... -->
     loadData();
-    setInterval(loadData, 60000); // Refrescar cada 1 min durante el Mundial
+    setInterval(loadData, 90000); // Refrescar cada 90 seg (optimiza requests API)
 });
 
 // ============================================================
