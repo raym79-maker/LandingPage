@@ -877,36 +877,48 @@ function buildGroups() {
 // COUNTDOWN
 // ============================================================
 function updateCountdown() {
-    // Horarios exactos del Mundial 2026
-    const start = new Date('2026-06-11T19:00:00Z'); // Partido inaugural: 13:00 CDMX
-    const end   = new Date('2026-07-19T20:00:00Z');  // Final: 14:00 CDMX
+    // Horarios EXACTOS del Mundial 2026
+    // Partido inaugural: 11 junio 2026, 13:00 CDMX (19:00 UTC)
+    // Final: 19 julio 2026, 14:00 CDMX (20:00 UTC)
+    
+    const start = new Date('2026-06-11T13:00:00'); // 13:00 CDMX (hora local)
+    const end   = new Date('2026-07-19T14:00:00');  // 14:00 CDMX (hora local)
     const now   = new Date();
     
     const statusLabel = document.getElementById('statusLabel');
     const countdownEl = document.getElementById('countdown');
     if (!statusLabel) return;
 
-    // Si ya pasó la hora del partido inaugural → TORNEO EN CURSO
-    if (now.getTime() >= start.getTime()) {
+    // DEBUG: mostrar hora actual
+    console.log('Ahora:', now.toLocaleString('es-MX'));
+    console.log('Inicio:', start.toLocaleString('es-MX'));
+    console.log('¿Torneo activo?', now >= start && now < end);
+
+    // Si ahora es DESPUÉS del inicio y ANTES del final → TORNEO EN CURSO
+    if (now >= start && now < end) {
         statusLabel.textContent = '🔴 TORNEO EN CURSO';
         countdownEl.innerHTML = '';
+        console.log('Estado: TORNEO EN CURSO');
         return;
     }
 
     // Si es después de la final → TORNEO TERMINADO
-    if (now.getTime() >= end.getTime()) {
+    if (now >= end) {
         statusLabel.textContent = 'El Mundial ha concluido';
         countdownEl.innerHTML = '';
+        console.log('Estado: TORNEO TERMINADO');
         return;
     }
 
-    // Mostrar countdown
+    // Si es antes del inicio → mostrar countdown
     statusLabel.textContent = 'Faltan para el inicio';
     const diff = start.getTime() - now.getTime();
     const days = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins  = Math.floor((diff % 3600000) / 60000);
     const secs  = Math.floor((diff % 60000) / 1000);
+
+    console.log(`Contador: ${days} días, ${hours} horas, ${mins} min, ${secs} seg`);
 
     countdownEl.innerHTML = [
         {val: days, label: 'días'}, {val: hours, label: 'horas'},
