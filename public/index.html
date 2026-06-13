@@ -625,87 +625,40 @@
             <span>✅ Activación inmediata</span>
         </div>
 
-        <!-- ⏱️ COUNTDOWN MUNDIAL -->
-        <div class="mt-10 mx-auto max-w-2xl">
-            <p class="text-xs text-red-400 font-black uppercase tracking-widest mb-3 text-center" style="animation: pulse 2s ease-in-out infinite;">
-                🔴 El Mundial 2026 empieza en...
-            </p>
-            <div class="grid grid-cols-4 gap-3">
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-days" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">31</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Días</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-hours" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Horas</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-mins" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Minutos</span>
-                </div>
-                <div class="rounded-2xl py-4 px-2 text-center" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-                    <span id="cd-secs" class="block text-4xl md:text-5xl font-black text-white" style="font-variant-numeric:tabular-nums;">00</span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">Segundos</span>
-                </div>
-            </div>
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest text-center mt-3">
-                ⚽ Partido inaugural: 11 junio 2026 · Ciudad de México
-            </p>
-        </div>
-        <script>
-            (function() {
-                var target = new Date('2026-06-11T19:00:00-06:00').getTime();
-                function tick() {
-                    var diff = target - Date.now();
-                    if (diff <= 0) { return; }
-                    var d = Math.floor(diff / 86400000);
-                    var h = Math.floor((diff % 86400000) / 3600000);
-                    var m = Math.floor((diff % 3600000) / 60000);
-                    var s = Math.floor((diff % 60000) / 1000);
-                    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
-                    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-                    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
-                    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
-                }
-                tick();
-                setInterval(tick, 1000);
-            })();
-        </script>
-
         <!-- ⚽ BANNER MUNDIAL 2026 -->
         <div onclick="window.location='/mundial-2026.html'"
-            class="group relative mt-14 mx-auto max-w-3xl flex items-center justify-between gap-4 rounded-2xl overflow-hidden px-6 py-5 cursor-pointer"
-            style="background: linear-gradient(135deg, #0a2e1a 0%, #0f3d22 40%, #1a6b3c 100%); border: 1px solid rgba(37,211,102,0.35); box-shadow: 0 0 40px rgba(37,211,102,0.12), inset 0 1px 0 rgba(255,255,255,0.05);">
+            class="group relative mt-12 mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-6 rounded-3xl overflow-hidden px-8 py-8 sm:py-10 cursor-pointer"
+            style="background: linear-gradient(135deg, #0a2e1a 0%, #0f3d22 40%, #1a6b3c 100%); border: 2px solid rgba(37,211,102,0.4); box-shadow: 0 0 60px rgba(37,211,102,0.18), inset 0 1px 0 rgba(255,255,255,0.05);">
 
             <!-- Glow animado de fondo -->
             <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style="background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(255,215,0,0.06) 100%);"></div>
+                style="background: linear-gradient(135deg, rgba(37,211,102,0.1) 0%, rgba(255,215,0,0.08) 100%);"></div>
 
             <!-- Balón animado fondo decorativo -->
-            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[90px] opacity-5 select-none pointer-events-none"
+            <div class="absolute right-6 top-1/2 -translate-y-1/2 text-[140px] opacity-5 select-none pointer-events-none"
                 style="animation: spin 12s linear infinite;">⚽</div>
 
             <!-- Izquierda: badge LIVE + título -->
-            <div class="relative flex flex-col items-start gap-1.5 z-10">
+            <div class="relative flex flex-col items-center sm:items-start gap-2.5 z-10 text-center sm:text-left">
                 <div class="flex items-center gap-2">
-                    <span class="relative flex h-2.5 w-2.5">
+                    <span class="relative flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                     </span>
-                    <span class="text-red-400 text-[10px] font-black uppercase tracking-widest">En vivo · Tiempo real</span>
+                    <span class="text-red-400 text-xs font-black uppercase tracking-widest">En vivo · Tiempo real</span>
                 </div>
-                <p class="text-white font-black text-xl md:text-2xl uppercase italic leading-tight tracking-tight">
-                    ⚽ Mundial 2026 — <span class="text-brand">Calendario &amp; Resultados</span>
+                <p class="text-white font-black text-3xl md:text-4xl uppercase italic leading-tight tracking-tight">
+                    ⚽ Mundial 2026<br><span class="text-brand">Calendario &amp; Resultados</span>
                 </p>
-                <p class="text-white/40 text-xs uppercase tracking-wider font-bold">
+                <p class="text-white/50 text-sm uppercase tracking-wider font-bold">
                     Partidos · Grupos · Scores en vivo · 104 juegos
                 </p>
             </div>
 
             <!-- Derecha: CTA flecha -->
-            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-brand text-black font-black text-xs uppercase px-5 py-3 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-brand/30">
+            <div class="relative z-10 flex-shrink-0 flex items-center gap-2 bg-brand text-black font-black text-sm uppercase px-7 py-4 rounded-xl group-hover:bg-white transition-all duration-300 shadow-lg shadow-brand/30">
                 Ver ahora
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
             </div>
