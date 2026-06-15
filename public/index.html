@@ -791,9 +791,17 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
             <!-- TU LATINO -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/tu latino.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="Tu Latino IPTV México">
+            <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
+
+                <!-- Badge flotante "El más elegido" -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
+                        🏆 El más elegido
+                    </span>
+                </div>
+
+                <img src="/img/tu latino.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5 mt-4" alt="Tu Latino IPTV México">
                 <!-- ✅ H3 con nombre del producto que la gente busca -->
                 <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">TU LATINO</h3>
                 <p class="text-gray-500 text-xs uppercase font-bold mb-1">Plan IPTV Premium</p>
@@ -831,9 +839,17 @@
             </div>
 
             <!-- SKY SOCCER PLUS -->
-            <div
-                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
-                <img src="/img/skysoccer.png" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="Sky Soccer Plus IPTV México">
+            <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
+
+                <!-- Badge flotante "Mundial 4K" -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
+                        ⚽ Mundial 4K
+                    </span>
+                </div>
+
+                <img src="/img/skysoccer.png" class="h-24 w-auto object-contain rounded-2xl mb-5 mt-4" alt="Sky Soccer Plus IPTV México">
                 <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">SKY SOCCER PLUS</h3>
                 <p class="text-gray-500 text-xs uppercase font-bold mb-1">IPTV Deportes &amp; Canales Premium</p>
                 <div class="text-brand text-4xl font-black my-3">$210 <span class="text-lg">MXN/mes</span></div>
@@ -867,18 +883,10 @@
                 </a>
             </div>
 
-            <!-- M327 — MÁS POPULAR -->
-            <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
-
-                <!-- Badge flotante "Más Popular" -->
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                    <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
-                        🏆 El más elegido
-                    </span>
-                </div>
-
-                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5 mt-4" alt="M327 IPTV México">
+            <!-- M327 -->
+            <div
+                class="glass rounded-[2.5rem] border border-gray-800/50 p-8 md:p-10 flex flex-col items-center shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-brand/30">
+                <img src="/img/m327.jpg" class="h-24 w-auto object-contain rounded-2xl mb-5" alt="M327 IPTV México">
                 <h3 class="text-3xl font-black uppercase italic text-white tracking-tight">M327</h3>
                 <p class="text-brand/70 text-xs uppercase font-bold mb-1">IPTV Estable · Catálogo Gigante</p>
                 <div class="text-brand text-4xl font-black my-3">$200 <span class="text-lg">MXN/mes</span></div>
