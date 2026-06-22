@@ -741,97 +741,223 @@
         </style>
     </section>
 
-    <!-- MUNDIAL 2026 -->
-    <section id="mundial-landing"
-        class="py-16 bg-slate-900/30 border-t border-b border-gray-800 relative overflow-hidden">
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft">
-        </div>
+    <!-- WIDGET PARTIDOS DEL DÍA -->
+    <section id="mundial-landing" class="py-16 bg-slate-900/30 border-t border-b border-gray-800 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft"></div>
 
-        <!-- 🔴 Barra de urgencia — partidos restantes en vivo -->
-        <div class="bg-urgency/90 text-white text-center py-3 px-4 mb-10 font-black uppercase text-sm tracking-widest flex items-center justify-center gap-3">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-            </span>
-            <span id="matches-remaining-bar">⚽ MUNDIAL EN CURSO — Contrata hoy y no te pierdas ningún partido</span>
-        </div>
-        <script>
-            (function() {
-                // Calcular partidos restantes basado en fecha actual
-                // Mundial: 11 Jun - 19 Jul 2026. Fase grupos termina ~30 Jun, total 104 partidos
-                var totalMatches = 104;
-                var startDate = new Date('2026-06-11T19:00:00-06:00');
-                var endDate = new Date('2026-07-19T19:00:00-06:00');
-                var now = new Date();
-                if (now >= startDate && now <= endDate) {
-                    var elapsed = (now - startDate) / (endDate - startDate);
-                    var playedApprox = Math.min(Math.floor(elapsed * totalMatches), totalMatches - 1);
-                    var remaining = totalMatches - playedApprox;
-                    var el = document.getElementById('matches-remaining-bar');
-                    if (el && remaining > 0) {
-                        el.innerHTML = '🔴 EN VIVO — Quedan aproximadamente <strong>' + remaining + ' partidos</strong> del Mundial 2026. ¡Actívate hoy!';
-                    }
-                }
-            })();
-        </script>
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank" class="block group relative">
-                <img src="/img/Mundial2026.webp" width="1200" height="675" fetchpriority="high"
-                    alt="Ver el Mundial 2026 por IPTV en México con Smartplay en HD"
-                    class="w-full max-w-5xl mx-auto rounded-[2rem] shadow-2xl shadow-brand/10 border-2 border-brand/10 group-hover:border-brand/50 transition-all duration-500 mb-16">
-                <div
-                    class="absolute inset-0 max-w-5xl mx-auto rounded-[2rem] bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <!-- Header del widget -->
+            <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+                <div class="flex items-center gap-3">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>
+                    <h2 id="widget-title" class="font-black text-xl uppercase italic tracking-tight text-white">⚽ Partidos de Hoy — Mundial 2026</h2>
                 </div>
-            </a>
-            <div class="max-w-3xl mx-auto">
-                <!-- ✅ H2 principal con keyword "iptv para el mundial" -->
-                <h2 class="text-2xl md:text-3xl font-black mb-3 uppercase italic tracking-tighter text-brand text-center">
-                    🔴 IPTV para el Mundial 2026 — Ver en vivo por internet
-                </h2>
+                <a href="/mundial-2026.html" class="text-brand text-xs font-black uppercase tracking-widest hover:underline">Ver calendario completo →</a>
+            </div>
 
-                <!-- ✅ H2 secundario con keyword "ver Mundial 2026 por internet" -->
-                <h2 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">
-                    VER EL MUNDIAL 2026 POR INTERNET: <span class="text-brand">LOS 104 PARTIDOS EN HD</span>
-                </h2>
+            <!-- Contenedor de partidos -->
+            <div id="home-matches" class="space-y-3 mb-8">
+                <!-- Skeletons mientras carga -->
+                <div class="skeleton h-20 w-full rounded-2xl"></div>
+                <div class="skeleton h-20 w-full rounded-2xl"></div>
+                <div class="skeleton h-20 w-full rounded-2xl"></div>
+            </div>
 
-                <p class="text-lg text-gray-400 mb-12 leading-relaxed text-center">
-                    El mejor <strong class="text-white">IPTV para el Mundial 2026</strong> en México. Con cualquier plan disfruta los
-                    <a href="/mundial-2026.html" class="text-brand font-black hover:underline">104 partidos del Mundial 2026 en 4K</a> incluidos,
-                    <span class="text-white font-black italic uppercase">SIN CONTRATAR SERVICIOS ADICIONALES</span>.
-                    <strong class="text-white">IPTV para ver el Mundial</strong> desde $130 MXN/mes — sin cortes, sin cable, sin antena.
-                    Consulta el <a href="/mundial-2026.html" class="text-brand font-black hover:underline">calendario de partidos</a> y resultados en vivo.
-                </p>
-
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left mb-16 max-w-2xl mx-auto bg-black/40 p-8 rounded-3xl border border-gray-800">
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">COBERTURA TOTAL</span> Los 104 partidos del
-                            Mundial 2026 en vivo.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">CALIDAD HD</span> Transmisiones en alta definición
-                            por internet.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <span class="text-brand font-black text-xl">✅</span>
-                        <p class="text-xs text-white uppercase font-bold"><span
-                                class="block text-brand font-black">STREAMS ESTABLES</span> Tecnología optimizada para
-                            cero cortes.</p>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información" target="_blank"
-                    class="inline-block bg-brand text-black font-black py-4 px-10 rounded-xl uppercase italic hover:bg-white transition-all shadow-lg shadow-brand/20">
-                    Quiero ver el Mundial 2026 — Demo Gratis
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                <a href="https://wa.me/5521314298?text=Hola,%20quiero%20ver%20el%20Mundial%202026%20con%20IPTV%20en%20México,%20me%20dan%20información"
+                    target="_blank"
+                    class="bg-brand text-black font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white transition-all shadow-lg shadow-brand/20 text-center text-sm">
+                    📲 Ver el Mundial sin cortes — Demo Gratis
+                </a>
+                <a href="/mundial-2026.html"
+                    class="bg-white/10 border border-white/20 text-white font-black py-4 px-8 rounded-xl uppercase italic hover:bg-white/20 transition-all text-center text-sm">
+                    📅 Calendario y Grupos →
                 </a>
             </div>
         </div>
     </section>
+
+    <style>
+        .home-match-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        .home-match-card:hover {
+            background: rgba(37,211,102,0.06);
+            border-color: rgba(37,211,102,0.2);
+        }
+        .home-match-card.live-card {
+            background: rgba(239,68,68,0.06);
+            border-color: rgba(239,68,68,0.3);
+            animation: liveborderHome 2s ease-in-out infinite;
+        }
+        @keyframes liveborderHome {
+            0%, 100% { border-color: rgba(239,68,68,0.3); }
+            50% { border-color: rgba(239,68,68,0.7); }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+
+    <script>
+    (function() {
+        const DATA_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+
+        const FLAGS = {
+            'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czechia':'🇨🇿',
+            'Canada':'🇨🇦','Bosnia-Herzegovina':'🇧🇦','USA':'🇺🇸','Paraguay':'🇵🇾',
+            'Qatar':'🇶🇦','Switzerland':'🇨🇭','Belgium':'🇧🇪','Portugal':'🇵🇹',
+            'Argentina':'🇦🇷','Chile':'🇨🇱','Morocco':'🇲🇦','Senegal':'🇸🇳',
+            'Germany':'🇩🇪','Japan':'🇯🇵','Colombia':'🇨🇴','Ecuador':'🇪🇨',
+            'Spain':'🇪🇸','Turkey':'🇹🇷','France':'🇫🇷','Saudi Arabia':'🇸🇦',
+            'Brazil':'🇧🇷','Serbia':'🇷🇸','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Uruguay':'🇺🇾',
+            'Netherlands':'🇳🇱','Iraq':'🇮🇶','Croatia':'🇭🇷','New Zealand':'🇳🇿',
+            'Austria':'🇦🇹','Sweden':'🇸🇪','Nigeria':'🇳🇬','Cameroon':'🇨🇲',
+            'Iran':'🇮🇷','Uzbekistan':'🇺🇿','Denmark':'🇩🇰','Hungary':'🇭🇺',
+            'Poland':'🇵🇱','Australia':'🇦🇺','Indonesia':'🇮🇩','Egypt':'🇪🇬',
+            'Congo DR':'🇨🇩','Venezuela':'🇻🇪','Honduras':'🇭🇳','Panama':'🇵🇦',
+            'Jamaica':'🇯🇲','Algeria':'🇩🇿','Romania':'🇷🇴','Korea Republic':'🇰🇷',
+            'Default':'🏳️'
+        };
+
+        function getFlag(n) { return FLAGS[n] || FLAGS['Default']; }
+
+        // Misma lógica de toMX que mundial-2026.html — aritmética de minutos para evitar bug de rollover
+        function toMX(dateStr, timeStr) {
+            if (!dateStr) return null;
+            if (!timeStr) return new Date(dateStr + 'T00:00:00Z');
+            const offsetMatch = timeStr.match(/UTC([+-]\d+)/);
+            const offset = offsetMatch ? parseInt(offsetMatch[1]) : -6;
+            const clean = timeStr.replace(/\s*UTC[+-]\d+/, '').trim();
+            const [h, m] = clean.split(':').map(Number);
+            const base = new Date(dateStr + 'T00:00:00Z');
+            const utcMinutes = (h * 60 + (m || 0)) - (offset * 60);
+            base.setMinutes(base.getMinutes() + utcMinutes);
+            return base;
+        }
+
+        function fmtHora(d) {
+            if (!d) return '--:--';
+            return d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City' });
+        }
+
+        function isToday(d) {
+            if (!d) return false;
+            return d.toDateString() === new Date().toDateString();
+        }
+
+        function isTomorrow(d) {
+            if (!d) return false;
+            const tom = new Date(); tom.setDate(tom.getDate() + 1);
+            return d.toDateString() === tom.toDateString();
+        }
+
+        function renderHomeCard(m) {
+            const isLive = m.live;
+            const isFinished = m.score && m.score.ft;
+            const hFlag = getFlag(m.team1);
+            const aFlag = getFlag(m.team2);
+
+            const scoreBlock = isFinished
+                ? `<div class="flex items-center gap-2 font-black text-2xl">
+                    <span>${m.score.ft[0]}</span>
+                    <span class="text-white/30 text-lg">–</span>
+                    <span>${m.score.ft[1]}</span>
+                   </div>`
+                : isLive
+                ? `<div class="flex items-center gap-2 font-black text-2xl text-red-400">
+                    <span>${m.score?.et?.[0] ?? 0}</span>
+                    <span class="text-white/30 text-lg">–</span>
+                    <span>${m.score?.et?.[1] ?? 0}</span>
+                   </div>`
+                : `<div class="font-black text-lg text-brand text-center">${fmtHora(m._date)}<br><span class="text-[10px] text-white/40 font-bold uppercase">CDMX</span></div>`;
+
+            const badge = isLive
+                ? `<span class="text-red-400 text-[9px] font-black uppercase tracking-widest">🔴 En Vivo</span>`
+                : isFinished
+                ? `<span class="text-white/30 text-[9px] font-black uppercase">Final</span>`
+                : `<span class="text-brand/60 text-[9px] font-bold uppercase">${m.group || m.round || 'Mundial'}</span>`;
+
+            return `<div class="home-match-card p-4 ${isLive ? 'live-card' : ''}">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex-1 flex flex-col items-center gap-1 min-w-0">
+                        <span class="text-3xl leading-none">${hFlag}</span>
+                        <span class="text-white font-bold text-xs text-center leading-tight mt-1">${m.team1 || '?'}</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1 px-3">
+                        ${scoreBlock}
+                        ${badge}
+                    </div>
+                    <div class="flex-1 flex flex-col items-center gap-1 min-w-0">
+                        <span class="text-3xl leading-none">${aFlag}</span>
+                        <span class="text-white font-bold text-xs text-center leading-tight mt-1">${m.team2 || '?'}</span>
+                    </div>
+                </div>
+                ${m.ground ? `<p class="text-center text-white/30 text-[10px] font-bold uppercase mt-2">🏟️ ${m.ground}</p>` : ''}
+            </div>`;
+        }
+
+        async function loadHomeMatches() {
+            const container = document.getElementById('home-matches');
+            const title = document.getElementById('widget-title');
+            try {
+                const res = await fetch(DATA_URL);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const json = await res.json();
+                const raw = json.matches || json;
+                const matches = raw.map(m => ({ ...m, _date: toMX(m.date, m.time) }));
+
+                // Prioridad: En Vivo → Hoy → Próximos 3
+                const live = matches.filter(m => m.live);
+                const today = matches.filter(m => m._date && isToday(m._date));
+                const upcoming = matches.filter(m => m._date && !m.score?.ft && !isToday(m._date))
+                                        .sort((a, b) => a._date - b._date)
+                                        .slice(0, 3);
+
+                let display = [];
+                if (live.length) {
+                    title.innerHTML = '🔴 Partidos En Vivo — Mundial 2026';
+                    display = live;
+                } else if (today.length) {
+                    title.innerHTML = '⚽ Partidos de Hoy — Mundial 2026';
+                    display = today;
+                } else if (upcoming.length) {
+                    // ¿Son todos mañana?
+                    const allTomorrow = upcoming.every(m => isTomorrow(m._date));
+                    title.innerHTML = allTomorrow
+                        ? '📅 Partidos de Mañana — Mundial 2026'
+                        : '📅 Próximos Partidos — Mundial 2026';
+                    display = upcoming;
+                } else {
+                    title.innerHTML = '🏆 Mundial 2026 — Concluido';
+                    container.innerHTML = '<p class="text-center text-white/30 py-8 font-bold uppercase text-sm">El torneo ha finalizado. ¡Gracias por ver con Smartplay!</p>';
+                    return;
+                }
+
+                container.innerHTML = display.map(renderHomeCard).join('');
+
+            } catch(e) {
+                container.innerHTML = '<div class="text-center py-8"><p class="text-white/30 font-bold uppercase text-sm mb-3">No se pudieron cargar los partidos</p><a href="/mundial-2026.html" class="text-brand font-black text-xs uppercase hover:underline">Ver calendario completo →</a></div>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadHomeMatches);
+    })();
+    </script>
 
     <!-- ✅ PLANES: Cada card tiene su propio botón de CTA con WhatsApp -->
     <section id="planes" class="py-20 px-6 max-w-7xl mx-auto">
