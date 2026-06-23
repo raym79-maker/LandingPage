@@ -97,6 +97,7 @@ app.get('/blog/', (req, res) => res.sendFile(path.join(__dirname,'public','blog'
 app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_1_iptv-sin-cortes.html')));
 app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_2_como_instalar.html')));
 app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_3_mejor_iptv.html')));
+app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv-para-ver-el-mundial.html')));
 app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv_cable.html')));
 app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_android_box.html')));
 
