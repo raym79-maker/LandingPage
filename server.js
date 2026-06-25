@@ -15,6 +15,30 @@ const dbPath = path.join(dbDir, 'smartplay.db');
 
 app.use(cors());
 app.use(express.json());
+
+// SEO — antes del static
+app.get('/sitemap.xml', (req, res) => { res.setHeader('Content-Type','application/xml'); res.sendFile(path.join(__dirname,'public','sitemap.xml')); });
+app.get('/robots.txt', (req, res) => { res.setHeader('Content-Type','text/plain'); res.sendFile(path.join(__dirname,'public','robots.txt')); });
+app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname,'public','mundial-2026.html')));
+
+// Blog ES — antes del static para evitar que el catch-all intercepte
+app.get('/blog/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_index.html')));
+app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_1_iptv-sin-cortes.html')));
+app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_2_como_instalar.html')));
+app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_3_mejor_iptv.html')));
+app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv-para-ver-el-mundial.html')));
+app.get('/blog/mejor-iptv-con-pase-al-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_mejor-iptv-mundial.html')));
+app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv_cable.html')));
+app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_android_box.html')));
+
+// Blog EN
+app.get('/blog/how-to-install-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_1_how_to_install.html')));
+app.get('/blog/iptv-vs-cable-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_2_iptv_vs_cable.html')));
+app.get('/blog/best-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_3_best_iptv.html')));
+
+// USA Landing
+app.get('/en/', (req, res) => res.sendFile(path.join(__dirname,'public','en','index.html')));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -86,29 +110,6 @@ app.get('/admin-reset-execute', auth, (req, res) => {
         res.redirect('/admin-prospectos');
     });
 });
-
-// SEO
-app.get('/sitemap.xml', (req, res) => { res.setHeader('Content-Type','application/xml'); res.sendFile(path.join(__dirname,'public','sitemap.xml')); });
-app.get('/robots.txt', (req, res) => { res.setHeader('Content-Type','text/plain'); res.sendFile(path.join(__dirname,'public','robots.txt')); });
-app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname,'public','mundial-2026.html')));
-
-// Blog ES
-app.get('/blog/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_index.html')));
-app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_1_iptv-sin-cortes.html')));
-app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_2_como_instalar.html')));
-app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_3_mejor_iptv.html')));
-app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv-para-ver-el-mundial.html')));
-app.get('/blog/mejor-iptv-con-pase-al-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_mejor-iptv-mundial.html')));
-app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv_cable.html')));
-app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_android_box.html')));
-
-// Blog EN
-app.get('/blog/how-to-install-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_1_how_to_install.html')));
-app.get('/blog/iptv-vs-cable-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_2_iptv_vs_cable.html')));
-app.get('/blog/best-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_3_best_iptv.html')));
-
-// USA Landing
-app.get('/en/', (req, res) => res.sendFile(path.join(__dirname,'public','en','index.html')));
 
 // Catch-all
 app.get('*', (req, res) => res.sendFile(path.join(__dirname,'public','index.html')));
