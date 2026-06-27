@@ -38,6 +38,7 @@ app.get('/blog/best-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'
 
 // USA Landing
 app.get('/en/', (req, res) => res.sendFile(path.join(__dirname,'public','en','index.html')));
+app.get('/latino-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','latino-usa','index.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
