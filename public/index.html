@@ -645,21 +645,23 @@
         </div>
         <script>
             (function() {
-                var endDate  = new Date('2026-07-19T19:00:00-06:00');
-                var semis    = new Date('2026-07-14T00:00:00-06:00');
-                var quarters = new Date('2026-07-08T00:00:00-06:00');
-                var round16  = new Date('2026-06-28T00:00:00-06:00');
+                var endDate     = new Date('2026-07-19T19:00:00-06:00');
+                var semis       = new Date('2026-07-14T00:00:00-06:00');
+                var quarters    = new Date('2026-07-08T00:00:00-06:00');
+                var quartersEve = new Date('2026-07-07T00:00:00-06:00');
+                var round16     = new Date('2026-06-28T00:00:00-06:00');
                 var now = new Date();
                 var diff = endDate - now;
                 var el = document.getElementById('mundial-urgency-badge');
                 if (!el || diff <= 0) return;
                 var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                if (days === 0)        { el.innerHTML = '🔴 ¡HOY es la Final del Mundial! — Actívate ahora'; }
-                else if (days === 1)   { el.innerHTML = '🔴 Mañana es la Final — Último día'; }
-                else if (now >= semis) { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
-                else if (now >= quarters){ el.innerHTML = '🔴 Cuartos de Final — La eliminatoria sigue'; }
-                else if (now >= round16) { el.innerHTML = '🏆 Octavos de Final — ¡La eliminatoria arranca mañana!'; }
-                else { el.innerHTML = '🔴 Mundial en curso — Quedan ' + days + ' días'; }
+                if (days === 0)                { el.innerHTML = '🔴 ¡HOY es la Final del Mundial! — Actívate ahora'; }
+                else if (days === 1)           { el.innerHTML = '🔴 Mañana es la Final — Último día'; }
+                else if (now >= semis)         { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
+                else if (now >= quarters)      { el.innerHTML = '🔴 Cuartos de Final EN VIVO — Actívate antes que se acaben'; }
+                else if (now >= quartersEve)   { el.innerHTML = '🔴 ¡Cuartos de Final arrancan mañana! — Actívate hoy'; }
+                else if (now >= round16)       { el.innerHTML = '🏆 Octavos de Final — ¡La eliminatoria sigue en vivo!'; }
+                else                            { el.innerHTML = '🔴 Mundial en curso — Quedan ' + days + ' días'; }
             })();
         </script>
         <p class="text-brand font-bold text-xs uppercase tracking-widest mb-4">🇲🇽 El mejor IPTV México · ⚽ IPTV Mundial 2026 · 🎬 Mundial 4K · 📺 IPTV Mundial desde $130</p>
@@ -719,15 +721,18 @@
             </div>
             <script>
                 (function(){
-                    var semis    = new Date('2026-07-14T00:00:00-06:00');
-                    var quarters = new Date('2026-07-08T00:00:00-06:00');
-                    var round16  = new Date('2026-06-28T00:00:00-06:00');
+                    var semis       = new Date('2026-07-14T00:00:00-06:00');
+                    var quarters    = new Date('2026-07-08T00:00:00-06:00');
+                    var quartersEve = new Date('2026-07-07T00:00:00-06:00');
+                    var round16     = new Date('2026-06-28T00:00:00-06:00');
                     var now = new Date();
                     var el = document.getElementById('phase-badge');
                     if (!el) return;
-                    if (now >= semis)         { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
-                    else if (now >= quarters) { el.innerHTML = '🔴 Cuartos de Final — La eliminatoria sigue'; }
-                    else if (now >= round16)  { el.innerHTML = '🏆 Octavos de Final — Empieza mañana'; }
+                    if (now >= semis)              { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
+                    else if (now >= quarters)      { el.innerHTML = '🔴 Cuartos de Final EN VIVO — Actívate antes que se acaben'; }
+                    else if (now >= quartersEve)   { el.innerHTML = '🔴 ¡Cuartos de Final arrancan mañana! — Actívate hoy'; }
+                    else if (now >= round16)       { el.innerHTML = '🏆 Octavos de Final — ¡La eliminatoria sigue en vivo!'; }
+                    else                            { el.innerHTML = '⚽ Mundial 2026 — Próximamente'; }
                 })();
             </script>
 
