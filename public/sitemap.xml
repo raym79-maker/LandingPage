@@ -16,10 +16,18 @@
     <priority>0.95</priority>
   </url>
 
+  <!-- DEPORTES EN VIVO (HUB PERMANENTE) -->
+  <url>
+    <loc>https://www.smartplay.com.mx/deportes-en-vivo.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
   <!-- MUNDIAL 2026 -->
   <url>
     <loc>https://www.smartplay.com.mx/mundial-2026.html</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-07-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
