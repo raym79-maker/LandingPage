@@ -19,7 +19,16 @@ app.use(express.json());
 // SEO — antes del static
 app.get('/sitemap.xml', (req, res) => { res.setHeader('Content-Type','application/xml'); res.sendFile(path.join(__dirname,'public','sitemap.xml')); });
 app.get('/robots.txt', (req, res) => { res.setHeader('Content-Type','text/plain'); res.sendFile(path.join(__dirname,'public','robots.txt')); });
+// Hub deportivo permanente (evergreen) — captación todo el año
+app.get('/deportes-en-vivo.html', (req, res) => res.sendFile(path.join(__dirname,'public','deportes-en-vivo.html')));
+
+// Página del Mundial — ACTIVA mientras dure el torneo (hasta 19 julio 2026)
 app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname,'public','mundial-2026.html')));
+
+// ⚠️ POST-MUNDIAL: A partir del 20 de julio 2026, comenta las 2 líneas de arriba
+// del Mundial y DESCOMENTA la siguiente para transferir la autoridad SEO (redirect 301)
+// a la página hub permanente. Esto conserva el posicionamiento de Google acumulado.
+// app.get('/mundial-2026.html', (req, res) => res.redirect(301, '/deportes-en-vivo.html'));
 
 // Blog ES — antes del static para evitar que el catch-all intercepte
 app.get('/blog/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_index.html')));
