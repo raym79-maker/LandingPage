@@ -7,7 +7,6 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <!-- LANDING EN INGLÉS (USA) -->
   <url>
     <loc>https://www.smartplay.com.mx/en/</loc>
@@ -15,23 +14,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
-
   <!-- DEPORTES EN VIVO (HUB PERMANENTE) -->
   <url>
     <loc>https://www.smartplay.com.mx/deportes-en-vivo.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
-
-  <!-- MUNDIAL 2026 -->
-  <url>
-    <loc>https://www.smartplay.com.mx/mundial-2026.html</loc>
-    <lastmod>2026-07-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
   <!-- DESCARGAS -->
   <url>
     <loc>https://www.smartplay.com.mx/descargas.html</loc>
@@ -39,7 +28,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <!-- BLOG ÍNDICE -->
   <url>
     <loc>https://www.smartplay.com.mx/blog/</loc>
@@ -47,7 +35,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <!-- BLOG POSTS ESPAÑOL (5 posts) -->
   <url>
     <loc>https://www.smartplay.com.mx/blog/iptv-sin-cortes-mundial-2026/</loc>
@@ -55,35 +42,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/como-instalar-iptv-smart-tv/</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/mejor-iptv-mexico-2026/</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/iptv-vs-cable-mexico-2026/</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/mejor-android-box-iptv-mexico/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <!-- BLOG POSTS INGLÉS (3 posts USA) -->
   <url>
     <loc>https://www.smartplay.com.mx/blog/how-to-install-iptv-usa/</loc>
@@ -91,19 +73,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/iptv-vs-cable-usa/</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://www.smartplay.com.mx/blog/best-iptv-usa/</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
 </urlset>
