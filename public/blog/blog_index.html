@@ -90,6 +90,14 @@
         .blog-card.featured:hover {
             box-shadow: 0 12px 32px rgba(220,38,38,0.25);
         }
+        /* Card destacada evergreen/deportes (verde marca, no rojo Mundial) */
+        .blog-card.featured-brand {
+            border: 2px solid #25D366;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.2);
+        }
+        .blog-card.featured-brand:hover {
+            box-shadow: 0 12px 32px rgba(37,211,102,0.3);
+        }
         .blog-card-image { 
             background: linear-gradient(135deg, #25D366 0%, #1a8c4a 100%);
             height: 180px;
@@ -105,6 +113,7 @@
         .blog-card-image.es4 { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
         .blog-card-image.es5 { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); }
         .blog-card-image.es6 { background: linear-gradient(135deg, #DC2626 0%, #991b1b 100%); }
+        .blog-card-image.es7 { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); }
         .blog-card-image.en1 { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
         .blog-card-image.en2 { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
         .blog-card-image.en3 { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
@@ -156,6 +165,9 @@
             padding: 2px 8px;
             border-radius: 4px;
             margin-bottom: 8px;
+        }
+        .badge-new.brand {
+            background: #25D366;
         }
         
         .sidebar { margin-top: 40px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
@@ -225,6 +237,18 @@
     <!-- SPANISH CONTENT -->
     <div id="es" class="tab-content active">
         <section class="blog-grid">
+
+            <!-- POST NUEVO — Liga MX Apertura 2026 (destacado, evergreen) -->
+            <div class="blog-card featured-brand">
+                <div class="blog-card-image es7">⚽</div>
+                <div class="blog-card-content">
+                    <span class="badge-new brand">🟢 Nuevo — Arranca en 2 días</span>
+                    <h3>¿Cómo Ver la Liga MX Apertura 2026 en Vivo por Internet?</h3>
+                    <div class="date">📅 14 de Julio, 2026</div>
+                    <p>La Apertura arranca el 16 de julio con Necaxa vs Atlante. Guía completa: cómo verla sin cable, precios y dispositivos compatibles.</p>
+                    <a href="/blog/liga-mx-apertura-2026-en-vivo/">Leer más →</a>
+                </div>
+            </div>
 
             <!-- POST NUEVO — Mundial en curso (destacado) -->
             <div class="blog-card featured">
@@ -351,6 +375,7 @@
     <div class="sidebar">
         <h3 id="sidebar-title">📚 Índice de Artículos</h3>
         <ul id="sidebar-content">
+            <li><a href="/blog/liga-mx-apertura-2026-en-vivo/" style="color:#25D366;">🟢 ¿Cómo ver la Liga MX Apertura 2026? — NUEVO</a></li>
             <li><a href="/blog/iptv-para-ver-el-mundial-2026/" class="hot">🔴 ¿Se puede ver el Mundial 2026 por IPTV? — NUEVO</a></li>
             <li><a href="/blog/mejor-iptv-con-pase-al-mundial-2026/" class="hot">🔴 Mejor IPTV con pase al Mundial — Precios — NUEVO</a></li>
             <li><a href="/blog/iptv-sin-cortes-mundial-2026/">→ Cómo ver IPTV sin cortes en el Mundial</a></li>
@@ -373,7 +398,7 @@
 
 <footer>
     <p>&copy; 2026 Smartplay IPTV México. Todos los derechos reservados.</p>
-    <p><a href="/">Home</a> | <a href="/mundial-2026.html">Calendario Mundial</a> | <a href="/descargas.html">Descargas</a></p>
+    <p><a href="/">Home</a> | <a href="/deportes-en-vivo.html">Agenda Deportiva</a> | <a href="/descargas.html">Descargas</a></p>
 </footer>
 
 <script>
@@ -387,6 +412,7 @@ function switchTab(tab) {
     if (tab === 'es') {
         document.getElementById('sidebar-title').textContent = '📚 Índice de Artículos';
         document.getElementById('sidebar-content').innerHTML = `
+            <li><a href="/blog/liga-mx-apertura-2026-en-vivo/" style="color:#25D366;">🟢 ¿Cómo ver la Liga MX Apertura 2026? — NUEVO</a></li>
             <li><a href="/blog/iptv-para-ver-el-mundial-2026/" class="hot" style="color:#DC2626;">🔴 ¿Se puede ver el Mundial 2026 por IPTV? — NUEVO</a></li>
             <li><a href="/blog/iptv-sin-cortes-mundial-2026/">→ Cómo ver IPTV sin cortes en el Mundial</a></li>
             <li><a href="/blog/como-instalar-iptv-smart-tv/">→ Instalación en Smart TV paso a paso</a></li>
