@@ -38,6 +38,7 @@ app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.sendFile(path.
 app.get('/blog/mejor-iptv-con-pase-al-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_mejor-iptv-mundial.html')));
 app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv_cable.html')));
 app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_android_box.html')));
+app.get('/blog/liga-mx-apertura-2026-en-vivo/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_6_liga-mx-apertura-2026.html')));
 
 // Blog EN
 app.get('/blog/how-to-install-iptv-usa/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_usa_1_how_to_install.html')));
