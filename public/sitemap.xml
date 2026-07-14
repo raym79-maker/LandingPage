@@ -66,6 +66,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://www.smartplay.com.mx/blog/liga-mx-apertura-2026-en-vivo/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
   <!-- BLOG POSTS INGLÉS (3 posts USA) -->
   <url>
     <loc>https://www.smartplay.com.mx/blog/how-to-install-iptv-usa/</loc>
