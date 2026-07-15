@@ -681,6 +681,130 @@
 
     </section>
 
+    <!-- ============================================================ -->
+    <!-- MARQUESINA DE AGENDA DEPORTIVA — evergreen, todo el año       -->
+    <!-- Mismos datos que el array EVENTOS de deportes-en-vivo.html.   -->
+    <!-- Si agregas/editas un evento ahí, refleja el mismo cambio aquí -->
+    <!-- para que ambas páginas digan lo mismo.                        -->
+    <!-- ============================================================ -->
+    <section class="ticker-section" aria-label="Próximos eventos deportivos">
+        <div class="ticker-label">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+            </span>
+            PRÓXIMO EN VIVO
+        </div>
+        <div class="ticker-wrap">
+            <div class="ticker-track" id="home-ticker">
+                <span class="ticker-item">Cargando agenda…</span>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .ticker-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(37,211,102,0.04);
+            border-top: 1px solid rgba(37,211,102,0.12);
+            border-bottom: 1px solid rgba(37,211,102,0.12);
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        .ticker-label {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 24px;
+            color: #25D366;
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+        }
+        .ticker-wrap {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 40px), transparent);
+            mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 40px), transparent);
+        }
+        .ticker-track {
+            display: inline-flex;
+            align-items: center;
+            animation: ticker-scroll 35s linear infinite;
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 28px;
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .ticker-item .fecha { color: #25D366; font-weight: 900; }
+        .ticker-item.ticker-cta { color: #25D366; }
+        .ticker-item.ticker-cta a { color: #25D366; text-decoration: underline; }
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; }
+            .ticker-wrap { overflow-x: auto; }
+        }
+        @media (max-width: 640px) {
+            .ticker-label { padding-left: 16px; font-size: 10px; }
+        }
+    </style>
+
+    <script>
+    (function() {
+        // Mismos eventos que deportes-en-vivo.html — mantener sincronizados.
+        var EVENTOS_TICKER = [
+            { fecha: '2026-07-16', label: '16 Jul', titulo: 'Liga MX Apertura arranca', icono: '⚽' },
+            { fecha: '2026-07-25', label: '25 Jul', titulo: 'Campeón de Campeones', icono: '🏆' },
+            { fecha: '2026-08-04', label: '4 Ago', titulo: 'Leagues Cup 2026', icono: '⚽' },
+            { fecha: '2026-09-19', label: '18-19 Sep', titulo: 'Clásico Nacional', icono: '🔥' },
+            { fecha: '2026-09-30', label: 'Sep', titulo: 'Regresa Champions League', icono: '🏆' },
+            { fecha: '2026-10-31', label: 'Oct', titulo: 'Arranca temporada NBA', icono: '🏀' },
+            { fecha: '2026-10-31', label: '23-31 Oct', titulo: 'Serie Mundial MLB', icono: '⚾' },
+            { fecha: '2026-11-25', label: '25 Nov', titulo: 'Liguilla Liga MX', icono: '⚽' }
+        ];
+
+        function renderTicker() {
+            var el = document.getElementById('home-ticker');
+            if (!el) return;
+            var hoy = new Date(); hoy.setHours(0,0,0,0);
+
+            var futuros = EVENTOS_TICKER.filter(function(ev) {
+                return new Date(ev.fecha + 'T00:00:00') >= hoy;
+            }).sort(function(a,b) { return new Date(a.fecha) - new Date(b.fecha); });
+
+            var lista = futuros.length > 0 ? futuros : EVENTOS_TICKER.slice(-4);
+
+            var itemsHtml = lista.map(function(ev) {
+                return '<span class="ticker-item">' + ev.icono + ' ' + ev.titulo +
+                       ' <span class="fecha">— ' + ev.label + '</span></span>';
+            }).join('');
+
+            itemsHtml += '<span class="ticker-item ticker-cta">📅 <a href="/deportes-en-vivo.html">Ver agenda completa →</a></span>';
+
+            // Se duplica el contenido para que el loop de la animación sea continuo (sin salto visible)
+            el.innerHTML = itemsHtml + itemsHtml;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTicker);
+    })();
+    </script>
+
     <section id="mundial-landing" class="py-16 border-t border-b border-brand/20 relative overflow-hidden" style="background: rgba(37,211,102,0.03);">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full -z-10 animate-pulse-soft"></div>
 
@@ -898,7 +1022,7 @@
                         <td class="py-3 px-4 text-center text-gray-400">11,000+</td>
                         <td class="py-3 px-4 text-center text-brand">✅</td>
                     </tr>
-                    <tr class="border-b border-gray-800 glass hover:bg-white/5 transition">
+                    <tr class="border-b border-gray-800 glass hover:bg-white/5 transition" style="display:none;">
                         <td class="py-3 px-4 font-bold text-white">NerdTV IPTV</td>
                         <td class="py-3 px-4 text-center text-brand font-black">$150 MXN</td>
                         <td class="py-3 px-4 text-center text-gray-400">Canales+</td>
@@ -1016,7 +1140,7 @@
             </div>
 
             <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
+                style="display:none; background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
 
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                     <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
@@ -1214,7 +1338,7 @@
                             <td class="py-4 px-3 text-brand">✅</td>
                             <td class="py-4 px-3 text-brand">✅</td>
                         </tr>
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
+                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition" style="display:none;">
                             <td class="py-4 px-4 text-left text-brand italic">NerdTV 🚀</td>
                             <td class="py-4 px-3">$150 MXN</td>
                             <td class="py-4 px-3">Canales+</td>
