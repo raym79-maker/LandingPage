@@ -615,39 +615,9 @@
     </nav>
 
     <section class="pt-48 pb-24 px-6 max-w-5xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/30 rounded-full px-4 py-2 mb-3">
+        <div class="inline-flex items-center gap-2 bg-brand/10 border border-brand/30 rounded-full px-4 py-2 mb-6">
             <span class="text-brand font-black text-xs uppercase tracking-widest">⭐ +500 suscriptores activos en México</span>
         </div>
-        <div class="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2 mb-6 ml-2">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-            </span>
-            <span class="text-red-400 font-black text-xs uppercase tracking-widest" id="mundial-urgency-badge">🏆 Octavos de Final — ¡La eliminatoria arranca mañana!</span>
-        </div>
-        <script>
-            (function() {
-                var endDate     = new Date('2026-07-19T19:00:00-06:00');
-                var semis       = new Date('2026-07-14T00:00:00-06:00');
-                var quartersEnd = new Date('2026-07-11T00:00:00-06:00');
-                var quarters    = new Date('2026-07-08T00:00:00-06:00');
-                var quartersEve = new Date('2026-07-07T00:00:00-06:00');
-                var round16     = new Date('2026-06-28T00:00:00-06:00');
-                var now = new Date();
-                var diff = endDate - now;
-                var el = document.getElementById('mundial-urgency-badge');
-                if (!el || diff <= 0) return;
-                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                if (days === 0)                { el.innerHTML = '🔴 ¡HOY es la Final del Mundial! — Actívate ahora'; }
-                else if (days === 1)           { el.innerHTML = '🔴 Mañana es la Final — Último día'; }
-                else if (now >= semis)         { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
-                else if (now >= quartersEnd)   { el.innerHTML = '🔴 Semifinales el 14 de Julio — Prepárate, no te quedes fuera'; }
-                else if (now >= quarters)      { el.innerHTML = '🔴 Cuartos de Final EN VIVO — Actívate antes que se acaben'; }
-                else if (now >= quartersEve)   { el.innerHTML = '🔴 ¡Cuartos de Final arrancan mañana! — Actívate hoy'; }
-                else if (now >= round16)       { el.innerHTML = '🏆 Octavos de Final — ¡La eliminatoria sigue en vivo!'; }
-                else                            { el.innerHTML = '🔴 Mundial en curso — Quedan ' + days + ' días'; }
-            })();
-        </script>
         <p class="text-brand font-bold text-xs uppercase tracking-widest mb-4">🇲🇽 El mejor IPTV México · ⚽ IPTV Mundial 2026 · 🎬 Mundial 4K · 📺 IPTV Mundial desde $130</p>
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 uppercase tracking-tighter italic leading-[1.1]">
             <span class="text-brand">IPTV México</span> para el <span class="text-brand">Mundial 2026</span> — Ver TV por Internet sin cortes.
@@ -811,35 +781,10 @@
         <div class="max-w-4xl mx-auto px-6">
 
             <div class="flex items-center justify-center gap-3 mb-6 flex-wrap">
-                <div class="flex items-center gap-2 bg-red-500/10 border border-red-500/40 rounded-full px-5 py-2.5">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
-                    </span>
-                    <span class="text-red-400 font-black text-xs uppercase tracking-widest" id="phase-badge">🏆 Octavos de Final — Empieza mañana</span>
-                </div>
                 <div class="bg-brand/10 border border-brand/30 rounded-full px-5 py-2.5">
                     <span class="text-brand font-black text-xs uppercase tracking-widest">⚽ Mundial 2026 — En curso</span>
                 </div>
             </div>
-            <script>
-                (function(){
-                    var semis       = new Date('2026-07-14T00:00:00-06:00');
-                    var quartersEnd = new Date('2026-07-11T00:00:00-06:00');
-                    var quarters    = new Date('2026-07-08T00:00:00-06:00');
-                    var quartersEve = new Date('2026-07-07T00:00:00-06:00');
-                    var round16     = new Date('2026-06-28T00:00:00-06:00');
-                    var now = new Date();
-                    var el = document.getElementById('phase-badge');
-                    if (!el) return;
-                    if (now >= semis)              { el.innerHTML = '🔴 Semifinales del Mundial — No te las pierdas'; }
-                    else if (now >= quartersEnd)   { el.innerHTML = '🔴 Semifinales el 14 de Julio — Prepárate'; }
-                    else if (now >= quarters)      { el.innerHTML = '🔴 Cuartos de Final EN VIVO — Actívate antes que se acaben'; }
-                    else if (now >= quartersEve)   { el.innerHTML = '🔴 ¡Cuartos de Final arrancan mañana! — Actívate hoy'; }
-                    else if (now >= round16)       { el.innerHTML = '🏆 Octavos de Final — ¡La eliminatoria sigue en vivo!'; }
-                    else                            { el.innerHTML = '⚽ Mundial 2026 — Próximamente'; }
-                })();
-            </script>
 
             <div class="flex items-center justify-center mb-6">
                 <div class="flex items-center gap-3">
@@ -1022,7 +967,7 @@
                         <td class="py-3 px-4 text-center text-gray-400">11,000+</td>
                         <td class="py-3 px-4 text-center text-brand">✅</td>
                     </tr>
-                    <tr class="border-b border-gray-800 glass hover:bg-white/5 transition" style="display:none;">
+                    <tr class="border-b border-gray-800 glass hover:bg-white/5 transition">
                         <td class="py-3 px-4 font-bold text-white">NerdTV IPTV</td>
                         <td class="py-3 px-4 text-center text-brand font-black">$150 MXN</td>
                         <td class="py-3 px-4 text-center text-gray-400">Canales+</td>
@@ -1140,7 +1085,7 @@
             </div>
 
             <div class="relative flex flex-col items-center rounded-[2.5rem] p-8 md:p-10 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-                style="display:none; background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
+                style="background: linear-gradient(160deg, #0d2b1a 0%, #0f1f14 60%, #0a1a10 100%); border: 2px solid #25D366; box-shadow: 0 0 40px rgba(37,211,102,0.18), 0 8px 40px rgba(0,0,0,0.5);">
 
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                     <span class="bg-brand text-black text-[11px] font-black uppercase tracking-widest px-5 py-2 rounded-full shadow-lg shadow-brand/40 whitespace-nowrap">
@@ -1338,7 +1283,7 @@
                             <td class="py-4 px-3 text-brand">✅</td>
                             <td class="py-4 px-3 text-brand">✅</td>
                         </tr>
-                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition" style="display:none;">
+                        <tr class="border-b border-gray-800/50 hover:bg-white/5 transition">
                             <td class="py-4 px-4 text-left text-brand italic">NerdTV 🚀</td>
                             <td class="py-4 px-3">$150 MXN</td>
                             <td class="py-4 px-3">Canales+</td>
