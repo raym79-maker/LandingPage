@@ -606,126 +606,168 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- MARQUESINA DE AGENDA DEPORTIVA — evergreen, todo el año       -->
-    <!-- Mismos datos que el array EVENTOS de deportes-en-vivo.html.   -->
-    <!-- Si agregas/editas un evento ahí, refleja el mismo cambio aquí -->
-    <!-- para que ambas páginas digan lo mismo.                        -->
+    <!-- MARQUESINA DE PARTIDOS DEL DÍA — marcadores en vivo (ESPN API) -->
+    <!-- Multi-deporte: MLB, Liga MX, Champions, NBA, NFL.              -->
+    <!-- Sin backend: consume la API pública de ESPN directo del navegador. -->
+    <!-- Si una liga no tiene partidos hoy, simplemente no se muestra.  -->
     <!-- ============================================================ -->
-    <section class="ticker-section" aria-label="Próximos eventos deportivos">
-        <div class="ticker-label">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
-            </span>
-            PRÓXIMO EN VIVO
-        </div>
-        <div class="ticker-wrap">
-            <div class="ticker-track" id="home-ticker">
-                <span class="ticker-item">Cargando agenda…</span>
-            </div>
-        </div>
-    </section>
-
     <style>
-        .ticker-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(37,211,102,0.04);
-            border-top: 1px solid rgba(37,211,102,0.12);
-            border-bottom: 1px solid rgba(37,211,102,0.12);
-            padding: 10px 0;
-            overflow: hidden;
+        .sp-ticker{
+            background:#0a140c;
+            border-top:1px solid rgba(37,211,102,.25);
+            border-bottom:1px solid rgba(37,211,102,.25);
+            overflow:hidden;
+            position:relative;
+            padding:10px 0;
         }
-        .ticker-label {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 24px;
-            color: #25D366;
-            font-weight: 900;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            white-space: nowrap;
+        .sp-ticker::before,.sp-ticker::after{
+            content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;
         }
-        .ticker-wrap {
-            flex: 1;
-            overflow: hidden;
-            white-space: nowrap;
-            -webkit-mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 40px), transparent);
-            mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 40px), transparent);
+        .sp-ticker::before{left:0;background:linear-gradient(90deg,#0a140c,transparent);}
+        .sp-ticker::after{right:0;background:linear-gradient(270deg,#0a140c,transparent);}
+        .sp-ticker-track{
+            display:flex;
+            width:max-content;
+            animation:sp-scroll 45s linear infinite;
         }
-        .ticker-track {
-            display: inline-flex;
-            align-items: center;
-            animation: ticker-scroll 35s linear infinite;
+        .sp-ticker:hover .sp-ticker-track{animation-play-state:paused;}
+        @keyframes sp-scroll{
+            from{transform:translateX(0);}
+            to{transform:translateX(-50%);}
         }
-        .ticker-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 28px;
-            color: rgba(255,255,255,0.75);
-            font-size: 13px;
-            font-weight: 700;
-            white-space: nowrap;
-            border-right: 1px solid rgba(255,255,255,0.1);
+        .sp-card{
+            display:flex;flex-direction:column;gap:6px;
+            min-width:190px;
+            padding:8px 18px;
+            border-right:1px solid rgba(255,255,255,.08);
+            flex-shrink:0;
         }
-        .ticker-item .fecha { color: #25D366; font-weight: 900; }
-        .ticker-item.ticker-cta { color: #25D366; }
-        .ticker-item.ticker-cta a { color: #25D366; text-decoration: underline; }
-        @keyframes ticker-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        .sp-card-head{
+            display:flex;justify-content:space-between;align-items:center;
+            font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
         }
+        .sp-league{color:#FCD34D;}
+        .sp-status{padding:1px 7px;border-radius:9px;font-size:9px;}
+        .sp-status.live{background:rgba(220,38,38,.18);color:#f87171;}
+        .sp-status.final{background:rgba(255,255,255,.08);color:#9ca3af;}
+        .sp-status.pre{background:rgba(37,211,102,.15);color:#25D366;}
+        .sp-team-row{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+        .sp-team{display:flex;align-items:center;gap:6px;color:#e5e7eb;font-size:13px;font-weight:600;}
+        .sp-team img{width:18px;height:18px;object-fit:contain;border-radius:50%;background:#fff;}
+        .sp-team.winner{color:#fff;}
+        .sp-score{color:#fff;font-size:14px;font-weight:800;min-width:18px;text-align:right;}
+        .sp-ticker-empty{color:#6b7280;font-size:12px;padding:8px 18px;}
         @media (prefers-reduced-motion: reduce) {
-            .ticker-track { animation: none; }
-            .ticker-wrap { overflow-x: auto; }
-        }
-        @media (max-width: 640px) {
-            .ticker-label { padding-left: 16px; font-size: 10px; }
+            .sp-ticker-track { animation: none; overflow-x: auto; }
         }
     </style>
 
+    <div id="sp-ticker" class="sp-ticker" aria-label="Partidos del día">
+        <div class="sp-ticker-track" id="sp-ticker-track">
+            <div class="sp-ticker-empty">Cargando partidos del día…</div>
+        </div>
+    </div>
+
     <script>
-    (function() {
-        // Mismos eventos que deportes-en-vivo.html — mantener sincronizados.
-        var EVENTOS_TICKER = [
-            { fecha: '2026-07-16', label: '16 Jul', titulo: 'Liga MX Apertura arranca', icono: '⚽' },
-            { fecha: '2026-07-25', label: '25 Jul', titulo: 'Campeón de Campeones', icono: '🏆' },
-            { fecha: '2026-08-04', label: '4 Ago', titulo: 'Leagues Cup 2026', icono: '⚽' },
-            { fecha: '2026-09-19', label: '18-19 Sep', titulo: 'Clásico Nacional', icono: '🔥' },
-            { fecha: '2026-09-30', label: 'Sep', titulo: 'Regresa Champions League', icono: '🏆' },
-            { fecha: '2026-10-31', label: 'Oct', titulo: 'Arranca temporada NBA', icono: '🏀' },
-            { fecha: '2026-10-31', label: '23-31 Oct', titulo: 'Serie Mundial MLB', icono: '⚾' },
-            { fecha: '2026-11-25', label: '25 Nov', titulo: 'Liguilla Liga MX', icono: '⚽' }
+    (function(){
+        // Ligas a consultar (API pública de ESPN, sin key: sport/league)
+        var SP_LEAGUES = [
+            { path: 'baseball/mlb',          label: 'MLB' },
+            { path: 'soccer/mex.1',          label: 'Liga MX' },
+            { path: 'soccer/uefa.champions', label: 'Champions' },
+            { path: 'basketball/nba',        label: 'NBA' },
+            { path: 'football/nfl',          label: 'NFL' }
         ];
+        var SP_REFRESH_MS = 90000; // refrescar marcadores cada 90s
+        var SP_MAX_GAMES_PER_LEAGUE = 8;
 
-        function renderTicker() {
-            var el = document.getElementById('home-ticker');
-            if (!el) return;
-            var hoy = new Date(); hoy.setHours(0,0,0,0);
-
-            var futuros = EVENTOS_TICKER.filter(function(ev) {
-                return new Date(ev.fecha + 'T00:00:00') >= hoy;
-            }).sort(function(a,b) { return new Date(a.fecha) - new Date(b.fecha); });
-
-            var lista = futuros.length > 0 ? futuros : EVENTOS_TICKER.slice(-4);
-
-            var itemsHtml = lista.map(function(ev) {
-                return '<span class="ticker-item">' + ev.icono + ' ' + ev.titulo +
-                       ' <span class="fecha">— ' + ev.label + '</span></span>';
-            }).join('');
-
-            itemsHtml += '<span class="ticker-item ticker-cta">📅 <a href="/deportes-en-vivo.html">Ver agenda completa →</a></span>';
-
-            // Se duplica el contenido para que el loop de la animación sea continuo (sin salto visible)
-            el.innerHTML = itemsHtml + itemsHtml;
+        function spStatusInfo(status){
+            var t = status && status.type ? status.type : {};
+            if (t.state === 'in') return { cls: 'live', label: (t.shortDetail || 'EN VIVO').toUpperCase() };
+            if (t.state === 'post') return { cls: 'final', label: 'FINAL' };
+            var timeLabel = 'HOY';
+            try {
+                timeLabel = new Date(status.type && status.type.date ? status.type.date : Date.now())
+                    .toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+            } catch(e){}
+            return { cls: 'pre', label: timeLabel };
         }
 
-        document.addEventListener('DOMContentLoaded', renderTicker);
+        function spBuildCard(game, leagueLabel){
+            var comp = game.competitions && game.competitions[0];
+            if (!comp) return null;
+            var competitors = comp.competitors || [];
+            var home = competitors.find(function(c){ return c.homeAway === 'home'; }) || competitors[0];
+            var away = competitors.find(function(c){ return c.homeAway === 'away'; }) || competitors[1];
+            if (!home || !away) return null;
+
+            var status = comp.status || game.status || {};
+            var info = spStatusInfo(status);
+
+            var card = document.createElement('div');
+            card.className = 'sp-card';
+
+            var head = document.createElement('div');
+            head.className = 'sp-card-head';
+            head.innerHTML =
+                '<span class="sp-league">' + leagueLabel + '</span>' +
+                '<span class="sp-status ' + info.cls + '">' + info.label + '</span>';
+            card.appendChild(head);
+
+            [away, home].forEach(function(team){
+                var row = document.createElement('div');
+                row.className = 'sp-team-row';
+                var name = document.createElement('span');
+                name.className = 'sp-team' + (team.winner ? ' winner' : '');
+                var logo = team.team && team.team.logo ? '<img src="' + team.team.logo + '" alt="">' : '';
+                var abbr = (team.team && (team.team.abbreviation || team.team.shortDisplayName)) || '';
+                name.innerHTML = logo + '<span>' + abbr + '</span>';
+                var score = document.createElement('span');
+                score.className = 'sp-score';
+                score.textContent = (info.cls === 'pre') ? '' : (team.score != null ? team.score : '');
+                row.appendChild(name);
+                row.appendChild(score);
+                card.appendChild(row);
+            });
+
+            return card;
+        }
+
+        function spFetchLeague(league){
+            var url = 'https://site.api.espn.com/apis/site/v2/sports/' + league.path + '/scoreboard';
+            return fetch(url)
+                .then(function(r){ return r.ok ? r.json() : null; })
+                .then(function(data){
+                    if (!data || !data.events) return [];
+                    return data.events.slice(0, SP_MAX_GAMES_PER_LEAGUE).map(function(ev){
+                        return spBuildCard(ev, league.label);
+                    }).filter(Boolean);
+                })
+                .catch(function(){ return []; });
+        }
+
+        function spRender(){
+            Promise.all(SP_LEAGUES.map(spFetchLeague)).then(function(results){
+                var cards = [].concat.apply([], results);
+                var track = document.getElementById('sp-ticker-track');
+                if (!track) return;
+                track.innerHTML = '';
+
+                if (cards.length === 0){
+                    var empty = document.createElement('div');
+                    empty.className = 'sp-ticker-empty';
+                    empty.textContent = 'No hay partidos programados hoy. Ver agenda completa en /deportes-en-vivo.html';
+                    track.appendChild(empty);
+                    return;
+                }
+
+                // Duplicar el set de tarjetas para lograr scroll infinito sin salto
+                cards.concat(cards).forEach(function(card){ track.appendChild(card); });
+            });
+        }
+
+        spRender();
+        setInterval(spRender, SP_REFRESH_MS);
     })();
     </script>
 
