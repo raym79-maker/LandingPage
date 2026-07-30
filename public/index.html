@@ -1620,6 +1620,182 @@
         <p class="text-gray-700 text-[9px] mt-2">Ver TV por internet · Canales en vivo · Películas 4K · Series · IPTV México</p>
     </footer>
 
+    <!-- Modal de Precalificación WhatsApp -->
+    <style>
+        #sp-quiz-overlay {
+            position: fixed; inset: 0; background: rgba(3,13,6,0.85);
+            backdrop-filter: blur(4px); z-index: 9999;
+            display: none; align-items: center; justify-content: center;
+            padding: 16px;
+        }
+        #sp-quiz-overlay.active { display: flex; }
+        #sp-quiz-box {
+            background: #0f172a; border: 1px solid #1e293b; border-radius: 16px;
+            width: 100%; max-width: 420px; padding: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-height: 90vh; overflow-y: auto;
+        }
+        .sp-quiz-step { display: none; }
+        .sp-quiz-step.active { display: block; }
+        .sp-quiz-progress {
+            display: flex; gap: 6px; margin-bottom: 18px;
+        }
+        .sp-quiz-progress span {
+            height: 4px; flex: 1; border-radius: 4px; background: #1e293b; transition: background 0.2s;
+        }
+        .sp-quiz-progress span.done { background: #25D366; }
+        .sp-quiz-title {
+            color: white; font-weight: 900; font-size: 18px; margin-bottom: 4px;
+        }
+        .sp-quiz-sub { color: #64748b; font-size: 12px; margin-bottom: 16px; }
+        .sp-quiz-option {
+            display: block; width: 100%; text-align: left; background: #1e293b;
+            color: white; border: 1px solid #334155; border-radius: 10px;
+            padding: 14px 16px; margin-bottom: 10px; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .sp-quiz-option:hover, .sp-quiz-option:active { background: #25D366; color: black; border-color: #25D366; }
+        #sp-quiz-close {
+            position: absolute; top: 12px; right: 16px; color: #64748b;
+            background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1;
+        }
+        #sp-quiz-box { position: relative; }
+    </style>
+    <div id="sp-quiz-overlay">
+        <div id="sp-quiz-box">
+            <button id="sp-quiz-close" aria-label="Cerrar">✕</button>
+            <div class="sp-quiz-progress">
+                <span id="sp-prog-1"></span><span id="sp-prog-2"></span><span id="sp-prog-3"></span>
+            </div>
+
+            <div class="sp-quiz-step active" data-step="1">
+                <p class="sp-quiz-title">📺 ¿Qué quieres ver?</p>
+                <p class="sp-quiz-sub">Así te recomendamos el mejor plan</p>
+                <button class="sp-quiz-option" data-field="contenido" data-value="Deportes">⚽ Deportes</button>
+                <button class="sp-quiz-option" data-field="contenido" data-value="Películas y series">🎬 Películas y series</button>
+                <button class="sp-quiz-option" data-field="contenido" data-value="Todo (deportes + películas + series)">✅ Todo</button>
+            </div>
+
+            <div class="sp-quiz-step" data-step="2">
+                <p class="sp-quiz-title">📱 ¿En qué lo vas a ver?</p>
+                <p class="sp-quiz-sub">Para confirmar que es compatible</p>
+                <button class="sp-quiz-option" data-field="dispositivo" data-value="Smart TV">📺 Smart TV</button>
+                <button class="sp-quiz-option" data-field="dispositivo" data-value="TV Box o Roku">📦 TV Box o Roku</button>
+                <button class="sp-quiz-option" data-field="dispositivo" data-value="Celular o Tablet">📱 Celular o Tablet</button>
+                <button class="sp-quiz-option" data-field="dispositivo" data-value="Computadora">💻 Computadora</button>
+            </div>
+
+            <div class="sp-quiz-step" data-step="3">
+                <p class="sp-quiz-title">📶 ¿Cuánta velocidad de internet tienes?</p>
+                <p class="sp-quiz-sub">Para asegurar que veas sin cortes</p>
+                <button class="sp-quiz-option" data-field="internet" data-value="Menos de 10 Mbps">🐢 Menos de 10 Mbps</button>
+                <button class="sp-quiz-option" data-field="internet" data-value="10 a 30 Mbps">🚶 10 a 30 Mbps</button>
+                <button class="sp-quiz-option" data-field="internet" data-value="Más de 30 Mbps">🚀 Más de 30 Mbps</button>
+                <button class="sp-quiz-option" data-field="internet" data-value="No sé">🤷 No sé</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var overlay = document.getElementById('sp-quiz-overlay');
+            var box = document.getElementById('sp-quiz-box');
+            var answers = {};
+            var pendingHref = '';
+            var pendingPlan = 'General';
+
+            function detectPlan(href, texto) {
+                if (href.includes('TU%20LATINO') || texto.includes('Tu Latino')) return 'Tu Latino';
+                if (href.includes('SKY%20SOCCER') || texto.includes('Sky Soccer')) return 'Sky Soccer Plus';
+                if (href.includes('STADIO')) return 'Stadio Max';
+                if (href.includes('M327') || texto.includes('M327')) return 'M327';
+                if (href.includes('ALFA') || texto.includes('4K')) return 'ALFA TV';
+                if (href.includes('LEDTV') || texto.includes('LEDTV')) return 'LEDTV';
+                if (href.includes('NERDTV') || texto.includes('NerdTV')) return 'NerdTV';
+                if (href.includes('soporte')) return 'Soporte';
+                return 'General';
+            }
+
+            function showStep(n) {
+                document.querySelectorAll('.sp-quiz-step').forEach(function(el) {
+                    el.classList.toggle('active', el.dataset.step == n);
+                });
+                for (var i = 1; i <= 3; i++) {
+                    document.getElementById('sp-prog-' + i).classList.toggle('done', i < n);
+                }
+            }
+
+            function openQuiz(href, texto) {
+                answers = {};
+                pendingHref = href;
+                pendingPlan = detectPlan(href, texto);
+                showStep(1);
+                overlay.classList.add('active');
+            }
+
+            function closeQuiz() {
+                overlay.classList.remove('active');
+            }
+
+            function finishQuiz() {
+                var extra = ' | Busco: ' + answers.contenido + ' | Dispositivo: ' + answers.dispositivo + ' | Internet: ' + answers.internet;
+                var finalUrl = pendingHref + encodeURIComponent(extra);
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quiz_precalificacion_completo', {
+                        event_category: 'Conversion',
+                        event_label: pendingPlan,
+                        contenido: answers.contenido,
+                        dispositivo: answers.dispositivo,
+                        internet: answers.internet
+                    });
+                }
+
+                fetch('/api/prospectos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: 'Web-' + pendingPlan,
+                        whatsapp: 'No especificado (via quiz web)',
+                        producto: pendingPlan,
+                        dispositivo: answers.dispositivo,
+                        contenido: answers.contenido,
+                        internet: answers.internet
+                    })
+                }).catch(function() {});
+
+                closeQuiz();
+                window.open(finalUrl, '_blank');
+            }
+
+            document.getElementById('sp-quiz-close').addEventListener('click', closeQuiz);
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeQuiz();
+            });
+
+            box.addEventListener('click', function(e) {
+                var opt = e.target.closest('.sp-quiz-option');
+                if (!opt) return;
+                answers[opt.dataset.field] = opt.dataset.value;
+                var currentStep = parseInt(opt.closest('.sp-quiz-step').dataset.step, 10);
+                if (currentStep < 3) {
+                    showStep(currentStep + 1);
+                } else {
+                    finishQuiz();
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('a[href*="wa.me"]').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        openQuiz(btn.getAttribute('href'), btn.textContent.trim());
+                    });
+                });
+            });
+        })();
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiperTestimonios = new Swiper(".mySwiper", {
