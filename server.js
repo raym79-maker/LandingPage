@@ -61,7 +61,11 @@ const db = new sqlite3.Database(dbPath, (err) => {
             fecha DATETIME DEFAULT CURRENT_TIMESTAMP
         )`, () => {
             db.run(`ALTER TABLE prospectos ADD COLUMN dispositivo TEXT`, () => {
-                console.log("DB lista.");
+                db.run(`ALTER TABLE prospectos ADD COLUMN contenido TEXT`, () => {
+                    db.run(`ALTER TABLE prospectos ADD COLUMN internet TEXT`, () => {
+                        console.log("DB lista.");
+                    });
+                });
             });
         });
     }
@@ -70,9 +74,9 @@ const db = new sqlite3.Database(dbPath, (err) => {
 const auth = basicAuth({ users: { 'admin': 'smartplay2026' }, challenge: true });
 
 app.post('/api/prospectos', (req, res) => {
-    const { nombre, whatsapp, producto, dispositivo } = req.body;
-    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo) VALUES (?, ?, ?, ?)`, 
-    [nombre, whatsapp, producto || 'Demo', dispositivo || 'No especificado'], (err) => {
+    const { nombre, whatsapp, producto, dispositivo, contenido, internet } = req.body;
+    db.run(`INSERT INTO prospectos (nombre, whatsapp, producto, dispositivo, contenido, internet) VALUES (?, ?, ?, ?, ?, ?)`,
+    [nombre, whatsapp, producto || 'Demo', dispositivo || 'No especificado', contenido || 'No especificado', internet || 'No especificado'], (err) => {
         if (err) return res.status(500).json({ error: "Error de servidor" });
         res.status(200).json({ success: true });
     });
@@ -89,18 +93,19 @@ app.get('/admin-prospectos', auth, (req, res) => {
             <table border="1" style="width:100%;border-collapse:collapse;text-align:center;border-color:#1e293b;">
                 <tr style="background:#25D366;color:black;">
                     <th style="padding:12px;">Fecha</th><th>Nombre</th><th>WhatsApp</th>
-                    <th>Producto</th><th>Dispositivo</th><th>Acción</th>
+                    <th>Producto</th><th>Dispositivo</th><th>Contenido</th><th>Internet</th><th>Acción</th>
                 </tr>`;
         rows.forEach(r => {
             const p = r.whatsapp.replace(/\D/g,'');
             html += `<tr style="border-bottom:1px solid #1e293b;">
                 <td style="padding:12px;">${r.fecha}</td><td>${r.nombre}</td><td>${r.whatsapp}</td>
                 <td>${r.producto}</td><td style="color:#25D366;font-weight:bold;">${r.dispositivo||'N/A'}</td>
+                <td>${r.contenido||'N/A'}</td><td>${r.internet||'N/A'}</td>
                 <td><a href="https://wa.me/${p}?text=Hola%20${r.nombre}" 
                    style="background:#25D366;color:black;padding:5px 12px;text-decoration:none;font-weight:bold;border-radius:5px;font-size:11px;"
                    target="_blank">Contactar</a></td></tr>`;
         });
-        if (rows.length === 0) html += `<tr><td colspan="6" style="padding:40px;color:#64748b;">No hay registros.</td></tr>`;
+        if (rows.length === 0) html += `<tr><td colspan="8" style="padding:40px;color:#64748b;">No hay registros.</td></tr>`;
         res.send(html + "</table></body>");
     });
 });
