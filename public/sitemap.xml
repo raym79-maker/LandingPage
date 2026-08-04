@@ -3,16 +3,23 @@
   <!-- HOME ESPAÑOL -->
   <url>
     <loc>https://www.smartplay.com.mx/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- LANDING EN INGLÉS (USA) -->
   <url>
     <loc>https://www.smartplay.com.mx/en/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+  </url>
+  <!-- LANDING LATINOS EN USA -->
+  <url>
+    <loc>https://www.smartplay.com.mx/latino-usa/</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <!-- DEPORTES EN VIVO (HUB PERMANENTE) -->
   <url>
@@ -35,10 +42,10 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  <!-- BLOG POSTS ESPAÑOL (5 posts) -->
+  <!-- BLOG POSTS ESPAÑOL (7 posts) -->
   <url>
     <loc>https://www.smartplay.com.mx/blog/iptv-sin-cortes-mundial-2026/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -51,6 +58,18 @@
   <url>
     <loc>https://www.smartplay.com.mx/blog/mejor-iptv-mexico-2026/</loc>
     <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.smartplay.com.mx/blog/iptv-para-ver-el-mundial-2026/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.smartplay.com.mx/blog/mejor-iptv-con-pase-al-mundial-2026/</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
