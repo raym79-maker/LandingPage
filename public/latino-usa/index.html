@@ -120,9 +120,87 @@
         .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.25rem 1.5rem; }
         .faq-item h3 { font-weight: 800; color: #25D366; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 0.5rem; }
         .faq-item p { color: rgba(255,255,255,0.65); font-size: 0.875rem; line-height: 1.7; }
-    </style>
+            .stadium-lights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .stadium-lights span {
+            position: absolute;
+            width: 340px; height: 340px;
+            filter: blur(80px);
+            border-radius: 50%;
+            background: #38BDF8;
+            animation: stadium-flicker 6s ease-in-out infinite;
+        }
+        .stadium-lights span:nth-child(1) { top: -140px; left: -140px; opacity: 0.22; }
+        .stadium-lights span:nth-child(2) { top: -140px; right: -140px; opacity: 0.22; animation-delay: 1.5s; }
+        .stadium-lights span:nth-child(3) { bottom: -140px; left: -140px; opacity: 0.16; animation-delay: 3s; }
+        .stadium-lights span:nth-child(4) { bottom: -140px; right: -140px; opacity: 0.16; animation-delay: 4.5s; }
+        @keyframes stadium-flicker {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.30; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .stadium-lights span { animation: none; opacity: 0.15; }
+        }
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-glow span {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+        }
+        .hero-glow span:nth-child(1) {
+            width: 480px; height: 480px;
+            background: #38BDF8;
+            top: -120px; left: 10%;
+            opacity: 0.38;
+            animation: glow-drift-1 16s ease-in-out infinite;
+        }
+        .hero-glow span:nth-child(2) {
+            width: 380px; height: 380px;
+            background: #0EA5E9;
+            top: 40%; right: 5%;
+            opacity: 0.28;
+            animation: glow-drift-2 20s ease-in-out infinite;
+        }
+        .hero-glow span:nth-child(3) {
+            width: 360px; height: 360px;
+            background: #38BDF8;
+            bottom: -100px; left: 40%;
+            opacity: 0.30;
+            animation: glow-drift-3 18s ease-in-out infinite;
+        }
+        @keyframes glow-drift-1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(60px, 40px); }
+        }
+        @keyframes glow-drift-2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 30px); }
+        }
+        @keyframes glow-drift-3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, -30px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-glow span { animation: none; }
+        }
+        .hero-content-wrap { position: relative; z-index: 1; }
+</style>
 </head>
 <body>
+    <div class="stadium-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
 
 <div class="urgency-bar">
     ⚽ DEPORTES Y CANALES MEXICANOS EN VIVO — Desde USA desde $130 MXN/mes
@@ -151,6 +229,8 @@
 
 <!-- HERO -->
 <section class="pt-36 pb-16 px-6 max-w-5xl mx-auto text-center">
+    <div class="hero-glow" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero-content-wrap">
     <div class="flex items-center justify-center gap-3 mb-4 flex-wrap">
         <span class="bg-brand/10 text-brand text-xs font-black uppercase px-3 py-1 rounded-full border border-brand/20">🇺🇸 Disponible en USA</span>
         <span class="bg-brand/10 text-brand text-xs font-black uppercase px-3 py-1 rounded-full border border-brand/20">🇵🇷 Puerto Rico</span>
@@ -177,6 +257,7 @@
         📲 Quiero IPTV desde USA — Demo Gratis
     </a>
     <p class="text-white/30 text-xs uppercase font-bold">Sin contrato · Activación en 5 min · Soporte en español</p>
+    </div>
 </section>
 
 <!-- CANALES DISPONIBLES -->
