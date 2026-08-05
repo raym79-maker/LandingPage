@@ -3,7 +3,7 @@
   <!-- HOME ESPAÑOL -->
   <url>
     <loc>https://www.smartplay.com.mx/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -24,7 +24,7 @@
   <!-- DEPORTES EN VIVO (HUB PERMANENTE) -->
   <url>
     <loc>https://www.smartplay.com.mx/deportes-en-vivo.html</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -54,6 +54,12 @@
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.smartplay.com.mx/blog/calendario-futbol-europeo-2026-27/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartplay.com.mx/blog/mejor-iptv-mexico-2026/</loc>
