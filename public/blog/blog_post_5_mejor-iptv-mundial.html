@@ -144,9 +144,38 @@
         .badge-4k { background: rgba(255,215,0,0.15); color: #FFD700; border: 1px solid rgba(255,215,0,0.3); }
         .badge-eco { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.15); }
         .badge-new { background: rgba(220,38,38,0.2); color: #ef4444; border: 1px solid rgba(220,38,38,0.4); }
-    </style>
+            .stadium-lights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .stadium-lights span {
+            position: absolute;
+            width: 340px; height: 340px;
+            filter: blur(80px);
+            border-radius: 50%;
+            background: #38BDF8;
+            animation: stadium-flicker 6s ease-in-out infinite;
+        }
+        .stadium-lights span:nth-child(1) { top: -140px; left: -140px; opacity: 0.22; }
+        .stadium-lights span:nth-child(2) { top: -140px; right: -140px; opacity: 0.22; animation-delay: 1.5s; }
+        .stadium-lights span:nth-child(3) { bottom: -140px; left: -140px; opacity: 0.16; animation-delay: 3s; }
+        .stadium-lights span:nth-child(4) { bottom: -140px; right: -140px; opacity: 0.16; animation-delay: 4.5s; }
+        @keyframes stadium-flicker {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.30; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .stadium-lights span { animation: none; opacity: 0.15; }
+        }
+</style>
 </head>
 <body>
+    <div class="stadium-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
 
 <!-- Barra deportes en vivo -->
 <div class="urgency-bar">

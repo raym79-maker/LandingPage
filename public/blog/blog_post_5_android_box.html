@@ -136,9 +136,38 @@
         .spec-card .value { color: white; font-weight: 700; font-size: 0.95rem; margin-top: 2px; }
         .tier-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.5rem; }
         .tier-card .price-range { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #25D366; }
-    </style>
+            .stadium-lights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .stadium-lights span {
+            position: absolute;
+            width: 340px; height: 340px;
+            filter: blur(80px);
+            border-radius: 50%;
+            background: #38BDF8;
+            animation: stadium-flicker 6s ease-in-out infinite;
+        }
+        .stadium-lights span:nth-child(1) { top: -140px; left: -140px; opacity: 0.22; }
+        .stadium-lights span:nth-child(2) { top: -140px; right: -140px; opacity: 0.22; animation-delay: 1.5s; }
+        .stadium-lights span:nth-child(3) { bottom: -140px; left: -140px; opacity: 0.16; animation-delay: 3s; }
+        .stadium-lights span:nth-child(4) { bottom: -140px; right: -140px; opacity: 0.16; animation-delay: 4.5s; }
+        @keyframes stadium-flicker {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.30; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .stadium-lights span { animation: none; opacity: 0.15; }
+        }
+</style>
 </head>
 <body>
+    <div class="stadium-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
 
 <!-- WhatsApp flotante -->
 <a href="https://wa.me/5521314298?text=Hola,%20tengo%20dudas%20sobre%20qu%C3%A9%20Android%20Box%20usar%20con%20IPTV" target="_blank" class="wa-fixed">

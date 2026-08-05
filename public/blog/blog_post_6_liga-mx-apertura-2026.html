@@ -144,9 +144,38 @@
         .wa-fixed { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: #25D366; color: black; border-radius: 50px; padding: 14px 20px; display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 12px; text-decoration: none; box-shadow: 0 4px 30px rgba(37,211,102,0.4); text-transform: uppercase; transition: transform 0.2s; }
         .wa-fixed:hover { transform: scale(1.05); }
         .urgency-bar { background: linear-gradient(90deg, #25D366, #1a8c4a); color: black; text-align: center; padding: 10px; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
-    </style>
+            .stadium-lights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .stadium-lights span {
+            position: absolute;
+            width: 340px; height: 340px;
+            filter: blur(80px);
+            border-radius: 50%;
+            background: #38BDF8;
+            animation: stadium-flicker 6s ease-in-out infinite;
+        }
+        .stadium-lights span:nth-child(1) { top: -140px; left: -140px; opacity: 0.22; }
+        .stadium-lights span:nth-child(2) { top: -140px; right: -140px; opacity: 0.22; animation-delay: 1.5s; }
+        .stadium-lights span:nth-child(3) { bottom: -140px; left: -140px; opacity: 0.16; animation-delay: 3s; }
+        .stadium-lights span:nth-child(4) { bottom: -140px; right: -140px; opacity: 0.16; animation-delay: 4.5s; }
+        @keyframes stadium-flicker {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.30; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .stadium-lights span { animation: none; opacity: 0.15; }
+        }
+</style>
 </head>
 <body>
+    <div class="stadium-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
 
 <!-- Barra urgencia arranque Liga MX -->
 <div class="urgency-bar">

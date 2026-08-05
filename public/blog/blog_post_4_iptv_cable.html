@@ -135,9 +135,38 @@
         .comp-table th { background: rgba(37,211,102,0.1); color: #25D366; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; padding: 12px; text-align: left; }
         .comp-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; color: rgba(255,255,255,0.75); }
         .comp-table td.win { color: #25D366; font-weight: 800; }
-    </style>
+            .stadium-lights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .stadium-lights span {
+            position: absolute;
+            width: 340px; height: 340px;
+            filter: blur(80px);
+            border-radius: 50%;
+            background: #38BDF8;
+            animation: stadium-flicker 6s ease-in-out infinite;
+        }
+        .stadium-lights span:nth-child(1) { top: -140px; left: -140px; opacity: 0.22; }
+        .stadium-lights span:nth-child(2) { top: -140px; right: -140px; opacity: 0.22; animation-delay: 1.5s; }
+        .stadium-lights span:nth-child(3) { bottom: -140px; left: -140px; opacity: 0.16; animation-delay: 3s; }
+        .stadium-lights span:nth-child(4) { bottom: -140px; right: -140px; opacity: 0.16; animation-delay: 4.5s; }
+        @keyframes stadium-flicker {
+            0%, 100% { opacity: 0.12; }
+            50% { opacity: 0.30; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .stadium-lights span { animation: none; opacity: 0.15; }
+        }
+</style>
 </head>
 <body>
+    <div class="stadium-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+    </div>
+
 
 <!-- WhatsApp flotante -->
 <a href="https://wa.me/5521314298?text=Hola,%20quiero%20cambiar%20de%20cable%20a%20IPTV,%20me%20dan%20información" target="_blank" class="wa-fixed">
