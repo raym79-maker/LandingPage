@@ -31,11 +31,18 @@ app.get('/mundial-2026.html', (req, res) => res.redirect(301, '/deportes-en-vivo
 
 // Blog ES — antes del static para evitar que el catch-all intercepte
 app.get('/blog/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_index.html')));
-app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_1_iptv-sin-cortes.html')));
+app.get('/blog/iptv-sin-cortes/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_1_iptv-sin-cortes.html')));
 app.get('/blog/como-instalar-iptv-smart-tv/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_2_como_instalar.html')));
 app.get('/blog/mejor-iptv-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_3_mejor_iptv.html')));
-app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv-para-ver-el-mundial.html')));
-app.get('/blog/mejor-iptv-con-pase-al-mundial-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_mejor-iptv-mundial.html')));
+app.get('/blog/iptv-deportes-en-vivo-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv-para-ver-el-mundial.html')));
+app.get('/blog/comparativa-planes-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_mejor-iptv-mundial.html')));
+
+// ✅ POST-MUNDIAL: redirects 301 permanentes de las URLs con branding del Mundial 2026
+// (torneo terminado el 19 jul) hacia sus versiones evergreen. Transfiere la autoridad
+// SEO ya acumulada en vez de perderla con un 404.
+app.get('/blog/iptv-sin-cortes-mundial-2026/', (req, res) => res.redirect(301, '/blog/iptv-sin-cortes/'));
+app.get('/blog/iptv-para-ver-el-mundial-2026/', (req, res) => res.redirect(301, '/blog/iptv-deportes-en-vivo-mexico/'));
+app.get('/blog/mejor-iptv-con-pase-al-mundial-2026/', (req, res) => res.redirect(301, '/blog/comparativa-planes-iptv-mexico/'));
 app.get('/blog/iptv-vs-cable-mexico-2026/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_4_iptv_cable.html')));
 app.get('/blog/mejor-android-box-iptv-mexico/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_5_android_box.html')));
 app.get('/blog/liga-mx-apertura-2026-en-vivo/', (req, res) => res.sendFile(path.join(__dirname,'public','blog','blog_post_6_liga-mx-apertura-2026.html')));
