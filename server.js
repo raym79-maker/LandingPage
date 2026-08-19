@@ -16,6 +16,20 @@ const dbPath = path.join(dbDir, 'smartplay.db');
 app.use(cors());
 app.use(express.json());
 
+// ✅ FIX: el edge de Railway (railway-hikari) estaba sirviendo copias viejas del
+// HTML vía 304 aunque el contenedor ya tenía el archivo actualizado. El HTML de
+// este sitio cambia seguido (orden de tarjetas, precios, secciones), así que
+// nunca debe cachearse — ni en el navegador ni en ningún proxy intermedio.
+// Los assets estáticos (imágenes, CSS, JS) sí deben seguir cacheando normal.
+app.use((req, res, next) => {
+    if (req.path.endsWith('.html') || req.path === '/') {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+    }
+    next();
+});
+
 // SEO — antes del static
 app.get('/sitemap.xml', (req, res) => { res.setHeader('Content-Type','application/xml'); res.sendFile(path.join(__dirname,'public','sitemap.xml')); });
 app.get('/robots.txt', (req, res) => { res.setHeader('Content-Type','text/plain'); res.sendFile(path.join(__dirname,'public','robots.txt')); });
