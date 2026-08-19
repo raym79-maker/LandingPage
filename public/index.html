@@ -506,6 +506,43 @@
         @media (prefers-reduced-motion: reduce) {
             .stadium-lights span { animation: none; opacity: 0.15; }
         }
+        /* Marquesina de focos — tarjeta de kickoff NFL. CSS puro, sin nodos extra. */
+        .nfl-marquee-card {
+            position: relative;
+        }
+        .nfl-marquee-card::before,
+        .nfl-marquee-card::after {
+            content: "";
+            position: absolute;
+            inset: -7px;
+            border-radius: 22px;
+            pointer-events: none;
+            z-index: 2;
+            background-image:
+                radial-gradient(circle, #FCD34D 2.2px, transparent 2.6px),
+                radial-gradient(circle, #FCD34D 2.2px, transparent 2.6px),
+                radial-gradient(circle, #FCD34D 2.2px, transparent 2.6px),
+                radial-gradient(circle, #FCD34D 2.2px, transparent 2.6px);
+            background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+            background-size: 20px 10px, 20px 10px, 10px 20px, 10px 20px;
+            filter: drop-shadow(0 0 3px rgba(252, 211, 77, 0.75));
+            animation: nfl-marquee-blink 1.4s steps(1, end) infinite;
+        }
+        .nfl-marquee-card::before {
+            background-position: 0 0, 0 100%, 0 0, 100% 0;
+        }
+        .nfl-marquee-card::after {
+            background-position: 10px 0, 10px 100%, 0 10px, 100% 10px;
+            animation-delay: 0.7s;
+        }
+        @keyframes nfl-marquee-blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.25; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .nfl-marquee-card::before,
+            .nfl-marquee-card::after { animation: none; opacity: 0.85; }
+        }
         .plan-cta {
             display: block;
             width: 100%;
@@ -628,7 +665,7 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="glass rounded-2xl p-5 text-center border border-gray-800 hover:border-brand/30 transition">
+            <div class="nfl-marquee-card glass rounded-2xl p-5 text-center border border-brand/40 hover:border-brand/30 transition">
                 <p class="text-3xl mb-2">🏈</p>
                 <p class="text-white font-black text-sm uppercase mb-1">Kickoff: Seahawks vs Patriots</p>
                 <p class="text-brand font-black text-lg">Mié 9 Sep</p>
