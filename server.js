@@ -35,6 +35,7 @@ app.get('/sitemap.xml', (req, res) => { res.setHeader('Content-Type','applicatio
 app.get('/robots.txt', (req, res) => { res.setHeader('Content-Type','text/plain'); res.sendFile(path.join(__dirname,'public','robots.txt')); });
 // Hub deportivo permanente (evergreen) — captación todo el año
 app.get('/deportes-en-vivo.html', (req, res) => res.sendFile(path.join(__dirname,'public','deportes-en-vivo.html')));
+app.get('/nfl-2026.html', (req, res) => res.sendFile(path.join(__dirname,'public','nfl-2026.html')));
 
 // Página del Mundial — DESACTIVADA a partir del 13 de julio 2026.
 // app.get('/mundial-2026.html', (req, res) => res.sendFile(path.join(__dirname,'public','mundial-2026.html')));
